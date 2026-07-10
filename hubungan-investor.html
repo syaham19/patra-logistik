@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungan Investor - PT Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Khusus untuk Hubungan Investor */
+        .about-hero {
+            color: #ffffff;
+            padding: 100px 0 60px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, #F9F9F9, rgba(249, 249, 249, 0));
+            pointer-events: none;
+        }
+        .about-hero__tag {
+            background: rgba(237, 28, 36, 0.2);
+            color: #FF5A5F;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(237, 28, 36, 0.3);
+        }
+        .about-hero__title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .about-hero__desc {
+            font-size: 16px;
+            color: #A0C4DF;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        /* Layout Grid */
+        .about-layout {
+            padding: 20px 0 100px;
+            background-color: #FFFFFF;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Navigation Drawer */
+        .about-sidebar {
+            position: fixed !important;
+            top: 0;
+            left: -340px; /* Hidden off-screen */
+            width: 320px;
+            height: 100vh;
+            background: #ffffff;
+            box-shadow: 20px 0 40px rgba(15, 23, 42, 0.15);
+            z-index: 2000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px;
+            border-radius: 0;
+            border: none;
+            border-right: 1px solid #E2E8F0;
+            overflow-y: auto;
+        }
+        .about-sidebar.open {
+            left: 0 !important;
+        }
+
+        /* Drawer Backdrop Overlay */
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .sidebar-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Drawer Header */
+        .sidebar-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 16px;
+        }
+        .sidebar-drawer-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #64748B;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+        .sidebar-drawer-close:hover {
+            color: #ED1C24;
+        }
+
+        /* Floating category trigger button */
+        .category-toggle-btn {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background: #0056A6;
+            color: #ffffff;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            padding: 16px 20px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .category-toggle-btn:hover {
+            background: #ED1C24;
+            padding-left: 28px;
+        }
+
+        /* Inline category trigger button */
+        .category-inline-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #F1F5F9;
+            color: #1E293B;
+            border: 1px solid #E2E8F0;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+        }
+        .category-inline-trigger:hover {
+            background: #0056A6;
+            color: #ffffff;
+            border-color: #0056A6;
+        }
+        
+        /* Mobile Dropdown Styling */
+        .about-mobile-select-wrapper {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .about-mobile-select-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .about-mobile-select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1E293B;
+            background-color: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .about-mobile-select:focus {
+            border-color: #0056A6;
+        }
+
+        .about-menu-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-left: 12px;
+        }
+
+
+        /* Content Area */
+        .about-content-pane {
+            background: transparent;
+            border-radius: 0;
+            padding: 16px 0 48px;
+            box-shadow: none;
+            border: none;
+            min-height: 500px;
+        }
+
+        .about-tab-content {
+            display: none;
+        }
+        .about-tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 18px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .content-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 32px;
+        }
+
+        /* Grid for Corporate Governance Cards */
+        .gov-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 1200px) {
+            .gov-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 991px) {
+            .about-grid { grid-template-columns: 1fr; gap: 0; }
+            .about-sidebar { /* Keep fixed drawer styles */ }
+            .about-mobile-select-wrapper { display: none !important; }
+            .about-menu { display: flex !important; }
+        }
+        @media (max-width: 768px) {
+            .gov-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-content-pane { padding: 24px; }
+        }
+        @media (max-width: 480px) {
+            .gov-grid { grid-template-columns: 1fr; }
+        }
+
+        .gov-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 155px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .gov-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 86, 166, 0.06);
+            border-color: #0056A6;
+        }
+        .gov-card-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .gov-card-download {
+            color: #0056A6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #F0F9FF;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        .gov-card:hover .gov-card-download {
+            background: #ED1C24;
+            color: #FFFFFF;
+        }
+        .gov-card-download svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+        }
+
+        /* Shareholder tab specific layout */
+        .sh-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        @media (max-width: 991px) {
+            .sh-grid { grid-template-columns: 1fr; gap: 32px; }
+        }
+        .sh-chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 36px 20px;
+        }
+        .sh-parents-row {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-bottom: 50px;
+            gap: 16px;
+        }
+        .sh-parent-card {
+            width: 140px;
+            background: #FFFFFF;
+            border: 3px solid #0056A6;
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            z-index: 10;
+        }
+        .sh-parent-pct {
+            font-size: 14px;
+            font-weight: 900;
+            color: #1E293B;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .sh-parent-logo {
+            font-size: 9px;
+            font-weight: 800;
+            color: #475569;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+        .sh-child-card {
+            width: 160px;
+            background: #FFFFFF;
+            border: 3px solid #0056A6;
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
+
+        /* Annual Report Cover Design */
+        .ar-container {
+            display: flex;
+            gap: 40px;
+            margin-top: 16px;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.01);
+        }
+        @media (max-width: 768px) {
+            .ar-container { flex-direction: column; align-items: center; text-align: center; }
+        }
+        .ar-cover-mockup {
+            width: 180px;
+            height: 250px;
+            background: linear-gradient(135deg, #ED1C24 0%, #BA1C21 100%);
+            border-radius: 6px;
+            box-shadow: 10px 15px 30px rgba(0,0,0,0.1), inset 2px 0 5px rgba(255,255,255,0.2);
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .ar-cover-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 100%;
+            background: rgba(0,0,0,0.15);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .ar-cover-logo {
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-align: right;
+        }
+        .ar-cover-title {
+            font-size: 15px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-top: 40px;
+        }
+        .ar-cover-subtitle {
+            font-size: 8px;
+            opacity: 0.8;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        .ar-cover-year {
+            font-size: 26px;
+            font-weight: 900;
+            margin-top: auto;
+            text-align: right;
+            line-height: 1;
+        }
+        .ar-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .ar-info-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 8px;
+        }
+        .ar-info-sub {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .ar-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .ar-btn-pdf {
+            background: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            color: #1E293B;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+        .ar-btn-pdf:hover {
+            border-color: #ED1C24;
+            color: #ED1C24;
+        }
+
+        /* Financial report section and year-timeline */
+        .fin-year-section {
+            margin-top: 32px;
+        }
+        .fin-year-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .fin-year-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1E293B;
+        }
+        .fin-year-line {
+            flex-grow: 1;
+            height: 2px;
+            background: #E2E8F0;
+        }
+        .fin-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 991px) {
+            .fin-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .fin-grid { grid-template-columns: 1fr; }
+        }
+        .fin-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 180px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .fin-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 86, 166, 0.06);
+            border-color: #0056A6;
+        }
+        .fin-card-label {
+            font-size: 9px;
+            font-weight: 800;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .fin-card-q {
+            font-size: 18px;
+            font-weight: 900;
+            color: #1E293B;
+            margin-bottom: 16px;
+        }
+        .fin-card-download {
+            color: #0056A6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #F0F9FF;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        .fin-card:hover .fin-card-download {
+            background: #ED1C24;
+            color: #FFFFFF;
+        }
+        .fin-card-download svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar -->
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami" data-sidebar-target="submenu-tentang">Tentang Kami</a></li>
+                <li><a href="bisnis.html" class="nav-link" data-text="Bisnis" data-sidebar-target="submenu-bisnis">Bisnis</a></li>
+                <li><a href="hubungan-investor.html" class="nav-link active" data-sidebar-target="submenu-investor" data-text="Sustainability">Sustainability</a></li>
+                <li><a href="berita-media.html" class="nav-link" data-text="Berita & Media" data-sidebar-target="submenu-berita">Berita & Media</a></li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px; display:inline-block; border:1px solid rgba(0,0,0,0.15)">Call Center</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Sidebar Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Global Sidebar Navigation -->
+    <aside class="global-nav-sidebar" id="global-nav-sidebar">
+        <div class="global-sidebar-header">
+            <span class="global-sidebar-title" id="global-sidebar-title">Menu</span>
+            <button class="global-sidebar-close" id="global-sidebar-close" aria-label="Tutup">&times;</button>
+        </div>
+        
+        <!-- Tentang Kami Submenus -->
+        <ul class="global-submenu-group" id="submenu-tentang">
+            <li><a href="tentang-kami.html?tab=profil">Profil Perusahaan</a></li>
+            <li><a href="tentang-kami.html?tab=visi-misi">Visi Misi</a></li>
+            <li><a href="tentang-kami.html?tab=nilai">Tata Nilai</a></li>
+            <li><a href="tentang-kami.html?tab=sejarah">Sejarah</a></li>
+            <li><a href="tentang-kami.html?tab=komisaris">Dewan Komisaris</a></li>
+            <li><a href="tentang-kami.html?tab=direksi">Direksi</a></li>
+            <li><a href="tentang-kami.html?tab=struktur">Struktur Organisasi</a></li>
+            <li><a href="tentang-kami.html?tab=sertifikat">Sertifikasi</a></li>
+            <li><a href="tentang-kami.html?tab=penghargaan">Penghargaan</a></li>
+        </ul>
+
+        <!-- Bisnis Submenus -->
+        <ul class="global-submenu-group" id="submenu-bisnis">
+            <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
+            <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
+            <li><a href="bisnis.html?tab=other">Lainnya</a></li>
+            <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
+        </ul>
+
+        <!-- Investor Submenus -->
+        <ul class="global-submenu-group" id="submenu-investor">
+            <li><a href="hubungan-investor.html?tab=tata-kelola">Tata Kelola</a></li>
+            <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+            <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+            <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+        </ul>
+
+        <!-- Berita & Media Submenus -->
+        <ul class="global-submenu-group" id="submenu-berita">
+            <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+            <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+            <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+            <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+            <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+        </ul>
+    </aside>
+
+    <!-- Sub-Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <span class="about-hero__tag">Keterbukaan Informasi</span>
+            <h1 class="about-hero__title">Hubungan Investor</h1>
+            <p class="about-hero__desc">Komitmen kami dalam menerapkan transparansi, tata kelola korporasi yang sehat, dan akuntabilitas bagi seluruh pemangku kepentingan.</p>
+        </div>
+    </section>
+
+    <!-- Sticky Horizontal Sub Navigation -->
+    <div class="page-subnav">
+        <div class="container">
+            <div class="page-subnav__list">
+                <button class="about-menu-btn active" data-target="tata-kelola">Tata Kelola</button>
+                <button class="about-menu-btn" data-target="shareholder">Info Pemegang Saham</button>
+                <button class="about-menu-btn" data-target="annual-report">Laporan Tahunan</button>
+                <button class="about-menu-btn" data-target="financial-report">Laporan Keuangan</button>
+            </div>
+        </div>
+    </div>
+    <!-- Content Layout -->
+    <section class="about-layout">
+        <div class="container">
+            <div class="about-grid">
+                
+                <main class="about-content-pane">
+
+                    <!-- TAB 1: TATA KELOLA -->
+                    <div class="about-tab-content active" id="tab-tata-kelola">
+                        <div class="content-title">Tata Kelola Perusahaan</div>
+                        <p class="content-text">Penerapan Good Corporate Governance (GCG) di Patra Logistik dilakukan melalui serangkaian pedoman kepatuhan, sistem pengawasan internal, serta komitmen etika kerja yang diimplementasikan secara berkesinambungan.</p>
+                        
+                        <div class="gov-grid">
+                            <!-- Card 1: Sistem Manajemen HSSE -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Sistem Manajemen HSSE</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 2: Sistem Manajemen Keselamatan Kerja -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Sistem Manajemen Kesehatan dan Keselamatan Kerja</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 3: GCG -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Tata Kelola Perusahaan Yang Baik</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 4: Gratifikasi -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Pedoman Pengendalian Gratifikasi</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 5: Anti Penyuapan -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Sistem Manajemen Anti-Penyuapan</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 6: WBS -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Whistleblowing System (WBS)</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 7: Transparansi -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Transparansi dan Keterbukaan Informasi</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 8: Akuntabilitas SDM -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Akuntabilitas dan Pengelolaan SDM</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 9: Keadilan Keputusan (Highlighted in wireframe) -->
+                            <div class="gov-card" style="border: 2px solid #0056A6; box-shadow: 0 8px 20px rgba(0, 86, 166, 0.05);">
+                                <h4 class="gov-card-title">Keadilan dalam Pengambilan Keputusan</h4>
+                                <div class="gov-card-download" style="background:#0056A6; color:#FFFFFF;">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 10: CSR -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Tanggung Jawab Sosial Perusahaan (CSR)</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 11: Pengawasan Efektif -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Pengawasan yang Efektif</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 12: - -->
+                            <div class="gov-card" style="opacity: 0.65;">
+                                <h4 class="gov-card-title">-</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: PEMEGANG SAHAM -->
+                    <div class="about-tab-content" id="tab-shareholder">
+                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">Pemegang Saham</div>
+                        
+                        <div class="sh-grid">
+                            <!-- Text Column -->
+                            <div class="content-text" style="font-size:15px; line-height:1.8; color:#475569; margin-bottom:0;">
+                                PT Patra Logistik merupakan anak perusahaan dari PT Pertamina (Persero), sebuah Badan Usaha Milik Negara (BUMN) di Indonesia. Sebagai bagian dari Sub-holding Downstream, pemegang saham mayoritas Patra Logistik adalah PT Pertamina Patra Niaga dengan kepemilikan sebesar 90%. Sementara itu, 10% saham sisanya dimiliki oleh PT Patra Trading.
+                            </div>
+                            
+                            <!-- Flowchart Diagram Column -->
+                            <div class="sh-chart-container">
+                                <!-- Connecting Line Vector overlay -->
+                                <svg class="sh-lines-svg" viewBox="0 0 300 200" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
+                                    <!-- Horizontal Connector -->
+                                    <line x1="72" y1="80" x2="228" y2="80" stroke="#CBD5E1" stroke-width="2" />
+                                    <!-- Left vertical down from 90% card -->
+                                    <line x1="72" y1="56" x2="72" y2="80" stroke="#CBD5E1" stroke-width="2" />
+                                    <!-- Right vertical down from 10% card -->
+                                    <line x1="228" y1="56" x2="228" y2="80" stroke="#CBD5E1" stroke-width="2" />
+                                    <!-- Center vertical down to Patra Logistik card -->
+                                    <line x1="150" y1="80" x2="150" y2="128" stroke="#CBD5E1" stroke-width="2" />
+                                </svg>
+
+                                <!-- Parents Row -->
+                                <div class="sh-parents-row">
+                                    <!-- Parent 1: 90% -->
+                                    <div style="display:flex; flex-direction:column; align-items:center;">
+                                        <span style="font-size: 11px; font-weight:800; color:#475569; margin-bottom: 8px; display:block;">90%</span>
+                                        <div class="sh-parent-card">
+                                            <div style="font-weight:900; color:#ED1C24; font-size:12px; line-height:1.2;">PERTAMINA</div>
+                                            <div class="sh-parent-logo" style="color:#0056A6;">PATRA NIAGA</div>
+                                        </div>
+                                    </div>
+                                    <!-- Parent 2: 10% -->
+                                    <div style="display:flex; flex-direction:column; align-items:center;">
+                                        <span style="font-size: 11px; font-weight:800; color:#475569; margin-bottom: 8px; display:block;">10%</span>
+                                        <div class="sh-parent-card">
+                                            <div style="font-weight:900; color:#ED1C24; font-size:12px; line-height:1.2;">PERTAMINA</div>
+                                            <div class="sh-parent-logo" style="color:#64748B; font-size:7.5px; white-space:nowrap;">TRADING & SERVICES</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Child Card -->
+                                <div class="sh-child-card">
+                                    <div style="font-weight:900; color:#ED1C24; font-size:12px; line-height:1.2;">PERTAMINA</div>
+                                    <div style="font-weight:800; color:#0056A6; font-size:9px; text-transform:uppercase; letter-spacing:0.5px;">PATRA LOGISTIK</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: LAPORAN TAHUNAN -->
+                    <div class="about-tab-content" id="tab-annual-report">
+                        <div class="content-title" style="text-align: center; display: block;">Annual Report</div>
+                        <p class="content-text" style="text-align: center; max-width: 700px; margin: 0 auto 32px;">Laporan tahunan merupakan laporan perkembangan dan pencapaian yang berhasil diraih organisasi dalam setahun. Isi dari laporan tahunan tersebut mencakup laporan keuangan dan prestasi akan kinerja organisasi selama satu tahun.</p>
+                        
+                        <div class="ar-container">
+                            <!-- Left cover mockup -->
+                            <div class="ar-cover-mockup">
+                                <div class="ar-cover-logo">PERTAMINA</div>
+                                <div>
+                                    <div class="ar-cover-title">LAPORAN TAHUNAN</div>
+                                    <div class="ar-cover-subtitle">Unlocking The Potentials For Sustainable Growth</div>
+                                </div>
+                                <div class="ar-cover-year">2024</div>
+                            </div>
+
+                            <!-- Right details info -->
+                            <div class="ar-info">
+                                <h3 class="ar-info-title">Laporan Tahunan 2024</h3>
+                                <p class="ar-info-sub">Unlocking The Potentials For Sustainable Growth</p>
+                                
+                                <div class="ar-actions">
+                                    <a href="#" class="gov-card-download" style="width:40px; height:40px;">
+                                        <svg viewBox="0 0 24 24" style="width:18px; height:18px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </a>
+                                    <button class="ar-btn-pdf">PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: LAPORAN KEUANGAN -->
+                    <div class="about-tab-content" id="tab-financial-report">
+                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 24px;">Laporan Keuangan</div>
+                        
+                        <!-- 2026 Section -->
+                        <div class="fin-year-section">
+                            <div class="fin-year-header">
+                                <span class="fin-year-title">2026</span>
+                                <div class="fin-year-line"></div>
+                            </div>
+                            
+                            <div style="width: 250px; max-width: 100%;">
+                                <!-- Card Q1 2026 -->
+                                <div class="fin-card">
+                                    <div style="width:100%;">
+                                        <span class="fin-card-label">Januari - Maret 2026</span>
+                                        <h4 class="fin-card-q">Q1 2026</h4>
+                                    </div>
+                                    <div class="fin-card-download">
+                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025 Section -->
+                        <div class="fin-year-section" style="margin-top: 48px;">
+                            <div class="fin-year-header">
+                                <span class="fin-year-title">2025</span>
+                                <div class="fin-year-line"></div>
+                            </div>
+                            
+                            <div class="fin-grid">
+                                <!-- Card Q4 2025 -->
+                                <div class="fin-card">
+                                    <div style="width:100%;">
+                                        <span class="fin-card-label">Oktober - Desember 2025</span>
+                                        <h4 class="fin-card-q">Q4 2025</h4>
+                                    </div>
+                                    <div class="fin-card-download">
+                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
+                                </div>
+                                <!-- Card Q3 2025 -->
+                                <div class="fin-card">
+                                    <div style="width:100%;">
+                                        <span class="fin-card-label">Juli - September 2025</span>
+                                        <h4 class="fin-card-q">Q3 2025</h4>
+                                    </div>
+                                    <div class="fin-card-download">
+                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
+                                </div>
+                                <!-- Card Q2 2025 -->
+                                <div class="fin-card">
+                                    <div style="width:100%;">
+                                        <span class="fin-card-label">April - Juni 2025</span>
+                                        <h4 class="fin-card-q">Q2 2025</h4>
+                                    </div>
+                                    <div class="fin-card-download">
+                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
+                                </div>
+                                <!-- Card Q1 2025 -->
+                                <div class="fin-card">
+                                    <div style="width:100%;">
+                                        <span class="fin-card-label">Januari - Maret 2025</span>
+                                        <h4 class="fin-card-q">Q1 2025</h4>
+                                    </div>
+                                    <div class="fin-card-download">
+                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Bar -->
+    <footer class="footer-new">
+        <div class="footer-new__watermark"></div>
+        
+        <div class="footer-new__top container">
+            <!-- Column 1 -->
+            <div class="footer-col-1">
+                <div class="footer-logo"></div>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Gedung Wisma Tugu II Lt. 4, Jl. H.R. Rasuna Said Kav. C-7, Setiabudi, Jakarta Selatan 12920, Indonesia</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>021-520-5678 (Hunting)</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        <span>info@patralogistik.co.id</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="X">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Column 2 -->
+            <div class="footer-col-2">
+                <h3>NAVIGASI UTAMA</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Beranda Utama</a></li>
+                    <li><a href="#">Semua Layanan B2B</a></li>
+                    <li><a href="#">Lacak Pengiriman Online</a></li>
+                    <li>
+                        <a href="#" class="highlight-link">
+                            Minta Penawaran Harga (B2B)
+                            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Column 3 -->
+            <div class="footer-col-3">
+                <h3>LAYANAN DISTRIBUSI</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Transportasi Energi BBM & LPG</a></li>
+                    <li><a href="#">Manajemen Depot & Tangki (ATG)</a></li>
+                    <li><a href="#">Customs Clearance Pelabuhan Energi</a></li>
+                </ul>
+                <p class="footer-service-desc">Melayani Sektor Industri, Marine, & PLTU seluruh Indonesia.</p>
+            </div>
+    
+            <!-- Column 4 -->
+            <div class="footer-col-4">
+                <div class="call-center-btn">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div class="text">
+                        <span class="title">Whistle Blowing System</span>
+                        <span class="link">https://pertaminaclean.tipoffs.info/</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer-new__bottom container">
+            <div class="bottom-left">
+                <span class="affiliate-label">AFFILIATE OF:</span>
+                <span class="affiliate-box">PERTAMINA PATRA NIAGA</span>
+            </div>
+            <div class="bottom-right">
+                <span class="copyright">© 2026 PT Patra Logistik. All rights reserved.</span>
+                <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan PT Pertamina (Persero).</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive script switching logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sidebar = document.getElementById("about-sidebar");
+            const backdrop = document.getElementById("sidebar-backdrop");
+            const triggerFixed = document.getElementById("sidebar-trigger-fixed");
+            const triggerInline = document.getElementById("sidebar-trigger-inline");
+            const closeBtn = document.getElementById("sidebar-close-btn");
+            const menuBtns = document.querySelectorAll(".about-menu-btn");
+            const tabContents = document.querySelectorAll(".about-tab-content");
+
+            function openSidebar() {
+                if(sidebar) sidebar.classList.add("open");
+                if(backdrop) backdrop.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeSidebar() {
+                if(sidebar) sidebar.classList.remove("open");
+                if(backdrop) backdrop.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            if (triggerFixed) triggerFixed.addEventListener("click", openSidebar);
+            if (triggerInline) triggerInline.addEventListener("click", openSidebar);
+            if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
+            if (backdrop) backdrop.addEventListener("click", closeSidebar);
+
+            function switchTab(target) {
+                // Update Desktop buttons
+                menuBtns.forEach(btn => {
+                    if (btn.getAttribute("data-target") === target) {
+                        btn.classList.add("active");
+                    } else {
+                        btn.classList.remove("active");
+                    }
+                });
+
+                // Show Content Pane
+                tabContents.forEach(content => {
+                    if (content.id === `tab-${target}`) {
+                        content.classList.add("active");
+                    } else {
+                        content.classList.remove("active");
+                    }
+                });
+
+                // Close drawer
+                closeSidebar();
+
+                // Scroll to top of content
+                const contentPane = document.querySelector(".about-content-pane");
+                if (contentPane) {
+                    contentPane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            menuBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const target = btn.getAttribute("data-target");
+                    switchTab(target);
+                });
+            });
+
+            // Check URL query parameters on load to support direct tab linking
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            if (tabParam && ['tata-kelola', 'shareholder', 'annual-report', 'financial-report'].includes(tabParam)) {
+                switchTab(tabParam);
+            }
+        });
+    </script>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>

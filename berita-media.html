@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita & Media - PT Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Khusus untuk Berita & Media */
+        .about-hero {
+            color: #ffffff;
+            padding: 100px 0 60px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, #F9F9F9, rgba(249, 249, 249, 0));
+            pointer-events: none;
+        }
+        .about-hero__tag {
+            background: rgba(237, 28, 36, 0.2);
+            color: #FF5A5F;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(237, 28, 36, 0.3);
+        }
+        .about-hero__title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .about-hero__desc {
+            font-size: 16px;
+            color: #A0C4DF;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        /* Layout Grid */
+        .about-layout {
+            padding: 20px 0 100px;
+            background-color: #FFFFFF;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Navigation Drawer */
+        .about-sidebar {
+            position: fixed !important;
+            top: 0;
+            left: -340px; /* Hidden off-screen */
+            width: 320px;
+            height: 100vh;
+            background: #ffffff;
+            box-shadow: 20px 0 40px rgba(15, 23, 42, 0.15);
+            z-index: 2000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px;
+            border-radius: 0;
+            border: none;
+            border-right: 1px solid #E2E8F0;
+            overflow-y: auto;
+        }
+        .about-sidebar.open {
+            left: 0 !important;
+        }
+
+        /* Drawer Backdrop Overlay */
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .sidebar-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Drawer Header */
+        .sidebar-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 16px;
+        }
+        .sidebar-drawer-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #64748B;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+        .sidebar-drawer-close:hover {
+            color: #ED1C24;
+        }
+
+        /* Floating category trigger button */
+        .category-toggle-btn {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background: #0056A6;
+            color: #ffffff;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            padding: 16px 20px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .category-toggle-btn:hover {
+            background: #ED1C24;
+            padding-left: 28px;
+        }
+
+        /* Inline category trigger button */
+        .category-inline-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #F1F5F9;
+            color: #1E293B;
+            border: 1px solid #E2E8F0;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+        }
+        .category-inline-trigger:hover {
+            background: #0056A6;
+            color: #ffffff;
+            border-color: #0056A6;
+        }
+        
+        /* Mobile Dropdown Styling */
+        .about-mobile-select-wrapper {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .about-mobile-select-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .about-mobile-select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1E293B;
+            background-color: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .about-mobile-select:focus {
+            border-color: #0056A6;
+        }
+
+        .about-menu-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-left: 12px;
+        }
+
+
+        /* Content Area */
+        .about-content-pane {
+            background: transparent;
+            border-radius: 0;
+            padding: 16px 0 48px;
+            box-shadow: none;
+            border: none;
+            min-height: 500px;
+        }
+
+        .about-tab-content {
+            display: none;
+        }
+        .about-tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 18px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .content-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 32px;
+        }
+
+        /* News & Media Specific Styles */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 1200px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 991px) {
+            .about-grid { grid-template-columns: 1fr; gap: 0; }
+            .about-sidebar { /* Keep fixed drawer styles */ }
+            .about-mobile-select-wrapper { display: none !important; }
+            .about-menu { display: flex !important; }
+        }
+        @media (max-width: 768px) {
+            .about-content-pane { padding: 24px; }
+        }
+        @media (max-width: 600px) {
+            .news-grid { grid-template-columns: 1fr; }
+        }
+
+        .news-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 86, 166, 0.06);
+            border-color: #0056A6;
+        }
+        .news-card-img {
+            width: 100%;
+            height: 160px;
+            background: #E2E8F0;
+            object-fit: cover;
+        }
+        .news-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .news-card-tag {
+            font-size: 10px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .news-card-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+        .news-card-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+
+        /* Announcement Layout */
+        .ann-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .ann-grid { grid-template-columns: 1fr; }
+        }
+        .ann-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 165px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+        }
+        .ann-card:hover {
+            border-color: #0056A6;
+            box-shadow: 0 10px 20px rgba(0, 86, 166, 0.04);
+        }
+        .ann-card-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .btn-more {
+            background: #FFFFFF;
+            border: 1.5px solid #E2E8F0;
+            color: #1E293B;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+            text-align: center;
+        }
+        .btn-more:hover {
+            border-color: #0056A6;
+            color: #0056A6;
+            background: #F0F9FF;
+        }
+
+        /* Journey Magazine Layout */
+        .mag-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 180px);
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+        }
+        @media (max-width: 480px) {
+            .mag-grid { grid-template-columns: 1fr; justify-items: center; }
+        }
+        .mag-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mag-cover {
+            width: 180px;
+            height: 240px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .mag-card:hover .mag-cover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 86, 166, 0.15);
+        }
+
+        /* Brand Guideline Layout */
+        .brand-subtitle {
+            font-size: 14px;
+            font-weight: 800;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            margin-top: 24px;
+        }
+        .color-palette {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+        .color-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .color-block {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+        }
+        .color-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+        }
+        .logo-config-box {
+            background: #FFFFFF;
+            border: 1.5px dashed #CBD5E1;
+            border-radius: 12px;
+            padding: 32px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        .logo-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-slot-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .logo-img-placeholder {
+            padding: 16px 24px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            background: #F8FAFC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar -->
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami" data-sidebar-target="submenu-tentang">Tentang Kami</a></li>
+                <li><a href="bisnis.html" class="nav-link" data-text="Bisnis" data-sidebar-target="submenu-bisnis">Bisnis</a></li>
+                <li><a href="hubungan-investor.html" class="nav-link" data-text="Sustainability" data-sidebar-target="submenu-investor">Sustainability</a></li>
+                <li><a href="berita-media.html" class="nav-link active" data-sidebar-target="submenu-berita" data-text="Berita & Media">Berita & Media</a></li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px; display:inline-block; border:1px solid rgba(0,0,0,0.15)">Call Center</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Sidebar Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Global Sidebar Navigation -->
+    <aside class="global-nav-sidebar" id="global-nav-sidebar">
+        <div class="global-sidebar-header">
+            <span class="global-sidebar-title" id="global-sidebar-title">Menu</span>
+            <button class="global-sidebar-close" id="global-sidebar-close" aria-label="Tutup">&times;</button>
+        </div>
+        
+        <!-- Tentang Kami Submenus -->
+        <ul class="global-submenu-group" id="submenu-tentang">
+            <li><a href="tentang-kami.html?tab=profil">Profil Perusahaan</a></li>
+            <li><a href="tentang-kami.html?tab=visi-misi">Visi Misi</a></li>
+            <li><a href="tentang-kami.html?tab=nilai">Tata Nilai</a></li>
+            <li><a href="tentang-kami.html?tab=sejarah">Sejarah</a></li>
+            <li><a href="tentang-kami.html?tab=komisaris">Dewan Komisaris</a></li>
+            <li><a href="tentang-kami.html?tab=direksi">Direksi</a></li>
+            <li><a href="tentang-kami.html?tab=struktur">Struktur Organisasi</a></li>
+            <li><a href="tentang-kami.html?tab=sertifikat">Sertifikasi</a></li>
+            <li><a href="tentang-kami.html?tab=penghargaan">Penghargaan</a></li>
+        </ul>
+
+        <!-- Bisnis Submenus -->
+        <ul class="global-submenu-group" id="submenu-bisnis">
+            <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
+            <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
+            <li><a href="bisnis.html?tab=other">Lainnya</a></li>
+            <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
+        </ul>
+
+        <!-- Investor Submenus -->
+        <ul class="global-submenu-group" id="submenu-investor">
+            <li><a href="hubungan-investor.html?tab=tata-kelola">Tata Kelola</a></li>
+            <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+            <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+            <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+        </ul>
+
+        <!-- Berita & Media Submenus -->
+        <ul class="global-submenu-group" id="submenu-berita">
+            <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+            <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+            <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+            <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+            <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+        </ul>
+    </aside>
+
+    <!-- Sub-Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <span class="about-hero__tag">Pusat Informasi</span>
+            <h1 class="about-hero__title">Berita & Media</h1>
+            <p class="about-hero__desc">Menyajikan siaran pers, pengumuman korporasi, publikasi majalah internal, dan panduan merek resmi PT Patra Logistik.</p>
+        </div>
+    </section>
+
+    <!-- Sticky Horizontal Sub Navigation -->
+    <div class="page-subnav">
+        <div class="container">
+            <div class="page-subnav__list">
+                <button class="about-menu-btn active" data-target="siaran-pers">Siaran Pers</button>
+                <button class="about-menu-btn" data-target="pengumuman">Pengumuman</button>
+                <button class="about-menu-btn" data-target="berita-csr">Berita CSR</button>
+                <button class="about-menu-btn" data-target="journey-magazine">Journey Magazine</button>
+                <button class="about-menu-btn" data-target="brand-guideline">Brand Guideline</button>
+            </div>
+        </div>
+    </div>
+    <!-- Content Layout -->
+    <section class="about-layout">
+        <div class="container">
+            <div class="about-grid">
+                
+                <main class="about-content-pane">
+
+                    <!-- TAB 1: SIARAN PERS (PRESS RELEASE) -->
+                    <div class="about-tab-content active" id="tab-siaran-pers">
+                        <div class="content-title">Siaran Pers</div>
+                        <p class="content-text">Ikuti rilis berita resmi korporasi mengenai pencapaian bisnis, ekspansi operasional, serta kerja sama strategis PT Patra Logistik.</p>
+                        
+                        <div class="news-grid">
+                            <!-- Card 1 -->
+                            <div class="news-card">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #0056A6 0%, #1E293B 100%);"></div>
+                                <div class="news-card-body">
+                                    <span class="news-card-tag">Siaran Pers</span>
+                                    <h4 class="news-card-title">Patra Logistik Dukung Bauran Energi Nasional Melalui Pengangkutan FAME</h4>
+                                    <span class="news-card-date">05 Juni 2026</span>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="news-card">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #ED1C24 0%, #BA1C21 100%);"></div>
+                                <div class="news-card-body">
+                                    <span class="news-card-tag">Siaran Pers</span>
+                                    <h4 class="news-card-title">Implementasi Aplikasi SIOD Guna Efisiensi dan Keamanan Armada Mobil Tangki</h4>
+                                    <span class="news-card-date">28 Mei 2026</span>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="news-card">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #10B981 0%, #064E3B 100%);"></div>
+                                <div class="news-card-body">
+                                    <span class="news-card-tag">Siaran Pers</span>
+                                    <h4 class="news-card-title">Sinergi BUMN: Patra Logistik Salurkan Energi Ke Wilayah Terpencil Indonesia</h4>
+                                    <span class="news-card-date">15 Mei 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: PENGUMUMAN -->
+                    <div class="about-tab-content" id="tab-pengumuman">
+                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">PENGUMUMAN</div>
+                        
+                        <div class="ann-grid">
+                            <!-- Card 1: Rencana Pengadaan -->
+                            <div class="ann-card">
+                                <h4 class="ann-card-title">Rencana Pengadaan Armada Mobil Tangki BBM Periode Januari 2026</h4>
+                                <button class="btn-more">Selengkapnya</button>
+                            </div>
+                            <!-- Card 2: Digitalisasi Vendor -->
+                            <div class="ann-card">
+                                <h4 class="ann-card-title">Digitalisasi Vendor Management Patra Logistik Menggunakan iVendor</h4>
+                                <button class="btn-more">Selengkapnya</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: BERITA CSR -->
+                    <div class="about-tab-content" id="tab-berita-csr">
+                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">Berita CSR</div>
+                        
+                        <div style="display: flex; justify-content: center;">
+                            <div class="news-card" style="width: 420px; max-width: 100%;">
+                                <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="news-card-img" style="height: 240px;">
+                                <div class="news-card-body">
+                                    <span class="news-card-tag" style="color: #ED1C24;">BERITA CSR</span>
+                                    <h4 class="news-card-title">Kenalkan Budaya Keselamatan dan Hemat Energi, Patra Logistik Jangkau Lebih dari...</h4>
+                                    <span class="news-card-date">02 Mei 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: MAJALAH JOURNEY -->
+                    <div class="about-tab-content" id="tab-journey-magazine">
+                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 12px;">JOURNEY</div>
+                        <p class="content-text" style="text-align: center; max-width: 750px; margin: 0 auto 32px;">Majalah <em>Journey</em> menjadi wadah untuk berbagi cerita inspiratif, inovasi, budaya kerja, hingga kontribusi Perwira Patra Logistik dalam mengawal dan menjaga distribusi energi tetap aman dan andal.</p>
+                        
+                        <div class="mag-grid">
+                            <!-- Cover 1: Blue -->
+                            <div class="mag-card">
+                                <div class="mag-cover">
+                                    <img src="assets/journey_magazine_blue.png" alt="Journey Magazine Blue Cover" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <button class="btn-more" style="align-self: center; width: 100px;">Baca</button>
+                            </div>
+                            <!-- Cover 2: White -->
+                            <div class="mag-card">
+                                <div class="mag-cover">
+                                    <img src="assets/journey_magazine_white.png" alt="Journey Magazine White Cover" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <button class="btn-more" style="align-self: center; width: 100px;">Baca</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: PANDUAN MERK -->
+                    <div class="about-tab-content" id="tab-brand-guideline">
+                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 24px;">Panduan Merek</div>
+                        <div style="width: 100%; height: 1.5px; background: #E2E8F0; margin-bottom: 32px;"></div>
+                        
+                        <!-- Core Colors Section -->
+                        <h4 class="brand-subtitle">Warna Utama</h4>
+                        <div class="color-palette">
+                            <div class="color-wrapper">
+                                <div class="color-block" style="background: #ED1C24;"></div>
+                                <span class="color-label">Pertamina Red</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-block" style="background: #A3C639;"></div>
+                                <span class="color-label">Pertamina Green</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-block" style="background: #0056A6;"></div>
+                                <span class="color-label">Pertamina Blue</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-block" style="background: #1E2022;"></div>
+                                <span class="color-label">Navy Dark</span>
+                            </div>
+                        </div>
+
+                        <!-- Logo Configuration Section -->
+                        <h4 class="brand-subtitle" style="margin-top: 40px; margin-bottom: 12px;">Konfigurasi Logo</h4>
+                        <div class="logo-config-box">
+                            <!-- Logo Utama -->
+                            <div class="logo-slot">
+                                <span class="logo-slot-title">Logo Utama</span>
+                                <div class="logo-img-placeholder">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <!-- Mini Pertamina Symbol -->
+                                        <svg viewBox="0 0 40 40" style="width: 32px; height: 32px;">
+                                            <path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24" />
+                                            <path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#0056A6" />
+                                        </svg>
+                                        <div style="text-align: left;">
+                                            <div style="font-weight: 900; font-size: 13px; color: #ED1C24; line-height: 1;">PERTAMINA</div>
+                                            <div style="font-weight: 800; font-size: 9px; color: #0056A6; line-height: 1; letter-spacing: 0.5px;">PATRA LOGISTIK</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Logo Frame -->
+                            <div class="logo-slot">
+                                <span class="logo-slot-title">Logo Frame</span>
+                                <div class="logo-img-placeholder" style="width: 140px;">
+                                    <div style="text-align: center;">
+                                        <svg viewBox="0 0 40 40" style="width: 28px; height: 28px; margin: 0 auto 4px;">
+                                            <path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24" />
+                                            <path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#0056A6" />
+                                        </svg>
+                                        <div style="font-weight: 900; font-size: 10px; color: #ED1C24; line-height: 1;">PERTAMINA</div>
+                                        <div style="font-weight: 800; font-size: 7px; color: #0056A6; line-height: 1; letter-spacing: 0.5px;">PATRA LOGISTIK</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 16px;">
+                            <a href="#" class="btn-more" style="display: flex; align-items: center; gap: 8px; padding: 12px 28px;">
+                                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span>UNDUH LOGO</span>
+                            </a>
+                            <a href="#" class="btn-more" style="display: flex; align-items: center; gap: 8px; padding: 12px 28px;">
+                                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span>PEDOMAN LOGO</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </main>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Bar -->
+    <footer class="footer-new">
+        <div class="footer-new__watermark"></div>
+        
+        <div class="footer-new__top container">
+            <!-- Column 1 -->
+            <div class="footer-col-1">
+                <div class="footer-logo"></div>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Gedung Wisma Tugu II Lt. 4, Jl. H.R. Rasuna Said Kav. C-7, Setiabudi, Jakarta Selatan 12920, Indonesia</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>021-520-5678 (Hunting)</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        <span>info@patralogistik.co.id</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="X">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Column 2 -->
+            <div class="footer-col-2">
+                <h3>NAVIGASI UTAMA</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Beranda Utama</a></li>
+                    <li><a href="#">Semua Layanan B2B</a></li>
+                    <li><a href="#">Lacak Pengiriman Online</a></li>
+                    <li>
+                        <a href="#" class="highlight-link">
+                            Minta Penawaran Harga (B2B)
+                            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Column 3 -->
+            <div class="footer-col-3">
+                <h3>LAYANAN DISTRIBUSI</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Transportasi Energi BBM & LPG</a></li>
+                    <li><a href="#">Manajemen Depot & Tangki (ATG)</a></li>
+                    <li><a href="#">Customs Clearance Pelabuhan Energi</a></li>
+                </ul>
+                <p class="footer-service-desc">Melayani Sektor Industri, Marine, & PLTU seluruh Indonesia.</p>
+            </div>
+    
+            <!-- Column 4 -->
+            <div class="footer-col-4">
+                <div class="call-center-btn">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div class="text">
+                        <span class="title">Whistle Blowing System</span>
+                        <span class="link">https://pertaminaclean.tipoffs.info/</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer-new__bottom container">
+            <div class="bottom-left">
+                <span class="affiliate-label">AFFILIATE OF:</span>
+                <span class="affiliate-box">PERTAMINA PATRA NIAGA</span>
+            </div>
+            <div class="bottom-right">
+                <span class="copyright">© 2026 PT Patra Logistik. All rights reserved.</span>
+                <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan PT Pertamina (Persero).</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive script switching logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sidebar = document.getElementById("about-sidebar");
+            const backdrop = document.getElementById("sidebar-backdrop");
+            const triggerFixed = document.getElementById("sidebar-trigger-fixed");
+            const triggerInline = document.getElementById("sidebar-trigger-inline");
+            const closeBtn = document.getElementById("sidebar-close-btn");
+            const menuBtns = document.querySelectorAll(".about-menu-btn");
+            const tabContents = document.querySelectorAll(".about-tab-content");
+
+            function openSidebar() {
+                if(sidebar) sidebar.classList.add("open");
+                if(backdrop) backdrop.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeSidebar() {
+                if(sidebar) sidebar.classList.remove("open");
+                if(backdrop) backdrop.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            if (triggerFixed) triggerFixed.addEventListener("click", openSidebar);
+            if (triggerInline) triggerInline.addEventListener("click", openSidebar);
+            if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
+            if (backdrop) backdrop.addEventListener("click", closeSidebar);
+
+            function switchTab(target) {
+                // Update Desktop buttons
+                menuBtns.forEach(btn => {
+                    if (btn.getAttribute("data-target") === target) {
+                        btn.classList.add("active");
+                    } else {
+                        btn.classList.remove("active");
+                    }
+                });
+
+                // Show Content Pane
+                tabContents.forEach(content => {
+                    if (content.id === `tab-${target}`) {
+                        content.classList.add("active");
+                    } else {
+                        content.classList.remove("active");
+                    }
+                });
+
+                // Close drawer
+                closeSidebar();
+
+                // Scroll to top of content
+                const contentPane = document.querySelector(".about-content-pane");
+                if (contentPane) {
+                    contentPane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            menuBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const target = btn.getAttribute("data-target");
+                    switchTab(target);
+                });
+            });
+
+            // Check URL query parameters on load to support direct tab linking
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            if (tabParam && ['siaran-pers', 'pengumuman', 'berita-csr', 'journey-magazine', 'brand-guideline'].includes(tabParam)) {
+                switchTab(tabParam);
+            }
+        });
+    </script>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>

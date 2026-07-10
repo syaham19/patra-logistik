@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karir - Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Khusus untuk Halaman Karir */
+        .about-hero {
+            color: #ffffff;
+            padding: 160px 0 60px; /* added top padding to account for fixed header */
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, #F8FAFC, rgba(248, 250, 252, 0));
+            pointer-events: none;
+        }
+        .about-hero__tag {
+            background: rgba(237, 28, 36, 0.2);
+            color: #FF5A5F;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(237, 28, 36, 0.3);
+        }
+        .about-hero__title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .about-hero__desc {
+            font-size: 16px;
+            color: #A0C4DF;
+            max-width: 600px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body class="loading">
+
+    <div id="page-loader" class="page-loader" aria-live="polite" aria-label="Memuat halaman">
+        <div class="page-loader__inner">
+            <img src="assets/logo-transparent.png" alt="Patra Logistik" class="page-loader__logo">
+            <div class="page-loader__percent" id="loader-percent">0%</div>
+            <div class="page-loader__bar">
+                <div class="page-loader__bar-fill" id="loader-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navbar dengan mode solid agar selalu terlihat (header-solid) -->
+    <header id="navbar" class="scrolled">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false"
+                aria-controls="nav-links">
+                ☰
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami"
+                        data-sidebar-target="submenu-tentang">Tentang Kami</a></li>
+                <li><a href="bisnis.html" class="nav-link" data-text="Bisnis"
+                        data-sidebar-target="submenu-bisnis">Bisnis</a></li>
+                <li><a href="hubungan-investor.html" class="nav-link" data-text="Sustainability"
+                        data-sidebar-target="submenu-investor">Sustainability</a></li>
+                <li><a href="berita-media.html" class="nav-link" data-text="Berita & Media"
+                        data-sidebar-target="submenu-berita">Berita & Media</a></li>
+                <li><a href="karir.html" class="nav-link active" data-text="Karir">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;">HUBUNGI
+                    KAMI</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Sidebar Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Global Sidebar Navigation -->
+    <aside class="global-nav-sidebar" id="global-nav-sidebar">
+        <div class="global-sidebar-header">
+            <span class="global-sidebar-title" id="global-sidebar-title">Menu</span>
+            <button class="global-sidebar-close" id="global-sidebar-close" aria-label="Tutup">&times;</button>
+        </div>
+
+        <!-- Tentang Kami Submenus -->
+        <ul class="global-submenu-group" id="submenu-tentang">
+            <li><a href="tentang-kami.html?tab=profil">Profil Perusahaan</a></li>
+            <li><a href="tentang-kami.html?tab=visi-misi">Visi Misi</a></li>
+            <li><a href="tentang-kami.html?tab=nilai">Tata Nilai</a></li>
+            <li><a href="tentang-kami.html?tab=sejarah">Sejarah</a></li>
+            <li><a href="tentang-kami.html?tab=komisaris">Dewan Komisaris</a></li>
+            <li><a href="tentang-kami.html?tab=direksi">Direksi</a></li>
+            <li><a href="tentang-kami.html?tab=struktur">Struktur Organisasi</a></li>
+            <li><a href="tentang-kami.html?tab=sertifikat">Sertifikasi</a></li>
+            <li><a href="tentang-kami.html?tab=penghargaan">Penghargaan</a></li>
+        </ul>
+
+        <!-- Bisnis Submenus -->
+        <ul class="global-submenu-group" id="submenu-bisnis">
+            <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
+            <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
+            <li><a href="bisnis.html?tab=other">Lainnya</a></li>
+            <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
+        </ul>
+
+        <!-- Investor Submenus -->
+        <ul class="global-submenu-group" id="submenu-investor">
+            <li><a href="hubungan-investor.html?tab=tata-kelola">Tata Kelola</a></li>
+            <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+            <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+            <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+        </ul>
+
+        <!-- Berita & Media Submenus -->
+        <ul class="global-submenu-group" id="submenu-berita">
+            <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+            <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+            <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+            <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+            <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <!-- Header Banner Section -->
+        <section class="about-hero">
+            <div class="container">
+                <span class="about-hero__tag">Pusat Karir</span>
+                <h1 class="about-hero__title">Karir & Peluang</h1>
+                <p class="about-hero__desc">Temukan peluang berkarir di Patra Logistik dan berkontribusi untuk mendistribusikan energi ke seluruh penjuru negeri.</p>
+            </div>
+        </section>
+
+        <!-- Career Section -->
+        <section class="career-section">
+            <div class="career-container fade-up">
+                <h1 class="career-title section-title">KESEMPATAN BERKARIR DI PATRA LOGISTIK</h1>
+                
+                <p class="career-warning-text">Waspada terhadap segala bentuk penipuan yang mengatasnamakan PT Patra Logistik. PT Patra Logistik tidak pernah memungut biaya dalam bentuk apa pun maupun bekerja sama dengan travel agent mana pun selama proses rekrutmen berlangsung. Informasi terkait kelulusan, ketidaklulusan, maupun undangan tahapan rekrutmen hanya disampaikan melalui email resmi Recruitment Pertamina di recruitment@pertamina.com.</p>
+                
+                <p class="career-warning-text">Website resmi rekrutmen Pertamina dapat diakses melalui recruitment.pertamina.com. Kami mengimbau masyarakat untuk selalu berhati-hati terhadap segala bentuk aktivitas yang mengatasnamakan PT Patra Logistik di luar kanal informasi resmi yang telah disebutkan.</p>
+                
+                <div class="career-link-box">
+                    LINK TO PERTAMINA <a href="https://recruitment.pertamina.com/" target="_blank" rel="noopener noreferrer">https://recruitment.pertamina.com/</a>
+                </div>
+
+                <h2 class="career-program-title section-title">RECRUITMENT PROGRAM</h2>
+                
+                <div class="career-program-grid">
+                    <div class="career-program-card">
+                        Professional Recruitment
+                    </div>
+                    <div class="career-program-card">
+                        Graduate Recruitment
+                    </div>
+                    <div class="career-program-card">
+                        Internship Program
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Standard -->
+        <footer class="footer-new">
+            <div class="footer-new__watermark"></div>
+
+            <div class="footer-new__top container">
+                <!-- Column 1 -->
+                <div class="footer-col-1">
+                    <div class="footer-logo"></div>
+                    <div class="footer-contact-list">
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="margin-top: 2px;">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>Gedung Wisma Tugu II Lt. 4, Jl. H.R. Rasuna Said Kav. C-7, Setiabudi, Jakarta Selatan
+                                12920, Indonesia</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <span>021-520-5678 (Hunting)</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                            <span>info@patralogistik.co.id</span>
+                        </div>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="X">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4l16 16M4 20L20 4"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-col-2">
+                    <h3>NAVIGASI UTAMA</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="#">Beranda Utama</a></li>
+                        <li><a href="#">Semua Layanan B2B</a></li>
+                        <li><a href="#">Lacak Pengiriman Online</a></li>
+                        <li>
+                            <a href="#" class="highlight-link">
+                                Minta Penawaran Harga (B2B)
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="footer-col-3">
+                    <h3>LAYANAN DISTRIBUSI</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="#">Transportasi Energi BBM & LPG</a></li>
+                        <li><a href="#">Manajemen Depot & Tangki (ATG)</a></li>
+                        <li><a href="#">Customs Clearance Pelabuhan Energi</a></li>
+                    </ul>
+                    <p class="footer-service-desc">Melayani Sektor Industri, Marine, & PLTU seluruh Indonesia.</p>
+                </div>
+
+                <!-- Column 4 -->
+                <div class="footer-col-4">
+                    <div class="call-center-btn">
+                        <div class="icon-circle">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="text">
+                            <span class="title">Whistle Blowing System</span>
+                            <span class="link">https://pertaminaclean.tipoffs.info/</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-new__bottom container">
+                <div class="bottom-left">
+                    <span class="affiliate-label">AFFILIATE OF:</span>
+                    <span class="affiliate-box">PERTAMINA PATRA NIAGA</span>
+                </div>
+                <div class="bottom-right">
+                    <span class="copyright">© 2026 PT Patra Logistik. All rights reserved.</span>
+                    <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan
+                        PT Pertamina (Persero).</span>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js?v=2"></script>
+</body>
+
+</html>

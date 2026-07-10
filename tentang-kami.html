@@ -1,0 +1,2376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - PT Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Khusus untuk Halaman Tentang Kami */
+        .about-hero {
+            color: #ffffff;
+            padding: 100px 0 60px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, #F9F9F9, rgba(249, 249, 249, 0));
+            pointer-events: none;
+        }
+        .about-hero__tag {
+            background: rgba(237, 28, 36, 0.2);
+            color: #FF5A5F;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(237, 28, 36, 0.3);
+        }
+        .about-hero__title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .about-hero__desc {
+            font-size: 16px;
+            color: #A0C4DF;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        /* Layout Grid Dua Kolom (Sidebar + Konten) */
+        .about-layout {
+            padding: 20px 0 100px;
+            background-color: #FFFFFF;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Navigation Drawer */
+        .about-sidebar {
+            position: fixed !important;
+            top: 0;
+            left: -340px; /* Hidden off-screen */
+            width: 320px;
+            height: 100vh;
+            background: #ffffff;
+            box-shadow: 20px 0 40px rgba(15, 23, 42, 0.15);
+            z-index: 2000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px;
+            border-radius: 0;
+            border: none;
+            border-right: 1px solid #E2E8F0;
+            overflow-y: auto;
+        }
+        .about-sidebar.open {
+            left: 0 !important;
+        }
+
+        /* Drawer Backdrop Overlay */
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .sidebar-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Drawer Header */
+        .sidebar-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 16px;
+        }
+        .sidebar-drawer-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #64748B;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+        .sidebar-drawer-close:hover {
+            color: #ED1C24;
+        }
+
+        /* Floating category trigger button */
+        .category-toggle-btn {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background: #0056A6;
+            color: #ffffff;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            padding: 16px 20px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .category-toggle-btn:hover {
+            background: #ED1C24;
+            padding-left: 28px;
+        }
+
+        /* Inline category trigger button */
+        .category-inline-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #F1F5F9;
+            color: #1E293B;
+            border: 1px solid #E2E8F0;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+        }
+        .category-inline-trigger:hover {
+            background: #0056A6;
+            color: #ffffff;
+            border-color: #0056A6;
+        }
+        
+        /* Mobile Dropdown Styling */
+        .about-mobile-select-wrapper {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .about-mobile-select-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .about-mobile-select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1E293B;
+            background-color: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+        }
+        .about-mobile-select:focus {
+            outline: none;
+            border-color: #0056A6;
+            box-shadow: 0 0 0 3px rgba(0, 86, 166, 0.1);
+        }
+
+
+        /* Area Konten Kanan */
+        .about-content-pane {
+            background: transparent;
+            border-radius: 0;
+            padding: 16px 0 48px;
+            box-shadow: none;
+            border: none;
+            min-height: 500px;
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .about-tab-content {
+            display: block;
+            margin-bottom: 64px;
+            padding-bottom: 64px;
+            border-bottom: 1px solid #F1F5F9;
+            scroll-margin-top: 160px; /* offset for header + subnav */
+        }
+        .about-tab-content:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        #tab-visi-misi {
+            background: linear-gradient(to top, #F1F5F9 0%, #FFFFFF 100%);
+            padding: 32px;
+            border-radius: 16px;
+        }
+        #tab-komisaris, #tab-direksi {
+            background: transparent;
+            padding: 64px 0;
+            margin-bottom: 0;
+            border-bottom: none;
+            border-radius: 0;
+            position: relative;
+        }
+        #tab-komisaris::before, #tab-direksi::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100%;
+            background-color: #F1F5F9;
+            z-index: -1;
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-up.is-visible,
+        .reveal-left.is-visible,
+        .reveal-right.is-visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+
+        @keyframes aboutFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Typografi Konten */
+        .content-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #151B26;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+            border-bottom: 2px solid #F1F5F9;
+            padding-bottom: 16px;
+        }
+        .content-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 20px;
+        }
+        .content-text p {
+            margin-bottom: 20px;
+        }
+
+        /* Styling Visi & Misi */
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .vision-card {
+            background: linear-gradient(135deg, #0056A6 0%, #003B73 100%);
+            color: white;
+            padding: 32px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 86, 166, 0.15);
+        }
+        .vision-card::after {
+            content: 'VISI';
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-size: 120px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+        }
+        .vision-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        .vision-card p {
+            font-size: 17px;
+            line-height: 1.7;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+        .mission-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+        }
+        .mission-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #151B26;
+            margin-bottom: 20px;
+        }
+        .mission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .mission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .mission-num {
+            background: #ED1C24;
+            color: white;
+            font-weight: 800;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 13px;
+        }
+        .mission-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #475569;
+            margin-top: 3px;
+        }
+
+        /* Styling Nilai Perusahaan (AKHLAK) */
+        .akhlak-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .akhlak-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+        }
+        .akhlak-card:hover {
+            transform: translateY(-4px);
+            border-color: #ED1C24;
+            box-shadow: 0 10px 25px rgba(237, 28, 36, 0.05);
+        }
+        .akhlak-letter {
+            font-size: 38px;
+            font-weight: 900;
+            color: #ED1C24;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        .akhlak-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #151B26;
+            margin-bottom: 8px;
+        }
+        .akhlak-desc {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #64748B;
+        }
+
+        /* Horizontal Timeline Styles */
+        .timeline-container {
+            position: relative;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 40px 20px;
+            margin-top: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+            border: 1px solid #E2E8F0;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        
+        .timeline-subheader {
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1E293B;
+            max-width: 720px;
+            margin: 0 auto 50px;
+        }
+        .timeline-subheader strong {
+            color: #000000;
+            font-weight: 700;
+        }
+        .timeline-subheader__line {
+            width: 120px;
+            height: 3.5px;
+            background: #7CB342;
+            margin: 12px auto 0;
+            border-radius: 10px;
+        }
+
+        .timeline-scroll-area {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #7CB342 #F1F5F9;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .timeline-scroll-area::-webkit-scrollbar {
+            height: 8px;
+        }
+        .timeline-scroll-area::-webkit-scrollbar-track {
+            background: #F1F5F9;
+            border-radius: 10px;
+        }
+        .timeline-scroll-area::-webkit-scrollbar-thumb {
+            background: #7CB342;
+            border-radius: 10px;
+        }
+
+        .timeline-horizontal {
+            display: flex;
+            position: relative;
+            padding: 160px 10px;
+            gap: 20px;
+            width: max-content;
+        }
+
+        .timeline-axis {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #7CB342;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-node {
+            position: relative;
+            width: 260px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .timeline-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px dashed #7CB342;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: #7CB342;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-node:hover .timeline-circle {
+            transform: translate(-50%, -50%) scale(1.1);
+            border-style: solid;
+            background: #7CB342;
+            color: #FFFFFF;
+            box-shadow: 0 8px 20px rgba(124, 179, 66, 0.25);
+        }
+
+        .timeline-connector {
+            position: absolute;
+            width: 2px;
+            background: #7CB342;
+            z-index: 2;
+        }
+        .timeline-connector::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #7CB342;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* UP items: connector goes up */
+        .timeline-node--up .timeline-connector {
+            bottom: 50%;
+            height: 70px;
+            margin-bottom: 40px; /* Offset to clear the circle */
+        }
+        .timeline-node--up .timeline-connector::after {
+            top: 0;
+        }
+
+        /* DOWN items: connector goes down */
+        .timeline-node--down .timeline-connector {
+            top: 50%;
+            height: 70px;
+            margin-top: 40px; /* Offset to clear the circle */
+        }
+        .timeline-node--down .timeline-connector::after {
+            bottom: 0;
+        }
+
+        /* Content block positioning */
+        .timeline-content-box {
+            position: absolute;
+            width: 250px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #E2E8F0;
+            z-index: 4;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-node:hover .timeline-content-box {
+            border-color: #7CB342;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        
+        .timeline-node--up .timeline-content-box {
+            bottom: 50%;
+            margin-bottom: 120px;
+        }
+        
+        .timeline-node--down .timeline-content-box {
+            top: 50%;
+            margin-top: 120px;
+        }
+
+        .timeline-content-text {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #475569;
+            text-align: left;
+        }
+        .timeline-content-text strong {
+            color: #1E293B;
+            font-weight: 700;
+        }
+        .timeline-content-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0 0;
+        }
+        .timeline-content-text li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 6px;
+            font-size: 11.5px;
+        }
+        .timeline-content-text li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #7CB342;
+            font-weight: 900;
+        }
+
+        /* Board of Directors / Commissioners Card Grid */
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 28px;
+            margin-top: 24px;
+        }
+        .board-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+        }
+        .board-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 86, 166, 0.08);
+            border-color: #0056A6;
+        }
+        .board-avatar {
+            height: 240px;
+            background: #F1F5F9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .board-avatar svg {
+            width: 100px;
+            height: 100px;
+            color: #CBD5E1;
+        }
+        .board-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .board-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #151B26;
+            margin-bottom: 4px;
+        }
+        .board-role {
+            font-size: 12px;
+            font-weight: 700;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Organisasi Struktur - Diagram Premium */
+        .org-tree-wrapper {
+            background: #F8FAFC;
+            border-radius: 20px;
+            border: 1px solid #E2E8F0;
+            padding: 40px 24px;
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            overflow-x: auto;
+        }
+        
+        .org-tree-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Connecting Lines */
+        .org-connector {
+            width: 2px;
+            height: 24px;
+            background: #CBD5E1;
+            position: relative;
+        }
+
+        .org-shareholder-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+        .org-shareholder-line-top {
+            width: 2px;
+            height: 16px;
+            background: #CBD5E1;
+        }
+        .org-shareholder-line-horizontal {
+            width: 50%;
+            height: 2px;
+            background: #CBD5E1;
+        }
+        .org-shareholder-line-verticals {
+            display: flex;
+            justify-content: space-between;
+            width: 50%;
+            height: 16px;
+        }
+        .org-shareholder-line-verticals::before,
+        .org-shareholder-line-verticals::after {
+            content: "";
+            width: 2px;
+            height: 100%;
+            background: #CBD5E1;
+        }
+
+        /* Node Cards */
+        .org-node-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 10;
+        }
+        .org-node-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Top level (Government) */
+        .org-node--gov {
+            background: linear-gradient(135deg, #FFF1E6 0%, #FFD8BE 100%);
+            border: 1px solid #F5A623;
+            max-width: 280px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+        }
+        .org-gov-badge {
+            background: #FFFFFF;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .org-gov-text {
+            text-align: left;
+        }
+        .org-gov-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #C27D13;
+            letter-spacing: 0.5px;
+        }
+        .org-gov-name {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #7A4F00;
+        }
+
+        /* Level 2 (Shareholders) */
+        .org-shareholders-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            max-width: 700px;
+        }
+        .org-node--shareholder {
+            border-top: 4px solid #F97316;
+            padding: 14px 20px;
+        }
+        .org-pertamina-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-weight: 900;
+            font-size: 13px;
+            color: #0056A6;
+            margin-bottom: 6px;
+        }
+        .org-pertamina-logo span {
+            color: #ED1C24;
+        }
+        .org-shareholder-name {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 4px;
+        }
+        .org-shareholder-percentage {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748B;
+        }
+
+        /* Level 3 (Holding Patra Niaga) */
+        .org-node--holding {
+            border: 2px solid #E2E8F0;
+            border-top: 4px solid #ED1C24;
+            max-width: 320px;
+            width: 100%;
+        }
+        .org-holding-title {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ED1C24;
+            margin-top: 2px;
+        }
+
+        /* Level 4 (Subsidiary & Affiliate Cards Grid) */
+        .org-children-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            width: 100%;
+            margin-top: 32px;
+        }
+        
+        .org-child-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 18px 14px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 145px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.01);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .org-child-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Type specific borders */
+        .org-child-card--subsidiary {
+            border-top: 4px solid #0056A6;
+        }
+        .org-child-card--subsidiary:hover {
+            border-color: #0056A6;
+        }
+        .org-child-card--jointventure {
+            border-top: 4px solid #7CB342;
+        }
+        .org-child-card--jointventure:hover {
+            border-color: #7CB342;
+        }
+        .org-child-card--affiliate {
+            border-top: 4px solid #E06B82;
+        }
+        .org-child-card--affiliate:hover {
+            border-color: #E06B82;
+        }
+
+        /* Highlight Patra Logistik (our site) */
+        .org-child-card--highlight {
+            border: 2px solid #0056A6;
+            border-top: 4px solid #0056A6;
+            background: #F0F7FF;
+            box-shadow: 0 4px 15px rgba(0, 86, 166, 0.08);
+        }
+
+        .org-child-logo {
+            font-size: 11px;
+            font-weight: 800;
+            color: #64748B;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .org-child-logo span {
+            color: #ED1C24;
+        }
+        .org-child-name {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.3;
+            margin-bottom: 8px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .org-child-desc {
+            font-size: 10.5px;
+            font-weight: 600;
+            color: #64748B;
+            line-height: 1.4;
+            border-top: 1px solid #F1F5F9;
+            padding-top: 6px;
+        }
+
+        /* Legend box */
+        .org-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+            padding: 12px 24px;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+        }
+        .org-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+        }
+        .org-legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+        }
+        .org-legend-color--subsidiary {
+            background: #0056A6;
+        }
+        .org-legend-color--jointventure {
+            background: #7CB342;
+        }
+        .org-legend-color--affiliate {
+            background: #E06B82;
+        }
+
+        /* Responsive Tree rules */
+        @media (max-width: 991px) {
+            .org-children-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .org-tree-wrapper {
+                padding: 24px 12px;
+            }
+            .org-shareholders-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .org-children-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+        @media (max-width: 480px) {
+            .org-children-grid {
+                grid-template-columns: 1fr;
+            }
+            .org-legend {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        /* Sertifikat & Penghargaan list - Redesain Premium */
+        .cert-accent-line {
+            width: 32px;
+            height: 3px;
+            background: #7CB342;
+            margin-top: 16px;
+            margin-bottom: 32px;
+            border-radius: 2px;
+        }
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+            width: 100%;
+        }
+        .cert-list-item {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+        }
+        .cert-list-item:nth-child(even) {
+            background: #F8FAFC;
+        }
+        .cert-list-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 86, 166, 0.05);
+            border-color: #CBD5E1;
+        }
+        .cert-card-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .cert-badge-tag {
+            color: #ED1C24;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .cert-title {
+            font-size: 16.5px;
+            font-weight: 800;
+            color: #1E293B;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+        }
+        .cert-meta-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .cert-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748B;
+        }
+        .cert-meta-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            color: #94A3B8;
+        }
+        .cert-meta-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+        .cert-arrow-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid #CBD5E1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0056A6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #FFFFFF;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .cert-arrow-circle svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+        }
+        .cert-list-item:hover .cert-arrow-circle {
+            background: #0056A6;
+            border-color: #0056A6;
+            color: #FFFFFF;
+        }
+        .cert-list-item:hover .cert-arrow-circle svg {
+            transform: translateX(2px);
+        }
+
+        /* Responsive Cert */
+        @media (max-width: 768px) {
+            .cert-list-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+                gap: 16px;
+            }
+            .cert-arrow-circle {
+                align-self: flex-end;
+            }
+            .cert-meta-section {
+                gap: 12px;
+            }
+        }
+
+        /* Penghargaan - Grid & Cards Premium */
+        .award-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+            width: 100%;
+        }
+        .award-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .award-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 86, 166, 0.06);
+            border-color: #CBD5E1;
+        }
+        .award-card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .award-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #0F172A;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        .award-desc {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0056A6;
+            line-height: 1.5;
+        }
+        .award-arrow-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #F1F5F9;
+            color: #94A3B8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: flex-end;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .award-arrow-circle svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+        }
+        .award-card:hover .award-arrow-circle {
+            background: #0056A6;
+            color: #FFFFFF;
+        }
+        .award-card:hover .award-arrow-circle svg {
+            transform: translateX(1px);
+        }
+
+        /* responsive */
+        /* responsive */
+        @media (max-width: 991px) {
+            .about-hero {
+                padding: 60px 0;
+            }
+            .about-hero__title {
+                font-size: 32px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .about-sidebar {
+                /* Preserve fixed styles for drawer on mobile too */
+            }
+            .about-mobile-select-wrapper {
+                display: none !important;
+            }
+            .about-menu {
+                display: flex !important;
+            }
+            .about-content-pane {
+                padding: 24px 16px;
+            }
+            .content-title {
+                font-size: 24px;
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+            
+            /* Vision & Mission grid stack on mobile */
+            .vision-mission-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .vision-card, .mission-card {
+                padding: 24px;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 200px 150px 150px;
+            }
+            .bento-large {
+                grid-column: 1 / 3;
+                grid-row: 1 / 2;
+            }
+            .bento-top-right {
+                grid-column: 1 / 3;
+                grid-row: 2 / 3;
+            }
+            .bento-bottom-left {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4;
+            }
+            .bento-bottom-right {
+                grid-column: 2 / 3;
+                grid-row: 3 / 4;
+            }
+        }
+        
+        /* Bento Grid Styles for Profil Perusahaan */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 200px 200px;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .bento-item {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .bento-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .bento-item:hover img {
+            transform: scale(1.05);
+        }
+        .bento-large {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+        }
+        .bento-top-right {
+            grid-column: 2 / 4;
+            grid-row: 1 / 2;
+        }
+        .bento-bottom-left {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+        .bento-bottom-right {
+            grid-column: 3 / 4;
+            grid-row: 2 / 3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar (Sama seperti halaman utama) -->
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="tentang-kami.html" class="nav-link active" data-sidebar-target="submenu-tentang" data-text="Tentang Kami">Tentang Kami</a></li>
+                <li><a href="bisnis.html" class="nav-link" data-text="Bisnis" data-sidebar-target="submenu-bisnis">Bisnis</a></li>
+                <li><a href="hubungan-investor.html" class="nav-link" data-text="Sustainability" data-sidebar-target="submenu-investor">Sustainability</a></li>
+                <li><a href="berita-media.html" class="nav-link" data-text="Berita & Media" data-sidebar-target="submenu-berita">Berita & Media</a></li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px; display:inline-block; border:1px solid rgba(0,0,0,0.15)">Call Center</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Sidebar Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Global Sidebar Navigation -->
+    <aside class="global-nav-sidebar" id="global-nav-sidebar">
+        <div class="global-sidebar-header">
+            <span class="global-sidebar-title" id="global-sidebar-title">Menu</span>
+            <button class="global-sidebar-close" id="global-sidebar-close" aria-label="Tutup">&times;</button>
+        </div>
+        
+        <!-- Tentang Kami Submenus -->
+        <ul class="global-submenu-group" id="submenu-tentang">
+            <li><a href="tentang-kami.html?tab=profil">Profil Perusahaan</a></li>
+            <li><a href="tentang-kami.html?tab=visi-misi">Visi Misi</a></li>
+            <li><a href="tentang-kami.html?tab=nilai">Tata Nilai</a></li>
+            <li><a href="tentang-kami.html?tab=sejarah">Sejarah</a></li>
+            <li><a href="tentang-kami.html?tab=komisaris">Dewan Komisaris</a></li>
+            <li><a href="tentang-kami.html?tab=direksi">Direksi</a></li>
+            <li><a href="tentang-kami.html?tab=struktur">Struktur Organisasi</a></li>
+            <li><a href="tentang-kami.html?tab=sertifikat">Sertifikasi</a></li>
+            <li><a href="tentang-kami.html?tab=penghargaan">Penghargaan</a></li>
+        </ul>
+
+        <!-- Bisnis Submenus -->
+        <ul class="global-submenu-group" id="submenu-bisnis">
+            <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
+            <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
+            <li><a href="bisnis.html?tab=other">Lainnya</a></li>
+            <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
+        </ul>
+
+        <!-- Investor Submenus -->
+        <ul class="global-submenu-group" id="submenu-investor">
+            <li><a href="hubungan-investor.html?tab=tata-kelola">Tata Kelola</a></li>
+            <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+            <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+            <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+        </ul>
+
+        <!-- Berita & Media Submenus -->
+        <ul class="global-submenu-group" id="submenu-berita">
+            <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+            <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+            <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+            <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+            <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+        </ul>
+    </aside>
+
+    <!-- Sub-Hero / Header Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero__tag">Profil Korporasi</div>
+            <h1 class="about-hero__title">Mengenal Patra Logistik</h1>
+            <p class="about-hero__desc">Solusi logistik energi terintegrasi dengan standar keselamatan dan kepatuhan tinggi untuk negeri.</p>
+        </div>
+    </section>
+
+    <!-- Sticky Horizontal Sub Navigation -->
+    <div class="page-subnav">
+        <div class="container">
+            <div class="page-subnav__list">
+                <button class="about-menu-btn active" data-target="profil">Profil Perusahaan</button>
+                <button class="about-menu-btn" data-target="visi-misi">Visi Misi</button>
+                <button class="about-menu-btn" data-target="nilai">Tata Nilai</button>
+                <button class="about-menu-btn" data-target="sejarah">Sejarah</button>
+                <button class="about-menu-btn" data-target="komisaris">Dewan Komisaris</button>
+                <button class="about-menu-btn" data-target="direksi">Direksi</button>
+                <button class="about-menu-btn" data-target="struktur">Struktur Organisasi</button>
+                <button class="about-menu-btn" data-target="sertifikat">Sertifikasi</button>
+                <button class="about-menu-btn" data-target="penghargaan">Penghargaan</button>
+            </div>
+        </div>
+    </div>
+    <!-- Main Section Grid -->
+    <section class="about-layout">
+        <div class="container">
+            <div class="about-grid">
+                
+                <main class="about-content-pane">
+                    
+                    <!-- TAB 1: PROFIL -->
+                    <div class="about-tab-content active" id="tab-profil">
+                        <h2 class="content-title">Profil Perusahaan</h2>
+                        <div class="content-text">
+                            <p><strong>PT Patra Logistik</strong> bergerak dibidang logistik dengan kompetensi utama yaitu Transportasi, Pengelolaan Gudang, Customs Clearance dan Support Logistik lainnya.</p>
+                            <p>Berkomitmen dan berusaha penuh dengan sumber daya yang kami miliki untuk mengokohkan kompetensinya sebagai Perusahaan Logistik dengan memberikan layanan yang prima, PT Patra Logistik mengedepankan etos kerja yang profesional, transparan, dengan integritas yang tinggi yang berorientasi pada kepuasan pelanggan, stakeholder dan kesejahteraan serta tanggap dalam menghadapi dinamika bisnis yang berlandaskan pada Good Corporate Governance, Risk Awareness & Corporate Social Responsibility.</p>
+                        </div>
+                        
+                        <!-- Profil Perusahaan Bento Grid -->
+                        <div class="bento-grid">
+                            <div class="bento-item bento-large">
+                                <img src="assets/Mobil Tangki Maos.png" alt="Mobil Tangki Maos">
+                            </div>
+                            <div class="bento-item bento-top-right">
+                                <img src="assets/LPR00887 (1).png" alt="Kegiatan Operasional Logistik">
+                            </div>
+                            <div class="bento-item bento-bottom-left">
+                                <img src="assets/tbbm_ketapang.png" alt="TBBM Ketapang">
+                            </div>
+                            <div class="bento-item bento-bottom-right">
+                                <img src="assets/gudang_pelumas_loading.png" alt="Loading Gudang Pelumas">
+                            </div>
+                        </div>
+
+                        <!-- Company Profile Video -->
+                        <div class="video-container" style="margin-top: 40px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube-nocookie.com/embed/AZmhYwgqsPI?si=0GZRxzFbzWk3apXT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: VISI & MISI -->
+                    <div class="about-tab-content" id="tab-visi-misi">
+                        <h2 class="content-title">Visi & Misi</h2>
+                        <div class="vision-mission-grid">
+                            <div class="vision-card">
+                                <h3>VISI</h3>
+                                <p>"Menjadi Perusahaan Penyedia Jasa Logistik Energi Terintegrasi yang Terkemuka, Handal, dan Berstandar Kelas Dunia di Indonesia."</p>
+                            </div>
+                            <div class="mission-card">
+                                <h3>MISI</h3>
+                                <ul class="mission-list">
+                                    <li class="mission-item">
+                                        <div class="mission-num">1</div>
+                                        <div class="mission-text">Menyelenggarakan jasa logistik energi terintegrasi yang efisien, aman, dan tepat waktu untuk menjamin pasokan energi nasional.</div>
+                                    </li>
+                                    <li class="mission-item">
+                                        <div class="mission-num">2</div>
+                                        <div class="mission-text">Menerapkan praktik HSSE (Health, Safety, Security & Environment) di tingkat tertinggi pada seluruh rantai operasional.</div>
+                                    </li>
+                                    <li class="mission-item">
+                                        <div class="mission-num">3</div>
+                                        <div class="mission-text">Membangun sinergi bisnis yang saling menguntungkan dengan mitra strategis serta memberikan nilai tambah optimal kepada pemangku kepentingan.</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: NILAI PERUSAHAAN -->
+                    <div class="about-tab-content" id="tab-nilai">
+                        <h2 class="content-title">Nilai Perusahaan (AKHLAK)</h2>
+                        <p class="content-text">Sebagai anak perusahaan dari grup BUMN Pertamina, kami memegang teguh nilai inti AKHLAK dalam menjalankan fungsi operasional sehari-hari:</p>
+                        <div class="akhlak-grid">
+                            <div class="akhlak-card">
+                                <div class="akhlak-letter">A</div>
+                                <div class="akhlak-title">AMANAH</div>
+                                <div class="akhlak-desc">Memegang teguh kepercayaan yang diberikan dengan integritas tinggi dan bertanggung jawab penuh.</div>
+                            </div>
+                            <div class="akhlak-card">
+                                <div class="akhlak-letter">K</div>
+                                <div class="akhlak-title">KOMPETEN</div>
+                                <div class="akhlak-desc">Terus belajar, berinovasi, dan meningkatkan kapabilitas untuk memberikan hasil kerja terbaik.</div>
+                            </div>
+                            <div class="akhlak-card">
+                                <div class="akhlak-letter">H</div>
+                                <div class="akhlak-title">HARMONIS</div>
+                                <div class="akhlak-desc">Saling peduli, berempati, dan menghargai keberagaman serta kontribusi setiap individu.</div>
+                            </div>
+                            <div class="akhlak-card">
+                                <div class="akhlak-letter">L</div>
+                                <div class="akhlak-title">LOYAL</div>
+                                <div class="akhlak-desc">Berdedikasi tinggi dan mengutamakan kepentingan bangsa serta kemajuan perusahaan.</div>
+                            </div>
+                            <div class="akhlak-card">
+                                <div class="akhlak-letter">A</div>
+                                <div class="akhlak-title">ADAPTIF</div>
+                                <div class="akhlak-desc">Cepat menyesuaikan diri, lincah menghadapi tantangan bisnis, dan terus melakukan perbaikan.</div>
+                            </div>
+                            <div class="akhlak-card">
+                                <div class="akhlak-letter">K</div>
+                                <div class="akhlak-title">KOLABORATIF</div>
+                                <div class="akhlak-desc">Membangun kerja sama sinergis demi tujuan bersama dan pemenuhan energi nasional.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: TONGGAK SEJARAH -->
+                    <div class="about-tab-content" id="tab-sejarah">
+                        <h2 class="content-title">SEJARAH PERUSAHAAN</h2>
+                        
+                        <!-- Deskripsi Intro Sejarah dari Wireframe -->
+                        <div class="sejarah-intro" style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 12px; background: #FFFFFF; font-size: 14.5px; line-height: 1.8; color: #475569; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.01);">
+                            <p style="margin-bottom: 16px;">PT Patra Logistik berawal dari PT. Elnusa Kawasan Komersial yang didirikan pada tanggal 30 Agustus 1996 untuk mengelola Kawasan Komersil di Graha Elnusa TB Simatupang Kav 1-B, Jakarta Selatan. Tanggal 16 Agustus 2005 PT. Elnusa Kawasan Komersial berubah nama menjadi PT. Patra Logistik dan menjadi subsidiary dari PT. Pertamina Patra Niaga. PT Patra Logistik sekarang beralamatkan di Garden Avenue Rasuna lantai (1-3) Jl. Epicentrum Tengah No. 3 Kel. Setiabudi Jakarta Selatan.</p>
+                            <p style="margin-bottom: 0;">PT Patra Logistik bergerak dibidang usaha hilir migas yang fokus pada kegiatan penyedia jasa logistik dan support jasa logistik lainnya. Berkomitmen dan berusaha penuh dengan sumber daya yang kami miliki untuk mengokohkan kompetensinya sebagai Perusahaan Logistik dengan memberikan layanan yang prima, PT Patra Logistik mengedepankan etos kerja yang profesional, transparan, dengan integritas yang tinggi yang berorientasi pada kepuasan pelanggan, stakeholder dan kesejahteraan serta tanggap dalam menghadapi dinamika</p>
+                        </div>
+
+                        <!-- Container Timeline Horizontal -->
+                        <div class="timeline-container">
+                            <div class="timeline-subheader">
+                                Awal berdiri sejak <strong>30 Agustus 1996</strong> sebagai PT. Elnusa Kawasan Komersial, PT Patra Logistik bervisi <strong>menjadi pemimpin pasar logistik dan rantai suplai energi nasional.</strong>
+                                <div class="timeline-subheader__line"></div>
+                            </div>
+                            <div class="timeline-scroll-area">
+                                <div class="timeline-horizontal">
+                                    <div class="timeline-axis"></div>
+                                    
+                                    <!-- Node 1: 2012-2013 (DOWN) -->
+                                    <div class="timeline-node timeline-node--down">
+                                        <div class="timeline-circle">2012-2013</div>
+                                        <div class="timeline-connector"></div>
+                                        <div class="timeline-content-box">
+                                            <div class="timeline-content-text">
+                                                VHS BBM Timah, Pembangunan dan Pengoperasian DPPU Labuan Bajo
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Node 2: 2016-2017 (UP) -->
+                                    <div class="timeline-node timeline-node--up">
+                                        <div class="timeline-circle">2016-2017</div>
+                                        <div class="timeline-connector"></div>
+                                        <div class="timeline-content-box">
+                                            <div class="timeline-content-text">
+                                                Franco BBM TNI, Pengelolaan KSO DPPU H.A.S. Hanandjoeddin
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Node 3: 2018-2019 (DOWN) -->
+                                    <div class="timeline-node timeline-node--down">
+                                        <div class="timeline-circle">2018-2019</div>
+                                        <div class="timeline-connector"></div>
+                                        <div class="timeline-content-box" style="width: 280px;">
+                                            <div class="timeline-content-text">
+                                                <strong>Transportasi:</strong>
+                                                <ul>
+                                                    <li>Transportasi Pelumas dari DSP Plumpang ke seluruh wilayah Indonesia Bagian Barat</li>
+                                                    <li>Transportasi CNG</li>
+                                                </ul>
+                                                <br>
+                                                <strong>Inventory:</strong>
+                                                <ul>
+                                                    <li>Warehouse Management System</li>
+                                                    <li>Customs Clearance</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Node 4: 2019-2020 (UP) -->
+                                    <div class="timeline-node timeline-node--up">
+                                        <div class="timeline-circle">2019-2020</div>
+                                        <div class="timeline-connector"></div>
+                                        <div class="timeline-content-box">
+                                            <div class="timeline-content-text">
+                                                VHS ITMG
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Node 5: 2020-2021 (DOWN) -->
+                                    <div class="timeline-node timeline-node--down">
+                                        <div class="timeline-circle">2020-2021</div>
+                                        <div class="timeline-connector"></div>
+                                        <div class="timeline-content-box" style="width: 270px;">
+                                            <div class="timeline-content-text">
+                                                <ul>
+                                                    <li><strong>Ekspansi pasar</strong> ke BUMN Non Pertamina Group dan Ekspansi bisnis special haulage heavy equipment.</li>
+                                                    <li><strong>Implementasi digitalisasi</strong> dan pengembangan aplikasi untuk mendukung kegiatan operasional.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Node 6: 2022-2023 (UP) -->
+                                    <div class="timeline-node timeline-node--up">
+                                        <div class="timeline-circle">2022-2023</div>
+                                        <div class="timeline-connector"></div>
+                                        <div class="timeline-content-box" style="width: 280px;">
+                                            <div class="timeline-content-text">
+                                                Akuisisi <strong>TBBM Ketapang</strong>, VHS EP, VHS KAI, Fleet Management di Sorong & Ternate, Project APMS RPM, APMS Jatim Balinus.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Node 7: 2024-2025 (DOWN) -->
+                                    <div class="timeline-node timeline-node--down">
+                                        <div class="timeline-circle">2024-2025</div>
+                                        <div class="timeline-connector"></div>
+                                        <div class="timeline-content-box" style="width: 280px;">
+                                            <div class="timeline-content-text">
+                                                <ul>
+                                                    <li><strong>Fleet Management</strong> di wilayah RJBT, Batam, Baturaja, Lahat & Lubuk Linggau.</li>
+                                                    <li><strong>Fleet Safety LPG</strong> Jatibalinus & RJBT.</li>
+                                                    <li><strong>Angkutan FAME</strong>.</li>
+                                                    <li><strong>Angkutan Produk Breezon MC-32</strong>.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: DEWAN KOMISARIS -->
+                    <div class="about-tab-content" id="tab-komisaris">
+                        <h2 class="content-title">Dewan Komisaris</h2>
+                        <div class="board-grid">
+                            <div class="board-card">
+                                <div class="board-avatar">
+                                    <!-- Placeholder SVG Avatar Profile -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                    </svg>
+                                </div>
+                                <div class="board-info">
+                                    <div class="board-name">Tri Wahyudi</div>
+                                    <div class="board-role">Komisaris Utama</div>
+                                </div>
+                            </div>
+                            <div class="board-card">
+                                <div class="board-avatar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                    </svg>
+                                </div>
+                                <div class="board-info">
+                                    <div class="board-name">Ahmad Faisal</div>
+                                    <div class="board-role">Komisaris</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 6: DEWAN DIREKSI -->
+                    <div class="about-tab-content" id="tab-direksi">
+                        <h2 class="content-title">Dewan Direksi</h2>
+                        <div class="board-grid">
+                            <div class="board-card">
+                                <div class="board-avatar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                    </svg>
+                                </div>
+                                <div class="board-info">
+                                    <div class="board-name">Whisnu Bahardur</div>
+                                    <div class="board-role">Direktur Utama</div>
+                                </div>
+                            </div>
+                            <div class="board-card">
+                                <div class="board-avatar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                    </svg>
+                                </div>
+                                <div class="board-info">
+                                    <div class="board-name">Handoko</div>
+                                    <div class="board-role">Direktur Keuangan & Keamanan</div>
+                                </div>
+                            </div>
+                            <div class="board-card">
+                                <div class="board-avatar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                    </svg>
+                                </div>
+                                <div class="board-info">
+                                    <div class="board-name">Benny Rahadian</div>
+                                    <div class="board-role">Direktur Operasional</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 7: STRUKTUR -->
+                    <div class="about-tab-content" id="tab-struktur">
+                        <h2 class="content-title">Struktur Perusahaan</h2>
+                        <p class="content-text">Bagan kepemilikan saham, posisi holding, serta daftar anak perusahaan, patungan, dan afiliasi PT Patra Logistik (anak perusahaan PT Pertamina Patra Niaga).</p>
+                        
+                        <div class="org-tree-wrapper">
+                            <div class="org-tree-flow">
+                                <!-- Level 1: Government -->
+                                <div class="org-node-card org-node--gov">
+                                    <div class="org-gov-badge">🇮🇩</div>
+                                    <div class="org-gov-text">
+                                        <div class="org-gov-title">Government of</div>
+                                        <div class="org-gov-name">The Republic of Indonesia</div>
+                                    </div>
+                                </div>
+
+                                <!-- Connecting line -->
+                                <div class="org-connector"></div>
+
+                                <!-- Level 2: Shareholders -->
+                                <div class="org-shareholder-connector">
+                                    <div class="org-shareholder-line-top"></div>
+                                    <div class="org-shareholder-line-horizontal"></div>
+                                    <div class="org-shareholder-line-verticals"></div>
+                                    
+                                    <div class="org-shareholders-grid">
+                                        <div class="org-node-card org-node--shareholder">
+                                            <div class="org-pertamina-logo">PERTAMINA</div>
+                                            <div class="org-shareholder-name">PT Pertamina (Persero)</div>
+                                            <div class="org-shareholder-percentage">99,99977%</div>
+                                        </div>
+                                        <div class="org-node-card org-node--shareholder">
+                                            <div class="org-pertamina-logo">PERTAMINA</div>
+                                            <div class="org-shareholder-name">PT Pertamina Trans Kontinental</div>
+                                            <div class="org-shareholder-percentage">0,00023%</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Connecting line -->
+                                <div class="org-connector"></div>
+
+                                <!-- Level 3: Holding -->
+                                <div class="org-node-card org-node--holding">
+                                    <div class="org-pertamina-logo">PERTAMINA</div>
+                                    <div class="org-holding-title">PATRA NIAGA</div>
+                                </div>
+
+                                <!-- Connecting line to children -->
+                                <div class="org-connector"></div>
+                            </div>
+
+                            <!-- Level 4: Children Grid -->
+                            <div class="org-children-grid">
+                                <!-- Row 1 -->
+                                <div class="org-child-card org-child-card--subsidiary">
+                                    <div class="org-child-logo">PERTAMINA <span>RETAIL</span></div>
+                                    <div class="org-child-name">Pertamina Retail</div>
+                                    <div class="org-child-desc">Fuel & Non Fuel Retail Business</div>
+                                </div>
+                                <div class="org-child-card org-child-card--subsidiary">
+                                    <div class="org-child-logo">PERTAMINA <span>INTERNATIONAL</span></div>
+                                    <div class="org-child-name">Pertamina International Marketing</div>
+                                    <div class="org-child-desc">International Trading</div>
+                                </div>
+                                <div class="org-child-card org-child-card--subsidiary">
+                                    <div class="org-child-logo">PERTAMINA <span>PETROCHEMICAL</span></div>
+                                    <div class="org-child-name">Petrochemical Trading</div>
+                                    <div class="org-child-desc">EPC, O&M, Plant Services</div>
+                                </div>
+                                <div class="org-child-card org-child-card--subsidiary">
+                                    <div class="org-child-logo">PERTAMINA <span>TRADING</span></div>
+                                    <div class="org-child-name">Trading & Services</div>
+                                    <div class="org-child-desc">Marketing & Trading Aromatic & Olefin</div>
+                                </div>
+                                <div class="org-child-card org-child-card--jointventure">
+                                    <div class="org-child-logo" style="color: #7CB342;">PATRA <span>SK</span></div>
+                                    <div class="org-child-name">Patra SK</div>
+                                    <div class="org-child-desc">Marketing & Trading LBO</div>
+                                </div>
+
+                                <!-- Row 2 -->
+                                <div class="org-child-card org-child-card--subsidiary">
+                                    <div class="org-child-logo">PERTAMINA <span>LUBRICANTS</span></div>
+                                    <div class="org-child-name">Pertamina Lubricants</div>
+                                    <div class="org-child-desc">Lubricants & Special Chemical (Automotive Related)</div>
+                                </div>
+                                <div class="org-child-card org-child-card--subsidiary org-child-card--highlight">
+                                    <div class="org-child-logo">PERTAMINA <span>PATRA LOGISTIK</span></div>
+                                    <div class="org-child-name">Patra Logistik</div>
+                                    <div class="org-child-desc">Transport & Inventory Management</div>
+                                </div>
+                                <div class="org-child-card org-child-card--subsidiary">
+                                    <div class="org-child-logo">PERTAMINA <span>MAINTENANCE</span></div>
+                                    <div class="org-child-name">Maintenance & Construction</div>
+                                    <div class="org-child-desc">Maintenance & Construction</div>
+                                </div>
+                                <div class="org-child-card org-child-card--subsidiary">
+                                    <div class="org-child-logo">PERTAMINA <span>TIMOR</span></div>
+                                    <div class="org-child-name">Pertamina International Timor</div>
+                                    <div class="org-child-desc">B2B & B2C Downstream Business</div>
+                                </div>
+                                <div class="org-child-card org-child-card--affiliate">
+                                    <div class="org-child-logo">PERTAMINA <span>PEDEVE</span></div>
+                                    <div class="org-child-name">Pedeve Indonesia</div>
+                                    <div class="org-child-desc">Investment and Business Portfolio Management</div>
+                                </div>
+                            </div>
+
+                            <!-- Legend block -->
+                            <div class="org-legend">
+                                <div class="org-legend-item">
+                                    <div class="org-legend-color org-legend-color--subsidiary"></div>
+                                    <span>Anak Perusahaan (Subsidiary)</span>
+                                </div>
+                                <div class="org-legend-item">
+                                    <div class="org-legend-color org-legend-color--jointventure"></div>
+                                    <span>Perusahaan Patungan (Joint Venture)</span>
+                                </div>
+                                <div class="org-legend-item">
+                                    <div class="org-legend-color org-legend-color--affiliate"></div>
+                                    <span>Perusahaan Afiliasi (Affiliate)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 8: SERTIFIKAT -->
+                    <div class="about-tab-content" id="tab-sertifikat">
+                        <h2 class="content-title">Certification</h2>
+                        <p class="content-text">Sebagai wujud komitmen terhadap kepuasan pelanggan, kesehatan, keselamatan, keamanan, dan lingkungan, kami menerapkan Manajemen Mutu serta Standar Health, Safety, Security and Environmental (HSSE). Komitmen kami dibuktikan dengan perolehan sertifikat standar internasional yang diperbarui secara berkala.</p>
+                        
+                        <div class="cert-accent-line"></div>
+
+                        <div class="cert-list">
+                            <!-- Card 1: ISO 9001 -->
+                            <div class="cert-list-item">
+                                <div class="cert-card-content">
+                                    <div class="cert-badge-tag">ISO 9001:2015</div>
+                                    <h3 class="cert-title">Sistem Manajemen Mutu</h3>
+                                    <div class="cert-meta-section">
+                                        <div class="cert-meta-item">
+                                            <span class="cert-meta-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                            </span>
+                                            Tuv Nord
+                                        </div>
+                                        <div class="cert-meta-item">
+                                            <span class="cert-meta-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+                                            </span>
+                                            31 Desember 2021 – 30 Desember 2024
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cert-arrow-circle" aria-label="Lihat Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: ISO 14001 -->
+                            <div class="cert-list-item">
+                                <div class="cert-card-content">
+                                    <div class="cert-badge-tag">ISO 14001:2015</div>
+                                    <h3 class="cert-title">Sistem Manajemen Lingkungan</h3>
+                                    <div class="cert-meta-section">
+                                        <div class="cert-meta-item">
+                                            <span class="cert-meta-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                            </span>
+                                            Tuv Nord
+                                        </div>
+                                        <div class="cert-meta-item">
+                                            <span class="cert-meta-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+                                            </span>
+                                            31 Desember 2021 – 30 Desember 2024
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cert-arrow-circle" aria-label="Lihat Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: ISO 45001 -->
+                            <div class="cert-list-item">
+                                <div class="cert-card-content">
+                                    <div class="cert-badge-tag">ISO 45001:2018</div>
+                                    <h3 class="cert-title">Sistem Manajemen Kesehatan dan Keselamatan Kerja</h3>
+                                    <div class="cert-meta-section">
+                                        <div class="cert-meta-item">
+                                            <span class="cert-meta-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                            </span>
+                                            Tuv Nord
+                                        </div>
+                                        <div class="cert-meta-item">
+                                            <span class="cert-meta-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+                                            </span>
+                                            31 Desember 2021 – 30 Desember 2024
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cert-arrow-circle" aria-label="Lihat Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 4: SMK3 -->
+                            <div class="cert-list-item">
+                                <div class="cert-card-content">
+                                    <div class="cert-badge-tag">SMK3</div>
+                                    <h3 class="cert-title">Sistem Manajemen Keselamatan dan Kesehatan Kerja</h3>
+                                    <div class="cert-meta-section">
+                                        <div class="cert-meta-item">
+                                            <span class="cert-meta-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                            </span>
+                                            Kementerian Ketenagakerjaan RI
+                                        </div>
+                                        <div class="cert-meta-item">
+                                            <span class="cert-meta-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+                                            </span>
+                                            13 Mei 2022 – 12 Mei 2023
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cert-arrow-circle" aria-label="Lihat Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 9: PENGHARGAAN -->
+                    <div class="about-tab-content" id="tab-penghargaan">
+                        <h2 class="content-title">Penghargaan Korporasi</h2>
+                        <p class="content-text">Apresiasi dan penghargaan atas pencapaian kinerja, keselamatan kerja, serta kontribusi sosial PT Patra Logistik.</p>
+                        
+                        <div class="cert-accent-line"></div>
+
+                        <div class="award-grid">
+                            <!-- Card 1 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Sales Leaders Awards of The Year 2025 MarkPlus</div>
+                                    <div class="award-desc">- Sales Strategy That Change The Game<br>- Strategic Key Account Growth</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">CSR Awards 2025 and CSR Brand Equity Summit 2025</div>
+                                    <div class="award-desc">CSR Equity Awards in Logistic Category</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Sumatra Supplier Relationship Management (SRM) Summit 2025</div>
+                                    <div class="award-desc">Best Performance Sinergi Pertamina Group</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 4 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">SWA Media Awards 2024</div>
+                                    <div class="award-desc">Indonesia Best Business Transformation 2024</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 5 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Indonesia Logistic Awards (ILA) 2024 by Supply Chain Indonesia</div>
+                                    <div class="award-desc">The Best Performer for Energy Logistic Distribution of The Year</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 6 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Marketeers Editor's Choice Award (MECA) 2024</div>
+                                    <div class="award-desc">Business Transformation of The Year</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 7 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">The Iconomics Indonesia Innovation Awards 2024</div>
+                                    <div class="award-desc">Indonesia Innovation Company in Logistic Category</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 8 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Indonesia Public Relations Summit 2024 By The Iconomics</div>
+                                    <div class="award-desc">Indonesia Popular Corporate Reputation Awards</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 9 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Indonesia Fair Trusted Company GCG Awards 2023</div>
+                                    <div class="award-desc">Fair Trusted Company Based On Corporate Governance Perception Index (CGPI)</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 10 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Vendor Days Awards Pertamina Patra Niaga Reg. Kalimantan, Sulawesi, Papua Maluku 2024</div>
+                                    <div class="award-desc">- Best Performance Pertamina Group Affiliates<br>- Business Support Penyaluran BBM 1 Harga</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 11 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Vendor Day Awards PT Pertamina Lubricants 2024</div>
+                                    <div class="award-desc">The Best Synergistic Alliance Achievement</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 12 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Best Practice Awards Pertamina Patra Niaga 2024</div>
+                                    <div class="award-desc">Performance Pencapaian ABI Fisik dan Finansial Anak Perusahaan Terbaik</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 13 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Appreciation from President Director of PT Indonesia Air Asia</div>
+                                    <div class="award-desc">Pertamina Komodo Airport Aircraft Refueling Depot, Labuan Bajo</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+
+                            <!-- Card 14 -->
+                            <div class="award-card">
+                                <div class="award-card-body">
+                                    <div class="award-title">Nation Aviation Forum tahun 2023</div>
+                                    <div class="award-desc">DPPU KSO Terbaik oleh DPPU Banyuwangi Atas Penyelesaian Closing Audit 100%</div>
+                                </div>
+                                <div class="award-arrow-circle" aria-label="Detail">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Bar -->
+    <footer class="footer-new">
+        <div class="footer-new__watermark"></div>
+        
+        <div class="footer-new__top container">
+            <!-- Column 1 -->
+            <div class="footer-col-1">
+                <div class="footer-logo"></div>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Gedung Wisma Tugu II Lt. 4, Jl. H.R. Rasuna Said Kav. C-7, Setiabudi, Jakarta Selatan 12920, Indonesia</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>021-520-5678 (Hunting)</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        <span>info@patralogistik.co.id</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="X">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Column 2 -->
+            <div class="footer-col-2">
+                <h3>NAVIGASI UTAMA</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Beranda Utama</a></li>
+                    <li><a href="#">Semua Layanan B2B</a></li>
+                    <li><a href="#">Lacak Pengiriman Online</a></li>
+                    <li>
+                        <a href="#" class="highlight-link">
+                            Minta Penawaran Harga (B2B)
+                            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Column 3 -->
+            <div class="footer-col-3">
+                <h3>LAYANAN DISTRIBUSI</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Transportasi Energi BBM & LPG</a></li>
+                    <li><a href="#">Manajemen Depot & Tangki (ATG)</a></li>
+                    <li><a href="#">Customs Clearance Pelabuhan Energi</a></li>
+                </ul>
+                <p class="footer-service-desc">Melayani Sektor Industri, Marine, & PLTU seluruh Indonesia.</p>
+            </div>
+    
+            <!-- Column 4 -->
+            <div class="footer-col-4">
+                <div class="call-center-btn">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div class="text">
+                        <span class="title">Whistle Blowing System</span>
+                        <span class="link">https://pertaminaclean.tipoffs.info/</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer-new__bottom container">
+            <div class="bottom-left">
+                <span class="affiliate-label">AFFILIATE OF:</span>
+                <span class="affiliate-box">PERTAMINA PATRA NIAGA</span>
+            </div>
+            <div class="bottom-right">
+                <span class="copyright">© 2026 PT Patra Logistik. All rights reserved.</span>
+                <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan PT Pertamina (Persero).</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tab Switching Logic Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sidebar = document.getElementById("about-sidebar");
+            const backdrop = document.getElementById("sidebar-backdrop");
+            const triggerFixed = document.getElementById("sidebar-trigger-fixed");
+            const triggerInline = document.getElementById("sidebar-trigger-inline");
+            const closeBtn = document.getElementById("sidebar-close-btn");
+            const menuBtns = document.querySelectorAll(".about-menu-btn");
+            const tabContents = document.querySelectorAll(".about-tab-content");
+
+            function openSidebar() {
+                if(sidebar) sidebar.classList.add("open");
+                if(backdrop) backdrop.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeSidebar() {
+                if(sidebar) sidebar.classList.remove("open");
+                if(backdrop) backdrop.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            if (triggerFixed) triggerFixed.addEventListener("click", openSidebar);
+            if (triggerInline) triggerInline.addEventListener("click", openSidebar);
+            if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
+            if (backdrop) backdrop.addEventListener("click", closeSidebar);
+
+            function switchTab(target) {
+                // Update Desktop buttons immediately
+                menuBtns.forEach(btn => {
+                    if (btn.getAttribute("data-target") === target) {
+                        btn.classList.add("active");
+                    } else {
+                        btn.classList.remove("active");
+                    }
+                });
+
+                // Close drawer if open
+                closeSidebar();
+
+                // Scroll to target section
+                const targetSection = document.getElementById(`tab-${target}`);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            // Intersection Observer for scroll spying
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px -60% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id.replace('tab-', '');
+                        menuBtns.forEach(btn => {
+                            if (btn.getAttribute("data-target") === id) {
+                                btn.classList.add("active");
+                            } else {
+                                btn.classList.remove("active");
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            tabContents.forEach(content => {
+                observer.observe(content);
+            });
+
+            menuBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const target = btn.getAttribute("data-target");
+                    switchTab(target);
+                });
+            });
+
+            // Check URL query parameters on load to support direct tab linking
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            if (tabParam) {
+                switchTab(tabParam);
+            }
+
+            // Scroll Reveal Animation Observer
+            const animMap = [
+                { selector: '.content-title', class: 'reveal-up' },
+                { selector: '.content-text', class: 'reveal-up' },
+                { selector: '#tab-profil .bento-item', class: 'reveal-up' },
+                { selector: '#tab-profil .video-container', class: 'reveal-up' },
+                { selector: '#tab-visi-misi .vision-card', class: 'reveal-left' },
+                { selector: '#tab-visi-misi .mission-card', class: 'reveal-right' },
+                { selector: '#tab-nilai .akhlak-card', class: 'reveal-up' },
+                { selector: '#tab-sejarah .timeline-node', class: 'reveal-up' },
+                { selector: '#tab-komisaris .board-card', class: 'reveal-up' },
+                { selector: '#tab-direksi .board-card', class: 'reveal-up' },
+                { selector: '#tab-struktur .org-node-card', class: 'reveal-up' },
+                { selector: '#tab-struktur .org-shareholder-connector', class: 'reveal-up' },
+                { selector: '#tab-sertifikat .cert-list-item', class: 'reveal-left' },
+                { selector: '#tab-penghargaan .award-card', class: 'reveal-up' }
+            ];
+
+            animMap.forEach(item => {
+                const elements = document.querySelectorAll(item.selector);
+                elements.forEach((el, index) => {
+                    el.classList.add(item.class);
+                    // Add slight stagger for multiple items
+                    if (elements.length > 1 && !el.classList.contains('content-text')) {
+                        el.style.transitionDelay = `${(index % 10) * 0.15}s`;
+                    }
+                });
+            });
+
+            const revealOptions = {
+                root: null,
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.15
+            };
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>

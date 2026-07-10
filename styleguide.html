@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patra Logistik - Style Guide & Component Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom styles for Style Guide page to present components beautifully */
+        body.styleguide-body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+            display: flex;
+            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sidebar navigation */
+        .sg-sidebar {
+            width: 280px;
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 40px 24px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            border-right: 1px solid #1E293B;
+            z-index: 100;
+        }
+        .sg-sidebar-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+        .sg-sidebar-brand h2 {
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .sg-sidebar-brand span {
+            font-size: 11px;
+            background: #ED1C24;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 50px;
+            align-self: flex-start;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .sg-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sg-nav-item a {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #94A3B8;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        .sg-nav-item a:hover {
+            color: #FFFFFF;
+            background: #1E293B;
+        }
+        .sg-nav-item.active a {
+            color: #FFFFFF;
+            background: #ED1C24;
+        }
+
+        /* Main Content Container */
+        .sg-main {
+            margin-left: 280px;
+            flex-grow: 1;
+            padding: 60px 80px 100px;
+            max-width: 1200px;
+        }
+
+        .sg-header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sg-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #0F172A;
+            letter-spacing: -1px;
+        }
+        .sg-header p {
+            color: #64748B;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+        .sg-btn-back {
+            background: #0056A6;
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 86, 166, 0.2);
+        }
+        .sg-btn-back:hover {
+            background: #004485;
+            transform: translateY(-2px);
+        }
+
+        /* Section layout */
+        .sg-section {
+            margin-bottom: 80px;
+            scroll-margin-top: 40px;
+        }
+        .sg-section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 16px;
+            border-left: 4px solid #ED1C24;
+            padding-left: 12px;
+        }
+        .sg-section-desc {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            max-width: 800px;
+        }
+
+        /* Color grid */
+        .sg-color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .sg-color-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .sg-color-swatch {
+            height: 110px;
+            width: 100%;
+        }
+        .sg-color-info {
+            padding: 16px;
+        }
+        .sg-color-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #0F172A;
+        }
+        .sg-color-variable {
+            font-family: monospace;
+            font-size: 11px;
+            color: #ED1C24;
+            margin-top: 4px;
+        }
+        .sg-color-val {
+            font-family: monospace;
+            font-size: 12px;
+            color: #64748B;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sg-btn-copy-val {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 12px;
+            color: #94A3B8;
+        }
+        .sg-btn-copy-val:hover {
+            color: #0F172A;
+        }
+
+        /* Typography scale Table */
+        .sg-typo-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #FFFFFF;
+            min-width: 650px;
+        }
+        .sg-typo-table th, .sg-typo-table td {
+            padding: 20px 24px;
+            text-align: left;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .sg-typo-table th {
+            background: #F8FAFC;
+            color: #475569;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .sg-typo-table td.typo-spec {
+            font-family: monospace;
+            font-size: 13px;
+            color: #64748B;
+        }
+
+        /* Showroom Container for live rendering */
+        .sg-showroom {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px 16px 0 0;
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }
+        .sg-showroom.dark-bg {
+            background: #151B26;
+        }
+
+        /* Code Viewer markup container */
+        .sg-code-container {
+            border: 1px solid #E2E8F0;
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            background: #0F172A;
+            position: relative;
+        }
+        .sg-code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #1E293B;
+        }
+        .sg-code-lang {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #64748B;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .sg-btn-copy-code {
+            background: #1E293B;
+            border: none;
+            border-radius: 4px;
+            color: #94A3B8;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sg-btn-copy-code:hover {
+            color: #FFFFFF;
+            background: #334155;
+        }
+        .sg-code-block {
+            margin: 0;
+            padding: 20px;
+            overflow-x: auto;
+            color: #E2E8F0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            max-height: 300px;
+        }
+
+        /* Utility classes */
+        .sg-component-box {
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        .sg-component-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        /* Utility styles & Table Container */
+        .sg-table-container {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            margin-top: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Mobile Header Styling */
+        .sg-mobile-header {
+            display: none;
+            background: #0F172A;
+            color: #FFFFFF;
+            padding: 16px 20px;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .sg-menu-toggle {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sg-menu-toggle:hover {
+            background: #2D3748;
+        }
+        .sg-mobile-title {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ED1C24;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            body.styleguide-body {
+                flex-direction: column;
+            }
+            .sg-mobile-header {
+                display: flex;
+            }
+            .sg-sidebar {
+                position: fixed;
+                top: 60px; /* Offset below header */
+                bottom: 0;
+                left: -280px; /* Slide out of screen */
+                width: 280px;
+                height: calc(100vh - 60px);
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 10px 0 20px rgba(0, 0, 0, 0.15);
+                display: block;
+            }
+            .sg-sidebar.open {
+                left: 0;
+            }
+            .sg-main {
+                margin-left: 0;
+                padding: 30px 16px;
+            }
+            .sg-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .sg-btn-back {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="styleguide-body">
+
+    <!-- Mobile Header -->
+    <div class="sg-mobile-header">
+        <button id="sg-menu-toggle" class="sg-menu-toggle">☰ Menu</button>
+        <span class="sg-mobile-title">DESIGN SYSTEM</span>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sg-sidebar">
+        <div class="sg-sidebar-brand">
+            <h2>DESIGN SYSTEM</h2>
+            <span>PATRA LOGISTIK</span>
+        </div>
+        <ul class="sg-nav-list">
+            <li class="sg-nav-item active"><a href="#pengenalan">1. Pengenalan</a></li>
+            <li class="sg-nav-item"><a href="#warna-typo">2. Warna & Tipografi</a></li>
+            <li class="sg-nav-item"><a href="#tombol">3. Tombol (Buttons)</a></li>
+            <li class="sg-nav-item"><a href="#badges-status">4. Badges & Status</a></li>
+            <li class="sg-nav-item"><a href="#kartu">5. Kartu (Cards)</a></li>
+            <li class="sg-nav-item"><a href="#form-input">6. Form & Input</a></li>
+            <li class="sg-nav-item"><a href="#nav-footer">7. Navigasi & Footer</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="sg-main">
+        <div class="sg-header">
+            <div>
+                <h1>Style Guide & Component Library</h1>
+                <p>Dokumentasi pustaka desain visual dan kode komponen re-usable untuk PT Patra Logistik.</p>
+            </div>
+            <a href="index.html" class="sg-btn-back">← Buka Web Utama</a>
+        </div>
+
+        <!-- SECTION 1: PENGENALAN -->
+        <section id="pengenalan" class="sg-section">
+            <h2 class="sg-section-title">1. Pengenalan</h2>
+            <p class="sg-section-desc">
+                Pustaka gaya ini dibuat untuk memastikan konsistensi visual di seluruh halaman web PT Patra Logistik. Kode HTML dan kelas CSS yang terdokumentasi di bawah ini telah disesuaikan agar responsif, modern, dan modular sehingga dapat di-copy paste langsung untuk halaman tambahan lainnya.
+            </p>
+        </section>
+
+        <!-- SECTION 2: WARNA & TIPOGRAFI -->
+        <section id="warna-typo" class="sg-section">
+            <h2 class="sg-section-title">2. Warna & Tipografi</h2>
+            <p class="sg-section-desc">Identitas warna korporat resmi dan skala ukuran teks yang mendefinisikan estetika premium web.</p>
+            
+            <div class="sg-component-box">
+                <div class="sg-component-label">Palet Warna Utama</div>
+                <div class="sg-color-grid">
+                    <!-- Swatch 1 -->
+                    <div class="sg-color-card">
+                        <div class="sg-color-swatch" style="background: #0056A6;"></div>
+                        <div class="sg-color-info">
+                            <div class="sg-color-name">Pertamina Blue</div>
+                            <div class="sg-color-variable">--primary-blue</div>
+                            <div class="sg-color-val">#0056A6</div>
+                        </div>
+                    </div>
+                    <!-- Swatch 2 -->
+                    <div class="sg-color-card">
+                        <div class="sg-color-swatch" style="background: #ED1C24;"></div>
+                        <div class="sg-color-info">
+                            <div class="sg-color-name">Pertamina Red</div>
+                            <div class="sg-color-variable">--primary-red</div>
+                            <div class="sg-color-val">#ED1C24</div>
+                        </div>
+                    </div>
+                    <!-- Swatch 3 -->
+                    <div class="sg-color-card">
+                        <div class="sg-color-swatch" style="background: #151B26;"></div>
+                        <div class="sg-color-info">
+                            <div class="sg-color-name">Dark Navy</div>
+                            <div class="sg-color-variable">--dark-navy</div>
+                            <div class="sg-color-val">#151B26</div>
+                        </div>
+                    </div>
+                    <!-- Swatch 4 -->
+                    <div class="sg-color-card">
+                        <div class="sg-color-swatch" style="background: #333333;"></div>
+                        <div class="sg-color-info">
+                            <div class="sg-color-name">Text Main</div>
+                            <div class="sg-color-variable">--text-main</div>
+                            <div class="sg-color-val">#333333</div>
+                        </div>
+                    </div>
+                    <!-- Swatch 5 -->
+                    <div class="sg-color-card">
+                        <div class="sg-color-swatch" style="background: #F9F9F9;"></div>
+                        <div class="sg-color-info">
+                            <div class="sg-color-name">Background Light</div>
+                            <div class="sg-color-variable">--bg-light</div>
+                            <div class="sg-color-val">#F9F9F9</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sg-component-box" style="margin-top: 40px;">
+                <div class="sg-component-label">Tipografi (Font Family: 'Plus Jakarta Sans')</div>
+                <div class="sg-table-container">
+                    <table class="sg-typo-table">
+                        <thead>
+                            <tr>
+                                <th>Hierarki / Kelas</th>
+                                <th>Visual Contoh</th>
+                                <th>Spesifikasi Ukuran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="typo-name">Hero Title (`.hero-title`)</td>
+                                <td><h1 style="margin:0; font-size:32px; font-weight:400; line-height: 1.1;">Menyalurkan Energi</h1></td>
+                                <td class="typo-spec">54px / Regular (400) / line-height: 1.1</td>
+                            </tr>
+                            <tr>
+                                <td class="typo-name">Section Title (`.section-title` / `.new-services-title`)</td>
+                                <td><h2 style="margin:0; font-size:28px; font-weight:700;">Layanan & Solusi Logistik</h2></td>
+                                <td class="typo-spec">56px / Bold (700) / line-height: 64px</td>
+                            </tr>
+                            <tr>
+                                <td class="typo-name">Heading 3 (`.service-card-title` / `.tracking-card__title`)</td>
+                                <td><h3 style="margin:0; font-size:18px; font-weight:800;">Lacak Pengiriman</h3></td>
+                                <td class="typo-spec">16px / Extra Bold (800) / line-height: 20px</td>
+                            </tr>
+                            <tr>
+                                <td class="typo-name">Section Tag (`.section-tag` / `.new-services-tag`)</td>
+                                <td><span style="color:#C41B0E; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1.3px;">Layanan Kami</span></td>
+                                <td class="typo-spec">13px / Bold (700) / Uppercase / Letter-spacing 1.3px</td>
+                            </tr>
+                            <tr>
+                                <td class="typo-name">Body Text (`body` / `.new-services-desc`)</td>
+                                <td><p style="margin:0; font-size:14px; color:#4B5563;">Kami hadir dengan layanan terintegrasi untuk menyalurkan energi nasional.</p></td>
+                                <td class="typo-spec">14px - 17px / Regular (400) / line-height: 29px</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: TOMBOL -->
+        <section id="tombol" class="sg-section">
+            <h2 class="sg-section-title">3. Tombol (Buttons)</h2>
+            <p class="sg-section-desc">Gaya tombol standar yang digunakan untuk mengarahkan pengguna atau memicu form aksi.</p>
+
+            <div class="sg-component-box">
+                <div class="sg-component-label">Daftar Komponen Tombol</div>
+                <div class="sg-showroom">
+                    <!-- Primary Button -->
+                    <button class="btn btn-primary" style="position:static;">View Projects →</button>
+                    <!-- White Button -->
+                    <button class="btn btn-white" style="position:static; border: 1px solid #ccc; color: #333;">Reach Out ↗</button>
+                    <!-- Tracking Button -->
+                    <button class="btn btn-tracking" style="position:static; width:auto; padding: 12px 28px;">LACAK SEKARANG →</button>
+                </div>
+                
+                <div class="sg-code-container">
+                    <div class="sg-code-header">
+                        <span class="sg-code-lang">HTML</span>
+                        <button class="sg-btn-copy-code" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre class="sg-code-block"><code>&lt;!-- Tombol Utama (Primary Red) --&gt;
+&lt;button class="btn btn-primary"&gt;View Projects →&lt;/button&gt;
+
+&lt;!-- Tombol Putih/Secondary --&gt;
+&lt;button class="btn btn-white"&gt;Reach Out ↗&lt;/button&gt;
+
+&lt;!-- Tombol Form Lacak --&gt;
+&lt;button class="btn btn-tracking"&gt;
+    &lt;span&gt;LACAK SEKARANG&lt;/span&gt;
+    &lt;span class="btn-tracking__icon"&gt;→&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: BADGES & STATUS -->
+        <section id="badges-status" class="sg-section">
+            <h2 class="sg-section-title">4. Badges & Status</h2>
+            <p class="sg-section-desc">Label status pengiriman BBM yang digunakan pada panel logistik pelacakan nomor DO.</p>
+
+            <div class="sg-component-box">
+                <div class="sg-component-label">Badges Logistik</div>
+                <div class="sg-showroom dark-bg">
+                    <span class="status-badge status-badge--delivered" style="margin-right:12px;">SELESAI</span>
+                    <span class="status-badge status-badge--loading" style="margin-right:12px;">DALAM PROSES</span>
+                    <span class="status-badge status-badge--transit" style="margin-right:12px;">DALAM PERJALANAN</span>
+                    <span class="status-badge status-badge--error">BERMASALAH</span>
+                </div>
+                
+                <div class="sg-code-container">
+                    <div class="sg-code-header">
+                        <span class="sg-code-lang">HTML</span>
+                        <button class="sg-btn-copy-code" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre class="sg-code-block"><code>&lt;!-- Status Selesai / Sukses (Hijau) --&gt;
+&lt;span class="status-badge status-badge--delivered"&gt;SELESAI&lt;/span&gt;
+
+&lt;!-- Status Dalam Proses / Loading (Biru) --&gt;
+&lt;span class="status-badge status-badge--loading"&gt;DALAM PROSES&lt;/span&gt;
+
+&lt;!-- Status Transit / Perjalanan (Kuning) --&gt;
+&lt;span class="status-badge status-badge--transit"&gt;DALAM PERJALANAN&lt;/span&gt;
+
+&lt;!-- Status Error / Bermasalah (Merah) --&gt;
+&lt;span class="status-badge status-badge--error"&gt;BERMASALAH&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: KARTU -->
+        <section id="kartu" class="sg-section">
+            <h2 class="sg-section-title">5. Kartu (Cards)</h2>
+            <p class="sg-section-desc">Pola grid kartu untuk memamerkan layanan utama perusahaan lengkap dengan visual overlay glassmorphism blur.</p>
+
+            <div class="sg-component-box">
+                <div class="sg-component-label">Services Card</div>
+                <div class="sg-showroom" style="justify-content:center; padding: 60px;">
+                    <div class="service-card-item">
+                        <div class="service-card-img" style="background-image: url('assets/Mobil Tangki Maos.png');"></div>
+                        <div class="service-card-gradient"></div>
+                        <div class="service-card-overlay-blur">
+                            <div class="service-card-text-wrapper">
+                                <h3 class="service-card-title">Pengangkutan BBM</h3>
+                                <p class="service-card-desc">Pengiriman pelumas industri & otomotif Pertamina secara aman dengan jaminan keaslian dan anti-kontaminasi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sg-code-container">
+                    <div class="sg-code-header">
+                        <span class="sg-code-lang">HTML</span>
+                        <button class="sg-btn-copy-code" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre class="sg-code-block"><code>&lt;!-- Card Layanan dengan Efek Zoom-on-hover & Expandable Description --&gt;
+&lt;div class="service-card-item"&gt;
+    &lt;div class="service-card-img" style="background-image: url('assets/Mobil Tangki Maos.png');"&gt;&lt;/div&gt;
+    &lt;div class="service-card-gradient"&gt;&lt;/div&gt;
+    &lt;div class="service-card-overlay-blur"&gt;
+        &lt;div class="service-card-text-wrapper"&gt;
+            &lt;h3 class="service-card-title"&gt;Pengangkutan BBM&lt;/h3&gt;
+            &lt;p class="service-card-desc"&gt;Pengiriman pelumas industri & otomotif Pertamina secara aman dengan jaminan keaslian dan anti-kontaminasi.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: FORM & INPUT -->
+        <section id="form-input" class="sg-section">
+            <h2 class="sg-section-title">6. Form & Input</h2>
+            <p class="sg-section-desc">Tampilan panel input pencarian nomor DO (Delivery Order) berbasis estetika glassmorphism modern.</p>
+
+            <div class="sg-component-box">
+                <div class="sg-component-label">Panel Input DO Glassmorphic</div>
+                <div class="sg-showroom dark-bg" style="justify-content:center; padding: 40px;">
+                    <div class="tracking-card" style="width:100%; max-width: 500px;">
+                        <div class="tracking-card__header">
+                            <span class="tracking-card__subtitle">REAL-TIME MONITORING</span>
+                            <h3 class="tracking-card__title" style="color:white;">Lacak Pengiriman</h3>
+                        </div>
+                        <form class="tracking-form" onsubmit="return false;">
+                            <div class="tracking-input-group">
+                                <span class="tracking-input-icon">🔍</span>
+                                <input type="text" class="tracking-input" placeholder="Masukkan No. DO (Contoh: DO-PATRA-001)" required>
+                            </div>
+                            <button type="submit" class="btn btn-tracking">
+                                <span>LACAK SEKARANG</span>
+                                <span class="btn-tracking__icon">→</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="sg-code-container">
+                    <div class="sg-code-header">
+                        <span class="sg-code-lang">HTML</span>
+                        <button class="sg-btn-copy-code" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre class="sg-code-block"><code>&lt;!-- Form Lacak DO Glassmorphism --&gt;
+&lt;div class="tracking-card"&gt;
+    &lt;div class="tracking-card__header"&gt;
+        &lt;span class="tracking-card__subtitle"&gt;REAL-TIME MONITORING&lt;/span&gt;
+        &lt;h3 class="tracking-card__title"&gt;Lacak Pengiriman&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;form id="tracking-form" class="tracking-form"&gt;
+        &lt;div class="tracking-input-group"&gt;
+            &lt;span class="tracking-input-icon"&gt;🔍&lt;/span&gt;
+            &lt;input type="text" id="do-number" name="do_number" class="tracking-input" placeholder="Masukkan No. DO (Contoh: DO-PATRA-001)" required autocomplete="off"&gt;
+        &lt;/div&gt;
+        &lt;button type="submit" class="btn btn-tracking"&gt;
+            &lt;span&gt;LACAK SEKARANG&lt;/span&gt;
+            &lt;span class="btn-tracking__icon"&gt;→&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: NAVIGASI & FOOTER -->
+        <section id="nav-footer" class="sg-section">
+            <h2 class="sg-section-title">7. Navigasi & Footer</h2>
+            <p class="sg-section-desc">Pilar layout terluar yang membungkus keseluruhan halaman web Patra Logistik.</p>
+
+            <div class="sg-component-box">
+                <div class="sg-component-label">Navigasi Navbar Link (Markup)</div>
+                <div class="sg-code-container" style="border-radius: 16px;">
+                    <div class="sg-code-header">
+                        <span class="sg-code-lang">HTML</span>
+                        <button class="sg-btn-copy-code" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre class="sg-code-block"><code>&lt;!-- Navbar Header Container --&gt;
+&lt;header id="navbar"&gt;
+    &lt;div class="container nav-wrapper"&gt;
+        &lt;a href="#" class="logo-link" aria-label="Patra Logistik"&gt;
+            &lt;img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image"&gt;
+        &lt;/a&gt;
+        &lt;button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links"&gt;
+            ☰
+        &lt;/button&gt;
+        &lt;ul class="nav-links" id="nav-links"&gt;
+            &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Tentang Kami&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Bisnis&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Tata Kelola&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Hubungan Investor&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Servis & Media&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Karir&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class="nav-cta"&gt;
+            &lt;button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;"&gt;HUBUNGI KAMI&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="sg-component-box" style="margin-top:40px;">
+                <div class="sg-component-label">Pill Tabs Navigation (Peralihan Tab Layanan)</div>
+                <div class="sg-showroom" style="justify-content:center;">
+                    <div class="services-tabs-pill">
+                        <button class="services-tab-btn active">
+                            <span class="services-tab-icon">🚚</span>
+                            Transportasi
+                        </button>
+                        <button class="services-tab-btn">
+                            <span class="services-tab-icon">📦</span>
+                            Inventory
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sg-code-container">
+                    <div class="sg-code-header">
+                        <span class="sg-code-lang">HTML</span>
+                        <button class="sg-btn-copy-code" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre class="sg-code-block"><code>&lt;!-- Services Tab Navigation Pill-Shape --&gt;
+&lt;div class="services-tabs-container"&gt;
+    &lt;div class="services-tabs-pill"&gt;
+        &lt;button class="services-tab-btn active" data-tab="transportasi"&gt;
+            &lt;span class="services-tab-icon"&gt;🚚&lt;/span&gt;
+            Transportasi
+        &lt;/button&gt;
+        &lt;button class="services-tab-btn" data-tab="inventory"&gt;
+            &lt;span class="services-tab-icon"&gt;📦&lt;/span&gt;
+            Inventory Management
+        &lt;/button&gt;
+        &lt;button class="services-tab-btn" data-tab="other"&gt;
+            &lt;span class="services-tab-icon"&gt;⚙️&lt;/span&gt;
+            Other Business
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script Guide Interactivity -->
+    <script>
+        // Robust clipboard copy function with fallback for non-secure / headless browser contexts
+        function copyCode(btn) {
+            const pre = btn.closest('.sg-code-container').querySelector('code');
+            const originalText = btn.textContent;
+            const textToCopy = pre.textContent;
+
+            function fallbackCopy(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        showSuccess();
+                    } else {
+                        showError();
+                    }
+                } catch (err) {
+                    showError();
+                }
+                document.body.removeChild(textArea);
+            }
+
+            function showSuccess() {
+                btn.textContent = 'Copied!';
+                btn.style.background = '#10B981'; // Green
+                btn.style.color = '#FFFFFF';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            }
+
+            function showError() {
+                btn.textContent = 'Gagal!';
+                setTimeout(() => { btn.textContent = originalText; }, 2000);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(showSuccess).catch(() => {
+                    fallbackCopy(textToCopy);
+                });
+            } else {
+                fallbackCopy(textToCopy);
+            }
+        }
+
+        // Highlight active sidebar navigation based on scrolling position
+        const sections = document.querySelectorAll('.sg-section');
+        const navLi = document.querySelectorAll('.sg-nav-item');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 120)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(li => {
+                li.classList.remove('active');
+                if (li.querySelector('a').getAttribute('href') === `#${current}`) {
+                    li.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile drawer navigation script
+        const sgMenuToggle = document.getElementById('sg-menu-toggle');
+        const sgSidebar = document.querySelector('.sg-sidebar');
+        
+        if (sgMenuToggle && sgSidebar) {
+            sgMenuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                sgSidebar.classList.toggle('open');
+            });
+            
+            // Close when clicking nav items
+            document.querySelectorAll('.sg-nav-item a').forEach(link => {
+                link.addEventListener('click', () => {
+                    sgSidebar.classList.remove('open');
+                });
+            });
+            
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sgSidebar.contains(e.target) && e.target !== sgMenuToggle) {
+                    sgSidebar.classList.remove('open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
