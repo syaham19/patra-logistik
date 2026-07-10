@@ -858,6 +858,7 @@ header.scrolled .logo-image {
     white-space: normal;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     text-overflow: clip;
 }
@@ -2116,9 +2117,6 @@ header.scrolled .logo-image {
     .mor-stats-grid {
         grid-template-columns: 1fr;
         gap: 16px;
-    }
-    
-    .map-card__visual {
     }
     
     .mor-detail-panel__title {
