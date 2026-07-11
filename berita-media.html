@@ -231,15 +231,16 @@
         }
 
         .about-tab-content {
-            display: none;
-        }
-        .about-tab-content.active {
             display: block;
-            animation: fadeIn 0.4s ease-in-out;
+            margin-bottom: 64px;
+            padding-bottom: 64px;
+            border-bottom: 1px solid #F1F5F9;
+            scroll-margin-top: 160px; /* offset for header + subnav */
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .about-tab-content:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
         }
 
         .content-title {
@@ -890,7 +891,7 @@
             if (backdrop) backdrop.addEventListener("click", closeSidebar);
 
             function switchTab(target) {
-                // Update Desktop buttons
+                // Update Desktop buttons immediately
                 menuBtns.forEach(btn => {
                     if (btn.getAttribute("data-target") === target) {
                         btn.classList.add("active");
@@ -899,24 +900,41 @@
                     }
                 });
 
-                // Show Content Pane
-                tabContents.forEach(content => {
-                    if (content.id === `tab-${target}`) {
-                        content.classList.add("active");
-                    } else {
-                        content.classList.remove("active");
-                    }
-                });
-
-                // Close drawer
+                // Close drawer if open
                 closeSidebar();
 
-                // Scroll to top of content
-                const contentPane = document.querySelector(".about-content-pane");
-                if (contentPane) {
-                    contentPane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Scroll to target section
+                const targetSection = document.getElementById(`tab-${target}`);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
+
+            // Intersection Observer for scroll spying
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px -60% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id.replace('tab-', '');
+                        menuBtns.forEach(btn => {
+                            if (btn.getAttribute("data-target") === id) {
+                                btn.classList.add("active");
+                            } else {
+                                btn.classList.remove("active");
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            tabContents.forEach(content => {
+                observer.observe(content);
+            });
 
             menuBtns.forEach(btn => {
                 btn.addEventListener("click", () => {
