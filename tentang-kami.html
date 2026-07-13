@@ -200,7 +200,7 @@
             color: #1E293B;
             background-color: #FFFFFF;
             border: 2px solid #E2E8F0;
-            border-radius: 12px;
+            border-radius: 0;
             appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
@@ -227,7 +227,7 @@
             min-height: 500px;
             position: relative;
             min-width: 0;
-            overflow: hidden;
+            /* overflow: hidden; Removed to allow position: sticky to work */
         }
         .about-tab-content {
             display: block;
@@ -244,7 +244,7 @@
         #tab-visi-misi {
             background: linear-gradient(to top, #F1F5F9 0%, #FFFFFF 100%);
             padding: 32px;
-            border-radius: 16px;
+            border-radius: 0;
         }
         #tab-komisaris, #tab-direksi {
             background: transparent;
@@ -332,7 +332,7 @@
             background: linear-gradient(135deg, #0056A6 0%, #003B73 100%);
             color: white;
             padding: 32px;
-            border-radius: 16px;
+            border-radius: 0;
             position: relative;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 86, 166, 0.15);
@@ -364,7 +364,7 @@
             background: #ffffff;
             border: 1px solid #E2E8F0;
             padding: 32px;
-            border-radius: 16px;
+            border-radius: 0;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
         }
         .mission-card h3 {
@@ -409,47 +409,76 @@
         /* Styling Nilai Perusahaan (AKHLAK) */
         .akhlak-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
             margin-top: 24px;
         }
         .akhlak-card {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            background: transparent;
+            border: none;
+            padding: 0;
+            height: 240px;
+            perspective: 1000px;
         }
-        .akhlak-card:hover {
-            transform: translateY(-4px);
+        .akhlak-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .akhlak-card:hover .akhlak-card-inner {
+            transform: rotateY(180deg);
+        }
+        .akhlak-card-front, .akhlak-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border: 1px solid #E2E8F0;
+            padding: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #F8FAFC;
+        }
+        .akhlak-card-back {
+            background: #ED1C24;
+            color: #FFFFFF;
+            transform: rotateY(180deg);
             border-color: #ED1C24;
-            box-shadow: 0 10px 25px rgba(237, 28, 36, 0.05);
+            justify-content: flex-start;
         }
         .akhlak-letter {
-            font-size: 38px;
+            font-size: 32px;
             font-weight: 900;
             color: #ED1C24;
             margin-bottom: 8px;
             line-height: 1;
         }
         .akhlak-title {
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 800;
             color: #151B26;
             margin-bottom: 8px;
         }
         .akhlak-desc {
-            font-size: 13.5px;
+            font-size: 12px;
             line-height: 1.6;
             color: #64748B;
+        }
+        .akhlak-card-back .akhlak-desc {
+            color: #FFFFFF;
         }
 
         /* Horizontal Timeline Styles */
         .timeline-container {
             position: relative;
             background: #FFFFFF;
-            border-radius: 16px;
+            border-radius: 0;
             padding: 40px 20px;
             margin-top: 30px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.01);
@@ -476,7 +505,7 @@
             height: 3.5px;
             background: #7CB342;
             margin: 12px auto 0;
-            border-radius: 10px;
+            border-radius: 0;
         }
 
         .timeline-scroll-area {
@@ -494,11 +523,11 @@
         }
         .timeline-scroll-area::-webkit-scrollbar-track {
             background: #F1F5F9;
-            border-radius: 10px;
+            border-radius: 0;
         }
         .timeline-scroll-area::-webkit-scrollbar-thumb {
             background: #7CB342;
-            border-radius: 10px;
+            border-radius: 0;
         }
 
         .timeline-horizontal {
@@ -601,7 +630,7 @@
             position: absolute;
             width: 250px;
             background: #FFFFFF;
-            border-radius: 12px;
+            border-radius: 0;
             padding: 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             border: 1px solid #E2E8F0;
@@ -664,7 +693,7 @@
         .board-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 16px;
+            border-radius: 0;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.01);
             transition: all 0.3s ease;
@@ -709,7 +738,7 @@
         /* Organisasi Struktur - Diagram Premium */
         .org-tree-wrapper {
             background: #F8FAFC;
-            border-radius: 20px;
+            border-radius: 0;
             border: 1px solid #E2E8F0;
             padding: 40px 24px;
             margin-top: 24px;
@@ -771,7 +800,7 @@
         .org-node-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 12px;
+            border-radius: 0;
             padding: 16px 20px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
@@ -885,7 +914,7 @@
         .org-child-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 12px;
+            border-radius: 0;
             padding: 18px 14px;
             text-align: center;
             display: flex;
@@ -969,7 +998,7 @@
             padding: 12px 24px;
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 12px;
+            border-radius: 0;
         }
         .org-legend-item {
             display: flex;
@@ -982,7 +1011,7 @@
         .org-legend-color {
             width: 14px;
             height: 14px;
-            border-radius: 4px;
+            border-radius: 0;
         }
         .org-legend-color--subsidiary {
             background: #0056A6;
@@ -1031,7 +1060,7 @@
             background: #7CB342;
             margin-top: 16px;
             margin-bottom: 32px;
-            border-radius: 2px;
+            border-radius: 0;
         }
         .cert-list {
             display: flex;
@@ -1043,7 +1072,7 @@
         .cert-list-item {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 16px;
+            border-radius: 0;
             padding: 24px 32px;
             display: flex;
             align-items: center;
@@ -1168,7 +1197,7 @@
         .award-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 16px;
+            border-radius: 0;
             padding: 24px;
             display: flex;
             flex-direction: column;
@@ -1301,7 +1330,7 @@
             margin-top: 32px;
         }
         .bento-item {
-            border-radius: 12px;
+            border-radius: 0;
             overflow: hidden;
             position: relative;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -1463,7 +1492,7 @@
                         </div>
 
                         <!-- Company Profile Video -->
-                        <div class="video-container" style="margin-top: 40px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div class="video-container" style="margin-top: 40px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                             <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube-nocookie.com/embed/AZmhYwgqsPI?si=0GZRxzFbzWk3apXT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
@@ -1502,50 +1531,193 @@
                         <p class="content-text">Sebagai anak perusahaan dari grup BUMN Pertamina, kami memegang teguh nilai inti AKHLAK dalam menjalankan fungsi operasional sehari-hari:</p>
                         <div class="akhlak-grid">
                             <div class="akhlak-card">
-                                <div class="akhlak-letter">A</div>
-                                <div class="akhlak-title">AMANAH</div>
-                                <div class="akhlak-desc">Memegang teguh kepercayaan yang diberikan dengan integritas tinggi dan bertanggung jawab penuh.</div>
+                                <div class="akhlak-card-inner">
+                                    <div class="akhlak-card-front">
+                                        <div class="akhlak-letter">A</div>
+                                        <div class="akhlak-title">AMANAH</div>
+                                    </div>
+                                    <div class="akhlak-card-back">
+                                        <div class="akhlak-desc">Memegang teguh kepercayaan yang diberikan dengan integritas tinggi dan bertanggung jawab penuh.</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="akhlak-card">
-                                <div class="akhlak-letter">K</div>
-                                <div class="akhlak-title">KOMPETEN</div>
-                                <div class="akhlak-desc">Terus belajar, berinovasi, dan meningkatkan kapabilitas untuk memberikan hasil kerja terbaik.</div>
+                                <div class="akhlak-card-inner">
+                                    <div class="akhlak-card-front">
+                                        <div class="akhlak-letter">K</div>
+                                        <div class="akhlak-title">KOMPETEN</div>
+                                    </div>
+                                    <div class="akhlak-card-back">
+                                        <div class="akhlak-desc">Terus belajar, berinovasi, dan meningkatkan kapabilitas untuk memberikan hasil kerja terbaik.</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="akhlak-card">
-                                <div class="akhlak-letter">H</div>
-                                <div class="akhlak-title">HARMONIS</div>
-                                <div class="akhlak-desc">Saling peduli, berempati, dan menghargai keberagaman serta kontribusi setiap individu.</div>
+                                <div class="akhlak-card-inner">
+                                    <div class="akhlak-card-front">
+                                        <div class="akhlak-letter">H</div>
+                                        <div class="akhlak-title">HARMONIS</div>
+                                    </div>
+                                    <div class="akhlak-card-back">
+                                        <div class="akhlak-desc">Saling peduli, berempati, dan menghargai keberagaman serta kontribusi setiap individu.</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="akhlak-card">
-                                <div class="akhlak-letter">L</div>
-                                <div class="akhlak-title">LOYAL</div>
-                                <div class="akhlak-desc">Berdedikasi tinggi dan mengutamakan kepentingan bangsa serta kemajuan perusahaan.</div>
+                                <div class="akhlak-card-inner">
+                                    <div class="akhlak-card-front">
+                                        <div class="akhlak-letter">L</div>
+                                        <div class="akhlak-title">LOYAL</div>
+                                    </div>
+                                    <div class="akhlak-card-back">
+                                        <div class="akhlak-desc">Berdedikasi tinggi dan mengutamakan kepentingan bangsa serta kemajuan perusahaan.</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="akhlak-card">
-                                <div class="akhlak-letter">A</div>
-                                <div class="akhlak-title">ADAPTIF</div>
-                                <div class="akhlak-desc">Cepat menyesuaikan diri, lincah menghadapi tantangan bisnis, dan terus melakukan perbaikan.</div>
+                                <div class="akhlak-card-inner">
+                                    <div class="akhlak-card-front">
+                                        <div class="akhlak-letter">A</div>
+                                        <div class="akhlak-title">ADAPTIF</div>
+                                    </div>
+                                    <div class="akhlak-card-back">
+                                        <div class="akhlak-desc">Cepat menyesuaikan diri, lincah menghadapi tantangan bisnis, dan terus melakukan perbaikan.</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="akhlak-card">
-                                <div class="akhlak-letter">K</div>
-                                <div class="akhlak-title">KOLABORATIF</div>
-                                <div class="akhlak-desc">Membangun kerja sama sinergis demi tujuan bersama dan pemenuhan energi nasional.</div>
+                                <div class="akhlak-card-inner">
+                                    <div class="akhlak-card-front">
+                                        <div class="akhlak-letter">K</div>
+                                        <div class="akhlak-title">KOLABORATIF</div>
+                                    </div>
+                                    <div class="akhlak-card-back">
+                                        <div class="akhlak-desc">Membangun kerja sama sinergis demi tujuan bersama dan pemenuhan energi nasional.</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- TAB 4: TONGGAK SEJARAH -->
-                    <div class="about-tab-content" id="tab-sejarah">
-                        <h2 class="content-title">SEJARAH PERUSAHAAN</h2>
+                    <div class="about-tab-content" id="tab-sejarah" style="background: #0A0A0A; color: #F8FAFC; padding-top: 60px; padding-bottom: 0px; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: calc(50vw - 50%); padding-right: calc(50vw - 50%);">
+                        <h2 class="content-title" style="color: #FFFFFF; border-bottom: 1px solid rgba(255, 255, 255, 0.15);">SEJARAH PERUSAHAAN</h2>
                         
                         <!-- Deskripsi Intro Sejarah dari Wireframe -->
-                        <div class="sejarah-intro" style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 12px; background: #FFFFFF; font-size: 14.5px; line-height: 1.8; color: #475569; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.01);">
+                        <div class="sejarah-intro" style="border: 1px solid rgba(255,255,255,0.1); padding: 24px; border-radius: 8px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); font-size: 14.5px; line-height: 1.8; color: #CBD5E1; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
                             <p style="margin-bottom: 16px;">PT Patra Logistik berawal dari PT. Elnusa Kawasan Komersial yang didirikan pada tanggal 30 Agustus 1996 untuk mengelola Kawasan Komersil di Graha Elnusa TB Simatupang Kav 1-B, Jakarta Selatan. Tanggal 16 Agustus 2005 PT. Elnusa Kawasan Komersial berubah nama menjadi PT. Patra Logistik dan menjadi subsidiary dari PT. Pertamina Patra Niaga. PT Patra Logistik sekarang beralamatkan di Garden Avenue Rasuna lantai (1-3) Jl. Epicentrum Tengah No. 3 Kel. Setiabudi Jakarta Selatan.</p>
                             <p style="margin-bottom: 0;">PT Patra Logistik bergerak dibidang usaha hilir migas yang fokus pada kegiatan penyedia jasa logistik dan support jasa logistik lainnya. Berkomitmen dan berusaha penuh dengan sumber daya yang kami miliki untuk mengokohkan kompetensinya sebagai Perusahaan Logistik dengan memberikan layanan yang prima, PT Patra Logistik mengedepankan etos kerja yang profesional, transparan, dengan integritas yang tinggi yang berorientasi pada kepuasan pelanggan, stakeholder dan kesejahteraan serta tanggap dalam menghadapi dinamika</p>
                         </div>
 
-                        <!-- Container Timeline Horizontal -->
-                        <div class="timeline-container">
+                        <!-- NEW MILESTONE SLIDESHOW -->
+                        <div class="milestone-scroll-wrapper">
+                            <div class="milestone-slideshow">
+                            <div class="ms-nav">
+                                <ul>
+                                    <li class="active" data-index="0"><span class="ms-dot"></span>2012–2013</li>
+                                    <li data-index="1"><span class="ms-dot"></span>2016–2017</li>
+                                    <li data-index="2"><span class="ms-dot"></span>2018–2019</li>
+                                    <li data-index="3"><span class="ms-dot"></span>2019–2020</li>
+                                    <li data-index="4"><span class="ms-dot"></span>2020–2021</li>
+                                    <li data-index="5"><span class="ms-dot"></span>2022–2023</li>
+                                    <li data-index="6"><span class="ms-dot"></span>2024–2025</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="ms-slides">
+                                <!-- Slide 1 -->
+                                <div class="ms-slide active" style="background-image: url('assets/tbbm_ketapang.png');">
+                                    <div class="ms-overlay"></div>
+                                    <div class="ms-content">
+                                        <h3>The Journey 2012–2013</h3>
+                                        <div class="ms-desc">
+                                            <p>VHS BBM Timah, Pembangunan dan Pengoperasian DPPU Labuan Bajo</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 2 -->
+                                <div class="ms-slide" style="background-image: url('assets/Mobil%20Tangki%20Maos.png');">
+                                    <div class="ms-overlay"></div>
+                                    <div class="ms-content">
+                                        <h3>The Journey 2016–2017</h3>
+                                        <div class="ms-desc">
+                                            <p>Franco BBM TNI, Pengelolaan KSO DPPU H.A.S. Hanandjoeddin</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 3 -->
+                                <div class="ms-slide" style="background-image: url('assets/gudang_pelumas_loading.png');">
+                                    <div class="ms-overlay"></div>
+                                    <div class="ms-content">
+                                        <h3>The Journey 2018–2019</h3>
+                                        <div class="ms-desc">
+                                            <p><strong>Transportasi:</strong></p>
+                                            <ul>
+                                                <li>Transportasi Pelumas dari DSP Plumpang ke seluruh wilayah Indonesia Bagian Barat</li>
+                                                <li>Transportasi CNG</li>
+                                            </ul>
+                                            <p><strong>Inventory:</strong></p>
+                                            <ul>
+                                                <li>Warehouse Management System</li>
+                                                <li>Customs Clearance</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 4 -->
+                                <div class="ms-slide" style="background-image: url('assets/Landscape%20MT.png');">
+                                    <div class="ms-overlay"></div>
+                                    <div class="ms-content">
+                                        <h3>The Journey 2019–2020</h3>
+                                        <div class="ms-desc">
+                                            <p>VHS ITMG</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 5 -->
+                                <div class="ms-slide" style="background-image: url('assets/DSC00198.png');">
+                                    <div class="ms-overlay"></div>
+                                    <div class="ms-content">
+                                        <h3>The Journey 2020–2021</h3>
+                                        <div class="ms-desc">
+                                            <ul>
+                                                <li>Ekspansi pasar ke BUMN Non Pertamina Group dan Ekspansi bisnis special haulage heavy equipment.</li>
+                                                <li>Implementasi digitalisasi dan pengembangan aplikasi untuk mendukung kegiatan operasional.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 6 -->
+                                <div class="ms-slide" style="background-image: url('assets/LPR00887%20(1).png');">
+                                    <div class="ms-overlay"></div>
+                                    <div class="ms-content">
+                                        <h3>The Journey 2022–2023</h3>
+                                        <div class="ms-desc">
+                                            <p>Akuisisi TBBM Ketapang, VHS EP, VHS KAI, Fleet Management di Sorong & Ternate, Project APMS RPM, APMS Jatim Balinus.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 7 -->
+                                <div class="ms-slide" style="background-image: url('assets/Landscape\ MT.png');">
+                                    <div class="ms-overlay"></div>
+                                    <div class="ms-content">
+                                        <h3>The Journey 2024–2025</h3>
+                                        <div class="ms-desc">
+                                            <ul>
+                                                <li>Fleet Management di wilayah RJBT, Batam, Baturaja, Lahat & Lubuk Linggau.</li>
+                                                <li>Fleet Safety LPG Jatibalinus & RJBT.</li>
+                                                <li>Angkutan FAME.</li>
+                                                <li>Angkutan Produk Breezon MC-32.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- Container Timeline Horizontal (HIDDEN) -->
+                        <div class="timeline-container" style="display: none;">
                             <div class="timeline-subheader">
                                 Awal berdiri sejak <strong>30 Agustus 1996</strong> sebagai PT. Elnusa Kawasan Komersial, PT Patra Logistik bervisi <strong>menjadi pemimpin pasar logistik dan rantai suplai energi nasional.</strong>
                                 <div class="timeline-subheader__line"></div>
@@ -2219,6 +2391,7 @@
                         <span class="link">https://pertaminaclean.tipoffs.info/</span>
                     </div>
                 </div>
+                <img src="./assets/callcenter15.png" alt="Call Center 135" style="max-width: 70%; height: auto; margin-top: 24px; display: block;">
             </div>
         </div>
     

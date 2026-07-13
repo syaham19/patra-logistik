@@ -702,3 +702,56 @@ document.addEventListener('scroll', () => {
         ctaBg.style.transform = `translateY(${-rect.top}px) scale(${Math.max(1, scale)})`;
     }
 });
+
+// Milestone Slideshow functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const navItems = document.querySelectorAll('.ms-nav li');
+    const slides = document.querySelectorAll('.ms-slide');
+    const scrollWrapper = document.querySelector('.milestone-scroll-wrapper');
+    const slideshow = document.querySelector('.milestone-slideshow');
+
+    if (navItems.length > 0 && slides.length > 0) {
+        let currentSlideIndex = 0;
+        let slideInterval;
+
+        // Helper function to update active slide
+        const updateSlide = (index) => {
+            navItems.forEach(nav => nav.classList.remove('active'));
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (navItems[index]) navItems[index].classList.add('active');
+            if (slides[index]) slides[index].classList.add('active');
+        };
+
+        const startSlideshow = () => {
+            clearInterval(slideInterval);
+            // Reset active class to re-trigger CSS animations
+            const currentNav = navItems[currentSlideIndex];
+            if (currentNav) {
+                currentNav.classList.remove('active');
+                void currentNav.offsetWidth; // trigger reflow
+                currentNav.classList.add('active');
+            }
+
+            slideInterval = setInterval(() => {
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                updateSlide(currentSlideIndex);
+            }, 5000);
+        };
+
+        // Click handler
+        navItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const index = parseInt(this.getAttribute('data-index'));
+                currentSlideIndex = index;
+                updateSlide(index);
+                startSlideshow(); // Reset timer and restart animation
+            });
+        });
+
+        // Initialize slideshow
+        updateSlide(currentSlideIndex);
+        startSlideshow();
+    }
+});
