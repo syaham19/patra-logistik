@@ -3334,7 +3334,7 @@ img {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    height: 600px;
+    height: 100vh;
     border-radius: 0;
     background-color: #000;
     overflow: hidden;
