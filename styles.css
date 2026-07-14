@@ -234,8 +234,7 @@ header.scrolled .logo-image {
 
 /* HERO SECTION */
 .hero {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 1;
     height: 100vh;
     min-height: 800px;
@@ -388,18 +387,19 @@ header.scrolled .logo-image {
         display: none;
         flex-direction: column;
         gap: 0;
-        background: rgba(21, 27, 38, 0.98);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: #ffffff;
+        border-top: 1px solid #e2e8f0;
         padding: 12px 16px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
     .nav-links.open { display: flex; }
     .nav-links li { width: 100%; }
     .nav-link {
-        color: white !important;
+        color: #1E293B !important;
         background-image: none !important;
         display: block;
         padding: 12px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid #e2e8f0;
         font-size: 12px;
     }
     .nav-link::before, .nav-link::after {
@@ -1756,9 +1756,9 @@ header.scrolled .logo-image {
     .hero-grid-wrapper {
         display: flex;
         flex-direction: column;
-        gap: 48px;
+        gap: 32px;
         padding-top: 120px;
-        padding-bottom: 180px;
+        padding-bottom: 60px;
         height: auto;
         min-height: 100vh;
         justify-content: flex-end;
@@ -1768,16 +1768,17 @@ header.scrolled .logo-image {
         position: static;
         max-width: 100%;
         bottom: auto;
-        text-align: center;
+        text-align: left;
     }
     
     .hero-grid-wrapper .hero-buttons {
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     .hero-tracking-card {
-        max-width: 500px;
-        margin: 0 auto;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
     }
 }
 
@@ -2130,7 +2131,46 @@ header.scrolled .logo-image {
 .mor-stat-card:hover .mor-stat-card__unit {
     color: #ffffff;
 }
-    letter-spacing: 1px;
+
+/* Compact Stats Grid (inside detail panel) */
+.mor-stats-grid--compact {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    flex: 2.2;
+    margin-top: 0;
+}
+
+.mor-stats-grid--compact .mor-stat-card {
+    padding: 10px;
+    gap: 8px;
+    flex: 1;
+}
+
+.mor-stats-grid--compact .mor-stat-card__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.mor-stats-grid--compact .mor-stat-card__icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.mor-stats-grid--compact .mor-stat-card__label {
+    font-size: 8px;
+    margin-bottom: 2px;
+    line-height: 1.1;
+}
+
+.mor-stats-grid--compact .mor-stat-card__value {
+    font-size: 14px;
+}
+
+.mor-stats-grid--compact .mor-stat-card__unit {
+    font-size: 8px;
 }
 
 /* Responsive adjustments for new section */
@@ -2138,6 +2178,10 @@ header.scrolled .logo-image {
     .mor-stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+    }
+    .mor-stats-grid--compact {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -2163,18 +2207,15 @@ header.scrolled .logo-image {
     
     .mor-detail-panel {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         padding: 24px;
         gap: 24px;
     }
     
-    .mor-detail-panel__cities {
-        align-items: flex-start;
+    .mor-stats-grid--compact {
         width: 100%;
-    }
-    
-    .mor-detail-panel__cities-list {
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
     
     .mor-marker__label {
@@ -2492,85 +2533,109 @@ header.scrolled .logo-image {
     background-position: center center !important;
 }
 
-/* ================= GLOBAL SIDEBAR NAV ================= */
-.global-nav-sidebar {
-    position: fixed;
-    top: 0;
-    left: -320px;
-    width: 320px;
-    height: 100vh;
-    background: #ffffff;
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
-    z-index: 2500;
-    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    padding: 24px 0;
-    border-right: 1px solid #e2e8f0;
-    overflow-y: auto;
+/* ================= DROPDOWN MENU ================= */
+.nav-links li.has-dropdown {
+    position: relative;
 }
 
-.global-nav-sidebar.open {
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
     left: 0;
-}
-
-.global-sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 24px 20px;
-    border-bottom: 1px solid #f1f5f9;
-    margin-bottom: 16px;
-}
-
-.global-sidebar-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #0056A6;
-    text-transform: uppercase;
-}
-
-.global-sidebar-close {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #64748B;
-    cursor: pointer;
-    transition: color 0.2s;
-    line-height: 1;
-}
-
-.global-sidebar-close:hover {
-    color: #ED1C24;
-}
-
-.global-submenu-group {
-    display: none;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    min-width: 240px;
+    z-index: 1000;
     list-style: none;
+    padding: 10px 0;
+    border-radius: 4px;
+    margin: 0;
 }
 
-.global-submenu-group.active {
-    display: flex;
+.nav-links li.has-dropdown:hover .dropdown-menu,
+.nav-links li.has-dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-.global-submenu-group li a {
-    display: flex;
-    align-items: center;
-    padding: 12px 24px;
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 12px 20px;
     color: #475569;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s;
+    white-space: nowrap;
 }
 
-.global-submenu-group li a:hover {
+.dropdown-menu li a:hover {
     color: #0056A6;
     background: #f8fafc;
-    padding-left: 28px;
+    padding-left: 24px;
+}
+
+/* Mobile Adjustments for Dropdown */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        padding: 8px 0;
+        background: #F4F9FF; /* Abu mendekati putih soft */
+        border-radius: 6px;
+        margin: 4px 0 12px 0;
+    }
+    .nav-links li.has-dropdown.open .dropdown-menu {
+        display: block;
+    }
+    .dropdown-menu li a {
+        padding: 10px 16px;
+        color: #1E293B;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .dropdown-menu li:last-child a {
+        border-bottom: none;
+    }
+    .dropdown-menu li a:hover {
+        background: rgba(0, 86, 166, 0.05);
+        color: #0056A6;
+    }
+    .nav-links li.has-dropdown > .nav-link {
+        /* Add a small arrow indicator for mobile */
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+    .nav-links li.has-dropdown > .nav-link::after {
+        content: "▼";
+        display: block !important;
+        position: absolute;
+        right: 0;
+        left: auto;
+        width: auto;
+        height: auto;
+        top: 50%;
+        font-size: 10px;
+        color: #64748B;
+        transform: translateY(-50%);
+        opacity: 1;
+        transition: transform 0.3s ease;
+    }
+    .nav-links li.has-dropdown.open > .nav-link::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
 }
 
 /* ================= PAGE SUBNAV (STICKY) ================= */
@@ -2603,6 +2668,7 @@ header.scrolled .logo-image {
     overflow: hidden;
     background: transparent;
     border: none;
+    border-bottom: 2px solid transparent;
     padding: 16px 4px;
     margin-right: 8px;
     font-size: 15px;
@@ -2650,7 +2716,8 @@ header.scrolled .logo-image {
     font-weight: 700;
 }
 .about-menu-btn.active {
-    background: transparent;
+    background: #F4F9FF; /* Soft blue close to white */
+    border-bottom: 2px solid #0056A6; /* Thin blue line below */
     box-shadow: none;
 }
 

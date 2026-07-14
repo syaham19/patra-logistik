@@ -654,21 +654,12 @@
     <section class="about-hero">
         <div class="container">
             <span class="about-hero__tag">Keterbukaan Informasi</span>
-            <h1 class="about-hero__title">Hubungan Investor</h1>
+            <h1 class="about-hero__title">Sustainability</h1>
             <p class="about-hero__desc">Komitmen kami dalam menerapkan transparansi, tata kelola korporasi yang sehat, dan akuntabilitas bagi seluruh pemangku kepentingan.</p>
         </div>
     </section>
 
-    <!-- Sticky Horizontal Sub Navigation -->
-    <div class="page-subnav">
-        <div class="container">
-            <div class="page-subnav__list">
-                <button class="about-menu-btn active" data-target="shareholder">Info Pemegang Saham</button>
-                <button class="about-menu-btn" data-target="annual-report">Laporan Tahunan</button>
-                <button class="about-menu-btn" data-target="financial-report">Laporan Keuangan</button>
-            </div>
-        </div>
-    </div>
+    <!-- Sticky Horizontal Sub Navigation (Removed for single page) -->
     <!-- Content Layout -->
     <section class="about-layout">
         <div class="container">
@@ -676,166 +667,100 @@
                 
                 <main class="about-content-pane">
 
-                    <!-- TAB 2: PEMEGANG SAHAM -->
-                    <div class="about-tab-content active" id="tab-shareholder">
-                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">Pemegang Saham</div>
+                    <!-- TAB 1: TATA KELOLA -->
+                    <div class="about-tab-content active" id="tab-tata-kelola">
+                        <div class="content-title">Tata Kelola Perusahaan</div>
+                        <p class="content-text">Penerapan Good Corporate Governance (GCG) di Patra Logistik dilakukan melalui serangkaian pedoman kepatuhan, sistem pengawasan internal, serta komitmen etika kerja yang diimplementasikan secara berkesinambungan.</p>
                         
-                        <div class="sh-grid">
-                            <!-- Text Column -->
-                            <div class="content-text" style="font-size:15px; line-height:1.8; color:#475569; margin-bottom:0;">
-                                PT Patra Logistik merupakan anak perusahaan dari PT Pertamina (Persero), sebuah Badan Usaha Milik Negara (BUMN) di Indonesia. Sebagai bagian dari Sub-holding Downstream, pemegang saham mayoritas Patra Logistik adalah PT Pertamina Patra Niaga dengan kepemilikan sebesar 90%. Sementara itu, 10% saham sisanya dimiliki oleh PT Patra Trading.
-                            </div>
-                            
-                            <!-- Flowchart Diagram Column -->
-                            <div class="sh-chart-container">
-                                <!-- Connecting Line Vector overlay -->
-                                <svg class="sh-lines-svg" viewBox="0 0 300 200" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
-                                    <!-- Horizontal Connector -->
-                                    <line x1="72" y1="80" x2="228" y2="80" stroke="#CBD5E1" stroke-width="2" />
-                                    <!-- Left vertical down from 90% card -->
-                                    <line x1="72" y1="56" x2="72" y2="80" stroke="#CBD5E1" stroke-width="2" />
-                                    <!-- Right vertical down from 10% card -->
-                                    <line x1="228" y1="56" x2="228" y2="80" stroke="#CBD5E1" stroke-width="2" />
-                                    <!-- Center vertical down to Patra Logistik card -->
-                                    <line x1="150" y1="80" x2="150" y2="128" stroke="#CBD5E1" stroke-width="2" />
-                                </svg>
-
-                                <!-- Parents Row -->
-                                <div class="sh-parents-row">
-                                    <!-- Parent 1: 90% -->
-                                    <div style="display:flex; flex-direction:column; align-items:center;">
-                                        <span style="font-size: 11px; font-weight:800; color:#475569; margin-bottom: 8px; display:block;">90%</span>
-                                        <div class="sh-parent-card">
-                                            <div style="font-weight:900; color:#ED1C24; font-size:12px; line-height:1.2;">PERTAMINA</div>
-                                            <div class="sh-parent-logo" style="color:#0056A6;">PATRA NIAGA</div>
-                                        </div>
-                                    </div>
-                                    <!-- Parent 2: 10% -->
-                                    <div style="display:flex; flex-direction:column; align-items:center;">
-                                        <span style="font-size: 11px; font-weight:800; color:#475569; margin-bottom: 8px; display:block;">10%</span>
-                                        <div class="sh-parent-card">
-                                            <div style="font-weight:900; color:#ED1C24; font-size:12px; line-height:1.2;">PERTAMINA</div>
-                                            <div class="sh-parent-logo" style="color:#64748B; font-size:7.5px; white-space:nowrap;">TRADING & SERVICES</div>
-                                        </div>
-                                    </div>
+                        <div class="gov-grid">
+                            <!-- Card 1: Sistem Manajemen HSSE -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Sistem Manajemen HSSE</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
-
-                                <!-- Child Card -->
-                                <div class="sh-child-card">
-                                    <div style="font-weight:900; color:#ED1C24; font-size:12px; line-height:1.2;">PERTAMINA</div>
-                                    <div style="font-weight:800; color:#0056A6; font-size:9px; text-transform:uppercase; letter-spacing:0.5px;">PATRA LOGISTIK</div>
+                            </div>
+                            <!-- Card 2: Sistem Manajemen Keselamatan Kerja -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Sistem Manajemen Kesehatan dan Keselamatan Kerja</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 3: GCG -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Tata Kelola Perusahaan Yang Baik</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 4: Gratifikasi -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Pedoman Pengendalian Gratifikasi</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 5: Anti Penyuapan -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Sistem Manajemen Anti-Penyuapan</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 6: WBS -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Whistleblowing System (WBS)</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 7: Transparansi -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Transparansi dan Keterbukaan Informasi</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 8: Akuntabilitas SDM -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Akuntabilitas dan Pengelolaan SDM</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 9: Keadilan Keputusan (Highlighted in wireframe) -->
+                            <div class="gov-card" style="border: 2px solid #0056A6; box-shadow: 0 8px 20px rgba(0, 86, 166, 0.05);">
+                                <h4 class="gov-card-title">Keadilan dalam Pengambilan Keputusan</h4>
+                                <div class="gov-card-download" style="background:#0056A6; color:#FFFFFF;">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 10: CSR -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Tanggung Jawab Sosial Perusahaan (CSR)</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 11: Pengawasan Efektif -->
+                            <div class="gov-card">
+                                <h4 class="gov-card-title">Pengawasan yang Efektif</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Card 12: - -->
+                            <div class="gov-card" style="opacity: 0.65;">
+                                <h4 class="gov-card-title">-</h4>
+                                <div class="gov-card-download">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- TAB 3: LAPORAN TAHUNAN -->
-                    <div class="about-tab-content" id="tab-annual-report">
-                        <div class="content-title" style="text-align: center; display: block;">Annual Report</div>
-                        <p class="content-text" style="text-align: center; max-width: 700px; margin: 0 auto 32px;">Laporan tahunan merupakan laporan perkembangan dan pencapaian yang berhasil diraih organisasi dalam setahun. Isi dari laporan tahunan tersebut mencakup laporan keuangan dan prestasi akan kinerja organisasi selama satu tahun.</p>
-                        
-                        <div class="ar-container">
-                            <!-- Left cover mockup -->
-                            <div class="ar-cover-mockup">
-                                <div class="ar-cover-logo">PERTAMINA</div>
-                                <div>
-                                    <div class="ar-cover-title">LAPORAN TAHUNAN</div>
-                                    <div class="ar-cover-subtitle">Unlocking The Potentials For Sustainable Growth</div>
-                                </div>
-                                <div class="ar-cover-year">2024</div>
-                            </div>
 
-                            <!-- Right details info -->
-                            <div class="ar-info">
-                                <h3 class="ar-info-title">Laporan Tahunan 2024</h3>
-                                <p class="ar-info-sub">Unlocking The Potentials For Sustainable Growth</p>
-                                
-                                <div class="ar-actions">
-                                    <a href="#" class="gov-card-download" style="width:40px; height:40px;">
-                                        <svg viewBox="0 0 24 24" style="width:18px; height:18px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                    </a>
-                                    <button class="ar-btn-pdf">PDF</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 4: LAPORAN KEUANGAN -->
-                    <div class="about-tab-content" id="tab-financial-report">
-                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 24px;">Laporan Keuangan</div>
-                        
-                        <!-- 2026 Section -->
-                        <div class="fin-year-section">
-                            <div class="fin-year-header">
-                                <span class="fin-year-title">2026</span>
-                                <div class="fin-year-line"></div>
-                            </div>
-                            
-                            <div style="width: 250px; max-width: 100%;">
-                                <!-- Card Q1 2026 -->
-                                <div class="fin-card">
-                                    <div style="width:100%;">
-                                        <span class="fin-card-label">Januari - Maret 2026</span>
-                                        <h4 class="fin-card-q">Q1 2026</h4>
-                                    </div>
-                                    <div class="fin-card-download">
-                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 2025 Section -->
-                        <div class="fin-year-section" style="margin-top: 48px;">
-                            <div class="fin-year-header">
-                                <span class="fin-year-title">2025</span>
-                                <div class="fin-year-line"></div>
-                            </div>
-                            
-                            <div class="fin-grid">
-                                <!-- Card Q4 2025 -->
-                                <div class="fin-card">
-                                    <div style="width:100%;">
-                                        <span class="fin-card-label">Oktober - Desember 2025</span>
-                                        <h4 class="fin-card-q">Q4 2025</h4>
-                                    </div>
-                                    <div class="fin-card-download">
-                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                    </div>
-                                </div>
-                                <!-- Card Q3 2025 -->
-                                <div class="fin-card">
-                                    <div style="width:100%;">
-                                        <span class="fin-card-label">Juli - September 2025</span>
-                                        <h4 class="fin-card-q">Q3 2025</h4>
-                                    </div>
-                                    <div class="fin-card-download">
-                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                    </div>
-                                </div>
-                                <!-- Card Q2 2025 -->
-                                <div class="fin-card">
-                                    <div style="width:100%;">
-                                        <span class="fin-card-label">April - Juni 2025</span>
-                                        <h4 class="fin-card-q">Q2 2025</h4>
-                                    </div>
-                                    <div class="fin-card-download">
-                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                    </div>
-                                </div>
-                                <!-- Card Q1 2025 -->
-                                <div class="fin-card">
-                                    <div style="width:100%;">
-                                        <span class="fin-card-label">Januari - Maret 2025</span>
-                                        <h4 class="fin-card-q">Q1 2025</h4>
-                                    </div>
-                                    <div class="fin-card-download">
-                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </main>
 

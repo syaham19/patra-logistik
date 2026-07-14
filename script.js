@@ -89,7 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         navLinks.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
+            link.addEventListener("click", (e) => {
+                if (link.nextElementSibling && link.nextElementSibling.classList.contains("dropdown-menu") && window.innerWidth <= 768) {
+                    return; // Biarkan logika dropdown yang menangani ini
+                }
                 navLinks.classList.remove("open");
                 menuToggle.setAttribute("aria-expanded", "false");
             });
@@ -584,65 +587,29 @@ function toggleService(element) {
     element.querySelector('.service-details').style.maxHeight = '200px'; 
 }
 
-// Global Sidebar Navigation Logic
+// Mobile Dropdown Logic
 document.addEventListener("DOMContentLoaded", () => {
-    const navLinks = document.querySelectorAll("#nav-links .nav-link");
-    const globalSidebar = document.getElementById("global-nav-sidebar");
-    const globalSidebarClose = document.getElementById("global-sidebar-close");
-    const globalSidebarTitle = document.getElementById("global-sidebar-title");
-    const submenuGroups = document.querySelectorAll(".global-submenu-group");
-    const sidebarBackdrop = document.getElementById("sidebar-backdrop");
-
-    if (globalSidebar && globalSidebarClose) {
-        navLinks.forEach(link => {
-            link.addEventListener("click", (e) => {
-                const targetId = link.getAttribute("data-sidebar-target");
+    const dropdownLinks = document.querySelectorAll(".nav-links li.has-dropdown > .nav-link");
+    
+    dropdownLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+            // Only apply accordion logic on mobile view (max-width: 768px)
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); // Prevent direct navigation on first tap
+                const parentLi = link.parentElement;
                 
-                if (targetId) {
-                    // It's a menu with a sidebar, prevent default navigation
-                    if (window.innerWidth > 768) {
-                        e.preventDefault();
+                // Toggle 'open' class
+                parentLi.classList.toggle("open");
+                
+                // Optionally close others
+                dropdownLinks.forEach(otherLink => {
+                    if (otherLink !== link) {
+                        otherLink.parentElement.classList.remove("open");
                     }
-
-                    // Hide all submenu groups
-                    submenuGroups.forEach(group => group.classList.remove("active"));
-                    
-                    // Show the target submenu group
-                    const targetGroup = document.getElementById(targetId);
-                    if (targetGroup) {
-                        targetGroup.classList.add("active");
-                    }
-
-                    // Update title dynamically based on clicked menu
-                    if (globalSidebarTitle) {
-                        globalSidebarTitle.textContent = link.textContent.trim();
-                    }
-                    
-                    // Show global sidebar and backdrop
-                    globalSidebar.classList.add("open");
-                    if (sidebarBackdrop) {
-                        sidebarBackdrop.classList.add("active");
-                    }
-                    document.body.style.overflow = "hidden"; // Prevent background scrolling
-                }
-            });
-        });
-
-        // Close logic
-        const closeSidebar = () => {
-            globalSidebar.classList.remove("open");
-            if (sidebarBackdrop) {
-                sidebarBackdrop.classList.remove("active");
+                });
             }
-            document.body.style.overflow = "";
-        };
-
-        globalSidebarClose.addEventListener("click", closeSidebar);
-        
-        if (sidebarBackdrop) {
-            sidebarBackdrop.addEventListener("click", closeSidebar);
-        }
-    }
+        });
+    });
 });
 
 // Page Subnav Animation Helper

@@ -78,71 +78,56 @@
                 ☰
             </button>
             <ul class="nav-links" id="nav-links">
-                <li><a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami"
-                        data-sidebar-target="submenu-tentang">Tentang Kami</a></li>
-                <li><a href="bisnis.html" class="nav-link" data-text="Bisnis"
-                        data-sidebar-target="submenu-bisnis">Bisnis</a></li>
-                <li><a href="hubungan-investor.html" class="nav-link" data-text="Sustainability"
-                        data-sidebar-target="submenu-investor">Sustainability</a></li>
-                <li><a href="berita-media.html" class="nav-link" data-text="Berita & Media"
-                        data-sidebar-target="submenu-berita">Berita & Media</a></li>
-                <li><a href="karir.html" class="nav-link active" data-text="Karir">Karir</a></li>
+                <li class="has-dropdown">
+                    <a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami">Tentang Kami</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tentang-kami.html?tab=profil">Profil Perusahaan</a></li>
+                        <li><a href="tentang-kami.html?tab=visi-misi">Visi Misi</a></li>
+                        <li><a href="tentang-kami.html?tab=nilai">Tata Nilai</a></li>
+                        <li><a href="tentang-kami.html?tab=sejarah">Sejarah</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris">Dewan Komisaris</a></li>
+                        <li><a href="tentang-kami.html?tab=direksi">Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=struktur">Struktur Organisasi</a></li>
+                        <li><a href="tentang-kami.html?tab=sertifikat">Sertifikasi</a></li>
+                        <li><a href="tentang-kami.html?tab=penghargaan">Penghargaan</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="bisnis.html" class="nav-link" data-text="Bisnis">Bisnis</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
+                        <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
+                        <li><a href="bisnis.html?tab=other">Lainnya</a></li>
+                        <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor">Hubungan Investor</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+                        <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+                        <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+                    </ul>
+                </li>
+                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability">Sustainability</a></li>
+                <li class="has-dropdown">
+                    <a href="berita-media.html" class="nav-link" data-text="Berita & Media">Berita & Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+                        <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+                        <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+                        <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+                        <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+                    </ul>
+                </li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir">Karir</a></li>
             </ul>
             <div class="nav-cta">
-                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;">HUBUNGI
-                    KAMI</button>
+                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;">HUBUNGI KAMI</button>
             </div>
         </div>
     </header>
 
-    <!-- Global Sidebar Backdrop -->
-    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
-
-    <!-- Global Sidebar Navigation -->
-    <aside class="global-nav-sidebar" id="global-nav-sidebar">
-        <div class="global-sidebar-header">
-            <span class="global-sidebar-title" id="global-sidebar-title">Menu</span>
-            <button class="global-sidebar-close" id="global-sidebar-close" aria-label="Tutup">&times;</button>
-        </div>
-
-        <!-- Tentang Kami Submenus -->
-        <ul class="global-submenu-group" id="submenu-tentang">
-            <li><a href="tentang-kami.html?tab=profil">Profil Perusahaan</a></li>
-            <li><a href="tentang-kami.html?tab=visi-misi">Visi Misi</a></li>
-            <li><a href="tentang-kami.html?tab=nilai">Tata Nilai</a></li>
-            <li><a href="tentang-kami.html?tab=sejarah">Sejarah</a></li>
-            <li><a href="tentang-kami.html?tab=komisaris">Dewan Komisaris</a></li>
-            <li><a href="tentang-kami.html?tab=direksi">Direksi</a></li>
-            <li><a href="tentang-kami.html?tab=struktur">Struktur Organisasi</a></li>
-            <li><a href="tentang-kami.html?tab=sertifikat">Sertifikasi</a></li>
-            <li><a href="tentang-kami.html?tab=penghargaan">Penghargaan</a></li>
-        </ul>
-
-        <!-- Bisnis Submenus -->
-        <ul class="global-submenu-group" id="submenu-bisnis">
-            <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
-            <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
-            <li><a href="bisnis.html?tab=other">Lainnya</a></li>
-            <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
-        </ul>
-
-        <!-- Investor Submenus -->
-        <ul class="global-submenu-group" id="submenu-investor">
-            <li><a href="hubungan-investor.html?tab=tata-kelola">Tata Kelola</a></li>
-            <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
-            <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
-            <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
-        </ul>
-
-        <!-- Berita & Media Submenus -->
-        <ul class="global-submenu-group" id="submenu-berita">
-            <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
-            <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
-            <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
-            <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
-            <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
-        </ul>
-    </aside>
 
     <main>
         <!-- Header Banner Section -->
