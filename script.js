@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menuToggle.addEventListener("click", () => {
             const isOpen = navLinks.classList.toggle("open");
             menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            menuToggle.innerHTML = isOpen ? "&#10005;" : "&#9776;"; // X or Hamburger
         });
 
         navLinks.querySelectorAll("a").forEach((link) => {
@@ -95,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 navLinks.classList.remove("open");
                 menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.innerHTML = "&#9776;";
             });
         });
 
