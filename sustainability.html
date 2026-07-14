@@ -585,6 +585,65 @@
             stroke: currentColor;
             stroke-width: 2.5;
         }
+        /* Tata Kelola Background & Banner */
+        #tab-tata-kelola {
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)), url('assets/tbbm_ketapang.png') center/cover no-repeat;
+            padding: 40px;
+            border-radius: 16px;
+            color: #FFFFFF;
+        }
+        #tab-tata-kelola .content-title,
+        #tab-tata-kelola .content-text {
+            color: #FFFFFF;
+        }
+        #tab-tata-kelola .gov-card {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: none !important;
+            color: #FFFFFF;
+        }
+        #tab-tata-kelola .gov-card-title {
+            color: #FFFFFF !important;
+        }
+        #tab-tata-kelola .gov-card-download {
+            background: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+            color: #FFFFFF !important;
+        }
+        #tab-tata-kelola .gov-card-download svg {
+            stroke: #FFFFFF !important;
+        }
+        #tab-tata-kelola .gov-card:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+        }
+        #tab-tata-kelola .gov-card:hover .gov-card-download {
+            background: #FFFFFF !important;
+            color: #0056A6 !important;
+        }
+        #tab-tata-kelola .gov-card:hover .gov-card-download svg {
+            stroke: #0056A6 !important;
+        }
+        .tata-kelola-banner {
+            width: 100%;
+            height: 300px;
+            margin-top: 48px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tata-kelola-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            #tab-tata-kelola {
+                padding: 24px;
+            }
+            .tata-kelola-banner {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -757,6 +816,11 @@
                                     <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Tata Kelola Banner Section -->
+                        <div class="tata-kelola-banner">
+                            <img src="assets/Landscape MT.png" alt="Tata Kelola Banner">
                         </div>
                     </div>
 
