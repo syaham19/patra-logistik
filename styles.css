@@ -824,7 +824,7 @@ header.scrolled .logo-image {
     z-index: 2;
     transition: all 0.3s ease;
 }.service-card-item:hover .service-card-overlay-blur {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 25%, rgba(255, 255, 255, 0) 60%);
     padding-top: 40px;
 }
 
@@ -1048,11 +1048,9 @@ header.scrolled .logo-image {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: url('assets/Landscape MT.png') center/cover no-repeat;
     z-index: -2;
-    transform-origin: center;
-    will-change: transform;
 }
 
 .cta-banner-section::before {
