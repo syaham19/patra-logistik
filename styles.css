@@ -695,8 +695,12 @@ header.scrolled .logo-image {
 .services-tab-content {
     display: none;
     width: 100vw;
-    overflow: hidden;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
     position: relative;
+}
+.services-tab-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
 }
 
 .services-tab-content.active {
@@ -718,16 +722,6 @@ header.scrolled .logo-image {
     padding: 32px 0;
     gap: 40px;
     width: max-content;
-    animation: serviceMarquee 80s linear infinite;
-}
-
-.services-cards-grid:hover {
-    animation-play-state: paused;
-}
-
-@keyframes serviceMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 20px)); }
 }
 
 /* Carousel Navigation */
