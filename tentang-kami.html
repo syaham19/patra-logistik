@@ -230,11 +230,20 @@
             /* overflow: hidden; Removed to allow position: sticky to work */
         }
         .about-tab-content {
-            display: none;
+            display: block;
+            margin-bottom: 64px;
+            padding-bottom: 64px;
+            border-bottom: 1px solid #F1F5F9;
+            scroll-margin-top: 160px; /* offset for header + subnav */
             animation: aboutFadeIn 0.5s ease;
         }
+        .about-tab-content:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
         .about-tab-content.active {
-            display: block;
+            /* Kept for JS active state if needed */
         }
         #tab-visi-misi {
             background: linear-gradient(to top, #F1F5F9 0%, #FFFFFF 100%);
@@ -2441,29 +2450,13 @@
             if (backdrop) backdrop.addEventListener("click", closeSidebar);
 
             function switchTab(target) {
-                // Update Desktop buttons immediately
-                menuBtns.forEach(btn => {
-                    if (btn.getAttribute("data-target") === target) {
-                        btn.classList.add("active");
-                    } else {
-                        btn.classList.remove("active");
-                    }
-                });
-
-                // Update tab contents
-                tabContents.forEach(tab => {
-                    if (tab.id === `tab-${target}`) {
-                        tab.classList.add("active");
-                    } else {
-                        tab.classList.remove("active");
-                    }
-                });
-
                 // Close drawer if open
                 closeSidebar();
                 
-                // Scroll to top
-                window.scrollTo({top: 0, behavior: 'smooth'});
+                const targetSection = document.getElementById(`tab-${target}`);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
 
                 // Auto flip animation for 'Tata Nilai' tab
                 if (target === 'nilai' && !window.hasAutoFlippedNilai) {
@@ -2487,11 +2480,51 @@
                 });
             });
 
+            // Intersection Observer to update active menu on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetId = entry.target.id.replace('tab-', '');
+                        
+                        // Update active class on menu buttons
+                        menuBtns.forEach(btn => {
+                            if (btn.getAttribute("data-target") === targetId) {
+                                btn.classList.add("active");
+                            } else {
+                                btn.classList.remove("active");
+                            }
+                        });
+
+                        // Trigger auto flip for nilai if scrolled into view
+                        if (targetId === 'nilai' && !window.hasAutoFlippedNilai) {
+                            window.hasAutoFlippedNilai = true;
+                            const cards = document.querySelectorAll('#tab-nilai .akhlak-card');
+                            cards.forEach((card, i) => {
+                                setTimeout(() => {
+                                    card.classList.add('auto-flip');
+                                    setTimeout(() => {
+                                        card.classList.remove('auto-flip');
+                                    }, 800);
+                                }, 600 + (i * 150));
+                            });
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            tabContents.forEach(tab => observer.observe(tab));
+
             // Check URL query parameters on load to support direct tab linking
             const urlParams = new URLSearchParams(window.location.search);
             const tabParam = urlParams.get('tab');
             if (tabParam) {
-                switchTab(tabParam);
+                setTimeout(() => switchTab(tabParam), 300); // Wait a bit for layout
             }
 
             // Scroll Reveal Animation Observer
