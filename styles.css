@@ -695,7 +695,6 @@ header.scrolled .logo-image {
 .services-tab-content {
     display: none;
     width: 100vw;
-    margin-left: calc(-50vw + 50%);
     overflow: hidden;
     position: relative;
 }
