@@ -700,4 +700,28 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSlide(currentSlideIndex);
         startSlideshow();
     }
+
+    // Map Zoom Logic
+    const mapWrapper = document.querySelector('.map-wrapper');
+    const btnZoomIn = document.getElementById('btn-zoom-in');
+    const btnZoomOut = document.getElementById('btn-zoom-out');
+    let currentMapZoom = 1;
+
+    if (mapWrapper && btnZoomIn && btnZoomOut) {
+        btnZoomIn.addEventListener('click', () => {
+            if (currentMapZoom < 3) {
+                currentMapZoom += 0.5;
+                mapWrapper.style.width = `calc(90% * ${currentMapZoom})`;
+                mapWrapper.style.maxWidth = `${900 * currentMapZoom}px`;
+            }
+        });
+
+        btnZoomOut.addEventListener('click', () => {
+            if (currentMapZoom > 1) {
+                currentMapZoom -= 0.5;
+                mapWrapper.style.width = `calc(90% * ${currentMapZoom})`;
+                mapWrapper.style.maxWidth = `${900 * currentMapZoom}px`;
+            }
+        });
+    }
 });

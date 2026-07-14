@@ -3709,4 +3709,84 @@ img {
     .map-card .mor-stat-card__content {
         align-items: center;
     }
+    }
+}
+
+/* Mobile Optimization Fixes */
+@media (max-width: 768px) {
+    /* 1. Layanan Tabs Fix */
+    .services-tabs-pill {
+        justify-content: flex-start !important;
+        padding-bottom: 8px;
+    }
+    .services-tab-btn {
+        white-space: nowrap;
+    }
+    
+    /* 2. Wilayah Operasi Stats Layout Fix */
+    .mor-stats-grid--compact {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+    }
+    .mor-stats-grid--compact .mor-stat-card {
+        padding: 16px !important;
+    }
+    .mor-stats-grid--compact .mor-stat-card__value {
+        font-size: 20px !important;
+    }
+    .mor-stats-grid--compact .mor-stat-card__label {
+        font-size: 11px !important;
+    }
+    
+    /* 3. Road Traffic Control Title & Body Fix */
+    .rtc-header-split {
+        flex-direction: column !important;
+        gap: 20px !important;
+        margin-bottom: 32px !important;
+    }
+    .rtc-header-left, .rtc-header-right {
+        max-width: 100% !important;
+        width: 100%;
+    }
+}
+
+/* Map Zoom Controls */
+.map-card__visual {
+    overflow: auto;
+    scrollbar-width: none;
+    position: relative;
+}
+.map-card__visual::-webkit-scrollbar {
+    display: none;
+}
+.map-controls {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+.btn-map-zoom {
+    width: 36px;
+    height: 36px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    padding: 0;
+    line-height: 1;
+}
+.btn-map-zoom:hover {
+    background: #f8fafc;
+    color: #006CB7;
 }
