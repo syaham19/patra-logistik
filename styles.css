@@ -811,8 +811,7 @@ header.scrolled .logo-image {
     right: 0;
     top: 0;
     bottom: 0;
-    background: linear-gradient(0.15deg, #FFFFFF 4.82%, rgba(255, 255, 255, 0) 47.3%),
-                linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.1) 100%);
+    background: linear-gradient(0deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 40%, rgba(15, 23, 42, 0) 80%);
     z-index: 1;
     border-radius: 0;
     pointer-events: none;
@@ -830,13 +829,13 @@ header.scrolled .logo-image {
     height: 100%;
     left: 0;
     top: 0;
-    background: linear-gradient(5.06deg, rgba(255, 255, 255, 0.67) 5.2%, rgba(255, 255, 255, 0.603) 19.02%, rgba(255, 255, 255, 0.1541) 32.83%);
+    background: linear-gradient(0deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.5) 20%, rgba(15, 23, 42, 0) 45%);
     border: none;
     border-radius: 0;
     z-index: 2;
     transition: all 0.3s ease;
 }.service-card-item:hover .service-card-overlay-blur {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 25%, rgba(255, 255, 255, 0) 60%);
+    background: linear-gradient(0deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 35%, rgba(15, 23, 42, 0) 75%);
     padding-top: 40px;
 }
 
@@ -856,7 +855,7 @@ header.scrolled .logo-image {
     font-weight: 800;
     font-size: 16px;
     line-height: 20px;
-    color: #111111;
+    color: #FFFFFF;
     margin: 0;
 }
 
@@ -867,7 +866,7 @@ header.scrolled .logo-image {
     font-weight: 500;
     font-size: 10px;
     line-height: 18px;
-    color: #323232;
+    color: rgba(255, 255, 255, 0.85);
     margin: 0;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -888,7 +887,7 @@ header.scrolled .logo-image {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 12px;
-    color: #1E3A8A;
+    color: #93C5FD;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
