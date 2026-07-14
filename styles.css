@@ -173,7 +173,7 @@ header.scrolled .logo-image {
     position: relative;
     overflow: hidden;
     color: transparent !important;
-    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
     white-space: nowrap;
     letter-spacing: 0.5px;
     padding-bottom: 6px;
@@ -418,7 +418,7 @@ header.scrolled .logo-image {
         max-width: none;
     }
     .hero-tag {
-        font-size: 11px;
+        font-size: 10px;
         margin-bottom: 12px;
     }
     .hero-title {
@@ -439,7 +439,7 @@ header.scrolled .logo-image {
         width: 100%;
         text-align: center;
     }
-    .btn { padding: 10px 18px; font-size: 13px; }
+    .btn { padding: 10px 18px; font-size: 12px; }
 
     .section { padding: 80px 0; }
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -467,7 +467,7 @@ header.scrolled .logo-image {
     .news-img { height: 180px; font-size: 26px; }
     .news-content { padding: 20px 16px; }
     .news-title { font-size: 16px; margin-bottom: 12px; }
-    .news-excerpt { font-size: 13px; margin-bottom: 20px; }
+    .news-excerpt { font-size: 12px; margin-bottom: 20px; }
     .news-meta {
         font-size: 9px;
         padding-top: 12px;
@@ -511,7 +511,7 @@ header.scrolled .logo-image {
     .hero-title { font-size: 26px; }
     .hero-desc { font-size: 14px; margin-bottom: 20px; }
     .section-title { font-size: 28px; }
-    .ticker-item { padding: 0 24px; font-size: 11px; }
+    .ticker-item { padding: 0 24px; font-size: 10px; }
     .partner-logo-img { height: 40px; max-width: 170px; }
     .news-img { height: 150px; font-size: 22px; }
     .news-title { font-size: 15px; }
@@ -567,7 +567,7 @@ header.scrolled .logo-image {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 21px;
     letter-spacing: 1.3px;
     text-transform: uppercase;
@@ -853,7 +853,7 @@ header.scrolled .logo-image {
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 18px;
     color: #323232;
     margin: 0;
@@ -928,11 +928,11 @@ header.scrolled .logo-image {
 
 .stats-dark-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;}
 .stat-dark-item h3 { font-size: 48px; font-weight: 300; margin-bottom: 8px; }
-.stat-dark-item p { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px;}
+.stat-dark-item p { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px;}
 
 .blue-block { background-color: var(--primary-blue); padding: 40px; border-radius: 0; }
 .blue-block h3 { font-size: 48px; font-weight: 700; margin-bottom: 8px; }
-.blue-block p { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8);}
+.blue-block p { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8);}
 
 /* ================= WILAYAH OPERASI ================= */
 .map-container {
@@ -984,7 +984,7 @@ header.scrolled .logo-image {
     padding-top: 32px;
 }
 .region-item h4 { font-size: 12px; font-weight: 700; color: var(--dark-navy); margin-bottom: 8px; text-transform: uppercase; }
-.region-item p { font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+.region-item p { font-size: 10px; color: var(--text-muted); line-height: 1.6; }
 
 /* ================= BERITA / INFORMASI TERKINI ================= */
 .news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
@@ -995,13 +995,13 @@ header.scrolled .logo-image {
 .news-content { padding: 32px 24px; display: flex; flex-direction: column; flex-grow: 1;}
 .news-tag { color: var(--primary-red); font-size: 10px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;}
 .news-title { font-size: 18px; font-weight: 600; color: var(--dark-navy); margin-bottom: 16px; line-height: 1.4; }
-.news-excerpt { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; flex-grow: 1;}
+.news-excerpt { font-size: 12px; color: var(--text-muted); margin-bottom: 32px; flex-grow: 1;}
 .news-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 16px; font-size: 10px; color: #aaa; text-transform: uppercase;}
 .news-arrow { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--primary-red); color: white; border-radius: 0;}
 
 /* ================= MITRA / PARTNERS ================= */
 .partners-section { border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 48px 0; text-align: center; background-color: #ffffff; overflow: hidden; }
-.partners-title { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 32px; }
+.partners-title { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 32px; }
 .partners-marquee-container {
     overflow: hidden;
     width: 100%;
@@ -1117,7 +1117,7 @@ header.scrolled .logo-image {
     font-family: 'Futura', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 28px;
     line-height: 45px;
     text-align: center;
     letter-spacing: -0.9px;
@@ -1258,7 +1258,7 @@ header.scrolled .logo-image {
 .footer-logo { font-size: 18px; font-weight: 800; margin-bottom: 24px; display: inline-block;}
 .footer-about { color: #888; font-size: 12px; max-width: 300px; margin-bottom: 24px; line-height: 1.6;}
 .footer-contact p { color: #888; font-size: 12px; margin-bottom: 8px; display: flex; gap: 8px;}
-.footer-heading { font-size: 11px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+.footer-heading { font-size: 10px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
 .footer-links li { margin-bottom: 16px; }
 .footer-links a { color: #888; font-size: 12px; transition: var(--transition); }
 .footer-links a:hover { color: white; }
@@ -1306,7 +1306,7 @@ header.scrolled .logo-image {
     .news-img { height: 180px; font-size: 26px; }
     .news-content { padding: 20px 16px; }
     .news-title { font-size: 16px; margin-bottom: 12px; }
-    .news-excerpt { font-size: 13px; margin-bottom: 20px; }
+    .news-excerpt { font-size: 12px; margin-bottom: 20px; }
     .news-meta {
         font-size: 9px;
         padding-top: 12px;
@@ -1486,7 +1486,7 @@ header.scrolled .logo-image {
 }
 
 .tracking-examples {
-    font-size: 11px;
+    font-size: 10px;
     color: rgba(255, 255, 255, 0.5);
     margin: 0;
     line-height: 1.6;
@@ -1596,7 +1596,7 @@ header.scrolled .logo-image {
     display: inline-block;
     padding: 6px 14px;
     border-radius: 50px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -1688,7 +1688,7 @@ header.scrolled .logo-image {
 }
 
 .tracking-timeline-time {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.5);
     margin-bottom: 4px;
@@ -1819,10 +1819,10 @@ header.scrolled .logo-image {
 }
 
 .map-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: transparent;
+    border: none;
     border-radius: 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    box-shadow: none;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -1835,7 +1835,7 @@ header.scrolled .logo-image {
     background: #f8fafc;
     border-bottom: 1px solid #f1f5f9;
     padding: 12px 24px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: #64748b;
     letter-spacing: 1px;
@@ -1917,7 +1917,7 @@ header.scrolled .logo-image {
     align-items: center;
     justify-content: center;
     color: #0056a6;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1959,7 +1959,7 @@ header.scrolled .logo-image {
 }
 
 .mor-detail-panel__code {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--primary-blue);
     letter-spacing: 1px;
@@ -2097,7 +2097,7 @@ header.scrolled .logo-image {
 }
 
 .mor-stat-card__label {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-muted);
     font-weight: 500;
     margin-bottom: 6px;
@@ -2321,7 +2321,7 @@ header.scrolled .logo-image {
     flex-direction: row;
     align-items: flex-start;
     gap: 10px;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.6;
     color: #DBEAFE;
 }
@@ -2390,7 +2390,7 @@ header.scrolled .logo-image {
 }
 
 .footer-service-desc {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     line-height: 1.33;
     color: rgba(255, 255, 255, 0.95);
@@ -2435,7 +2435,7 @@ header.scrolled .logo-image {
 .call-center-btn .text .title {
     font-family: 'Rethink Sans', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 10px;
     color: #FFFFFF;
 }
 
@@ -2971,7 +2971,7 @@ header.scrolled .logo-image {
 .rtc-title {
     font-family: 'Futura', sans-serif;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 28px;
     line-height: 1.2;
     letter-spacing: -0.9px;
     color: #1C1919;
@@ -3310,7 +3310,7 @@ img {
     color: #FFFFFF;
 }
 .new-rtc-card .rtc-card-desc {
-    font-size: 13px;
+    font-size: 12px;
     color: #64748B;
     line-height: 1.5;
     margin: 0;
@@ -3325,7 +3325,7 @@ img {
 }
 
 .new-rtc-card .rtc-card-link {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: #006CB7;
     display: flex;
@@ -3529,7 +3529,7 @@ img {
 }
 
 .ms-content h3 {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
     margin-bottom: 24px;
     line-height: 1.2;
@@ -3600,9 +3600,9 @@ img {
     justify-content: space-between;
     align-items: center;
     background: transparent;
-    padding: 10px 0 30px 0;
-    margin: 0 40px;
-    border-bottom: 1px solid #E2E8F0;
+    padding: 5px 0 15px 0;
+    margin: 0 20px;
+    border-bottom: none;
     gap: 0;
 }
 
@@ -3611,7 +3611,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0 20px;
+    padding: 0 10px;
     background: transparent;
     border: none;
     box-shadow: none;
@@ -3640,14 +3640,14 @@ img {
 }
 
 .map-card .mor-stat-card__label {
-    font-size: 13px;
+    font-size: 12px;
     color: #64748B;
     font-weight: 500;
     margin-bottom: 4px;
 }
 
 .map-card .mor-stat-card__value {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
     color: #005A9C;
     margin: 0 0 4px 0;
@@ -3655,7 +3655,7 @@ img {
 }
 
 .map-card .mor-stat-card__unit {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     color: #94A3B8;
     text-transform: uppercase;
