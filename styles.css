@@ -737,7 +737,7 @@ header.scrolled .logo-image {
 .services-tab-content {
     display: none;
     width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    margin: 0;
     overflow-x: auto;
     scrollbar-width: none; /* Firefox */
     position: relative;
