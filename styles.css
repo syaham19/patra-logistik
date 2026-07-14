@@ -108,10 +108,10 @@ body.loading {
     transition: var(--transition);
     border: none;
 }
-.btn-primary { background: var(--primary-blue); color: white; }
-.btn-primary:hover { background: #004488; }
-.btn-white { background: white; color: var(--text-main); }
-.btn-white:hover { background: #f0f0f0; }
+.btn-primary { background: var(--primary-blue); color: white; box-shadow: 0 4px 6px rgba(0, 90, 156, 0.1); }
+.btn-primary:hover { background: #004488; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 90, 156, 0.3); }
+.btn-white { background: white; color: var(--text-main); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+.btn-white:hover { background: #f8fafc; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); }
 
 /* ANIMATION CLASSES (Di-trigger oleh JS) */
 .fade-up {
@@ -1446,7 +1446,7 @@ header.scrolled .logo-image {
     font-size: 12px;
     letter-spacing: 0.5px;
     padding: 8px;
-    border-radius: 50px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
