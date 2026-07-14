@@ -12,7 +12,7 @@
 /* RESET & BASE */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: var(--text-main);
     background-color: #ffffff;
     line-height: 1.6;
@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6,
 .news-title, 
 .partners-title, 
 .cta-heading {
-    font-family: 'Futura', 'Plus Jakarta Sans', sans-serif !important;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 /* SMOOTH SCROLLING */
@@ -577,7 +577,7 @@ header.scrolled .logo-image {
 }
 
 .new-services-tag {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
@@ -588,7 +588,7 @@ header.scrolled .logo-image {
 }
 
 .new-services-title {
-    font-family: 'Plus Jakarta Sans', 'Futura', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 56px;
@@ -599,7 +599,7 @@ header.scrolled .logo-image {
 }
 
 .new-services-desc {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -645,7 +645,7 @@ header.scrolled .logo-image {
     background: transparent;
     border-radius: 0;
     cursor: pointer;
-    font-family: 'Plus Jakarta Sans', 'Futura', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -850,7 +850,7 @@ header.scrolled .logo-image {
 
 .service-card-title {
     width: 100%;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 16px;
@@ -861,7 +861,7 @@ header.scrolled .logo-image {
 
 .service-card-desc {
     width: 100%;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 10px;
@@ -884,7 +884,7 @@ header.scrolled .logo-image {
 }
 
 .service-card-btn {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 12px;
     color: #93C5FD;
@@ -1105,7 +1105,7 @@ header.scrolled .logo-image {
 }
 
 .cta-badge-text {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 10px;
@@ -1116,7 +1116,7 @@ header.scrolled .logo-image {
 }
 
 .cta-heading {
-    font-family: 'Futura', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 28px;
@@ -1129,7 +1129,7 @@ header.scrolled .logo-image {
 }
 
 .cta-subtitle {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -1182,7 +1182,7 @@ header.scrolled .logo-image {
 }
 
 .cta-contact-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 10px;
@@ -1202,7 +1202,7 @@ header.scrolled .logo-image {
     text-decoration: none;
 }
 .cta-contact-value.email {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .cta-btn-primary {
@@ -1226,7 +1226,7 @@ header.scrolled .logo-image {
 }
 
 .cta-btn-text {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
@@ -2256,7 +2256,7 @@ header.scrolled .logo-image {
     overflow: hidden;
     background-color: #0A0A0A;
     color: #DBEAFE;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .footer-new__watermark {
@@ -2435,14 +2435,14 @@ header.scrolled .logo-image {
 }
 
 .call-center-btn .text .title {
-    font-family: 'Rethink Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 10px;
     color: #FFFFFF;
 }
 
 .call-center-btn .text .link {
-    font-family: 'Rethink Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 7.5px;
     color: rgba(255, 255, 255, 0.7);
 }
@@ -2965,7 +2965,7 @@ header.scrolled .logo-image {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 800;
     font-size: 10px;
     line-height: 15px;
@@ -2975,7 +2975,7 @@ header.scrolled .logo-image {
 }
 
 .rtc-title {
-    font-family: 'Futura', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 28px;
     line-height: 1.2;
@@ -2985,7 +2985,7 @@ header.scrolled .logo-image {
 }
 
 .rtc-desc {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.62;
@@ -3052,7 +3052,7 @@ header.scrolled .logo-image {
     background: rgba(0, 108, 183, 0.1);
     border: 1px solid rgba(0, 108, 183, 0.2);
     border-radius: 9999px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 10px;
     line-height: 15px;
@@ -3062,7 +3062,7 @@ header.scrolled .logo-image {
 }
 
 .rtc-card-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 800;
     font-size: 18px;
     line-height: 1.38;
@@ -3071,7 +3071,7 @@ header.scrolled .logo-image {
 }
 
 .rtc-card-subtitle {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.62;
@@ -3109,7 +3109,7 @@ header.scrolled .logo-image {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 1.62;
@@ -3127,7 +3127,7 @@ header.scrolled .logo-image {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 1.07;
