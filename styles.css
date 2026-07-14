@@ -2515,6 +2515,10 @@ header.scrolled .logo-image {
 }
 
 @media (max-width: 768px) {
+    .footer-new {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
     .footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
         min-width: 100%;
     }
