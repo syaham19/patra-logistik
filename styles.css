@@ -1040,7 +1040,7 @@ header.scrolled .logo-image {
     padding: 56px 20px;
     isolation: isolate;
     overflow: hidden;
-    background: url('assets/Landscape MT.png') center/cover no-repeat;
+    background: url('assets/Landscape%20MT.png') center/cover no-repeat;
     background-color: #000; /* Fallback */
 }
 
