@@ -718,6 +718,7 @@ header.scrolled .logo-image {
 .services-tab-content {
     display: none;
     width: 100vw;
+    margin-left: calc(-50vw + 50%);
     overflow-x: auto;
     scrollbar-width: none; /* Firefox */
     position: relative;
@@ -792,7 +793,6 @@ header.scrolled .logo-image {
     padding: 0px;
     position: relative;
     width: 360px;
-    min-width: 300px;
     height: 400px;
     background: #F1F5F9;
     border: none;
@@ -1776,6 +1776,16 @@ header.scrolled .logo-image {
 }
 
 @media (max-width: 991px) {
+    .services-tab-btn svg {
+        display: none;
+    }
+    .service-card-item {
+        width: 280px;
+        height: 350px;
+    }
+    .services-tab-content {
+        width: 100vw;
+    }
     .hero-grid-wrapper {
         display: flex;
         flex-direction: column;
