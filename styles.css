@@ -3823,3 +3823,108 @@ img {
     background: #f8fafc;
     color: #006CB7;
 }
+
+/* Life at Pertamina Section */
+.life-at-pertamina-section {
+    background: #F4F8FB;
+    padding: 80px 0;
+    width: 100%;
+}
+
+.life-at-pertamina-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.lap-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #111111;
+    margin-bottom: 16px;
+}
+
+.lap-desc {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #475569;
+    max-width: 800px;
+    margin-bottom: 48px;
+    line-height: 1.6;
+}
+
+.lap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.lap-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lap-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+.lap-card-img {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-color: #E2E8F0;
+}
+
+.lap-card-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.lap-card-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1E293B;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+
+.lap-card-link {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #94A3B8;
+    margin-top: auto;
+    transition: color 0.2s ease;
+}
+
+.lap-card:hover .lap-card-link {
+    color: #0F172A;
+}
+
+@media (max-width: 992px) {
+    .lap-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .lap-grid {
+        grid-template-columns: 1fr;
+    }
+    .lap-title {
+        font-size: 28px;
+    }
+}
