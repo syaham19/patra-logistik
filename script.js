@@ -647,28 +647,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// CTA Banner Scroll Animation
-document.addEventListener('scroll', () => {
-    const ctaBg = document.querySelector('.cta-bg-anim');
-    const ctaSection = document.querySelector('.cta-banner-section');
-    if (!ctaBg || !ctaSection) return;
-
-    const rect = ctaSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    // Check if section is in viewport
-    if (rect.top <= windowHeight && rect.bottom >= 0) {
-        // Calculate scroll progress (0 when just enters from bottom, 1 when just leaves from top)
-        const progress = 1 - (rect.bottom / (windowHeight + rect.height));
-        
-        // original size 1.2, scales down to 1.0 as it scrolls up
-        // So scale goes from 1.2 (progress 0) to 1.0 (progress 1)
-        const scale = 1.2 - (0.2 * progress);
-        
-        // Counter-translate to simulate 'fixed' attachment, and apply scale
-        ctaBg.style.transform = `translateY(${-rect.top}px) scale(${Math.max(1, scale)})`;
-    }
-});
+// CTA Banner Scroll Animation - Disabled by request
 
 // Milestone Slideshow functionality
 document.addEventListener('DOMContentLoaded', () => {
