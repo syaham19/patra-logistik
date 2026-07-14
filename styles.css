@@ -2314,10 +2314,10 @@ header.scrolled .logo-image {
 
 .footer-new__watermark {
     position: absolute;
-    width: 600px;
-    height: 600px;
-    right: calc(-10% - 28px);
-    bottom: -20%;
+    width: 500px;
+    height: 100%;
+    right: 0;
+    bottom: 0;
     background: url("assets/logo-white-new%201.png") no-repeat bottom right;
     background-size: contain;
     opacity: 1; /* 100% opacity as requested */
