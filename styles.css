@@ -3599,9 +3599,9 @@ img {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background: transparent;
-    padding: 5px 0 15px 0;
-    margin: 0 20px;
+    background: #f8fafc;
+    padding: 10px 24px 15px 24px;
+    margin: 0;
     border-bottom: none;
     gap: 0;
 }
