@@ -535,15 +535,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 content.classList.remove("active");
                 if (content.id === `tab-${targetTab}`) {
                     content.classList.add("active");
-                    // Reset scroll when switching tabs
-                    const grid = content.querySelector('.services-cards-grid');
-                    if (grid) grid.scrollTo({ left: 0, behavior: "instant" });
                 }
             });
         });
     });
 
-    // Carousel navigation logic
+    // Clone cards for marquee animation
+    const serviceGrids = document.querySelectorAll('.services-cards-grid');
+    serviceGrids.forEach(grid => {
+        const cards = Array.from(grid.children);
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            // Hide the clone from screen readers to prevent duplicate reading
+            clone.setAttribute('aria-hidden', 'true');
+            grid.appendChild(clone);
+        });
+    });
+
+    // Carousel navigation logic (Disabled for marquee)
+    /*
     const prevBtn = document.getElementById("carousel-prev");
     const nextBtn = document.getElementById("carousel-next");
     
@@ -564,6 +574,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+    */
 });
 
 // Fungsi untuk mengatur Accordion pada bagian Layanan

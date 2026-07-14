@@ -694,7 +694,10 @@ header.scrolled .logo-image {
 
 .services-tab-content {
     display: none;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    position: relative;
 }
 
 .services-tab-content.active {
@@ -713,24 +716,27 @@ header.scrolled .logo-image {
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
-    padding: 32px max(20px, calc((100vw - 1240px) / 2));
+    padding: 32px 0;
     gap: 40px;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding: max(20px, calc((100vw - 1240px) / 2));
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    width: max-content;
+    animation: serviceMarquee 80s linear infinite;
 }
 
-.services-cards-grid::-webkit-scrollbar {
-    display: none;
+.services-cards-grid:hover {
+    animation-play-state: paused;
+}
+
+@keyframes serviceMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 20px)); }
 }
 
 /* Carousel Navigation */
+.carousel-navigation {
+    display: none;
+}
 .carousel-nav-wrapper {
-    display: flex;
+    display: none;
     justify-content: flex-end;
     width: 100%;
     max-width: 1240px;
