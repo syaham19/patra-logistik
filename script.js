@@ -542,10 +542,48 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Initialize services tabs
+    // Clone cards for marquee animation and set up JS-based scrolling
     const serviceTabContents = document.querySelectorAll('.services-tab-content');
     
-    // (Auto-scroll and cloning removed to display cards as a single frame)
+    serviceTabContents.forEach(tabContent => {
+        const grid = tabContent.querySelector('.services-cards-grid');
+        if (!grid) return;
+        
+        const cards = Array.from(grid.children);
+        // Duplicate once for infinite scroll
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            grid.appendChild(clone);
+        });
+
+        // Setup JS scrolling loop
+        let isHoveredOrTouched = false;
+        let animationFrameId;
+
+        // Interaction listeners to pause auto-scroll
+        tabContent.addEventListener('mouseenter', () => isHoveredOrTouched = true);
+        tabContent.addEventListener('mouseleave', () => isHoveredOrTouched = false);
+        tabContent.addEventListener('touchstart', () => isHoveredOrTouched = true, {passive: true});
+        tabContent.addEventListener('touchend', () => isHoveredOrTouched = false);
+
+        function autoScroll() {
+            if (!isHoveredOrTouched && tabContent.classList.contains('active')) {
+                // Scroll speed
+                tabContent.scrollLeft += 1;
+                
+                // If we scrolled exactly half the width (which is the original content)
+                // We reset back to 0 to loop seamlessly
+                if (tabContent.scrollLeft >= grid.scrollWidth / 2) {
+                    tabContent.scrollLeft -= grid.scrollWidth / 2;
+                }
+            }
+            animationFrameId = requestAnimationFrame(autoScroll);
+        }
+
+        // Start loop
+        autoScroll();
+    });
 });
 
 // Fungsi untuk mengatur Accordion pada bagian Layanan
