@@ -3709,9 +3709,7 @@ img {
     .map-card .mor-stat-card__content {
         align-items: center;
     }
-    }
 }
-
 /* Mobile Optimization Fixes */
 @media (max-width: 768px) {
     /* 1. Layanan Tabs Fix */
@@ -3721,6 +3719,16 @@ img {
     }
     .services-tab-btn {
         white-space: nowrap;
+        padding: 8px 16px !important;
+        font-size: 13px !important;
+    }
+    .services-tab-icon {
+        width: 16px !important;
+        height: 16px !important;
+    }
+    .services-tab-btn svg {
+        width: 16px !important;
+        height: 16px !important;
     }
     
     /* 2. Wilayah Operasi Stats Layout Fix */
