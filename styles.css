@@ -2316,7 +2316,7 @@ header.scrolled .logo-image {
     position: absolute;
     width: 600px;
     height: 600px;
-    right: calc(-10% + 20px);
+    right: calc(-10% + 52px);
     bottom: -20%;
     background: url("assets/logo-white-new%201.png") no-repeat bottom right;
     background-size: contain;
