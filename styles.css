@@ -3588,19 +3588,33 @@ img {
     }
     .ms-nav {
         top: 20px;
-        left: 20px;
+        left: 0;
+        right: 0;
         transform: none;
+        width: 100vw;
+        overflow-x: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        scrollbar-width: none; /* Firefox */
+        -webkit-overflow-scrolling: touch;
+    }
+    .ms-nav::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
     }
     .ms-nav ul {
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         border-left: none;
+        width: max-content;
+        gap: 24px;
+        padding-bottom: 10px;
     }
     .ms-nav li {
-        flex: 1 1 50%;
-        margin-bottom: 10px;
+        flex: 0 0 auto;
+        margin-bottom: 0;
         padding-left: 0;
         padding-bottom: 5px;
+        white-space: nowrap;
     }
     .ms-nav li.active::after {
         content: '';
@@ -3613,7 +3627,7 @@ img {
         animation: progressLineX 5s linear forwards;
     }
     .ms-content {
-        padding-top: 150px; /* space for stacked nav */
+        padding-top: 100px; /* adjusted space for horizontal nav */
         padding-bottom: 40px;
     }
     .ms-content h3 {
