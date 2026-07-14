@@ -586,6 +586,7 @@ header.scrolled .logo-image {
     max-height: 100%;
     object-fit: contain;
     pointer-events: none;
+    opacity: 0.6;
 }
 .services-bg-deco.left {
     left: 0;
