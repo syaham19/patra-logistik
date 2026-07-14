@@ -575,6 +575,23 @@ header.scrolled .logo-image {
     position: relative;
     z-index: 3;
     align-self: stretch;
+    overflow: hidden;
+}
+
+.services-bg-deco {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    max-height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+.services-bg-deco.left {
+    left: 0;
+}
+.services-bg-deco.right {
+    right: 0;
 }
 
 .new-services-container {
@@ -586,6 +603,8 @@ header.scrolled .logo-image {
     gap: 32px;
     width: 100%;
     max-width: 1240px;
+    position: relative;
+    z-index: 1;
 }
 
 .new-services-header {
