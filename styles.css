@@ -352,7 +352,30 @@ header.scrolled .logo-image {
 .stats-grid { display: flex; gap: 40px; border-top: 1px solid #eee; padding-top: 32px; }
 .stat-item h4 { font-size: 32px; font-weight: 700; color: var(--dark-navy); margin-bottom: 4px; }
 .stat-item p { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-.link-arrow { color: var(--dark-navy); font-weight: 600; font-size: 14px; border-bottom: 1px solid var(--dark-navy); padding-bottom: 4px; display: inline-block; margin-top: 32px;}
+.link-arrow { 
+    color: var(--dark-navy); 
+    font-weight: 600; 
+    font-size: 14px; 
+    border-bottom: 1px solid var(--dark-navy); 
+    padding-bottom: 4px; 
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 32px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.link-arrow .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.link-arrow:hover {
+    color: #1E3A8A; /* A bright blue */
+    border-bottom-color: #1E3A8A;
+}
+.link-arrow:hover .arrow {
+    transform: translateX(6px);
+}
 
 /* SERVICES LIST (Accordion style skeleton removed) */
 
