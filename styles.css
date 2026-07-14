@@ -581,7 +581,7 @@ header.scrolled .logo-image {
 .services-bg-deco {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scale(2);
     z-index: 0;
     max-height: 100%;
     object-fit: contain;
