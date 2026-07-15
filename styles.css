@@ -2974,6 +2974,123 @@ header.scrolled .logo-image {
     }
 }
 
+/* At a Glance & Testimonials */
+.career-glance-section {
+    padding: 80px 0 20px;
+    background-color: #FAFAFA;
+}
+.career-glance-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: #111;
+}
+.career-glance-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+.glance-card {
+    background-color: #EAEAEA;
+    border-radius: 24px;
+    padding: 40px 20px;
+    text-align: center;
+}
+.glance-card.bordered {
+    border: 1px solid #666;
+}
+.glance-number {
+    font-size: 64px;
+    font-weight: 400;
+    color: #111;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+.glance-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #111;
+}
+
+.career-testimonials-section {
+    padding: 20px 0 80px;
+    background-color: #FAFAFA;
+}
+.testimonials-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary-blue);
+    margin-bottom: 50px;
+}
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+.testimonial-card {
+    background-color: #FFFFFF;
+    border: 1px solid #F3F4F6;
+    padding: 40px 24px 30px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.testimonial-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+.testimonial-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 4px;
+}
+.testimonial-role {
+    font-size: 12px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 20px;
+}
+.testimonial-text {
+    font-size: 12px;
+    color: #9CA3AF;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
+.testimonial-link {
+    font-size: 10px;
+    font-weight: 700;
+    color: #93C5FD;
+    text-transform: uppercase;
+    text-decoration: underline;
+    letter-spacing: 0.5px;
+}
+.testimonial-link:hover {
+    color: var(--primary-blue);
+}
+
+@media (max-width: 991px) {
+    .career-glance-grid, .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 576px) {
+    .career-glance-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Road Traffic Control Section */
 .rtc-section {
     box-sizing: border-box;
