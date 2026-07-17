@@ -446,56 +446,108 @@
             justify-content: center;
         }
         .benefit-card {
-            background: #FFFFFF;
+            background: #E1EAF0;
             border-radius: 0;
             padding: 28px 20px;
             flex: 1 1 calc(33.333% - 14px);
             min-width: 240px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
-            border: 1px solid #E2E8F0;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
         }
         .benefit-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 24px rgba(0, 86, 166, 0.05);
-            border-color: #CBD5E1;
+            background: #006CB7;
+            box-shadow: 0px 4px 12px rgba(0, 108, 183, 0.2);
+        }
+        .benefit-card .rtc-card-glow {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .benefit-card:hover .rtc-card-glow {
+            opacity: 1;
+        }
+        .benefit-card .rtc-card-logo {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            max-height: 40px;
+            max-width: 80px;
+            transform: scale(2.5);
+            transform-origin: bottom right;
+            z-index: 0;
+            transition: opacity 0.3s ease;
+            object-fit: contain;
+        }
+        .benefit-card .rtc-logo-default {
+            opacity: 0;
+        }
+        .benefit-card .rtc-logo-hover {
+            opacity: 0.1;
+        }
+        .benefit-card:hover .rtc-logo-default {
+            opacity: 0.15;
+        }
+        .benefit-card:hover .rtc-logo-hover {
+            opacity: 0;
         }
         .benefit-icon {
-            width: 52px;
-            height: 52px;
+            width: 48px;
+            height: 48px;
             margin-bottom: 18px;
-            color: #0056A6;
+            color: #006CB7;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #F0F9FF;
-            border-radius: 0;
-            padding: 12px;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+        .benefit-card:hover .benefit-icon {
+            color: #FFFFFF;
         }
         .benefit-icon svg {
             width: 100%;
             height: 100%;
             fill: none;
             stroke: currentColor;
-            stroke-width: 2;
+            stroke-width: 1.5;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
         .benefit-title {
             font-size: 14.5px;
             font-weight: 800;
-            color: #0F172A;
+            color: #1E293B;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+        .benefit-card:hover .benefit-title {
+            color: #FFFFFF;
         }
         .benefit-desc {
             font-size: 12px;
             color: #64748B;
             line-height: 1.6;
             margin: 0;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+        .benefit-card:hover .benefit-desc {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Inventory Management Custom Grid */
@@ -1277,47 +1329,62 @@
                             <div class="benefit-grid">
                                 <!-- Card 1 -->
                                 <div class="benefit-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div class="benefit-icon">
                                         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                                     </div>
                                     <h4 class="benefit-title">Nationwide Network</h4>
                                     <p class="benefit-desc">Jaringan operasional yang tersebar di berbagai wilayah Indonesia, mendukung kebutuhan distribusi energi secara luas dan berkelanjutan.</p>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
 
                                 <!-- Card 2 -->
                                 <div class="benefit-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div class="benefit-icon">
                                         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                                     </div>
                                     <h4 class="benefit-title">HSSE Principle</h4>
                                     <p class="benefit-desc">Mengedepankan prinsip Health, Safety, Security, and Environment dalam setiap aktivitas operasional untuk memastikan layanan berjalan aman dan sesuai standar.</p>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
 
                                 <!-- Card 3 -->
                                 <div class="benefit-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div class="benefit-icon">
                                         <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                                     </div>
                                     <h4 class="benefit-title">Cost Effectiveness</h4>
                                     <p class="benefit-desc">Optimalisasi operasional untuk mendukung efisiensi biaya tanpa mengurangi kualitas, keselamatan, dan keandalan layanan.</p>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
 
                                 <!-- Card 4 -->
                                 <div class="benefit-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div class="benefit-icon">
                                         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                                     </div>
                                     <h4 class="benefit-title">Real Time Monitoring</h4>
                                     <p class="benefit-desc">Pemantauan armada secara real-time untuk memastikan pergerakan kendaraan, rute, dan aktivitas distribusi dapat terpantau dengan akurat.</p>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
 
                                 <!-- Card 5 -->
                                 <div class="benefit-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div class="benefit-icon">
                                         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"/></svg>
                                     </div>
                                     <h4 class="benefit-title">Multi-Moda Integration</h4>
                                     <p class="benefit-desc">Mendukung integrasi berbagai moda transportasi untuk menciptakan solusi logistik yang lebih fleksibel, efisien, dan terhubung.</p>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
                             </div>
                         </div>
