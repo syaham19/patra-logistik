@@ -637,6 +637,9 @@
 
         /* Media Queries */
         @media (max-width: 991px) {
+            .inv-tbbm-layout {
+                grid-template-columns: 1fr !important;
+            }
             .about-grid {
                 grid-template-columns: 1fr;
                 gap: 0;
@@ -1417,7 +1420,7 @@
                                 FT Ketapang dilengkapi dengan dermaga untuk muat dan bongkar, serta pengisian bahan bakar dengan kapasitas 3.000 DWT.
                             </p>
                             
-                            <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: start;">
+                            <div class="inv-tbbm-layout" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: start;">
                                 <div>
                                     <img src="assets/tbbm_ketapang.png" alt="Fuel Terminal Ketapang" class="subtab-img" style="height: 240px; margin-bottom: 12px; width: 100%;">
                                     <div class="inv-map-container" style="height: 200px;">
