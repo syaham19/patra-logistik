@@ -1217,22 +1217,21 @@
             width: 100%;
         }
         .award-card {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
+            background: #E1EAF0;
             border-radius: 0;
             padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             min-height: 200px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
         .award-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 86, 166, 0.06);
-            border-color: #CBD5E1;
+            background: #006CB7;
+            box-shadow: 0px 4px 12px rgba(0, 108, 183, 0.2);
         }
         .award-card-body {
             flex-grow: 1;
@@ -1243,15 +1242,23 @@
         .award-title {
             font-size: 14px;
             font-weight: 800;
-            color: #0F172A;
+            color: #1E293B;
             line-height: 1.4;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        .award-card:hover .award-title {
+            color: #FFFFFF;
         }
         .award-desc {
             font-size: 12px;
             font-weight: 700;
             color: #0056A6;
             line-height: 1.5;
+            transition: color 0.3s ease;
+        }
+        .award-card:hover .award-desc {
+            color: rgba(255, 255, 255, 0.9);
         }
         .award-arrow-circle {
             width: 32px;
@@ -1277,8 +1284,8 @@
             transition: transform 0.3s ease;
         }
         .award-card:hover .award-arrow-circle {
-            background: #0056A6;
-            color: #FFFFFF;
+            background: #FFFFFF;
+            color: #006CB7;
         }
         .award-card:hover .award-arrow-circle svg {
             transform: translateX(1px);
