@@ -765,7 +765,7 @@ header.scrolled .logo-image {
     align-items: center;
     flex-wrap: nowrap;
     padding: 32px 0;
-    gap: 40px;
+    gap: 24px;
     width: max-content;
 }
 
