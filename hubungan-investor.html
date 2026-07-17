@@ -530,8 +530,7 @@
             .fin-grid { grid-template-columns: 1fr; }
         }
         .fin-card {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
+            background: #E1EAF0;
             border-radius: 0;
             padding: 24px 16px;
             text-align: center;
@@ -540,14 +539,55 @@
             align-items: center;
             justify-content: space-between;
             min-height: 180px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
         }
         .fin-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(0, 86, 166, 0.06);
-            border-color: #0056A6;
+            background: #006CB7;
+            box-shadow: 0px 4px 12px rgba(0, 108, 183, 0.2);
+        }
+        .fin-card .rtc-card-glow {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .fin-card:hover .rtc-card-glow {
+            opacity: 1;
+        }
+        .fin-card .rtc-card-logo {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            max-height: 40px;
+            max-width: 80px;
+            transform: scale(2.5);
+            transform-origin: bottom right;
+            z-index: 0;
+            transition: opacity 0.3s ease;
+            object-fit: contain;
+        }
+        .fin-card .rtc-logo-default {
+            opacity: 0;
+        }
+        .fin-card .rtc-logo-hover {
+            opacity: 0.1;
+        }
+        .fin-card:hover .rtc-logo-default {
+            opacity: 0.15;
+        }
+        .fin-card:hover .rtc-logo-hover {
+            opacity: 0;
         }
         .fin-card-label {
             font-size: 9px;
@@ -556,23 +596,34 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+        .fin-card:hover .fin-card-label {
+            color: rgba(255, 255, 255, 0.9);
         }
         .fin-card-q {
             font-size: 18px;
             font-weight: 900;
             color: #1E293B;
             margin-bottom: 16px;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+        .fin-card:hover .fin-card-q {
+            color: #FFFFFF;
         }
         .fin-card-download {
-            color: #0056A6;
+            color: #006CB7;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 32px;
             height: 32px;
-            background: #F0F9FF;
+            background: #FFFFFF;
             border-radius: 50%;
             transition: all 0.2s ease;
+            z-index: 1;
         }
         .fin-card:hover .fin-card-download {
             background: #ED1C24;
@@ -774,6 +825,7 @@
                             <div style="width: 250px; max-width: 100%;">
                                 <!-- Card Q1 2026 -->
                                 <div class="fin-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div style="width:100%;">
                                         <span class="fin-card-label">Januari - Maret 2026</span>
                                         <h4 class="fin-card-q">Q1 2026</h4>
@@ -781,6 +833,8 @@
                                     <div class="fin-card-download">
                                         <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                     </div>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
                             </div>
                         </div>
@@ -795,6 +849,7 @@
                             <div class="fin-grid">
                                 <!-- Card Q4 2025 -->
                                 <div class="fin-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div style="width:100%;">
                                         <span class="fin-card-label">Oktober - Desember 2025</span>
                                         <h4 class="fin-card-q">Q4 2025</h4>
@@ -802,9 +857,12 @@
                                     <div class="fin-card-download">
                                         <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                     </div>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
                                 <!-- Card Q3 2025 -->
                                 <div class="fin-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div style="width:100%;">
                                         <span class="fin-card-label">Juli - September 2025</span>
                                         <h4 class="fin-card-q">Q3 2025</h4>
@@ -812,9 +870,12 @@
                                     <div class="fin-card-download">
                                         <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                     </div>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
                                 <!-- Card Q2 2025 -->
                                 <div class="fin-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div style="width:100%;">
                                         <span class="fin-card-label">April - Juni 2025</span>
                                         <h4 class="fin-card-q">Q2 2025</h4>
@@ -822,9 +883,12 @@
                                     <div class="fin-card-download">
                                         <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                     </div>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
                                 <!-- Card Q1 2025 -->
                                 <div class="fin-card">
+                                    <div class="rtc-card-glow"></div>
                                     <div style="width:100%;">
                                         <span class="fin-card-label">Januari - Maret 2025</span>
                                         <h4 class="fin-card-q">Q1 2025</h4>
@@ -832,6 +896,8 @@
                                     <div class="fin-card-download">
                                         <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                     </div>
+                                    <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                                    <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                                 </div>
                             </div>
                         </div>
