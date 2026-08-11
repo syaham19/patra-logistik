@@ -359,66 +359,75 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Region I Sumatra Bagian Utara",
             subtitle: "Wilayah Layanan: Sumatra Bagian Utara",
             cities: ["Medan", "Banda Aceh", "Pekanbaru", "Batam", "Padang"],
-            stats: { milik: 184, kelola: 720, spbu: 450, pertashop: 210 },
-            projects: ["Distribusi BBM Industri & Marine", "Pengelolaan Terminal BBM", "Transportasi Darat Terpadu"]
+            // Data: Retail=1, Industrial=27, VMI=9, Total=51
+            stats: { milik: 1, kelola: 27, spbu: 9, pertashop: 51 },
+            projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 27 Project", "Vendor Managed Inventory: 9 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 4 Project", "Warehouse Service: 4 Project", "KRP: 5 Project"]
         },
         "MOR-II": {
             code: "Region II",
             title: "Region II Sumatra Bagian Selatan",
             subtitle: "Wilayah Layanan: Sumatra Bagian Selatan",
             cities: ["Palembang", "Lampung", "Jambi", "Bengkulu", "Pangkalpinang"],
-            stats: { milik: 152, kelola: 610, spbu: 380, pertashop: 180 },
-            projects: ["Layanan Logistik Terintegrasi", "Pengelolaan Stasiun Pengisian bulk Elpiji", "Distribusi Produk Khusus"]
+            // Data: Retail=7, Industrial=12, VMI=12, Total=38
+            stats: { milik: 7, kelola: 12, spbu: 12, pertashop: 38 },
+            projects: ["Retail Fuel Transport: 7 Project", "Industrial Fuel Transport (Franco): 12 Project", "Vendor Managed Inventory: 12 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 1 Project", "Warehouse Service: 4 Project", "KRP: 1 Project"]
         },
         "MOR-III": {
             code: "Region III",
             title: "Region III Jawa Bagian Barat",
             subtitle: "Wilayah Layanan: Jawa Bagian Barat",
             cities: ["Jakarta", "Bandung", "Banten", "Depok", "Bekasi", "Cirebon"],
-            stats: { milik: 1092, kelola: 4439, spbu: 2853, pertashop: 1511 },
-            projects: ["Manajemen Transportasi BBM & LPG Jawa Bagian Barat", "Pengelolaan Fleet Management System terpadu", "Distribusi logistik industri & marine"]
+            // Data: Retail=5, Industrial=11, VMI=12, Total=43
+            stats: { milik: 5, kelola: 11, spbu: 12, pertashop: 43 },
+            projects: ["Retail Fuel Transport: 5 Project", "Industrial Fuel Transport (Franco): 11 Project", "Gas Transport: 5 Project", "Vendor Managed Inventory: 12 Lokasi", "Lubricants Transport: 6 Project", "Warehouse Service: 2 Project", "KRP: 2 Project"]
         },
         "MOR-IV": {
             code: "Region IV",
             title: "Region IV Jawa Bagian Tengah",
             subtitle: "Wilayah Layanan: Jawa Bagian Tengah & DIY",
             cities: ["Semarang", "Yogyakarta", "Solo", "Cilacap", "Pekalongan", "Tegal"],
-            stats: { milik: 285, kelola: 1240, spbu: 820, pertashop: 490 },
-            projects: ["Optimalisasi Jalur Distribusi Logistik", "Layanan Storage BBM dan Avtur", "Pengelolaan Truk Tangki BBM"]
+            // Data: Retail=7, Industrial=91, VMI=14, Total=123
+            stats: { milik: 7, kelola: 91, spbu: 14, pertashop: 123 },
+            projects: ["Retail Fuel Transport: 7 Project", "Industrial Fuel Transport (Franco): 91 Project", "Gas Transport: 3 Project", "Vendor Managed Inventory: 14 Lokasi", "Warehouse Service: 1 Project", "KRP: 7 Project"]
         },
         "MOR-V": {
             code: "Region V",
             title: "Region V Jatimbalinus",
             subtitle: "Wilayah Layanan: Jawa Timur, Bali, & Nusa Tenggara",
             cities: ["Surabaya", "Malang", "Denpasar", "Mataram", "Kupang", "Madiun"],
-            stats: { milik: 390, kelola: 1580, spbu: 1100, pertashop: 680 },
-            projects: ["Distribusi Avtur Bandara", "Layanan Logistik Antar Pulau", "Transportasi Multi-Moda BBM"]
+            // Data: Retail=2, Industrial=13, VMI=3, Total=36
+            stats: { milik: 2, kelola: 13, spbu: 3, pertashop: 36 },
+            projects: ["Retail Fuel Transport: 2 Project", "Industrial Fuel Transport (Franco): 13 Project", "Gas Transport: 2 Project", "Vendor Managed Inventory: 3 Lokasi", "Aviation Fuel Terminal: 7 Project", "Lubricants Transport: 2 Project", "Fuel Terminal: 6 Titik", "KRP: 1 Project"]
         },
         "MOR-VI": {
             code: "Region VI",
             title: "Region VI Kalimantan",
             subtitle: "Wilayah Layanan: Wilayah Kalimantan",
             cities: ["Balikpapan", "Banjarmasin", "Pontianak", "Samarinda", "Tarakan"],
-            stats: { milik: 120, kelola: 480, spbu: 320, pertashop: 150 },
-            projects: ["Layanan Logistik Pertambangan", "Distribusi BBM Industri Skala Besar", "Pengelolaan Terminal Transit"]
+            // Data: Retail=1, Industrial=7, VMI=2, Total=17
+            stats: { milik: 1, kelola: 7, spbu: 2, pertashop: 17 },
+            projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 7 Project", "Gas Transport: 1 Project", "Vendor Managed Inventory: 2 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 2 Project", "Fuel Terminal: 1 Titik", "KRP: 2 Project"]
         },
         "MOR-VII": {
             code: "Region VII",
             title: "Region VII Sulawesi",
             subtitle: "Wilayah Layanan: Wilayah Sulawesi",
             cities: ["Makassar", "Manado", "Palu", "Kendari", "Gorontalo"],
-            stats: { milik: 95, kelola: 380, spbu: 250, pertashop: 120 },
-            projects: ["Distribusi Bahan Bakar Industri dan Avtur", "Pengelolaan Logistik Berbasis Laut", "Layanan Distribusi Pelosok"]
+            // Data: Retail=0, Industrial=7, VMI=1, Total=24
+            stats: { milik: 0, kelola: 7, spbu: 1, pertashop: 24 },
+            projects: ["Industrial Fuel Transport (Franco): 7 Project", "Gas Transport: 1 Project", "Vendor Managed Inventory: 1 Lokasi", "Lubricants Transport: 1 Project", "Fuel Terminal: 13 Titik", "KRP: 1 Project"]
         },
         "MOR-VIII": {
             code: "Region VIII",
             title: "Region VIII Maluku Papua",
             subtitle: "Wilayah Layanan: Maluku & Papua",
             cities: ["Sorong", "Jayapura", "Ambon", "Ternate", "Manokwari", "Merauke"],
-            stats: { milik: 85, kelola: 310, spbu: 180, pertashop: 95 },
-            projects: ["Distribusi Energi Daerah 3T", "Layanan Logistik Udara dan Laut", "Manajemen Storage Terminal BBM"]
+            // Data: Retail=1, Industrial=3, VMI=1, Total=8
+            stats: { milik: 1, kelola: 3, spbu: 1, pertashop: 8 },
+            projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 3 Project", "Vendor Managed Inventory: 1 Lokasi", "Aviation Fuel Terminal: 2 Project", "KRP: 1 Project"]
         }
     };
+
 
     // Helper function to animate number counter
     const animateCount = (element, start, end, duration = 800) => {
