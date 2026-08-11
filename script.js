@@ -964,8 +964,32 @@ document.addEventListener('DOMContentLoaded', () => {
             // Save preference
             localStorage.setItem('patra_lang', selectedLang);
 
-            // Apply new language
-            applyLanguage(selectedLang);
+            // Create loading overlay
+            const loaderOverlay = document.createElement('div');
+            loaderOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.95);z-index:9999;display:flex;justify-content:center;align-items:center;opacity:0;transition:opacity 0.3s ease;';
+            loaderOverlay.innerHTML = '<div style="width:50px;height:50px;border:4px solid #e2e8f0;border-top:4px solid #1E3A8A;border-radius:50%;animation:spin 1s linear infinite;"></div>';
+            document.body.appendChild(loaderOverlay);
+            
+            // Trigger fade in
+            requestAnimationFrame(() => {
+                loaderOverlay.style.opacity = '1';
+            });
+
+            // Simulate loading process
+            setTimeout(() => {
+                // Apply new language
+                applyLanguage(selectedLang);
+                
+                // Fade out
+                loaderOverlay.style.opacity = '0';
+                
+                // Remove from DOM after fade out
+                setTimeout(() => {
+                    if(document.body.contains(loaderOverlay)) {
+                        loaderOverlay.remove();
+                    }
+                }, 300);
+            }, 600);
         });
     });
 });
