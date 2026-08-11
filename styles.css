@@ -183,9 +183,11 @@ header.scrolled .logo-image {
 }
 .nav-links { 
     display: flex; 
+    align-items: center;
     gap: 32px; 
     margin-left: auto; 
-    margin-right: 40px; 
+    margin-right: 40px;
+    margin-top: 6px; /* Counteracts the padding-bottom: 6px on .nav-link for perfect visual centering */
 }
 .nav-link {
     position: relative;
