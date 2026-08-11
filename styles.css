@@ -3079,7 +3079,7 @@ header.scrolled .logo-image {
 }
 
 .footer-col-2, .footer-col-3 {
-    flex: 1.5; /* wider to accommodate 2 columns */
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 16px;
