@@ -84,9 +84,33 @@
 
 
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-            <source src="assets/patravd.mp4" type="video/mp4">
-        </video>
+        <!-- Hero Slideshow -->
+        <div class="hero-slideshow" id="hero-slideshow" aria-label="Hero Slideshow" role="region">
+            <div class="hero-slides">
+                <div class="hero-slide active" style="background-image: url('assets/Landscape MT.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/Mobil Tangki Maos.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/LPR00887 (1).png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/DSC00198.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/gambar karyawan.png');"></div>
+            </div>
+
+            <!-- Prev / Next Buttons -->
+            <button class="hero-slide-btn hero-slide-btn--prev" id="hero-slide-prev" aria-label="Slide sebelumnya">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="hero-slide-btn hero-slide-btn--next" id="hero-slide-next" aria-label="Slide berikutnya">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+            </button>
+
+            <!-- Dot Indicators -->
+            <div class="hero-slide-indicators" role="tablist" aria-label="Pilih slide">
+                <button class="hero-slide-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+                <button class="hero-slide-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+                <button class="hero-slide-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+                <button class="hero-slide-dot" data-slide="3" role="tab" aria-selected="false" aria-label="Slide 4"></button>
+                <button class="hero-slide-dot" data-slide="4" role="tab" aria-selected="false" aria-label="Slide 5"></button>
+            </div>
+        </div>
 
         <div class="container">
             <div class="hero-grid-wrapper">
@@ -393,7 +417,7 @@
                 </div>
 
                 <!-- Tab Content: Manajemen Fasilitas -->
-                <div class="services-tab-content" id="tab-manajemen">
+                <div class="services-tab-content" id="tab-other">
                     <div class="services-cards-grid">
                         <!-- Card 1 -->
                         <div class="service-card-item">
@@ -507,7 +531,7 @@
 
                 <div class="map-card fade-up">
                     <div class="map-card__instruction">
-                        <span class="pulse-dot"></span> INTERAKTIF: KLIK WILAYAH MOR UNTUK DETAIL JANGKAUAN
+                        <span class="pulse-dot"></span> INTERAKTIF: KLIK WILAYAH REGION UNTUK DETAIL JANGKAUAN
                     </div>
 
                     <!-- Grid 4 Kartu Statistik di Bawah -->
@@ -557,42 +581,42 @@
                             style="position: relative; width: 90%; max-width: 900px; aspect-ratio: 674 / 283; margin: 0 auto; background: url('./assets/id%201.svg') no-repeat center center; background-size: 100% 100%;">
                             <!-- Markers positioned absolutely on top of map wrapper -->
                             <button class="mor-marker" style="top: 17%; left: 10%;" data-mor="MOR-I"
-                                aria-label="MOR I Sumatera Utara">
+                                aria-label="Region I Sumatera Utara">
                                 <span class="mor-marker__pin">1</span>
                             </button>
 
-                            <button class="mor-marker" style="top: 45%; left: 22%;" data-mor="MOR-II"
-                                aria-label="MOR II Sumatera Selatan">
+                            <button class="mor-marker" style="top: 36%; left: 23%;" data-mor="MOR-II"
+                                aria-label="Region II Sumatera Selatan">
                                 <span class="mor-marker__pin">2</span>
                             </button>
 
-                            <button class="mor-marker" style="top: 65%; left: 27%;" data-mor="MOR-III"
-                                aria-label="MOR III Jawa Barat">
+                            <button class="mor-marker" style="top: 55%; left: 28%;" data-mor="MOR-III"
+                                aria-label="Region III Jawa Barat">
                                 <span class="mor-marker__pin">3</span>
                             </button>
 
-                            <button class="mor-marker" style="top: 68%; left: 34%;" data-mor="MOR-IV"
-                                aria-label="MOR IV Jawa Tengah">
+                            <button class="mor-marker" style="top: 57%; left: 34%;" data-mor="MOR-IV"
+                                aria-label="Region IV Jawa Tengah">
                                 <span class="mor-marker__pin">4</span>
                             </button>
 
-                            <button class="mor-marker" style="top: 69%; left: 41%;" data-mor="MOR-V"
-                                aria-label="MOR V Jatimbalinus">
+                            <button class="mor-marker" style="top: 61%; left: 45%;" data-mor="MOR-V"
+                                aria-label="Region V Jatimbalinus">
                                 <span class="mor-marker__pin">5</span>
                             </button>
 
-                            <button class="mor-marker" style="top: 40%; left: 46%;" data-mor="MOR-VI"
-                                aria-label="MOR VI Kalimantan">
+                            <button class="mor-marker" style="top: 34%; left: 54%;" data-mor="MOR-VI"
+                                aria-label="Region VI Kalimantan">
                                 <span class="mor-marker__pin">6</span>
                             </button>
 
-                            <button class="mor-marker" style="top: 50%; left: 56%;" data-mor="MOR-VII"
-                                aria-label="MOR VII Sulawesi">
+                            <button class="mor-marker" style="top: 37%; left: 66%;" data-mor="MOR-VII"
+                                aria-label="Region VII Sulawesi">
                                 <span class="mor-marker__pin">7</span>
                             </button>
 
-                            <button class="mor-marker" style="top: 42%; left: 88%;" data-mor="MOR-VIII"
-                                aria-label="MOR VIII Maluku Papua">
+                            <button class="mor-marker" style="top: 45%; left: 86%;" data-mor="MOR-VIII"
+                                aria-label="Region VIII Maluku Papua">
                                 <span class="mor-marker__pin">8</span>
                             </button>
                         </div>
@@ -601,10 +625,25 @@
                     <!-- Panel Detail Wilayah di bagian bawah map card -->
                     <div class="mor-detail-panel">
                         <div class="mor-detail-panel__info">
-                            <span class="mor-detail-panel__code" id="panel-mor-code">MOR III</span>
-                            <h3 class="mor-detail-panel__title" id="panel-mor-title">Marketing Operation Region III</h3>
+                            <span class="mor-detail-panel__code" id="panel-mor-code">Region III</span>
+                            <h3 class="mor-detail-panel__title" id="panel-mor-title">Region III Jawa Bagian Barat</h3>
                             <p class="mor-detail-panel__subtitle" id="panel-mor-subtitle">Wilayah Layanan: Jawa Bagian
                                 Barat</p>
+
+                            <div class="mor-project-dropdown" id="mor-project-dropdown">
+                                <button class="mor-project-btn" id="panel-mor-project-btn" aria-expanded="false">
+                                    <div style="display:flex; align-items:center; gap:8px;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                                        <span>Informasi Project &amp; Layanan</span>
+                                    </div>
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </button>
+                                <div class="mor-project-content" id="panel-mor-project-content">
+                                    <ul class="mor-project-list" id="panel-mor-projects-list">
+                                        <!-- Projects injected by script.js on region click -->
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                 
                         </div>
@@ -626,7 +665,7 @@
                             </svg>
                             PUSAT KENDALI OPERASI DIGITAL
                         </div>
-                        <h2 class="rtc-title-split">Road Traffic <span class="text-light-blue">Control</span></h2>
+                        <h2 class="rtc-title-split">Digital Logistic <span class="text-light-blue">Solution</span></h2>
                     </div>
                     <div class="rtc-header-right">
                         <p class="rtc-desc-split">Sistem pengawasan digital terpadu yang memantau pergerakan armada, kondisi pengemudi, serta keselamatan muatan energi secara real-time demi mewujudkan <span class="text-bold-blue">Zero Accident & High Reliability</span>.</p>
@@ -1030,6 +1069,67 @@
             </div>
         </section>
 
+        <!-- ===== NEWSLETTER STRIP ===== -->
+        <section class="nl-strip" id="newsletter">
+            <div class="container nl-strip__inner">
+                <!-- Left copy -->
+                <div class="nl-strip__copy">
+                    <div class="nl-strip__badge">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        NEWSLETTER
+                    </div>
+                    <h2 class="nl-strip__title">Dapatkan Update Industri Logistik Energi</h2>
+                    <p class="nl-strip__desc">Berita terbaru dan laporan eksklusif langsung ke inbox Anda. Gratis, tanpa spam.</p>
+                </div>
+
+                <!-- Right form -->
+                <form class="nl-strip__form" id="nl-strip-form" novalidate>
+                    <div class="nl-strip__fields">
+                        <input
+                            type="text"
+                            id="nl-strip-name"
+                            name="name"
+                            class="nl-strip__input"
+                            placeholder="Nama Anda"
+                            autocomplete="given-name"
+                        >
+                        <input
+                            type="email"
+                            id="nl-strip-email"
+                            name="email"
+                            class="nl-strip__input"
+                            placeholder="Email Anda"
+                            required
+                            autocomplete="email"
+                            aria-describedby="nl-strip-error"
+                        >
+                        <button type="submit" class="nl-strip__btn" id="nl-strip-submit">
+                            <span>Subscribe</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="nl-strip__error" id="nl-strip-error" role="alert" aria-live="polite"></p>
+                    <p class="nl-strip__success" id="nl-strip-success" hidden>
+                        ✓ Terima kasih! Anda telah berhasil berlangganan.
+                    </p>
+                    <p class="nl-strip__privacy">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Data Anda aman. Berhenti berlangganan kapan saja.
+                    </p>
+                </form>
+            </div>
+        </section>
+        <!-- ===== END NEWSLETTER STRIP ===== -->
+
         <footer class="footer-new">
             <div class="footer-new__watermark"></div>
 
@@ -1106,29 +1206,50 @@
 
                 <!-- Column 2 -->
                 <div class="footer-col-2">
-                    <h3>NAVIGASI UTAMA</h3>
-                    <ul class="footer-nav-list">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Bisnis</a></li>
-                        <li><a href="#">Tata Kelola</a></li>
-                        <li><a href="#">Hubungan Investor</a></li>
-                        <li><a href="#">Berita & Media</a></li>
-                        <li><a href="#">Karir</a></li>
+                    <h3>TENTANG KAMI</h3>
+                    <ul class="footer-nav-list grid-2cols">
+                        <li><a href="tentang-kami.html?tab=profil">Profil Perusahaan</a></li>
+                        <li><a href="tentang-kami.html?tab=visi-misi">Visi Misi</a></li>
+                        <li><a href="tentang-kami.html?tab=nilai">Tata Nilai</a></li>
+                        <li><a href="tentang-kami.html?tab=sejarah">Sejarah</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris">Dewan Komisaris</a></li>
+                        <li><a href="tentang-kami.html?tab=direksi">Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=struktur">Struktur Organisasi</a></li>
+                        <li><a href="tentang-kami.html?tab=sertifikat">Sertifikasi</a></li>
+                        <li><a href="tentang-kami.html?tab=penghargaan">Penghargaan</a></li>
+                    </ul>
+
+                    <h3 style="margin-top: 24px;">BISNIS</h3>
+                    <ul class="footer-nav-list grid-2cols">
+                        <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
+                        <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
+                        <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
+                        <li><a href="bisnis.html?tab=other">Lainnya</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 3 -->
                 <div class="footer-col-3">
-                    <h3>SITUS TERKAIT</h3>
-                    <ul class="footer-nav-list">
-                        <li><a href="#">Danantara</a></li>
-                        <li><a href="#">Pertamina (Persero)</a></li>
-                        <li><a href="#">Pertamina Patra Niaga</a></li>
-                        <li><a href="#">Kementerian BUMN</a></li>
-                        <li><a href="#">Kementerian ESDM RI</a></li>
-                        <li><a href="#">Kementerian Perhubungan RI</a></li>
-                        <li><a href="#">BKPM</a></li>
+                    <h3>HUBUNGAN INVESTOR</h3>
+                    <ul class="footer-nav-list grid-2cols">
+                        <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+                        <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+                        <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+                    </ul>
+
+                    <h3 style="margin-top: 24px;">BERITA &amp; MEDIA</h3>
+                    <ul class="footer-nav-list grid-2cols">
+                        <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+                        <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+                        <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+                        <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+                        <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+                    </ul>
+
+                    <h3 style="margin-top: 24px;">LAINNYA</h3>
+                    <ul class="footer-nav-list grid-2cols">
+                        <li><a href="sustainability.html">Sustainability</a></li>
+                        <li><a href="karir.html">Karir</a></li>
                     </ul>
                 </div>
 
@@ -1169,6 +1290,88 @@
         </footer>
     </main>
 
+
+    <!-- ===== NEWSLETTER POPUP MODAL ===== -->
+    <div id="nl-popup-overlay" class="nl-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="nl-popup-heading" aria-hidden="true">
+        <div class="nl-popup">
+            <!-- Close button -->
+            <button class="nl-popup-close" id="nl-popup-close" aria-label="Tutup popup newsletter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- LEFT PANEL: Branding -->
+            <div class="nl-popup-left">
+                <div class="nl-popup-left-grid"></div>
+                <div class="nl-popup-left-glow"></div>
+                <div class="nl-popup-left-content">
+                    <div class="nl-popup-icon-wrap">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                    </div>
+                    <p class="nl-popup-overline">NEWSLETTER EKSKLUSIF</p>
+                    <h2 class="nl-popup-title" id="nl-popup-heading">Dapatkan Insight Logistik Energi</h2>
+                    <p class="nl-popup-desc">Berita terbaru, laporan keberlanjutan, dan update proyek Patra Logistik langsung ke inbox Anda. Gratis, tanpa spam.</p>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: Form -->
+            <div class="nl-popup-right">
+                <div class="nl-popup-form-wrap" id="nl-popup-form-wrap">
+                    <h3 class="nl-popup-form-title">Daftar Sekarang</h3>
+                    <form class="nl-popup-form" id="nl-popup-form" novalidate>
+                        <!-- Honeypot -->
+                        <div style="display: none;" aria-hidden="true">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        <div class="nl-popup-input-group">
+                            <label for="nlp-email" class="sr-only">Alamat Email</label>
+                            <div class="nl-popup-input-wrapper">
+                                <svg class="nl-popup-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <input type="email" id="nlp-email" name="email" class="nl-popup-input" placeholder="nama@perusahaan.com" required>
+                            </div>
+                            <div class="nl-popup-error-msg" id="nlp-email-error"></div>
+                        </div>
+                        <button type="submit" class="nl-popup-btn" id="nlp-submit-btn">
+                            <span class="btn-text">Berlangganan</span>
+                            <div class="btn-loader">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                        <p class="nl-popup-disclaimer">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            Data Anda aman. Unsubscribe kapan saja.
+                        </p>
+                    </form>
+                    <button class="nl-popup-skip" id="nl-popup-skip">Tidak, terima kasih</button>
+                </div>
+
+                <!-- SUCCESS STATE -->
+                <div class="nl-popup-success" id="nl-popup-success" hidden>
+                    <div class="nl-popup-success-ring">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ACC32A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="nl-popup-success-title">Berhasil Terdaftar!</h3>
+                    <p class="nl-popup-success-desc">Cek inbox email Anda untuk konfirmasi. Selamat menikmati insight logistik energi terbaik dari Patra Logistik.</p>
+                    <button class="nl-popup-close-success" id="nl-popup-close-success">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END NEWSLETTER POPUP MODAL ===== -->
+
     <!-- Modal Tracking Glassmorphism -->
     <div id="tracking-modal" class="tracking-modal" aria-hidden="true" role="dialog">
         <div class="tracking-modal__backdrop"></div>
@@ -1180,6 +1383,101 @@
         </div>
     </div>
 
+
+    <!-- Newsletter Strip Handler -->
+    <script>
+    (function () {
+        const form    = document.getElementById('nl-strip-form');
+        const emailEl = document.getElementById('nl-strip-email');
+        const errorEl = document.getElementById('nl-strip-error');
+        const successEl = document.getElementById('nl-strip-success');
+        const btn     = document.getElementById('nl-strip-submit');
+        if (!form) return;
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            errorEl.textContent = '';
+
+            const email = emailEl.value.trim();
+            const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!email || !emailRe.test(email)) {
+                errorEl.textContent = 'Masukkan alamat email yang valid.';
+                emailEl.focus();
+                return;
+            }
+
+            // Simulate async submit
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            setTimeout(() => {
+                form.querySelector('.nl-strip__fields').style.display = 'none';
+                successEl.hidden = false;
+                btn.disabled = false;
+                btn.style.opacity = '';
+            }, 700);
+        });
+    })();
+    </script>
+
+    <!-- Hero Slideshow Controller -->
+    <script>
+    (function () {
+        const DURATION = 4000; // ms per slide
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots   = document.querySelectorAll('.hero-slide-dot');
+        const btnPrev = document.getElementById('hero-slide-prev');
+        const btnNext = document.getElementById('hero-slide-next');
+        let current = 0;
+        let timer   = null;
+
+        function goTo(index) {
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            dots[current].setAttribute('aria-selected', 'false');
+
+            current = (index + slides.length) % slides.length;
+
+            slides[current].classList.add('active');
+            // Re-trigger dot animation by removing & re-adding class
+            dots[current].classList.remove('active');
+            void dots[current].offsetWidth; // force reflow
+            dots[current].classList.add('active');
+            dots[current].setAttribute('aria-selected', 'true');
+        }
+
+        function startAuto() {
+            clearInterval(timer);
+            timer = setInterval(() => goTo(current + 1), DURATION);
+        }
+
+        function manualNav(index) {
+            goTo(index);
+            startAuto(); // reset interval after manual navigation
+        }
+
+        // Wire up buttons
+        if (btnPrev) btnPrev.addEventListener('click', () => manualNav(current - 1));
+        if (btnNext) btnNext.addEventListener('click', () => manualNav(current + 1));
+
+        // Wire up dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => manualNav(parseInt(dot.dataset.slide, 10)));
+        });
+
+        // Keyboard navigation (left / right arrows)
+        const heroSlideshow = document.getElementById('hero-slideshow');
+        if (heroSlideshow) {
+            heroSlideshow.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft')  manualNav(current - 1);
+                if (e.key === 'ArrowRight') manualNav(current + 1);
+            });
+        }
+
+        // Start auto-play
+        startAuto();
+    })();
+    </script>
 
     <script src="script.js?v=2"></script>
 </body>

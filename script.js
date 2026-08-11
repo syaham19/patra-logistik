@@ -355,60 +355,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const morDb = {
         "MOR-I": {
-            code: "MOR I",
-            title: "Marketing Operation Region I",
+            code: "Region I",
+            title: "Region I Sumatra Bagian Utara",
             subtitle: "Wilayah Layanan: Sumatra Bagian Utara",
             cities: ["Medan", "Banda Aceh", "Pekanbaru", "Batam", "Padang"],
-            stats: { milik: 184, kelola: 720, spbu: 450, pertashop: 210 }
+            stats: { milik: 184, kelola: 720, spbu: 450, pertashop: 210 },
+            projects: ["Distribusi BBM Industri & Marine", "Pengelolaan Terminal BBM", "Transportasi Darat Terpadu"]
         },
         "MOR-II": {
-            code: "MOR II",
-            title: "Marketing Operation Region II",
+            code: "Region II",
+            title: "Region II Sumatra Bagian Selatan",
             subtitle: "Wilayah Layanan: Sumatra Bagian Selatan",
             cities: ["Palembang", "Lampung", "Jambi", "Bengkulu", "Pangkalpinang"],
-            stats: { milik: 152, kelola: 610, spbu: 380, pertashop: 180 }
+            stats: { milik: 152, kelola: 610, spbu: 380, pertashop: 180 },
+            projects: ["Layanan Logistik Terintegrasi", "Pengelolaan Stasiun Pengisian bulk Elpiji", "Distribusi Produk Khusus"]
         },
         "MOR-III": {
-            code: "MOR III",
-            title: "Marketing Operation Region III",
+            code: "Region III",
+            title: "Region III Jawa Bagian Barat",
             subtitle: "Wilayah Layanan: Jawa Bagian Barat",
             cities: ["Jakarta", "Bandung", "Banten", "Depok", "Bekasi", "Cirebon"],
-            stats: { milik: 1092, kelola: 4439, spbu: 2853, pertashop: 1511 }
+            stats: { milik: 1092, kelola: 4439, spbu: 2853, pertashop: 1511 },
+            projects: ["Manajemen Transportasi BBM & LPG Jawa Bagian Barat", "Pengelolaan Fleet Management System terpadu", "Distribusi logistik industri & marine"]
         },
         "MOR-IV": {
-            code: "MOR IV",
-            title: "Marketing Operation Region IV",
+            code: "Region IV",
+            title: "Region IV Jawa Bagian Tengah",
             subtitle: "Wilayah Layanan: Jawa Bagian Tengah & DIY",
             cities: ["Semarang", "Yogyakarta", "Solo", "Cilacap", "Pekalongan", "Tegal"],
-            stats: { milik: 285, kelola: 1240, spbu: 820, pertashop: 490 }
+            stats: { milik: 285, kelola: 1240, spbu: 820, pertashop: 490 },
+            projects: ["Optimalisasi Jalur Distribusi Logistik", "Layanan Storage BBM dan Avtur", "Pengelolaan Truk Tangki BBM"]
         },
         "MOR-V": {
-            code: "MOR V",
-            title: "Marketing Operation Region V",
+            code: "Region V",
+            title: "Region V Jatimbalinus",
             subtitle: "Wilayah Layanan: Jawa Timur, Bali, & Nusa Tenggara",
             cities: ["Surabaya", "Malang", "Denpasar", "Mataram", "Kupang", "Madiun"],
-            stats: { milik: 390, kelola: 1580, spbu: 1100, pertashop: 680 }
+            stats: { milik: 390, kelola: 1580, spbu: 1100, pertashop: 680 },
+            projects: ["Distribusi Avtur Bandara", "Layanan Logistik Antar Pulau", "Transportasi Multi-Moda BBM"]
         },
         "MOR-VI": {
-            code: "MOR VI",
-            title: "Marketing Operation Region VI",
+            code: "Region VI",
+            title: "Region VI Kalimantan",
             subtitle: "Wilayah Layanan: Wilayah Kalimantan",
             cities: ["Balikpapan", "Banjarmasin", "Pontianak", "Samarinda", "Tarakan"],
-            stats: { milik: 120, kelola: 480, spbu: 320, pertashop: 150 }
+            stats: { milik: 120, kelola: 480, spbu: 320, pertashop: 150 },
+            projects: ["Layanan Logistik Pertambangan", "Distribusi BBM Industri Skala Besar", "Pengelolaan Terminal Transit"]
         },
         "MOR-VII": {
-            code: "MOR VII",
-            title: "Marketing Operation Region VII",
+            code: "Region VII",
+            title: "Region VII Sulawesi",
             subtitle: "Wilayah Layanan: Wilayah Sulawesi",
             cities: ["Makassar", "Manado", "Palu", "Kendari", "Gorontalo"],
-            stats: { milik: 95, kelola: 380, spbu: 250, pertashop: 120 }
+            stats: { milik: 95, kelola: 380, spbu: 250, pertashop: 120 },
+            projects: ["Distribusi Bahan Bakar Industri dan Avtur", "Pengelolaan Logistik Berbasis Laut", "Layanan Distribusi Pelosok"]
         },
         "MOR-VIII": {
-            code: "MOR VIII",
-            title: "Marketing Operation Region VIII",
+            code: "Region VIII",
+            title: "Region VIII Maluku Papua",
             subtitle: "Wilayah Layanan: Maluku & Papua",
             cities: ["Sorong", "Jayapura", "Ambon", "Ternate", "Manokwari", "Merauke"],
-            stats: { milik: 85, kelola: 310, spbu: 180, pertashop: 95 }
+            stats: { milik: 85, kelola: 310, spbu: 180, pertashop: 95 },
+            projects: ["Distribusi Energi Daerah 3T", "Layanan Logistik Udara dan Laut", "Manajemen Storage Terminal BBM"]
         }
     };
 
@@ -471,6 +479,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
+            // Update project list
+            const projectList = document.getElementById("panel-mor-projects-list");
+            if (projectList && data.projects) {
+                projectList.innerHTML = "";
+                data.projects.forEach(proj => {
+                    const li = document.createElement("li");
+                    li.textContent = proj;
+                    projectList.appendChild(li);
+                });
+            }
+
             // Fade back in
             if (panelInfoBlock) {
                 panelInfoBlock.style.opacity = "1";
@@ -515,8 +534,40 @@ document.addEventListener("DOMContentLoaded", () => {
             if (statKelolaEl) statKelolaEl.textContent = defaultData.stats.kelola.toLocaleString("id-ID");
             if (statSpbuEl) statSpbuEl.textContent = defaultData.stats.spbu.toLocaleString("id-ID");
             if (statPertashopEl) statPertashopEl.textContent = defaultData.stats.pertashop.toLocaleString("id-ID");
+
+            // Pre-populate project list for default region
+            const projectList = document.getElementById("panel-mor-projects-list");
+            if (projectList && defaultData.projects) {
+                projectList.innerHTML = "";
+                defaultData.projects.forEach(proj => {
+                    const li = document.createElement("li");
+                    li.textContent = proj;
+                    projectList.appendChild(li);
+                });
+            }
         }
     }
+
+    // Map Accordion Toggle
+    const projectBtn = document.getElementById('panel-mor-project-btn');
+    const projectContent = document.getElementById('panel-mor-project-content');
+    if (projectBtn && projectContent) {
+        projectBtn.addEventListener('click', () => {
+            const isExpanded = projectBtn.getAttribute('aria-expanded') === 'true';
+            projectBtn.setAttribute('aria-expanded', String(!isExpanded));
+            projectContent.classList.toggle('open');
+        });
+    }
+
+    // Reset accordion closed when switching regions
+    morMarkers.forEach(marker => {
+        marker.addEventListener('click', () => {
+            if (projectBtn) projectBtn.setAttribute('aria-expanded', 'false');
+            if (projectContent) projectContent.classList.remove('open');
+        });
+    });
+
+
 
 
 
@@ -741,6 +792,84 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentMapZoom -= 0.5;
                 mapWrapper.style.width = `calc(90% * ${currentMapZoom})`;
                 mapWrapper.style.maxWidth = `${900 * currentMapZoom}px`;
+            }
+        });
+    }
+});
+
+/* =================================================================
+   NEWSLETTER POPUP MODAL (Session Gated)
+   ================================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const popupOverlay = document.getElementById('nl-popup-overlay');
+    if (!popupOverlay) return;
+
+    const btnClose = document.getElementById('nl-popup-close');
+    const btnSkip = document.getElementById('nl-popup-skip');
+    const btnCloseSuccess = document.getElementById('nl-popup-close-success');
+    const form = document.getElementById('nl-popup-form');
+    const emailInput = document.getElementById('nlp-email');
+    const submitBtn = document.getElementById('nlp-submit-btn');
+    const formWrap = document.getElementById('nl-popup-form-wrap');
+    const successWrap = document.getElementById('nl-popup-success');
+    const errorMsg = document.getElementById('nlp-email-error');
+
+    // Check session storage
+    if (!sessionStorage.getItem('patra_newsletter_seen')) {
+        // Show after 1.5s
+        setTimeout(() => {
+            popupOverlay.classList.add('is-open');
+        }, 1500);
+    }
+
+    const closePopup = () => {
+        popupOverlay.classList.remove('is-open');
+        sessionStorage.setItem('patra_newsletter_seen', 'true');
+    };
+
+    if (btnClose) btnClose.addEventListener('click', closePopup);
+    if (btnSkip) btnSkip.addEventListener('click', closePopup);
+    if (btnCloseSuccess) btnCloseSuccess.addEventListener('click', closePopup);
+
+    // Close on click outside
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            closePopup();
+        }
+    });
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                emailInput.classList.add('is-error');
+                errorMsg.textContent = "Format email tidak valid";
+                return;
+            }
+
+            emailInput.classList.remove('is-error');
+            errorMsg.textContent = "";
+
+            // Simulate loading
+            submitBtn.classList.add('is-loading');
+
+            setTimeout(() => {
+                submitBtn.classList.remove('is-loading');
+                formWrap.hidden = true;
+                successWrap.hidden = false;
+                sessionStorage.setItem('patra_newsletter_seen', 'true');
+            }, 1200);
+        });
+    }
+
+    if (emailInput) {
+        emailInput.addEventListener('input', () => {
+            if (emailInput.classList.contains('is-error')) {
+                emailInput.classList.remove('is-error');
+                errorMsg.textContent = "";
             }
         });
     }

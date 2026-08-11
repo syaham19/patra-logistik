@@ -231,11 +231,20 @@
             min-width: 0;
         }
         .about-tab-content {
-            display: none;
+            display: block;
+            margin-bottom: 64px;
+            padding-bottom: 64px;
+            border-bottom: 1px solid #F1F5F9;
+            scroll-margin-top: 160px; /* offset for header + subnav */
+            animation: fadeIn 0.5s ease;
+        }
+        .about-tab-content:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
         }
         .about-tab-content.active {
-            display: block;
-            animation: fadeIn 0.4s ease;
+            /* Kept for JS active state if needed */
         }
 
         @keyframes fadeIn {
@@ -924,14 +933,8 @@
                         <li><a href="tentang-kami.html?tab=penghargaan">Penghargaan</a></li>
                     </ul>
                 </li>
-                <li class="has-dropdown">
-                    <a href="bisnis.html" class="nav-link active" data-text="Bisnis">Bisnis</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
-                        <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
-                        <li><a href="bisnis.html?tab=other">Lainnya</a></li>
-                        <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
-                    </ul>
+                <li>
+                    <a href="bisnis.html" class="nav-link" data-text="Bisnis">Bisnis</a>
                 </li>
                 <li class="has-dropdown">
                     <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor">Hubungan Investor</a>
@@ -1937,26 +1940,7 @@
                             </div>
 
                             <!-- Indonesia Vector Map with 30 Depots -->
-                            <div class="inv-map-container" style="height: 420px; border:none; background-color:transparent; box-shadow:none;">
-                                <!-- Inline Stylized Indonesia Map -->
-                                <svg viewBox="0 0 800 350" style="width: 100%; height: 100%; fill: #E2E8F0; stroke: #CBD5E1; stroke-width: 1.5; opacity: 0.8; position: absolute; top: 0; left: 0; pointer-events: none;">
-                                    <!-- Sumatra -->
-                                    <path d="M50,80 L170,180 L160,205 L145,215 L35,115 C20,95 30,85 50,80 Z" />
-                                    <!-- Java -->
-                                    <path d="M150,230 L310,255 L300,268 L145,242 Z" />
-                                    <!-- Kalimantan -->
-                                    <path d="M220,100 L290,100 L320,150 L280,200 L200,180 L195,140 Z" />
-                                    <!-- Sulawesi -->
-                                    <path d="M340,115 L385,110 L380,130 L420,130 L400,155 L370,155 L360,185 L345,160 Z" />
-                                    <!-- Papua -->
-                                    <path d="M510,140 L590,135 L615,190 L580,200 L550,170 L510,165 Z" />
-                                    <!-- Small Islands (Bali, Nusa Tenggara, Maluku) -->
-                                    <circle cx="325" cy="260" r="4" />
-                                    <circle cx="340" cy="261" r="4" />
-                                    <circle cx="360" cy="262" r="5" />
-                                    <circle cx="385" cy="263" r="6" />
-                                    <circle cx="410" cy="264" r="5" />
-                                </svg>
+                            <div class="inv-map-container" style="position: relative; width: 100%; aspect-ratio: 674 / 283; margin: 0 auto; border:none; background: url('./assets/id%201.svg') no-repeat center center; background-size: 100% 100%; box-shadow:none;">
                                 
                                 <!-- 30 Depot dot listings -->
                                 <div class="inv-map-dot" style="left: 6.5%; top: 12%;" data-tooltip="Sabang Depot"></div>
@@ -2144,31 +2128,12 @@
             }
 
             function switchTab(target) {
-                // Update Desktop buttons
-                menuBtns.forEach(btn => {
-                    if (btn.getAttribute("data-target") === target) {
-                        btn.classList.add("active");
-                    } else {
-                        btn.classList.remove("active");
-                    }
-                });
-
-                // Show Content Pane
-                tabContents.forEach(content => {
-                    if (content.id === `tab-${target}`) {
-                        content.classList.add("active");
-                    } else {
-                        content.classList.remove("active");
-                    }
-                });
-
                 // Close drawer
                 closeSidebar();
 
-                // Scroll to top of content
-                const contentPane = document.querySelector(".about-content-pane");
-                if (contentPane) {
-                    contentPane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const targetSection = document.getElementById(`tab-${target}`);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
                 }
 
                 // Center subtabs when parent tab becomes visible
@@ -2184,11 +2149,37 @@
                 });
             });
 
+            // Intersection Observer to update active menu on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetId = entry.target.id.replace('tab-', '');
+                        
+                        // Update active class on menu buttons
+                        menuBtns.forEach(btn => {
+                            if (btn.getAttribute("data-target") === targetId) {
+                                btn.classList.add("active");
+                            } else {
+                                btn.classList.remove("active");
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            tabContents.forEach(tab => observer.observe(tab));
+
             // Check URL query parameters on load to support direct tab linking
             const urlParams = new URLSearchParams(window.location.search);
             const tabParam = urlParams.get('tab');
             if (tabParam) {
-                switchTab(tabParam);
+                setTimeout(() => switchTab(tabParam), 300);
             }
 
             // Sub-tabs switching inside Transportasi
