@@ -5207,6 +5207,10 @@ img {
     animation: nl-fade-in 0.4s ease forwards;
 }
 
+.nl-popup-success[hidden] {
+    display: none !important;
+}
+
 @keyframes nl-fade-in {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }

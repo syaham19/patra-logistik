@@ -914,6 +914,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load saved language or default to 'id'
     const currentLang = localStorage.getItem('patra_lang') || 'id';
 
+    function applyLanguage(lang) {
+        if (typeof translations === 'undefined') return;
+        const dict = translations[lang];
+        if (!dict) return;
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key]) {
+                if (el.tagName.toLowerCase() === 'input' && el.hasAttribute('placeholder')) {
+                    el.setAttribute('placeholder', dict[key]);
+                } else {
+                    el.innerHTML = dict[key];
+                }
+            }
+        });
+
+        // Update data-text attributes for hover effects on nav links
+        document.querySelectorAll('.nav-link[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key]) {
+                el.setAttribute('data-text', dict[key]);
+            }
+        });
+    }
+
+    // Initial apply
+    applyLanguage(currentLang);
+
     // Set initial active state
     langBtns.forEach(btn => {
         if (btn.dataset.lang === currentLang) {
@@ -936,12 +964,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Save preference
             localStorage.setItem('patra_lang', selectedLang);
 
-            // TODO: Implement actual text translation logic here
-            // e.g., reloading page with query param, or updating data-i18n attributes
-            console.log(`Language switched to: ${selectedLang}`);
-            
-            // For now, reload the page to apply changes if a backend/framework was handling it
-            // window.location.reload(); 
+            // Apply new language
+            applyLanguage(selectedLang);
         });
     });
 });
