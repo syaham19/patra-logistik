@@ -904,3 +904,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+/* =================================================================
+   LANGUAGE SWITCHER
+   ================================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const langBtns = document.querySelectorAll('.lang-btn');
+    if (!langBtns.length) return;
+
+    // Load saved language or default to 'id'
+    const currentLang = localStorage.getItem('patra_lang') || 'id';
+
+    // Set initial active state
+    langBtns.forEach(btn => {
+        if (btn.dataset.lang === currentLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // Handle clicks
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const selectedLang = e.target.dataset.lang;
+            if (selectedLang === localStorage.getItem('patra_lang')) return;
+
+            // Update UI
+            langBtns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            // Save preference
+            localStorage.setItem('patra_lang', selectedLang);
+
+            // TODO: Implement actual text translation logic here
+            // e.g., reloading page with query param, or updating data-i18n attributes
+            console.log(`Language switched to: ${selectedLang}`);
+            
+            // For now, reload the page to apply changes if a backend/framework was handling it
+            // window.location.reload(); 
+        });
+    });
+});

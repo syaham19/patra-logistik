@@ -234,6 +234,54 @@ header.scrolled .logo-image {
     transform: translateY(0);
     opacity: 1;
 }
+
+/* Nav CTA & Language Switch */
+.nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+}
+.lang-divider {
+    color: rgba(255, 255, 255, 0.3);
+}
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+.lang-btn:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+.lang-btn.active {
+    color: #ffffff;
+}
+
+header.scrolled .lang-switch {
+    color: rgba(0, 0, 0, 0.5);
+}
+header.scrolled .lang-divider {
+    color: rgba(0, 0, 0, 0.2);
+}
+header.scrolled .lang-btn.active {
+    color: var(--primary-blue);
+}
+header.scrolled .lang-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
 .menu-toggle {
     display: none;
     background: transparent;
