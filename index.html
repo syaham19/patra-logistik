@@ -7,7 +7,7 @@
     <title>Patra Logistik - Slicing Framework</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 
 <body class="loading">
@@ -87,29 +87,29 @@
         <!-- Hero Slideshow -->
         <div class="hero-slideshow" id="hero-slideshow" aria-label="Hero Slideshow" role="region">
             <div class="hero-slides">
-                <div class="hero-slide active" style="background-image: url('assets/Landscape MT.png');"></div>
-                <div class="hero-slide" style="background-image: url('assets/Mobil Tangki Maos.png');"></div>
-                <div class="hero-slide" style="background-image: url('assets/LPR00887 (1).png');"></div>
+                <div class="hero-slide active" style="background-image: url('assets/Landscape%20MT.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/Mobil%20Tangki%20Maos.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/LPR00887%20(1).png');"></div>
                 <div class="hero-slide" style="background-image: url('assets/DSC00198.png');"></div>
-                <div class="hero-slide" style="background-image: url('assets/gambar karyawan.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/gambar%20karyawan.png');"></div>
             </div>
+        </div>
 
-            <!-- Prev / Next Buttons -->
-            <button class="hero-slide-btn hero-slide-btn--prev" id="hero-slide-prev" aria-label="Slide sebelumnya">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </button>
-            <button class="hero-slide-btn hero-slide-btn--next" id="hero-slide-next" aria-label="Slide berikutnya">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
-            </button>
+        <!-- Prev / Next Buttons (outside slideshow div, anchored to .hero) -->
+        <button class="hero-slide-btn hero-slide-btn--prev" id="hero-slide-prev" aria-label="Slide sebelumnya">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="hero-slide-btn hero-slide-btn--next" id="hero-slide-next" aria-label="Slide berikutnya">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+        </button>
 
-            <!-- Dot Indicators -->
-            <div class="hero-slide-indicators" role="tablist" aria-label="Pilih slide">
-                <button class="hero-slide-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
-                <button class="hero-slide-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
-                <button class="hero-slide-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
-                <button class="hero-slide-dot" data-slide="3" role="tab" aria-selected="false" aria-label="Slide 4"></button>
-                <button class="hero-slide-dot" data-slide="4" role="tab" aria-selected="false" aria-label="Slide 5"></button>
-            </div>
+        <!-- Dot Indicators (outside slideshow div, anchored to .hero) -->
+        <div class="hero-slide-indicators" role="tablist" aria-label="Pilih slide">
+            <button class="hero-slide-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+            <button class="hero-slide-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+            <button class="hero-slide-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+            <button class="hero-slide-dot" data-slide="3" role="tab" aria-selected="false" aria-label="Slide 4"></button>
+            <button class="hero-slide-dot" data-slide="4" role="tab" aria-selected="false" aria-label="Slide 5"></button>
         </div>
 
         <div class="container">

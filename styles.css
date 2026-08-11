@@ -266,9 +266,11 @@ header.scrolled .logo-image {
     width: 100%;
     height: 100%;
     z-index: 0;
+    pointer-events: none; /* let clicks through to hero content */
 }
 .hero-slides {
-    position: relative;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
 }
@@ -289,7 +291,7 @@ header.scrolled .logo-image {
     visibility: visible;
 }
 
-/* Indicators */
+/* Indicators — anchored to .hero (position:relative) */
 .hero-slide-indicators {
     position: absolute;
     bottom: 40px;
@@ -297,17 +299,19 @@ header.scrolled .logo-image {
     transform: translateX(-50%);
     display: flex;
     gap: 12px;
-    z-index: 10;
+    z-index: 5; /* above hero::before (z-index:1) and slideshow (z-index:0) */
+    pointer-events: all;
 }
 .hero-slide-dot {
     width: 48px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.35);
     border: none;
     border-radius: 2px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    padding: 0;
 }
 .hero-slide-dot::after {
     content: '';
@@ -321,7 +325,7 @@ header.scrolled .logo-image {
     transition: width 4s linear;
 }
 
-/* Navigation Buttons */
+/* Navigation Buttons — anchored to .hero (position:relative) */
 .hero-slide-btn {
     position: absolute;
     top: 50%;
@@ -337,13 +341,14 @@ header.scrolled .logo-image {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 10;
+    z-index: 5; /* above hero::before (z-index:1) */
     transition: all 0.3s ease;
+    pointer-events: all;
 }
 .hero-slide-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 .hero-slide-btn--prev { left: 40px; }
 .hero-slide-btn--next { right: 40px; }
@@ -353,6 +358,7 @@ header.scrolled .logo-image {
     .hero-slide-indicators { bottom: 20px; }
     .hero-slide-dot { width: 32px; }
 }
+
 .hero .container {
     position: relative;
     height: 100%;
