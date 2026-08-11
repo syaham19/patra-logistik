@@ -814,18 +814,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const successWrap = document.getElementById('nl-popup-success');
     const errorMsg = document.getElementById('nlp-email-error');
 
-    // Check session storage
-    if (!sessionStorage.getItem('patra_newsletter_seen')) {
-        // Show after 1.5s
-        setTimeout(() => {
-            popupOverlay.classList.add('is-open');
-        }, 1500);
-    }
+    // Always ensure form is visible and success is hidden when popup opens
+    const resetToForm = () => {
+        if (formWrap) formWrap.hidden = false;
+        if (successWrap) successWrap.hidden = true;
+        if (emailInput) emailInput.value = '';
+        if (errorMsg) errorMsg.textContent = '';
+        if (emailInput) emailInput.classList.remove('is-error');
+    };
+
+    const openPopup = () => {
+        resetToForm();
+        popupOverlay.classList.add('is-open');
+        popupOverlay.setAttribute('aria-hidden', 'false');
+    };
 
     const closePopup = () => {
         popupOverlay.classList.remove('is-open');
+        popupOverlay.setAttribute('aria-hidden', 'true');
         sessionStorage.setItem('patra_newsletter_seen', 'true');
     };
+
+    // Show after 4s delay, only once per session
+    if (!sessionStorage.getItem('patra_newsletter_seen')) {
+        setTimeout(openPopup, 4000);
+    }
 
     if (btnClose) btnClose.addEventListener('click', closePopup);
     if (btnSkip) btnSkip.addEventListener('click', closePopup);
@@ -834,6 +847,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close on click outside
     popupOverlay.addEventListener('click', (e) => {
         if (e.target === popupOverlay) {
+            closePopup();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popupOverlay.classList.contains('is-open')) {
             closePopup();
         }
     });
@@ -874,3 +894,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
