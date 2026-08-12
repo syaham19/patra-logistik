@@ -231,20 +231,11 @@
             min-width: 0;
         }
         .about-tab-content {
-            display: block;
-            margin-bottom: 64px;
-            padding-bottom: 64px;
-            border-bottom: 1px solid #F1F5F9;
-            scroll-margin-top: 160px; /* offset for header + subnav */
-            animation: fadeIn 0.5s ease;
-        }
-        .about-tab-content:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
         }
         .about-tab-content.active {
-            /* Kept for JS active state if needed */
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -2131,10 +2122,33 @@
                 // Close drawer
                 closeSidebar();
 
+                // Hide all tabs and remove active class from all buttons
+                tabContents.forEach(tab => tab.classList.remove("active"));
+                menuBtns.forEach(btn => btn.classList.remove("active"));
+
+                // Show target tab
                 const targetSection = document.getElementById(`tab-${target}`);
                 if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    targetSection.classList.add("active");
                 }
+
+                // Set active class on corresponding buttons
+                menuBtns.forEach(btn => {
+                    if (btn.getAttribute("data-target") === target) {
+                        btn.classList.add("active");
+                    }
+                });
+
+                // Update URL parameter without reloading
+                const url = new URL(window.location);
+                url.searchParams.set('tab', target);
+                window.history.pushState({}, '', url);
+
+                // Scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
 
                 // Center subtabs when parent tab becomes visible
                 setTimeout(() => {
@@ -2149,37 +2163,13 @@
                 });
             });
 
-            // Intersection Observer to update active menu on scroll
-            const observerOptions = {
-                root: null,
-                rootMargin: '-20% 0px -60% 0px',
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const targetId = entry.target.id.replace('tab-', '');
-                        
-                        // Update active class on menu buttons
-                        menuBtns.forEach(btn => {
-                            if (btn.getAttribute("data-target") === targetId) {
-                                btn.classList.add("active");
-                            } else {
-                                btn.classList.remove("active");
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            tabContents.forEach(tab => observer.observe(tab));
-
             // Check URL query parameters on load to support direct tab linking
             const urlParams = new URLSearchParams(window.location.search);
             const tabParam = urlParams.get('tab');
             if (tabParam) {
-                setTimeout(() => switchTab(tabParam), 300);
+                setTimeout(() => switchTab(tabParam), 50);
+            } else {
+                setTimeout(() => switchTab('transportasi'), 50);
             }
 
             // Sub-tabs switching inside Transportasi
