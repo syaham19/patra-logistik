@@ -908,8 +908,13 @@ document.addEventListener('DOMContentLoaded', () => {
    LANGUAGE SWITCHER
    ================================================================= */
 document.addEventListener('DOMContentLoaded', () => {
-    const langBtns = document.querySelectorAll('.lang-btn');
-    if (!langBtns.length) return;
+    const langSwitch = document.querySelector('.lang-switch');
+    const langBtnCurrent = document.getElementById('lang-btn-current');
+    const currentLangText = document.getElementById('current-lang-text');
+    const currentLangFlag = document.getElementById('current-lang-flag');
+    const langOptions = document.querySelectorAll('.lang-option');
+    
+    if (!langSwitch || !langBtnCurrent) return;
 
     // Load saved language or default to 'id'
     const currentLang = localStorage.getItem('patra_lang') || 'id';
@@ -939,27 +944,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function updateSwitcherUI(lang) {
+        if (lang === 'en') {
+            currentLangText.textContent = 'ENG';
+            currentLangFlag.src = 'https://flagcdn.com/w20/gb.png';
+            currentLangFlag.alt = 'EN Flag';
+        } else {
+            currentLangText.textContent = 'INA';
+            currentLangFlag.src = 'https://flagcdn.com/w20/id.png';
+            currentLangFlag.alt = 'ID Flag';
+        }
+    }
+
     // Initial apply
     applyLanguage(currentLang);
+    updateSwitcherUI(currentLang);
 
-    // Set initial active state
-    langBtns.forEach(btn => {
-        if (btn.dataset.lang === currentLang) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
+    // Toggle dropdown
+    langBtnCurrent.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langSwitch.classList.toggle('open');
+        const isOpen = langSwitch.classList.contains('open');
+        langBtnCurrent.setAttribute('aria-expanded', isOpen);
     });
 
-    // Handle clicks
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const selectedLang = e.target.dataset.lang;
-            if (selectedLang === localStorage.getItem('patra_lang')) return;
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+        langSwitch.classList.remove('open');
+        langBtnCurrent.setAttribute('aria-expanded', 'false');
+    });
 
-            // Update UI
-            langBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
+    // Handle clicks on options
+    langOptions.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const btnTarget = e.currentTarget;
+            const selectedLang = btnTarget.dataset.lang;
+            if (selectedLang === localStorage.getItem('patra_lang')) return;
 
             // Save preference
             localStorage.setItem('patra_lang', selectedLang);
@@ -979,6 +999,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 // Apply new language
                 applyLanguage(selectedLang);
+                updateSwitcherUI(selectedLang);
                 
                 // Fade out
                 loaderOverlay.style.opacity = '0';
