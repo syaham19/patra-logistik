@@ -230,20 +230,11 @@
             /* overflow: hidden; Removed to allow position: sticky to work */
         }
         .about-tab-content {
-            display: block;
-            margin-bottom: 64px;
-            padding-bottom: 64px;
-            border-bottom: 1px solid #F1F5F9;
-            scroll-margin-top: 160px; /* offset for header + subnav */
-            animation: aboutFadeIn 0.5s ease;
-        }
-        .about-tab-content:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
+            display: none;
+            animation: aboutFadeIn 0.4s ease forwards;
         }
         .about-tab-content.active {
-            /* Kept for JS active state if needed */
+            display: block;
         }
         #tab-visi-misi {
             background: linear-gradient(to top, #F1F5F9 0%, #FFFFFF 100%);
@@ -2440,10 +2431,22 @@
                 // Close drawer if open
                 closeSidebar();
                 
+                // Hide all tabs and remove active class from all buttons
+                tabContents.forEach(tab => tab.classList.remove("active"));
+                menuBtns.forEach(btn => btn.classList.remove("active"));
+
+                // Show target tab
                 const targetSection = document.getElementById(`tab-${target}`);
                 if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    targetSection.classList.add("active");
                 }
+
+                // Set active class on corresponding buttons
+                menuBtns.forEach(btn => {
+                    if (btn.getAttribute("data-target") === target) {
+                        btn.classList.add("active");
+                    }
+                });
 
                 // Auto flip animation for 'Tata Nilai' tab
                 if (target === 'nilai' && !window.hasAutoFlippedNilai) {
@@ -2458,6 +2461,17 @@
                         }, 600 + (i * 150));
                     });
                 }
+
+                // Update URL parameter without reloading
+                const url = new URL(window.location);
+                url.searchParams.set('tab', target);
+                window.history.pushState({}, '', url);
+
+                // Scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
 
             menuBtns.forEach(btn => {
@@ -2467,51 +2481,13 @@
                 });
             });
 
-            // Intersection Observer to update active menu on scroll
-            const observerOptions = {
-                root: null,
-                rootMargin: '-20% 0px -60% 0px',
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const targetId = entry.target.id.replace('tab-', '');
-                        
-                        // Update active class on menu buttons
-                        menuBtns.forEach(btn => {
-                            if (btn.getAttribute("data-target") === targetId) {
-                                btn.classList.add("active");
-                            } else {
-                                btn.classList.remove("active");
-                            }
-                        });
-
-                        // Trigger auto flip for nilai if scrolled into view
-                        if (targetId === 'nilai' && !window.hasAutoFlippedNilai) {
-                            window.hasAutoFlippedNilai = true;
-                            const cards = document.querySelectorAll('#tab-nilai .akhlak-card');
-                            cards.forEach((card, i) => {
-                                setTimeout(() => {
-                                    card.classList.add('auto-flip');
-                                    setTimeout(() => {
-                                        card.classList.remove('auto-flip');
-                                    }, 800);
-                                }, 600 + (i * 150));
-                            });
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            tabContents.forEach(tab => observer.observe(tab));
-
             // Check URL query parameters on load to support direct tab linking
             const urlParams = new URLSearchParams(window.location.search);
             const tabParam = urlParams.get('tab');
             if (tabParam) {
-                setTimeout(() => switchTab(tabParam), 300); // Wait a bit for layout
+                setTimeout(() => switchTab(tabParam), 50);
+            } else {
+                setTimeout(() => switchTab('profil'), 50);
             }
 
             // Scroll Reveal Animation Observer
