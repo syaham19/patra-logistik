@@ -1,5 +1,6 @@
 const translations = {
     id: {
+        "kembali_berita": "Kembali ke Daftar Berita",
         // Navbar
         "nav.about": "Tentang Kami",
         "nav.business": "Bisnis",
@@ -114,6 +115,7 @@ const translations = {
         "footer.copyright": "© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang."
     },
     en: {
+        "kembali_berita": "Back to News List",
         // Navbar
         "nav.about": "About Us",
         "nav.business": "Business",
