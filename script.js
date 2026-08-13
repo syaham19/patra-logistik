@@ -359,28 +359,76 @@ document.addEventListener("DOMContentLoaded", () => {
     const statKrpEl = document.getElementById("stat-krp");
 
     const morDb = {
-        "MOR-I": {stats: {retail: 1, industrial: 27, gas: 0, vmi: 9, aviation: 1, lubricants: 4, warehouse: 4, fuelterm: 0, krp: 5},
+        "MOR-I": {
+            code: "Region I",
+            title: "Region I Sumatra Bagian Utara",
+            subtitle: "Wilayah Layanan: Sumatra Bagian Utara",
+            cities: ["Medan", "Banda Aceh", "Pekanbaru", "Batam", "Padang"],
+            // Data: Retail=1, Industrial=27, VMI=9, Total=51
+            stats: {retail: 1, industrial: 27, gas: 0, vmi: 9, aviation: 1, lubricants: 4, warehouse: 4, fuelterm: 0, krp: 5},
             projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 27 Project", "Vendor Managed Inventory: 9 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 4 Project", "Warehouse Service: 4 Project", "KRP: 5 Project"]
         },
-        "MOR-II": {stats: {retail: 7, industrial: 12, gas: 0, vmi: 12, aviation: 1, lubricants: 1, warehouse: 4, fuelterm: 0, krp: 1},
+        "MOR-II": {
+            code: "Region II",
+            title: "Region II Sumatra Bagian Selatan",
+            subtitle: "Wilayah Layanan: Sumatra Bagian Selatan",
+            cities: ["Palembang", "Lampung", "Jambi", "Bengkulu", "Pangkalpinang"],
+            // Data: Retail=7, Industrial=12, VMI=12, Total=38
+            stats: {retail: 7, industrial: 12, gas: 0, vmi: 12, aviation: 1, lubricants: 1, warehouse: 4, fuelterm: 0, krp: 1},
             projects: ["Retail Fuel Transport: 7 Project", "Industrial Fuel Transport (Franco): 12 Project", "Vendor Managed Inventory: 12 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 1 Project", "Warehouse Service: 4 Project", "KRP: 1 Project"]
         },
-        "MOR-III": {stats: {retail: 5, industrial: 11, gas: 5, vmi: 12, aviation: 0, lubricants: 6, warehouse: 2, fuelterm: 0, krp: 2},
+        "MOR-III": {
+            code: "Region III",
+            title: "Region III Jawa Bagian Barat",
+            subtitle: "Wilayah Layanan: Jawa Bagian Barat",
+            cities: ["Jakarta", "Bandung", "Banten", "Depok", "Bekasi", "Cirebon"],
+            // Data: Retail=5, Industrial=11, VMI=12, Total=43
+            stats: {retail: 5, industrial: 11, gas: 5, vmi: 12, aviation: 0, lubricants: 6, warehouse: 2, fuelterm: 0, krp: 2},
             projects: ["Retail Fuel Transport: 5 Project", "Industrial Fuel Transport (Franco): 11 Project", "Gas Transport: 5 Project", "Vendor Managed Inventory: 12 Lokasi", "Lubricants Transport: 6 Project", "Warehouse Service: 2 Project", "KRP: 2 Project"]
         },
-        "MOR-IV": {stats: {retail: 7, industrial: 91, gas: 3, vmi: 14, aviation: 0, lubricants: 0, warehouse: 1, fuelterm: 0, krp: 7},
+        "MOR-IV": {
+            code: "Region IV",
+            title: "Region IV Jawa Bagian Tengah",
+            subtitle: "Wilayah Layanan: Jawa Bagian Tengah & DIY",
+            cities: ["Semarang", "Yogyakarta", "Solo", "Cilacap", "Pekalongan", "Tegal"],
+            // Data: Retail=7, Industrial=91, VMI=14, Total=123
+            stats: {retail: 7, industrial: 91, gas: 3, vmi: 14, aviation: 0, lubricants: 0, warehouse: 1, fuelterm: 0, krp: 7},
             projects: ["Retail Fuel Transport: 7 Project", "Industrial Fuel Transport (Franco): 91 Project", "Gas Transport: 3 Project", "Vendor Managed Inventory: 14 Lokasi", "Warehouse Service: 1 Project", "KRP: 7 Project"]
         },
-        "MOR-V": {stats: {retail: 2, industrial: 13, gas: 2, vmi: 3, aviation: 7, lubricants: 2, warehouse: 0, fuelterm: 6, krp: 1},
+        "MOR-V": {
+            code: "Region V",
+            title: "Region V Jatimbalinus",
+            subtitle: "Wilayah Layanan: Jawa Timur, Bali, & Nusa Tenggara",
+            cities: ["Surabaya", "Malang", "Denpasar", "Mataram", "Kupang", "Madiun"],
+            // Data: Retail=2, Industrial=13, VMI=3, Total=36
+            stats: {retail: 2, industrial: 13, gas: 2, vmi: 3, aviation: 7, lubricants: 2, warehouse: 0, fuelterm: 6, krp: 1},
             projects: ["Retail Fuel Transport: 2 Project", "Industrial Fuel Transport (Franco): 13 Project", "Gas Transport: 2 Project", "Vendor Managed Inventory: 3 Lokasi", "Aviation Fuel Terminal: 7 Project", "Lubricants Transport: 2 Project", "Fuel Terminal: 6 Titik", "KRP: 1 Project"]
         },
-        "MOR-VI": {stats: {retail: 1, industrial: 7, gas: 1, vmi: 2, aviation: 1, lubricants: 2, warehouse: 0, fuelterm: 1, krp: 2},
+        "MOR-VI": {
+            code: "Region VI",
+            title: "Region VI Kalimantan",
+            subtitle: "Wilayah Layanan: Wilayah Kalimantan",
+            cities: ["Balikpapan", "Banjarmasin", "Pontianak", "Samarinda", "Tarakan"],
+            // Data: Retail=1, Industrial=7, VMI=2, Total=17
+            stats: {retail: 1, industrial: 7, gas: 1, vmi: 2, aviation: 1, lubricants: 2, warehouse: 0, fuelterm: 1, krp: 2},
             projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 7 Project", "Gas Transport: 1 Project", "Vendor Managed Inventory: 2 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 2 Project", "Fuel Terminal: 1 Titik", "KRP: 2 Project"]
         },
-        "MOR-VII": {stats: {retail: 0, industrial: 7, gas: 1, vmi: 1, aviation: 0, lubricants: 1, warehouse: 0, fuelterm: 13, krp: 1},
+        "MOR-VII": {
+            code: "Region VII",
+            title: "Region VII Sulawesi",
+            subtitle: "Wilayah Layanan: Wilayah Sulawesi",
+            cities: ["Makassar", "Manado", "Palu", "Kendari", "Gorontalo"],
+            // Data: Retail=0, Industrial=7, VMI=1, Total=24
+            stats: {retail: 0, industrial: 7, gas: 1, vmi: 1, aviation: 0, lubricants: 1, warehouse: 0, fuelterm: 13, krp: 1},
             projects: ["Industrial Fuel Transport (Franco): 7 Project", "Gas Transport: 1 Project", "Vendor Managed Inventory: 1 Lokasi", "Lubricants Transport: 1 Project", "Fuel Terminal: 13 Titik", "KRP: 1 Project"]
         },
-        "MOR-VIII": {stats: {retail: 1, industrial: 3, gas: 0, vmi: 1, aviation: 2, lubricants: 0, warehouse: 0, fuelterm: 0, krp: 1},
+        "MOR-VIII": {
+            code: "Region VIII",
+            title: "Region VIII Maluku Papua",
+            subtitle: "Wilayah Layanan: Maluku & Papua",
+            cities: ["Sorong", "Jayapura", "Ambon", "Ternate", "Manokwari", "Merauke"],
+            // Data: Retail=1, Industrial=3, VMI=1, Total=8
+            stats: {retail: 1, industrial: 3, gas: 0, vmi: 1, aviation: 2, lubricants: 0, warehouse: 0, fuelterm: 0, krp: 1},
             projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 3 Project", "Vendor Managed Inventory: 1 Lokasi", "Aviation Fuel Terminal: 2 Project", "KRP: 1 Project"]
         }
     };
