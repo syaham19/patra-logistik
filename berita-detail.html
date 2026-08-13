@@ -1092,14 +1092,10 @@
             justify-content: center;
             height: 90px;
         }
-    
-        #navbar .logo-image {
-            content: url('assets/logo.png') !important;
-        }
-
     </style>
 
     <style>
+        /* Force Scrolled Navbar Styling */
         #navbar {
             background: rgba(255, 255, 255, 0.95) !important;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
@@ -1111,16 +1107,10 @@
         #navbar .nav-link::before { 
             color: #1E293B !important; 
         }
-        .breadcrumb-container {
-            margin-top: 0 !important;
-            padding-top: 120px !important;
-            padding-bottom: 20px !important;
-        }
-    
+        /* Disable CSS content replacement to use actual img src */
         #navbar .logo-image {
-            content: url('assets/logo.png') !important;
+            content: none !important;
         }
-
     </style>
 </head>
 
@@ -1128,7 +1118,7 @@
 <header id="navbar">
         <div class="container nav-wrapper">
             <a href="index.html" class="logo-link" aria-label="Patra Logistik">
-                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+                <img src="assets/logo.png" alt="Pertamina Patra Logistik" class="logo-image">
             </a>
             <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">
                 ☰
@@ -1205,8 +1195,11 @@
         </div>
     </header>
 
+    <!-- Spacer to prevent overlap -->
+    <div style="height: 100px; background: #f8fafc;"></div>
+
     <!-- Breadcrumb -->
-    <div class="breadcrumb-container" style="background: #f8fafc; padding: 20px 0; border-bottom: 1px solid #e2e8f0; ">
+    <div class="breadcrumb-container" style="background: #f8fafc; padding: 20px 0 20px 0; border-bottom: 1px solid #e2e8f0;">
         <div class="container">
             <span style="color: #64748b; font-size: 14px;">
                 <a href="index.html" style="color: #1E3A8A; text-decoration: none;">Beranda</a> &gt; 
