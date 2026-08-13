@@ -3157,7 +3157,7 @@ header.scrolled .lang-btn-current:hover {
     width: 100%;
     position: relative;
     z-index: 1;
-    margin-bottom: 64px;
+    margin-bottom: 32px;
 }
 
 /* Columns */
@@ -3342,7 +3342,7 @@ header.scrolled .lang-btn-current:hover {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 32px;
+    padding-top: 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     width: 100%;
     position: relative;
