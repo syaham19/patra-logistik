@@ -641,7 +641,65 @@
         .ann-subscribe-btn { display: block; width: 100%; padding: 10px; background: rgba(255,255,255,0.15); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 50px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.2s; }
         .ann-subscribe-btn:hover { background: rgba(255,255,255,0.3); }
 
-        /* === TAB 3: BERITA CSR — Grid with green badge === */
+        /* === TAB 3: BERITA CSR — New Modern Design === */
+        .csr-featured {
+            position: relative;
+            background: linear-gradient(135deg, #059669 0%, #064E3B 100%);
+            border-radius: 14px;
+            padding: 40px;
+            margin-bottom: 32px;
+            overflow: hidden;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .csr-featured:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(5,150,105,0.2); }
+        .csr-featured::before {
+            content: '';
+            position: absolute; top: -100px; left: -100px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+            pointer-events: none;
+        }
+        .csr-featured-img {
+            width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .csr-featured-content {
+            flex: 1;
+            z-index: 1;
+        }
+        .csr-featured-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #10B981; color: #fff;
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; padding: 5px 12px; border-radius: 50px;
+            margin-bottom: 16px;
+        }
+        .csr-featured-title { font-size: 24px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 12px; }
+        .csr-featured-excerpt { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 24px; }
+        .csr-featured-footer { display: flex; align-items: center; justify-content: space-between; }
+        .csr-featured-date { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600; }
+        .csr-featured-cta {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.15); color: #fff; font-size: 12px; font-weight: 700;
+            padding: 9px 18px; border-radius: 50px; border: 1.5px solid rgba(255,255,255,0.25);
+            cursor: pointer; transition: all 0.2s; text-decoration: none;
+        }
+        .csr-featured-cta:hover { background: rgba(255,255,255,0.3); }
+
+        @media (max-width: 768px) {
+            .csr-featured { flex-direction: column; padding: 24px; gap: 24px; }
+            .csr-featured-img { width: 100%; height: auto; aspect-ratio: 16/9; }
+        }
+
         .csr-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -653,16 +711,17 @@
         .csr-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
+            border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s ease;
-            cursor: pointer;
             display: flex;
             flex-direction: column;
+            text-decoration: none;
         }
         .csr-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 16px 32px rgba(16, 185, 129, 0.08);
-            border-color: #10B981;
+            border-color: #34D399;
         }
         .csr-card-img {
             width: 100%;
@@ -672,61 +731,43 @@
             background: #D1FAE5;
         }
         .csr-card-body {
-            padding: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
         .csr-card-meta {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
         }
         .csr-card-tag {
-            font-size: 9px;
-            font-weight: 800;
-            color: #059669;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            background: #D1FAE5;
-            padding: 3px 8px;
-            border-radius: 2px;
+            font-size: 9px; font-weight: 800; color: #059669; text-transform: uppercase;
+            letter-spacing: 0.8px; background: #D1FAE5; padding: 4px 10px; border-radius: 4px;
         }
-        .csr-card-date {
-            font-size: 11px;
-            color: #94A3B8;
-            font-weight: 500;
-        }
+        .csr-card-date { font-size: 11px; color: #94A3B8; font-weight: 600; }
         .csr-card-title {
-            font-size: 13.5px;
-            font-weight: 800;
-            color: #1E293B;
-            line-height: 1.45;
-            margin-bottom: 8px;
+            font-size: 15px; font-weight: 800; color: #1E293B; line-height: 1.4; margin-bottom: 12px;
         }
         .csr-card-excerpt {
-            font-size: 12.5px;
-            color: #64748B;
-            line-height: 1.6;
-            margin-bottom: auto;
-            padding-bottom: 14px;
+            font-size: 13px; color: #64748B; line-height: 1.6; margin-bottom: auto;
         }
-        .csr-card-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding-top: 14px;
-            border-top: 1px solid #F1F5F9;
-            font-size: 10px;
-            font-weight: 800;
-            color: #059669;
-            text-decoration: none;
-            transition: color 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .csr-card-footer {
+            margin-top: 20px; padding-top: 16px; border-top: 1px solid #F1F5F9;
+            display: flex; align-items: center; gap: 6px;
+            font-size: 12px; font-weight: 700; color: #059669; transition: color 0.2s;
         }
-        .csr-card:hover .csr-card-cta { color: #0056A6; }
+        .csr-card:hover .csr-card-footer { color: #047857; }
+
+        .pagination {
+            display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 40px;
+        }
+        .page-btn {
+            width: 36px; height: 36px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            background: #fff; border: 1px solid #E2E8F0; color: #64748B;
+            font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .page-btn:hover { border-color: #059669; color: #059669; }
+        .page-btn.active { background: #059669; color: #fff; border-color: #059669; }
 
         /* === TAB 4: JOURNEY MAGAZINE — Bookstore Showcase === */
         .mag-showcase {
