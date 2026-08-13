@@ -1029,3 +1029,92 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+/* =================================================================
+   PAGINATION LOGIC FOR NEWS
+   ================================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const newsGrid = document.getElementById('news-grid');
+    if (!newsGrid) return;
+    
+    const cards = Array.from(newsGrid.querySelectorAll('.news-card'));
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    const pageNumbers = document.getElementById('page-numbers');
+    
+    const cardsPerPage = 6;
+    let currentPage = 1;
+    const totalPages = Math.ceil(cards.length / cardsPerPage);
+    
+    function renderPage(page) {
+        // Hide all
+        cards.forEach(c => c.style.display = 'none');
+        
+        // Show for current page
+        const start = (page - 1) * cardsPerPage;
+        const end = start + cardsPerPage;
+        cards.slice(start, end).forEach(c => {
+            c.style.display = 'flex';
+        });
+        
+        // Update buttons state
+        prevBtn.disabled = page === 1;
+        prevBtn.style.opacity = page === 1 ? '0.5' : '1';
+        prevBtn.style.cursor = page === 1 ? 'not-allowed' : 'pointer';
+        
+        nextBtn.disabled = page === totalPages;
+        nextBtn.style.opacity = page === totalPages ? '0.5' : '1';
+        nextBtn.style.cursor = page === totalPages ? 'not-allowed' : 'pointer';
+        
+        // Render page numbers
+        pageNumbers.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.textContent = i;
+            btn.style.padding = '8px 12px';
+            btn.style.border = '1px solid #CBD5E1';
+            btn.style.borderRadius = '4px';
+            btn.style.cursor = 'pointer';
+            
+            if (i === page) {
+                btn.style.background = '#1E3A8A';
+                btn.style.color = '#fff';
+                btn.style.fontWeight = 'bold';
+            } else {
+                btn.style.background = '#fff';
+                btn.style.color = '#1E3A8A';
+            }
+            
+            btn.addEventListener('click', () => {
+                currentPage = i;
+                renderPage(currentPage);
+                window.scrollTo({ top: newsGrid.offsetTop - 150, behavior: 'smooth' });
+            });
+            
+            pageNumbers.appendChild(btn);
+        }
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage(currentPage);
+                window.scrollTo({ top: newsGrid.offsetTop - 150, behavior: 'smooth' });
+            }
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPage(currentPage);
+                window.scrollTo({ top: newsGrid.offsetTop - 150, behavior: 'smooth' });
+            }
+        });
+    }
+    
+    // Initial render
+    renderPage(currentPage);
+});

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita & Media - PT Patra Logistik</title>
+    <title>Detail Berita - Pertamina Patra Logistik</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -1095,9 +1095,7 @@
     </style>
 </head>
 <body>
-
-    <!-- Header / Navigation Bar -->
-    <header id="navbar">
+<header id="navbar">
         <div class="container nav-wrapper">
             <a href="index.html" class="logo-link" aria-label="Patra Logistik">
                 <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
@@ -1177,525 +1175,135 @@
         </div>
     </header>
 
-
-    <!-- Sub-Hero Section -->
-    <section class="about-hero">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-container" style="background: #f8fafc; padding: 20px 0; border-bottom: 1px solid #e2e8f0; margin-top: 80px;">
         <div class="container">
-            <span class="about-hero__tag">Pusat Informasi</span>
-            <h1 class="about-hero__title">Berita & Media</h1>
-            <p class="about-hero__desc">Menyajikan siaran pers, pengumuman korporasi, publikasi majalah internal, dan panduan merek resmi PT Patra Logistik.</p>
-        </div>
-    </section>
-
-    <!-- Sticky Horizontal Sub Navigation -->
-    <div class="page-subnav">
-        <div class="container">
-            <div class="page-subnav__list">
-                <button class="about-menu-btn active" data-target="siaran-pers">Siaran Pers</button>
-                <button class="about-menu-btn" data-target="pengumuman">Pengumuman</button>
-                <button class="about-menu-btn" data-target="berita-csr">Berita CSR</button>
-                <button class="about-menu-btn" data-target="journey-magazine">Journey Magazine</button>
-                <button class="about-menu-btn" data-target="brand-guideline">Brand Guideline</button>
-            </div>
+            <span style="color: #64748b; font-size: 14px;">
+                <a href="index.html" style="color: #1E3A8A; text-decoration: none;">Beranda</a> &gt; 
+                <a href="berita-media.html" style="color: #1E3A8A; text-decoration: none;">Berita & Media</a> &gt; 
+                <a href="berita-media.html?tab=siaran-pers" style="color: #1E3A8A; text-decoration: none;">Siaran Pers</a> &gt; 
+                <span style="color: #475569; font-weight: 500;">Detail Berita</span>
+            </span>
         </div>
     </div>
-    <!-- Content Layout -->
-    <section class="about-layout">
-        <div class="container">
-            <div class="about-grid">
+
+    <!-- Article Section -->
+    <article class="article-detail" style="padding: 60px 0 80px 0; background: #fff;">
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            
+            <header class="article-header" style="margin-bottom: 40px; text-align: center;">
+                <div style="margin-bottom: 16px;">
+                    <span style="display: inline-block; padding: 6px 12px; background: #E0F2FE; color: #0284C7; font-size: 12px; font-weight: 600; border-radius: 4px; letter-spacing: 0.5px;">SIARAN PERS</span>
+                    <span style="display: inline-block; color: #64748b; font-size: 14px; margin-left: 12px;">05 Juni 2026</span>
+                </div>
+                <h1 style="font-size: 36px; color: #0f172a; line-height: 1.3; font-weight: 700; margin-bottom: 24px;">Patra Logistik Dukung Bauran Energi Nasional Melalui Pengangkutan FAME</h1>
                 
-                <main class="about-content-pane">
-
-                    <!-- TAB 1: SIARAN PERS (PRESS RELEASE) -->
-                    <div class="about-tab-content active" id="tab-siaran-pers">
-                        <div class="section-header">
-                            <span class="section-header__tag">Siaran Pers</span>
-                            <h2 class="section-header__title">Rilis Berita Resmi Korporasi</h2>
-                            <p class="section-header__desc">Ikuti perkembangan terbaru mengenai pencapaian bisnis, ekspansi operasional, serta kerja sama strategis PT Patra Logistik.</p>
-                        </div>
-
-                        <!-- Featured Hero Card -->
-                        <a href="berita-detail.html" class="press-hero-card" style="text-decoration:none;">
-                            <div class="press-hero-img" style="background: linear-gradient(135deg, #0056A6 0%, #1E293B 100%);"></div>
-                            <div class="press-hero-body">
-                                <div class="press-hero-meta">
-                                    <span class="press-tag">Siaran Pers</span>
-                                    <span class="press-date">05 Juni 2026</span>
-                                </div>
-                                <h3 class="press-hero-title">Patra Logistik Dukung Bauran Energi Nasional Melalui Pengangkutan FAME</h3>
-                                <p class="press-hero-excerpt">PT Patra Logistik resmi mendukung program transisi energi pemerintah melalui distribusi bahan bakar campuran nabati (FAME) ke berbagai wilayah strategis nasional.</p>
-                                <span class="press-hero-cta">Selengkapnya &rarr;</span>
-                            </div>
-                        </a>
-                        
-                        <!-- Remaining Cards Grid -->
-                        <div class="news-grid" id="news-grid">
-                            <div class="news-card" data-index="0">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #ED1C24 0%, #BA1C21 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">28 Mei 2026</span></div>
-                                    <h4 class="news-card-title">Implementasi Aplikasi SIOD Guna Efisiensi dan Keamanan Armada Mobil Tangki</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="1">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #10B981 0%, #064E3B 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">15 Mei 2026</span></div>
-                                    <h4 class="news-card-title">Sinergi BUMN: Patra Logistik Salurkan Energi Ke Wilayah Terpencil Indonesia</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="2">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #F59E0B 0%, #B45309 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">02 Mei 2026</span></div>
-                                    <h4 class="news-card-title">Penghargaan Keselamatan Kerja (Zero Accident Award) Patra Logistik 2026</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="3">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #8B5CF6 0%, #4C1D95 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">20 April 2026</span></div>
-                                    <h4 class="news-card-title">Kerjasama Strategis Transportasi Petrokimia Skala Besar dengan Mitra Global</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="4">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #06B6D4 0%, #164E63 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">11 April 2026</span></div>
-                                    <h4 class="news-card-title">Perluasan Fasilitas Inventory Management System di Indonesia Timur</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="5">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">05 April 2026</span></div>
-                                    <h4 class="news-card-title">Langkah Nyata Patra Logistik dalam Mendukung Energi Terbarukan (EBT)</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="6">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #EAB308 0%, #A16207 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">25 Maret 2026</span></div>
-                                    <h4 class="news-card-title">Patra Logistik Berhasil Mempertahankan Sertifikasi ISO 9001:2015</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="7">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">12 Maret 2026</span></div>
-                                    <h4 class="news-card-title">Penambahan Armada Kapal Pengangkut Minyak Guna Tingkatkan Kapasitas</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="8">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">01 Maret 2026</span></div>
-                                    <h4 class="news-card-title">Komitmen Tanggung Jawab Sosial: Pembangunan Fasilitas Air Bersih</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="9">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">20 Februari 2026</span></div>
-                                    <h4 class="news-card-title">Optimalisasi Rantai Pasok Avtur ke Bandara Internasional</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="10">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">10 Februari 2026</span></div>
-                                    <h4 class="news-card-title">Transformasi Digital dalam Proses Bisnis Vendor Management</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="news-card" data-index="11">
-                                <div class="news-card-img" style="background: linear-gradient(135deg, #64748B 0%, #334155 100%);"></div>
-                                <div class="news-card-body">
-                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">25 Januari 2026</span></div>
-                                    <h4 class="news-card-title">Rapat Umum Pemegang Saham Tahunan (RUPST) Tahun Buku 2025</h4>
-                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Pagination UI -->
-                        <div class="pagination-wrapper" style="display: flex; justify-content: center; gap: 8px; margin-top: 32px;">
-                            <button class="btn-page prev-page" id="prev-page" style="padding: 8px 16px; border: 1px solid #CBD5E1; background: #fff; border-radius: 4px; cursor: pointer; color: #1E3A8A; font-weight: 500;">&laquo; Prev</button>
-                            <div id="page-numbers" style="display: flex; gap: 8px;"></div>
-                            <button class="btn-page next-page" id="next-page" style="padding: 8px 16px; border: 1px solid #CBD5E1; background: #fff; border-radius: 4px; cursor: pointer; color: #1E3A8A; font-weight: 500;">Next &raquo;</button>
-                        </div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 16px; color: #64748b; font-size: 14px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span>Corporate Secretary</span>
                     </div>
-
-                    <!-- TAB 2: PENGUMUMAN -->
-                    <div class="about-tab-content" id="tab-pengumuman">
-                        <div class="section-header">
-                            <span class="section-header__tag">Pengumuman</span>
-                            <h2 class="section-header__title">Pengumuman Korporasi</h2>
-                            <p class="section-header__desc">Informasi resmi mengenai pengadaan, kebijakan, dan pemberitahuan korporasi PT Patra Logistik.</p>
-                        </div>
-                        <div class="ann-list">
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Rencana Pengadaan Armada Mobil Tangki BBM Periode Januari 2026</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">Pengadaan</span><span class="ann-item-date">10 Januari 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Digitalisasi Vendor Management Patra Logistik Menggunakan iVendor</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">Teknologi</span><span class="ann-item-date">25 Februari 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Pengumuman Rapat Umum Pemegang Saham Tahunan (RUPS) 2026</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">Korporasi</span><span class="ann-item-date">12 Maret 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Pembaruan Kebijakan Sistem Manajemen Keselamatan & Kesehatan Kerja (SMK3)</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">HSE</span><span class="ann-item-date">05 April 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Rekrutmen Perwira Patra Logistik Batch 2026 – Program Management Trainee</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">SDM</span><span class="ann-item-date">20 Mei 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                        </div>
+                    <span>&bull;</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>3 menit baca</span>
                     </div>
+                </div>
+            </header>
 
-                    <!-- TAB 3: BERITA CSR -->
-                    <div class="about-tab-content" id="tab-berita-csr">
-                        <div class="section-header">
-                            <span class="section-header__tag" style="color:#059669;">Berita CSR</span>
-                            <h2 class="section-header__title">Tanggung Jawab Sosial Perusahaan</h2>
-                            <p class="section-header__desc">Kisah nyata kontribusi Patra Logistik untuk masyarakat, lingkungan, dan keberlangsungan energi bangsa.</p>
-                        </div>
-                        <div class="csr-grid">
-                            <div class="csr-card">
-                                <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="csr-card-img">
-                                <div class="csr-card-body">
-                                    <div class="csr-card-meta"><span class="csr-card-tag">Pendidikan</span><span class="csr-card-date">02 Mei 2026</span></div>
-                                    <h4 class="csr-card-title">Kenalkan Budaya Keselamatan dan Hemat Energi, Patra Logistik Jangkau Lebih dari 3.000 Pelajar</h4>
-                                    <p class="csr-card-excerpt">Program edukasi keselamatan kerja dan hemat energi menyentuh lebih dari 3.000 pelajar di seluruh wilayah operasional.</p>
-                                    <a href="#" class="csr-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="csr-card">
-                                <div class="csr-card-img" style="background: linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 100%);"></div>
-                                <div class="csr-card-body">
-                                    <div class="csr-card-meta"><span class="csr-card-tag">Lingkungan</span><span class="csr-card-date">18 April 2026</span></div>
-                                    <h4 class="csr-card-title">Patra Logistik Tanam 10.000 Pohon Mangrove di Pesisir Kalimantan Timur</h4>
-                                    <p class="csr-card-excerpt">Inisiatif penghijauan pesisir untuk mendukung ekosistem bahari dan mitigasi perubahan iklim di wilayah operasional Kalimantan.</p>
-                                    <a href="#" class="csr-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="csr-card">
-                                <div class="csr-card-img" style="background: linear-gradient(135deg, #BBF7D0 0%, #34D399 100%);"></div>
-                                <div class="csr-card-body">
-                                    <div class="csr-card-meta"><span class="csr-card-tag">Pemberdayaan</span><span class="csr-card-date">28 Maret 2026</span></div>
-                                    <h4 class="csr-card-title">Beasiswa Energi: 50 Putra-Putri Daerah Terima Beasiswa Kuliah dari Patra Logistik</h4>
-                                    <p class="csr-card-excerpt">Program beasiswa untuk mendorong generasi muda di sekitar wilayah operasional agar memiliki akses pendidikan tinggi yang berkualitas.</p>
-                                    <a href="#" class="csr-card-cta">Selengkapnya &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
+            <figure class="article-hero" style="margin-bottom: 48px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);">
+                <div style="width: 100%; height: 450px; background: linear-gradient(135deg, #0056A6 0%, #1E293B 100%); display: flex; justify-content: center; align-items: center;">
+                    <img src="assets/logo-transparent.png" style="width: 250px; opacity: 0.3;" alt="Patra Logistik Background">
+                </div>
+                <figcaption style="padding: 12px; font-size: 13px; color: #64748b; text-align: center; border-bottom: 1px solid #e2e8f0;">Ilustrasi pengangkutan Fatty Acid Methyl Ester (FAME) oleh PT Patra Logistik</figcaption>
+            </figure>
+
+            <div class="article-body" style="font-size: 17px; line-height: 1.8; color: #334155;">
+                <p style="margin-bottom: 24px;"><strong style="color: #0f172a;">JAKARTA</strong> – PT Patra Logistik, anak perusahaan dari PT Pertamina Patra Niaga, resmi mendukung program transisi energi pemerintah melalui percepatan distribusi bahan bakar campuran nabati (FAME) ke berbagai wilayah strategis nasional mulai kuartal ketiga tahun 2026.</p>
+                
+                <p style="margin-bottom: 24px;">Langkah ini merupakan bagian dari komitmen berkelanjutan Pertamina Group dalam mendukung target pemerintah mencapai bauran energi baru terbarukan (EBT) sebesar 23% pada tahun mendatang, sekaligus memperkuat ketahanan energi nasional dan mengurangi defisit neraca perdagangan melalui efisiensi impor bahan bakar.</p>
+                
+                <blockquote style="margin: 40px 0; padding: 24px 32px; border-left: 4px solid #1E3A8A; background: #F8FAFC; border-radius: 0 8px 8px 0; font-style: italic; font-size: 18px; color: #1e293b;">
+                    "Keberhasilan penyaluran FAME tidak hanya bergantung pada kapasitas kilang, namun sangat bergantung pada keandalan rantai pasok dan logistik di lapangan. Kami hadir untuk memastikan setiap titik suplai terhubung dengan sempurna."
+                    <footer style="margin-top: 16px; font-size: 14px; font-style: normal; color: #64748b; font-weight: 600;">— Direktur Utama PT Patra Logistik</footer>
+                </blockquote>
+                
+                <h3 style="font-size: 22px; color: #0f172a; margin: 32px 0 16px 0; font-weight: 700;">Optimalisasi Armada dan Titik Integrasi</h3>
+                
+                <p style="margin-bottom: 24px;">Dalam operasionalnya, Patra Logistik mengalokasikan lebih dari 150 unit armada truk angkutan khusus (mobil tangki tersertifikasi) dan mengoptimalkan manajemen perkapalan rute domestik. Armada ini diawasi dengan sistem <em>Fleet Management System</em> yang terintegrasi secara <em>real-time</em>, memastikan produk tiba tepat waktu, tepat kualitas, dan tepat kuantitas (3T).</p>
+                
+                <p style="margin-bottom: 24px;">"Seluruh armada telah dilengkapi dengan sistem pengawasan khusus dan sensor kualitas untuk menjaga standar produk FAME tetap dalam kondisi prima. Kami sangat menekankan pada standar HSSE (Health, Safety, Security, and Environment) karena keselamatan adalah prioritas tanpa kompromi," tambah Manajemen Patra Logistik.</p>
+
+                <h3 style="font-size: 22px; color: #0f172a; margin: 32px 0 16px 0; font-weight: 700;">Dampak Sosial dan Lingkungan</h3>
+
+                <p style="margin-bottom: 24px;">Selain aspek bisnis, proyek pengangkutan FAME ini juga memberikan <em>multiplier effect</em> bagi perekonomian lokal. Dengan terbukanya rute distribusi baru di Sumatra dan Jawa, Patra Logistik turut menyerap ratusan tenaga kerja lokal sebagai awak armada (AMT) dan tenaga operasional depot.</p>
+                
+                <p style="margin-bottom: 48px;">Sejalan dengan komitmen keberlanjutan, efisiensi logistik ini diperkirakan mampu menekan emisi karbon operasional perusahaan hingga 12% dibandingkan tahun sebelumnya, menciptakan siklus distribusi yang tidak hanya menguntungkan secara ekonomi tetapi juga ramah lingkungan.</p>
+                
+                <!-- Social Share -->
+                <div style="padding: 24px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-weight: 600; font-size: 15px; color: #0f172a;">Bagikan Artikel:</span>
+                    <div style="display: flex; gap: 12px;">
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: #F1F5F9; display: flex; justify-content: center; align-items: center; color: #475569; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: #F1F5F9; display: flex; justify-content: center; align-items: center; color: #475569; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: #F1F5F9; display: flex; justify-content: center; align-items: center; color: #475569; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: #F1F5F9; display: flex; justify-content: center; align-items: center; color: #475569; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a>
                     </div>
+                </div>
 
-                    <!-- TAB 4: MAJALAH JOURNEY -->
-                    <div class="about-tab-content" id="tab-journey-magazine">
-                        <div class="section-header">
-                            <span class="section-header__tag">Majalah Internal</span>
-                            <h2 class="section-header__title">Journey Magazine</h2>
-                            <p class="section-header__desc">Wadah berbagi cerita inspiratif, inovasi, dan budaya kerja para Perwira Patra Logistik dalam mengawal distribusi energi nasional.</p>
+            </div>
+        </div>
+    </article>
+
+    <!-- Related News -->
+    <section class="related-news" style="padding: 60px 0 100px 0; background: #F8FAFC;">
+        <div class="container">
+            <h2 style="font-size: 24px; color: #0f172a; font-weight: 700; margin-bottom: 32px; text-align: center;">Baca Juga Berita Lainnya</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- Card 1 -->
+                <div class="news-card" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s;">
+                    <div style="height: 200px; background: linear-gradient(135deg, #ED1C24 0%, #BA1C21 100%);"></div>
+                    <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px;">
+                            <span style="color: #0284C7; font-weight: 600;">Siaran Pers</span>
+                            <span style="color: #64748b;">28 Mei 2026</span>
                         </div>
-                        <div class="mag-showcase">
-                            <div class="mag-item">
-                                <div class="mag-cover-wrap">
-                                    <div class="mag-cover">
-                                        <img src="assets/journey_magazine_blue.png" alt="Journey Magazine Edisi Biru">
-                                    </div>
-                                </div>
-                                <div class="mag-item-info">
-                                    <div class="mag-item-edition">Edisi I &bull; 2025</div>
-                                    <div class="mag-item-title">Journey: Energi untuk Negeri</div>
-                                    <button class="btn-mag-read">
-                                        <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                                        Baca Sekarang
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="mag-item">
-                                <div class="mag-cover-wrap">
-                                    <div class="mag-cover">
-                                        <img src="assets/journey_magazine_white.png" alt="Journey Magazine Edisi Putih">
-                                    </div>
-                                </div>
-                                <div class="mag-item-info">
-                                    <div class="mag-item-edition">Edisi II &bull; 2025</div>
-                                    <div class="mag-item-title">Journey: Inovasi Tanpa Batas</div>
-                                    <button class="btn-mag-read">
-                                        <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                                        Baca Sekarang
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <h4 style="font-size: 18px; color: #0f172a; font-weight: 600; margin-bottom: 16px; line-height: 1.4;">Implementasi Aplikasi SIOD Guna Efisiensi Armada Mobil Tangki</h4>
+                        <a href="berita-detail.html" style="margin-top: auto; color: #1E3A8A; font-weight: 600; text-decoration: none; font-size: 14px;">Selengkapnya &rarr;</a>
                     </div>
-
-                    <!-- TAB 5: PANDUAN MERK -->
-                    <div class="about-tab-content" id="tab-brand-guideline">
-                        <div class="section-header">
-                            <span class="section-header__tag">Brand Identity</span>
-                            <h2 class="section-header__title">Panduan Merek Patra Logistik</h2>
-                            <p class="section-header__desc">Panduan penggunaan identitas visual resmi PT Patra Logistik untuk menjaga konsistensi dan integritas merek di setiap media komunikasi.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="news-card" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s;">
+                    <div style="height: 200px; background: linear-gradient(135deg, #10B981 0%, #064E3B 100%);"></div>
+                    <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px;">
+                            <span style="color: #0284C7; font-weight: 600;">Siaran Pers</span>
+                            <span style="color: #64748b;">15 Mei 2026</span>
                         </div>
-
-                        <!-- Panel 1: Warna Utama -->
-                        <div class="brand-panel">
-                            <div class="brand-panel-header">
-                                <div class="brand-panel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
-                                <span class="brand-panel-title">Warna Utama</span>
-                            </div>
-                            <div class="brand-colors">
-                                <div class="brand-color-item">
-                                    <div class="brand-color-swatch" style="background:#ED1C24;"></div>
-                                    <span class="brand-color-name">Pertamina Red</span>
-                                    <span class="brand-color-hex">#ED1C24</span>
-                                </div>
-                                <div class="brand-color-item">
-                                    <div class="brand-color-swatch" style="background:#0056A6;"></div>
-                                    <span class="brand-color-name">Pertamina Blue</span>
-                                    <span class="brand-color-hex">#0056A6</span>
-                                </div>
-                                <div class="brand-color-item">
-                                    <div class="brand-color-swatch" style="background:#A3C639;"></div>
-                                    <span class="brand-color-name">Pertamina Green</span>
-                                    <span class="brand-color-hex">#A3C639</span>
-                                </div>
-                                <div class="brand-color-item">
-                                    <div class="brand-color-swatch" style="background:#1E2022; border:1px solid #E2E8F0;"></div>
-                                    <span class="brand-color-name">Navy Dark</span>
-                                    <span class="brand-color-hex">#1E2022</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Panel 2: Konfigurasi Logo -->
-                        <div class="brand-panel">
-                            <div class="brand-panel-header">
-                                <div class="brand-panel-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-                                <span class="brand-panel-title">Konfigurasi Logo</span>
-                            </div>
-                            <div class="brand-logos">
-                                <div class="brand-logo-slot">
-                                    <div class="brand-logo-preview">
-                                        <div style="display:flex;align-items:center;gap:8px;">
-                                            <svg viewBox="0 0 40 40" style="width:32px;height:32px;"><path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24"/><path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#0056A6"/></svg>
-                                            <div style="text-align:left;"><div style="font-weight:900;font-size:12px;color:#ED1C24;line-height:1;">PERTAMINA</div><div style="font-weight:800;font-size:8px;color:#0056A6;line-height:1;letter-spacing:0.5px;">PATRA LOGISTIK</div></div>
-                                        </div>
-                                    </div>
-                                    <span class="brand-logo-label">Logo Utama (Light)</span>
-                                </div>
-                                <div class="brand-logo-slot">
-                                    <div class="brand-logo-preview dark">
-                                        <div style="display:flex;align-items:center;gap:8px;">
-                                            <svg viewBox="0 0 40 40" style="width:32px;height:32px;"><path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24"/><path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#60A5FA"/></svg>
-                                            <div style="text-align:left;"><div style="font-weight:900;font-size:12px;color:#ED1C24;line-height:1;">PERTAMINA</div><div style="font-weight:800;font-size:8px;color:#93C5FD;line-height:1;letter-spacing:0.5px;">PATRA LOGISTIK</div></div>
-                                        </div>
-                                    </div>
-                                    <span class="brand-logo-label">Logo Utama (Dark)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Panel 3: Unduhan -->
-                        <div class="brand-panel">
-                            <div class="brand-panel-header">
-                                <div class="brand-panel-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-                                <span class="brand-panel-title">Unduhan Aset</span>
-                            </div>
-                            <div class="brand-download-grid">
-                                <a href="#" class="btn-brand-download">
-                                    <div class="btn-brand-download-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-                                    <div class="btn-brand-download-text">
-                                        <span class="btn-brand-download-label">Paket Logo</span>
-                                        <span class="btn-brand-download-size">PNG, SVG, AI &bull; ~2.4 MB</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="btn-brand-download">
-                                    <div class="btn-brand-download-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                    <div class="btn-brand-download-text">
-                                        <span class="btn-brand-download-label">Panduan Merek (Brand Book)</span>
-                                        <span class="btn-brand-download-size">PDF &bull; ~8.1 MB</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        <h4 style="font-size: 18px; color: #0f172a; font-weight: 600; margin-bottom: 16px; line-height: 1.4;">Sinergi BUMN: Patra Logistik Salurkan Energi Ke Wilayah Terpencil</h4>
+                        <a href="berita-detail.html" style="margin-top: auto; color: #1E3A8A; font-weight: 600; text-decoration: none; font-size: 14px;">Selengkapnya &rarr;</a>
                     </div>
+                </div>
 
-                    <!-- TAB 2: PENGUMUMAN -->
-                    <div class="about-tab-content" id="tab-pengumuman">
-                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">PENGUMUMAN</div>
-                        
-                        <div class="ann-grid">
-                            <!-- Card 1: Rencana Pengadaan -->
-                            <div class="ann-card">
-                                <h4 class="ann-card-title">Rencana Pengadaan Armada Mobil Tangki BBM Periode Januari 2026</h4>
-                                <button class="btn-more">Selengkapnya</button>
-                            </div>
-                            <!-- Card 2: Digitalisasi Vendor -->
-                            <div class="ann-card">
-                                <h4 class="ann-card-title">Digitalisasi Vendor Management Patra Logistik Menggunakan iVendor</h4>
-                                <button class="btn-more">Selengkapnya</button>
-                            </div>
+                <!-- Card 3 -->
+                <div class="news-card" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s;">
+                    <div style="height: 200px; background: linear-gradient(135deg, #F59E0B 0%, #B45309 100%);"></div>
+                    <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px;">
+                            <span style="color: #0284C7; font-weight: 600;">Siaran Pers</span>
+                            <span style="color: #64748b;">02 Mei 2026</span>
                         </div>
+                        <h4 style="font-size: 18px; color: #0f172a; font-weight: 600; margin-bottom: 16px; line-height: 1.4;">Penghargaan Keselamatan Kerja (Zero Accident Award) 2026</h4>
+                        <a href="berita-detail.html" style="margin-top: auto; color: #1E3A8A; font-weight: 600; text-decoration: none; font-size: 14px;">Selengkapnya &rarr;</a>
                     </div>
-
-                    <!-- TAB 3: BERITA CSR -->
-                    <div class="about-tab-content" id="tab-berita-csr">
-                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">Berita CSR</div>
-                        
-                        <div style="display: flex; justify-content: center;">
-                            <div class="news-card" style="width: 420px; max-width: 100%;">
-                                <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="news-card-img" style="height: 240px;">
-                                <div class="news-card-body">
-                                    <span class="news-card-tag" style="color: #ED1C24;">BERITA CSR</span>
-                                    <h4 class="news-card-title">Kenalkan Budaya Keselamatan dan Hemat Energi, Patra Logistik Jangkau Lebih dari...</h4>
-                                    <span class="news-card-date">02 Mei 2026</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 4: MAJALAH JOURNEY -->
-                    <div class="about-tab-content" id="tab-journey-magazine">
-                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 12px;">JOURNEY</div>
-                        <p class="content-text" style="text-align: center; max-width: 750px; margin: 0 auto 32px;">Majalah <em>Journey</em> menjadi wadah untuk berbagi cerita inspiratif, inovasi, budaya kerja, hingga kontribusi Perwira Patra Logistik dalam mengawal dan menjaga distribusi energi tetap aman dan andal.</p>
-                        
-                        <div class="mag-grid">
-                            <!-- Cover 1: Blue -->
-                            <div class="mag-card">
-                                <div class="mag-cover">
-                                    <img src="assets/journey_magazine_blue.png" alt="Journey Magazine Blue Cover" style="width:100%; height:100%; object-fit:cover;">
-                                </div>
-                                <button class="btn-more" style="align-self: center; width: 100px;">Baca</button>
-                            </div>
-                            <!-- Cover 2: White -->
-                            <div class="mag-card">
-                                <div class="mag-cover">
-                                    <img src="assets/journey_magazine_white.png" alt="Journey Magazine White Cover" style="width:100%; height:100%; object-fit:cover;">
-                                </div>
-                                <button class="btn-more" style="align-self: center; width: 100px;">Baca</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 5: PANDUAN MERK -->
-                    <div class="about-tab-content" id="tab-brand-guideline">
-                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 24px;">Panduan Merek</div>
-                        <div style="width: 100%; height: 1.5px; background: #E2E8F0; margin-bottom: 32px;"></div>
-                        
-                        <!-- Core Colors Section -->
-                        <h4 class="brand-subtitle">Warna Utama</h4>
-                        <div class="color-palette">
-                            <div class="color-wrapper">
-                                <div class="color-block" style="background: #ED1C24;"></div>
-                                <span class="color-label">Pertamina Red</span>
-                            </div>
-                            <div class="color-wrapper">
-                                <div class="color-block" style="background: #A3C639;"></div>
-                                <span class="color-label">Pertamina Green</span>
-                            </div>
-                            <div class="color-wrapper">
-                                <div class="color-block" style="background: #0056A6;"></div>
-                                <span class="color-label">Pertamina Blue</span>
-                            </div>
-                            <div class="color-wrapper">
-                                <div class="color-block" style="background: #1E2022;"></div>
-                                <span class="color-label">Navy Dark</span>
-                            </div>
-                        </div>
-
-                        <!-- Logo Configuration Section -->
-                        <h4 class="brand-subtitle" style="margin-top: 40px; margin-bottom: 12px;">Konfigurasi Logo</h4>
-                        <div class="logo-config-box">
-                            <!-- Logo Utama -->
-                            <div class="logo-slot">
-                                <span class="logo-slot-title">Logo Utama</span>
-                                <div class="logo-img-placeholder">
-                                    <div style="display: flex; align-items: center; gap: 8px;">
-                                        <!-- Mini Pertamina Symbol -->
-                                        <svg viewBox="0 0 40 40" style="width: 32px; height: 32px;">
-                                            <path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24" />
-                                            <path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#0056A6" />
-                                        </svg>
-                                        <div style="text-align: left;">
-                                            <div style="font-weight: 900; font-size: 13px; color: #ED1C24; line-height: 1;">PERTAMINA</div>
-                                            <div style="font-weight: 800; font-size: 9px; color: #0056A6; line-height: 1; letter-spacing: 0.5px;">PATRA LOGISTIK</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Logo Frame -->
-                            <div class="logo-slot">
-                                <span class="logo-slot-title">Logo Frame</span>
-                                <div class="logo-img-placeholder" style="width: 140px;">
-                                    <div style="text-align: center;">
-                                        <svg viewBox="0 0 40 40" style="width: 28px; height: 28px; margin: 0 auto 4px;">
-                                            <path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24" />
-                                            <path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#0056A6" />
-                                        </svg>
-                                        <div style="font-weight: 900; font-size: 10px; color: #ED1C24; line-height: 1;">PERTAMINA</div>
-                                        <div style="font-weight: 800; font-size: 7px; color: #0056A6; line-height: 1; letter-spacing: 0.5px;">PATRA LOGISTIK</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 16px;">
-                            <a href="#" class="btn-more" style="display: flex; align-items: center; gap: 8px; padding: 12px 28px;">
-                                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                <span>UNDUH LOGO</span>
-                            </a>
-                            <a href="#" class="btn-more" style="display: flex; align-items: center; gap: 8px; padding: 12px 28px;">
-                                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                <span>PEDOMAN LOGO</span>
-                            </a>
-                        </div>
-                    </div>
-
-                </main>
-
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Bar -->
-            <footer class="footer-new">
+<footer class="footer-new">
             <div class="footer-new__watermark"></div>
 
             <div class="footer-new__top container">
@@ -1902,4 +1510,3 @@
     <script src="lang.js"></script>
     <script src="script.js?v=2"></script>
 </body>
-</html>
