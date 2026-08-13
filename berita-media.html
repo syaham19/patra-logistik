@@ -430,91 +430,216 @@
         }
         .news-card:hover .news-card-cta { color: #ED1C24; }
 
-        /* === TAB 2: PENGUMUMAN — Bulletin List === */
-        .ann-list {
+        /* === TAB 2: PENGUMUMAN — New Modern Design === */
+        .ann-board { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+        @media (max-width: 960px) { .ann-board { grid-template-columns: 1fr; } .ann-sidebar { display: none; } }
+
+        /* Filter Bar */
+        .ann-filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .ann-filter-btn {
+            padding: 7px 16px;
+            border: 1.5px solid #E2E8F0;
+            background: #fff;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .ann-filter-btn:hover, .ann-filter-btn.active {
+            background: #0056A6;
+            color: #fff;
+            border-color: #0056A6;
+        }
+
+        /* Featured Announcement */
+        .ann-featured {
+            position: relative;
+            background: linear-gradient(135deg, #0056A6 0%, #1E3A8A 100%);
+            border-radius: 14px;
+            padding: 36px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ann-featured:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,86,166,0.2); }
+        .ann-featured::before {
+            content: '';
+            position: absolute; top: -60px; right: -60px;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            pointer-events: none;
+        }
+        .ann-featured::after {
+            content: '';
+            position: absolute; bottom: -40px; left: 100px;
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            pointer-events: none;
+        }
+        .ann-featured-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(237,28,36,0.8);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 5px 12px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+        .ann-featured-label { background: rgba(255,255,255,0.15); color: #CBD5E1; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+        .ann-featured-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            max-width: 520px;
+        }
+        .ann-featured-excerpt { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 24px; max-width: 500px; }
+        .ann-featured-footer { display: flex; align-items: center; justify-content: space-between; }
+        .ann-featured-date { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600; }
+        .ann-featured-cta {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.15);
+            color: #fff; font-size: 12px; font-weight: 700;
+            padding: 9px 18px; border-radius: 50px;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            cursor: pointer; transition: all 0.2s;
+            font-family: inherit;
+        }
+        .ann-featured-cta:hover { background: rgba(255,255,255,0.3); }
+
+        /* Announcement Timeline List */
+        .ann-list-v2 { display: flex; flex-direction: column; gap: 12px; }
+        .ann-card-v2 {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 18px;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #E8EFF8;
+            border-radius: 10px;
+            padding: 18px 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .ann-card-v2::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: #E2E8F0;
+            transition: background 0.25s ease;
+        }
+        .ann-card-v2:hover { border-color: #BFDBFE; box-shadow: 0 4px 20px rgba(0,86,166,0.08); transform: translateX(4px); }
+        .ann-card-v2:hover::before { background: #0056A6; }
+        .ann-card-v2-date-col {
             display: flex;
             flex-direction: column;
-            gap: 0;
-            border: 1px solid #E2E8F0;
-        }
-        .ann-item {
-            display: grid;
-            grid-template-columns: 48px 1fr auto;
-            gap: 20px;
             align-items: center;
-            padding: 22px 28px;
-            border-bottom: 1px solid #F1F5F9;
-            background: #FFFFFF;
-            transition: background 0.2s ease;
-            cursor: pointer;
+            min-width: 44px;
+            padding-left: 8px;
         }
-        .ann-item:last-child { border-bottom: none; }
-        .ann-item:hover { background: #F8FAFF; }
-        @media (max-width: 640px) {
-            .ann-item { grid-template-columns: 40px 1fr; gap: 12px; }
-            .ann-item-action { display: none; }
+        .ann-card-v2-day { font-size: 22px; font-weight: 800; color: #0f172a; line-height: 1; }
+        .ann-card-v2-month { font-size: 10px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+        .ann-card-v2-divider { width: 1px; height: 100%; background: #E2E8F0; align-self: stretch; }
+        .ann-card-v2-body {}
+        .ann-card-v2-tag {
+            font-size: 9px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; padding: 3px 8px; border-radius: 3px;
+            display: inline-block; margin-bottom: 6px;
         }
-        .ann-icon {
-            width: 48px;
-            height: 48px;
-            background: #EFF6FF;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .ann-icon svg { width: 20px; height: 20px; stroke: #0056A6; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-        .ann-item:hover .ann-icon { background: #0056A6; }
-        .ann-item:hover .ann-icon svg { stroke: #FFFFFF; }
-        .ann-item-body {}
-        .ann-item-title {
+        .tag-pengadaan { background: #FEF3C7; color: #D97706; }
+        .tag-korporasi { background: #EFF6FF; color: #0056A6; }
+        .tag-hse { background: #DCFCE7; color: #15803D; }
+        .tag-sdm { background: #F3E8FF; color: #7C3AED; }
+        .tag-teknologi { background: #E0F2FE; color: #0284C7; }
+        .tag-keuangan { background: #FFF1F2; color: #BE123C; }
+        .ann-card-v2-title {
             font-size: 14px;
             font-weight: 700;
             color: #1E293B;
             line-height: 1.4;
-            margin-bottom: 6px;
         }
-        .ann-item-meta {
+        .ann-card-v2-action {
+            flex-shrink: 0;
+            display: flex; align-items: center;
+        }
+        .ann-card-v2-arrow {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: #F1F5F9;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.25s ease;
+        }
+        .ann-card-v2:hover .ann-card-v2-arrow { background: #0056A6; }
+        .ann-card-v2-arrow svg { width: 14px; height: 14px; stroke: #64748b; fill: none; stroke-width: 2.5; transition: stroke 0.25s; }
+        .ann-card-v2:hover .ann-card-v2-arrow svg { stroke: #fff; }
+        @media (max-width: 640px) {
+            .ann-card-v2 { grid-template-columns: auto 1fr; }
+            .ann-card-v2-action { display: none; }
+        }
+
+        /* Sidebar */
+        .ann-sidebar {
+            position: sticky;
+            top: 100px;
             display: flex;
-            align-items: center;
-            gap: 12px;
+            flex-direction: column;
+            gap: 16px;
         }
-        .ann-item-badge {
-            font-size: 9px;
+        .ann-sidebar-card {
+            background: #fff;
+            border: 1px solid #E8EFF8;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .ann-sidebar-title {
+            font-size: 13px;
             font-weight: 800;
+            color: #0f172a;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            padding: 3px 8px;
-            background: #FEF2F2;
-            color: #ED1C24;
-            border-radius: 2px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #E2E8F0;
         }
-        .ann-item-date {
-            font-size: 11px;
-            color: #94A3B8;
-            font-weight: 500;
+        .ann-stat-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; }
+        .ann-stat-row:last-child { border-bottom: none; }
+        .ann-stat-label { font-size: 13px; color: #475569; font-weight: 500; }
+        .ann-stat-value { font-size: 22px; font-weight: 800; color: #0056A6; }
+        .ann-cat-list { display: flex; flex-direction: column; gap: 8px; }
+        .ann-cat-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 14px; border-radius: 8px;
+            background: #F8FAFC; cursor: pointer; transition: background 0.2s;
         }
-        .ann-item-action {
-            flex-shrink: 0;
-        }
-        .btn-ann-more {
-            border: 1.5px solid #E2E8F0;
-            background: transparent;
-            color: #475569;
-            padding: 8px 20px;
-            font-size: 11px;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-        .ann-item:hover .btn-ann-more {
-            border-color: #0056A6;
-            color: #0056A6;
-            background: #EFF6FF;
-        }
+        .ann-cat-item:hover { background: #EFF6FF; }
+        .ann-cat-name { font-size: 13px; color: #1E293B; font-weight: 600; }
+        .ann-cat-count { font-size: 11px; background: #E2E8F0; color: #64748b; padding: 2px 8px; border-radius: 50px; font-weight: 700; }
+        .ann-subscribe-box { background: linear-gradient(135deg, #0056A6 0%, #1E3A8A 100%); color: #fff; border-radius: 12px; padding: 24px; text-align: center; }
+        .ann-subscribe-box h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+        .ann-subscribe-box p { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 16px; line-height: 1.5; }
+        .ann-subscribe-btn { display: block; width: 100%; padding: 10px; background: rgba(255,255,255,0.15); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 50px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+        .ann-subscribe-btn:hover { background: rgba(255,255,255,0.3); }
 
         /* === TAB 3: BERITA CSR — Grid with green badge === */
         .csr-grid {
@@ -1337,54 +1462,258 @@
 
                     <!-- TAB 2: PENGUMUMAN -->
                     <div class="about-tab-content" id="tab-pengumuman">
-                        <div class="section-header">
-                            <span class="section-header__tag">Pengumuman</span>
-                            <h2 class="section-header__title">Pengumuman Korporasi</h2>
-                            <p class="section-header__desc">Informasi resmi mengenai pengadaan, kebijakan, dan pemberitahuan korporasi PT Patra Logistik.</p>
-                        </div>
-                        <div class="ann-list">
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Rencana Pengadaan Armada Mobil Tangki BBM Periode Januari 2026</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">Pengadaan</span><span class="ann-item-date">10 Januari 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Digitalisasi Vendor Management Patra Logistik Menggunakan iVendor</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">Teknologi</span><span class="ann-item-date">25 Februari 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Pengumuman Rapat Umum Pemegang Saham Tahunan (RUPS) 2026</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">Korporasi</span><span class="ann-item-date">12 Maret 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Pembaruan Kebijakan Sistem Manajemen Keselamatan & Kesehatan Kerja (SMK3)</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">HSE</span><span class="ann-item-date">05 April 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                            <div class="ann-item">
-                                <div class="ann-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                                <div class="ann-item-body">
-                                    <div class="ann-item-title">Rekrutmen Perwira Patra Logistik Batch 2026 – Program Management Trainee</div>
-                                    <div class="ann-item-meta"><span class="ann-item-badge">SDM</span><span class="ann-item-date">20 Mei 2026</span></div>
-                                </div>
-                                <div class="ann-item-action"><button class="btn-ann-more">Selengkapnya →</button></div>
-                            </div>
-                        </div>
-                    </div>
+                         <div class="section-header">
+                             <span class="section-header__tag">Pengumuman</span>
+                             <h2 class="section-header__title">Pengumuman Korporasi</h2>
+                             <p class="section-header__desc">Informasi resmi mengenai pengadaan, kebijakan, dan pemberitahuan korporasi PT Patra Logistik.</p>
+                         </div>
+
+                         <div class="ann-board">
+                             <!-- LEFT: Main Content -->
+                             <div class="ann-main">
+
+                                 <!-- Filter Bar -->
+                                 <div class="ann-filter-bar">
+                                     <button class="ann-filter-btn active">Semua</button>
+                                     <button class="ann-filter-btn">Pengadaan</button>
+                                     <button class="ann-filter-btn">Korporasi</button>
+                                     <button class="ann-filter-btn">HSE</button>
+                                     <button class="ann-filter-btn">SDM</button>
+                                     <button class="ann-filter-btn">Teknologi</button>
+                                 </div>
+
+                                 <!-- Featured Card -->
+                                 <div class="ann-featured">
+                                     <div class="ann-featured-tag">
+                                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                         Pengumuman Terbaru
+                                         <span class="ann-featured-label">RUPS</span>
+                                     </div>
+                                     <div class="ann-featured-title">Pengumuman Rapat Umum Pemegang Saham Tahunan (RUPS) 2026</div>
+                                     <div class="ann-featured-excerpt">PT Patra Logistik mengumumkan pelaksanaan RUPS Tahunan Tahun Buku 2025. Seluruh pemegang saham diundang untuk berpartisipasi sesuai dengan ketentuan Anggaran Dasar Perseroan.</div>
+                                     <div class="ann-featured-footer">
+                                         <span class="ann-featured-date">12 Maret 2026</span>
+                                         <button class="ann-featured-cta">
+                                             Baca Selengkapnya
+                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                         </button>
+                                     </div>
+                                 </div>
+
+                                 <!-- Announcement List -->
+                                 <div class="ann-list-v2">
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">20</span>
+                                             <span class="ann-card-v2-month">Mei</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-sdm">SDM</span>
+                                             <div class="ann-card-v2-title">Rekrutmen Perwira Patra Logistik Batch 2026 – Program Management Trainee</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">05</span>
+                                             <span class="ann-card-v2-month">Apr</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-hse">HSE</span>
+                                             <div class="ann-card-v2-title">Pembaruan Kebijakan Sistem Manajemen Keselamatan & Kesehatan Kerja (SMK3)</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">25</span>
+                                             <span class="ann-card-v2-month">Feb</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-teknologi">Teknologi</span>
+                                             <div class="ann-card-v2-title">Digitalisasi Vendor Management Patra Logistik Menggunakan iVendor</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">10</span>
+                                             <span class="ann-card-v2-month">Jan</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-pengadaan">Pengadaan</span>
+                                             <div class="ann-card-v2-title">Rencana Pengadaan Armada Mobil Tangki BBM Periode Januari 2026</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">15</span>
+                                             <span class="ann-card-v2-month">Des</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-keuangan">Keuangan</span>
+                                             <div class="ann-card-v2-title">Laporan Keuangan Audit Tahun Buku 2025 PT Patra Logistik</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <!-- RIGHT: Sidebar -->
+                             <aside class="ann-sidebar">
+                                 <!-- Stat Card -->
+                                 <div class="ann-sidebar-card">
+                                     <div class="ann-sidebar-title">Statistik 2026</div>
+                                     <div class="ann-stat-row">
+                                         <span class="ann-stat-label">Total Pengumuman</span>
+                                         <span class="ann-stat-value">24</span>
+                                     </div>
+                                     <div class="ann-stat-row">
+                                         <span class="ann-stat-label">Bulan Ini</span>
+                                         <span class="ann-stat-value">3</span>
+                                     </div>
+                                     <div class="ann-stat-row">
+                                         <span class="ann-stat-label">Dokumen Unduhan</span>
+                                         <span class="ann-stat-value">18</span>
+                                     </div>
+                                 </div>
+
+                                 <!-- Category Card -->
+                                 <div class="ann-sidebar-card">
+                                     <div class="ann-sidebar-title">Kategori</div>
+                                     <div class="ann-cat-list">
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">Pengadaan</span>
+                                             <span class="ann-cat-count">7</span>
+                                         </div>
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">Korporasi</span>
+                                             <span class="ann-cat-count">5</span>
+                                         </div>
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">HSE</span>
+                                             <span class="ann-cat-count">4</span>
+                                         </div>
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">SDM</span>
+                                             <span class="ann-cat-count">4</span>
+                                         </div>
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">Teknologi</span>
+                                             <span class="ann-cat-count">4</span>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <!-- Subscribe Box -->
+                                 <div class="ann-subscribe-box">
+                                     <h4>Notifikasi Pengumuman</h4>
+                                     <p>Dapatkan notifikasi langsung setiap ada pengumuman resmi terbaru dari PT Patra Logistik.</p>
+                                     <button class="ann-subscribe-btn">Daftarkan Email Anda</button>
+                                 </div>
+                             </aside>
+                         </div>
+                     </div>
+
+                    <!-- TAB 2: PENGUMUMAN (ENG) -->
+                     <div class="about-tab-content" id="tab-pengumuman">
+                         <div class="section-header">
+                             <span class="section-header__tag">Announcements</span>
+                             <h2 class="section-header__title">Corporate Announcements</h2>
+                             <p class="section-header__desc">Official information regarding procurement, policies, and corporate notices from PT Patra Logistik.</p>
+                         </div>
+
+                         <div class="ann-board">
+                             <div class="ann-main">
+                                 <div class="ann-filter-bar">
+                                     <button class="ann-filter-btn active">All</button>
+                                     <button class="ann-filter-btn">Procurement</button>
+                                     <button class="ann-filter-btn">Corporate</button>
+                                     <button class="ann-filter-btn">HSE</button>
+                                     <button class="ann-filter-btn">HR</button>
+                                     <button class="ann-filter-btn">Technology</button>
+                                 </div>
+                                 <div class="ann-featured">
+                                     <div class="ann-featured-tag">
+                                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                         Latest Announcement
+                                         <span class="ann-featured-label">GMS</span>
+                                     </div>
+                                     <div class="ann-featured-title">Annual General Meeting of Shareholders (GMS) 2026 Notice</div>
+                                     <div class="ann-featured-excerpt">PT Patra Logistik announces the Annual General Meeting of Shareholders for Fiscal Year 2025. All shareholders are invited to participate in accordance with the Company's Articles of Association.</div>
+                                     <div class="ann-featured-footer">
+                                         <span class="ann-featured-date">March 12, 2026</span>
+                                         <button class="ann-featured-cta">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                                     </div>
+                                 </div>
+                                 <div class="ann-list-v2">
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col"><span class="ann-card-v2-day">20</span><span class="ann-card-v2-month">May</span></div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body"><span class="ann-card-v2-tag tag-sdm">HR</span><div class="ann-card-v2-title">Patra Logistik Officer Recruitment Batch 2026 – Management Trainee Program</div></div>
+                                         <div class="ann-card-v2-action"><div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col"><span class="ann-card-v2-day">05</span><span class="ann-card-v2-month">Apr</span></div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body"><span class="ann-card-v2-tag tag-hse">HSE</span><div class="ann-card-v2-title">Update on Occupational Health & Safety Management System (OHS-MS) Policy</div></div>
+                                         <div class="ann-card-v2-action"><div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col"><span class="ann-card-v2-day">25</span><span class="ann-card-v2-month">Feb</span></div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body"><span class="ann-card-v2-tag tag-teknologi">Technology</span><div class="ann-card-v2-title">Digitalization of Patra Logistik Vendor Management Using iVendor System</div></div>
+                                         <div class="ann-card-v2-action"><div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col"><span class="ann-card-v2-day">10</span><span class="ann-card-v2-month">Jan</span></div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body"><span class="ann-card-v2-tag tag-pengadaan">Procurement</span><div class="ann-card-v2-title">Fuel Tanker Fleet Procurement Plan for January 2026 Period</div></div>
+                                         <div class="ann-card-v2-action"><div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <aside class="ann-sidebar">
+                                 <div class="ann-sidebar-card">
+                                     <div class="ann-sidebar-title">2026 Statistics</div>
+                                     <div class="ann-stat-row"><span class="ann-stat-label">Total Announcements</span><span class="ann-stat-value">24</span></div>
+                                     <div class="ann-stat-row"><span class="ann-stat-label">This Month</span><span class="ann-stat-value">3</span></div>
+                                     <div class="ann-stat-row"><span class="ann-stat-label">Documents</span><span class="ann-stat-value">18</span></div>
+                                 </div>
+                                 <div class="ann-sidebar-card">
+                                     <div class="ann-sidebar-title">Categories</div>
+                                     <div class="ann-cat-list">
+                                         <div class="ann-cat-item"><span class="ann-cat-name">Procurement</span><span class="ann-cat-count">7</span></div>
+                                         <div class="ann-cat-item"><span class="ann-cat-name">Corporate</span><span class="ann-cat-count">5</span></div>
+                                         <div class="ann-cat-item"><span class="ann-cat-name">HSE</span><span class="ann-cat-count">4</span></div>
+                                         <div class="ann-cat-item"><span class="ann-cat-name">HR</span><span class="ann-cat-count">4</span></div>
+                                         <div class="ann-cat-item"><span class="ann-cat-name">Technology</span><span class="ann-cat-count">4</span></div>
+                                     </div>
+                                 </div>
+                                 <div class="ann-subscribe-box">
+                                     <h4>Announcement Alerts</h4>
+                                     <p>Get notified whenever a new official announcement is published by PT Patra Logistik.</p>
+                                     <button class="ann-subscribe-btn">Register Your Email</button>
+                                 </div>
+                             </aside>
+                         </div>
+                     </div>
 
                     <!-- TAB 3: BERITA CSR -->
                     <div class="about-tab-content" id="tab-berita-csr">
@@ -1523,7 +1852,7 @@
                                     <div class="brand-logo-preview dark">
                                         <div style="display:flex;align-items:center;gap:8px;">
                                             <svg viewBox="0 0 40 40" style="width:32px;height:32px;"><path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24"/><path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#60A5FA"/></svg>
-                                            <div style="text-align:left;"><div style="font-weight:900;font-size:12px;color:#ED1C24;line-height:1;">PERTAMINA</div><div style="font-weight:800;font-size:8px;color:#93C5FD;line-height:1;letter-spacing:0.5px;">PATRA LOGISTIK</div></div>
+                                            <div style="text-align:left;"><div style="font-weight:900;font-size:12px;color:#ED1C24;line-height:1;">PERTAMINA</div><div style="font-weight:800;font-size:93C5FD;line-height:1;letter-spacing:0.5px;">PATRA LOGISTIK</div></div>
                                         </div>
                                     </div>
                                     <span class="brand-logo-label">Logo Utama (Dark)</span>
@@ -1556,26 +1885,6 @@
                         </div>
                     </div>
 
-                    <!-- TAB 2: PENGUMUMAN -->
-                    <div class="about-tab-content" id="tab-pengumuman">
-                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">PENGUMUMAN</div>
-                        
-                        <div class="ann-grid">
-                            <!-- Card 1: Rencana Pengadaan -->
-                            <div class="ann-card">
-                                <h4 class="ann-card-title">Rencana Pengadaan Armada Mobil Tangki BBM Periode Januari 2026</h4>
-                                <button class="btn-more">Selengkapnya</button>
-                            </div>
-                            <!-- Card 2: Digitalisasi Vendor -->
-                            <div class="ann-card">
-                                <h4 class="ann-card-title">Digitalisasi Vendor Management Patra Logistik Menggunakan iVendor</h4>
-                                <button class="btn-more">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 3: BERITA CSR -->
-                    <div class="about-tab-content" id="tab-berita-csr">
                         <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">Berita CSR</div>
                         
                         <div style="display: flex; justify-content: center;">
