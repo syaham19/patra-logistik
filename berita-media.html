@@ -1021,6 +1021,39 @@
             margin-bottom: 32px;
         }
 
+        /* === NEWS TAGS FILTER === */
+        .news-tags-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .news-tag-btn {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            color: #475569;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .news-tag-btn:hover {
+            background: #F1F5F9;
+            border-color: #CBD5E1;
+            color: #1E293B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .news-tag-btn.active {
+            background: #ED1C24;
+            border-color: #ED1C24;
+            color: #FFFFFF;
+            box-shadow: 0 6px 12px rgba(237, 28, 36, 0.2);
+        }
+
         /* News & Media Specific Styles */
         .news-grid {
             display: grid;
