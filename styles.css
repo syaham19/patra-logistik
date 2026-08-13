@@ -2875,17 +2875,16 @@ header.scrolled .lang-btn-current:hover {
 
 /* Compact Stats Grid (inside detail panel) */
 .mor-stats-grid--compact {
-    display: flex;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
     gap: 8px;
     flex: 2.2;
     margin-top: 0;
 }
 
 .mor-stats-grid--compact .mor-stat-card {
-    padding: 10px;
-    gap: 8px;
-    flex: 1;
+    padding: 8px;
+    gap: 4px;
 }
 
 .mor-stats-grid--compact .mor-stat-card__icon {
@@ -2921,8 +2920,7 @@ header.scrolled .lang-btn-current:hover {
         gap: 20px;
     }
     .mor-stats-grid--compact {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
@@ -4786,7 +4784,16 @@ img {
         max-width: 100% !important;
         width: 100%;
     }
+    
+    .mor-stats-grid--compact {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
+
+@media (max-width: 480px) {
+    .mor-stats-grid--compact {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
 /* Map Zoom Controls */
 .map-card__visual {

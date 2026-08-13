@@ -348,82 +348,39 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const panelInfoBlock = document.querySelector(".mor-detail-panel__info");
 
-    const statMilikEl = document.getElementById("stat-milik");
-    const statKelolaEl = document.getElementById("stat-kelola");
-    const statSpbuEl = document.getElementById("stat-spbu");
-    const statPertashopEl = document.getElementById("stat-pertashop");
+    const statRetailEl = document.getElementById("stat-retail");
+    const statIndustrialEl = document.getElementById("stat-industrial");
+    const statGasEl = document.getElementById("stat-gas");
+    const statVmiEl = document.getElementById("stat-vmi");
+    const statAviationEl = document.getElementById("stat-aviation");
+    const statLubricantsEl = document.getElementById("stat-lubricants");
+    const statWarehouseEl = document.getElementById("stat-warehouse");
+    const statFuelTermEl = document.getElementById("stat-fuelterm");
+    const statKrpEl = document.getElementById("stat-krp");
 
     const morDb = {
-        "MOR-I": {
-            code: "Region I",
-            title: "Region I Sumatra Bagian Utara",
-            subtitle: "Wilayah Layanan: Sumatra Bagian Utara",
-            cities: ["Medan", "Banda Aceh", "Pekanbaru", "Batam", "Padang"],
-            // Data: Retail=1, Industrial=27, VMI=9, Total=51
-            stats: { milik: 1, kelola: 27, spbu: 9, pertashop: 51 },
+        "MOR-I": {stats: {retail: 1, industrial: 27, gas: 0, vmi: 9, aviation: 1, lubricants: 4, warehouse: 4, fuelterm: 0, krp: 5},
             projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 27 Project", "Vendor Managed Inventory: 9 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 4 Project", "Warehouse Service: 4 Project", "KRP: 5 Project"]
         },
-        "MOR-II": {
-            code: "Region II",
-            title: "Region II Sumatra Bagian Selatan",
-            subtitle: "Wilayah Layanan: Sumatra Bagian Selatan",
-            cities: ["Palembang", "Lampung", "Jambi", "Bengkulu", "Pangkalpinang"],
-            // Data: Retail=7, Industrial=12, VMI=12, Total=38
-            stats: { milik: 7, kelola: 12, spbu: 12, pertashop: 38 },
+        "MOR-II": {stats: {retail: 7, industrial: 12, gas: 0, vmi: 12, aviation: 1, lubricants: 1, warehouse: 4, fuelterm: 0, krp: 1},
             projects: ["Retail Fuel Transport: 7 Project", "Industrial Fuel Transport (Franco): 12 Project", "Vendor Managed Inventory: 12 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 1 Project", "Warehouse Service: 4 Project", "KRP: 1 Project"]
         },
-        "MOR-III": {
-            code: "Region III",
-            title: "Region III Jawa Bagian Barat",
-            subtitle: "Wilayah Layanan: Jawa Bagian Barat",
-            cities: ["Jakarta", "Bandung", "Banten", "Depok", "Bekasi", "Cirebon"],
-            // Data: Retail=5, Industrial=11, VMI=12, Total=43
-            stats: { milik: 5, kelola: 11, spbu: 12, pertashop: 43 },
+        "MOR-III": {stats: {retail: 5, industrial: 11, gas: 5, vmi: 12, aviation: 0, lubricants: 6, warehouse: 2, fuelterm: 0, krp: 2},
             projects: ["Retail Fuel Transport: 5 Project", "Industrial Fuel Transport (Franco): 11 Project", "Gas Transport: 5 Project", "Vendor Managed Inventory: 12 Lokasi", "Lubricants Transport: 6 Project", "Warehouse Service: 2 Project", "KRP: 2 Project"]
         },
-        "MOR-IV": {
-            code: "Region IV",
-            title: "Region IV Jawa Bagian Tengah",
-            subtitle: "Wilayah Layanan: Jawa Bagian Tengah & DIY",
-            cities: ["Semarang", "Yogyakarta", "Solo", "Cilacap", "Pekalongan", "Tegal"],
-            // Data: Retail=7, Industrial=91, VMI=14, Total=123
-            stats: { milik: 7, kelola: 91, spbu: 14, pertashop: 123 },
+        "MOR-IV": {stats: {retail: 7, industrial: 91, gas: 3, vmi: 14, aviation: 0, lubricants: 0, warehouse: 1, fuelterm: 0, krp: 7},
             projects: ["Retail Fuel Transport: 7 Project", "Industrial Fuel Transport (Franco): 91 Project", "Gas Transport: 3 Project", "Vendor Managed Inventory: 14 Lokasi", "Warehouse Service: 1 Project", "KRP: 7 Project"]
         },
-        "MOR-V": {
-            code: "Region V",
-            title: "Region V Jatimbalinus",
-            subtitle: "Wilayah Layanan: Jawa Timur, Bali, & Nusa Tenggara",
-            cities: ["Surabaya", "Malang", "Denpasar", "Mataram", "Kupang", "Madiun"],
-            // Data: Retail=2, Industrial=13, VMI=3, Total=36
-            stats: { milik: 2, kelola: 13, spbu: 3, pertashop: 36 },
+        "MOR-V": {stats: {retail: 2, industrial: 13, gas: 2, vmi: 3, aviation: 7, lubricants: 2, warehouse: 0, fuelterm: 6, krp: 1},
             projects: ["Retail Fuel Transport: 2 Project", "Industrial Fuel Transport (Franco): 13 Project", "Gas Transport: 2 Project", "Vendor Managed Inventory: 3 Lokasi", "Aviation Fuel Terminal: 7 Project", "Lubricants Transport: 2 Project", "Fuel Terminal: 6 Titik", "KRP: 1 Project"]
         },
-        "MOR-VI": {
-            code: "Region VI",
-            title: "Region VI Kalimantan",
-            subtitle: "Wilayah Layanan: Wilayah Kalimantan",
-            cities: ["Balikpapan", "Banjarmasin", "Pontianak", "Samarinda", "Tarakan"],
-            // Data: Retail=1, Industrial=7, VMI=2, Total=17
-            stats: { milik: 1, kelola: 7, spbu: 2, pertashop: 17 },
+        "MOR-VI": {stats: {retail: 1, industrial: 7, gas: 1, vmi: 2, aviation: 1, lubricants: 2, warehouse: 0, fuelterm: 1, krp: 2},
             projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 7 Project", "Gas Transport: 1 Project", "Vendor Managed Inventory: 2 Lokasi", "Aviation Fuel Terminal: 1 Project", "Lubricants Transport: 2 Project", "Fuel Terminal: 1 Titik", "KRP: 2 Project"]
         },
-        "MOR-VII": {
-            code: "Region VII",
-            title: "Region VII Sulawesi",
-            subtitle: "Wilayah Layanan: Wilayah Sulawesi",
-            cities: ["Makassar", "Manado", "Palu", "Kendari", "Gorontalo"],
-            // Data: Retail=0, Industrial=7, VMI=1, Total=24
-            stats: { milik: 0, kelola: 7, spbu: 1, pertashop: 24 },
+        "MOR-VII": {stats: {retail: 0, industrial: 7, gas: 1, vmi: 1, aviation: 0, lubricants: 1, warehouse: 0, fuelterm: 13, krp: 1},
             projects: ["Industrial Fuel Transport (Franco): 7 Project", "Gas Transport: 1 Project", "Vendor Managed Inventory: 1 Lokasi", "Lubricants Transport: 1 Project", "Fuel Terminal: 13 Titik", "KRP: 1 Project"]
         },
-        "MOR-VIII": {
-            code: "Region VIII",
-            title: "Region VIII Maluku Papua",
-            subtitle: "Wilayah Layanan: Maluku & Papua",
-            cities: ["Sorong", "Jayapura", "Ambon", "Ternate", "Manokwari", "Merauke"],
-            // Data: Retail=1, Industrial=3, VMI=1, Total=8
-            stats: { milik: 1, kelola: 3, spbu: 1, pertashop: 8 },
+        "MOR-VIII": {stats: {retail: 1, industrial: 3, gas: 0, vmi: 1, aviation: 2, lubricants: 0, warehouse: 0, fuelterm: 0, krp: 1},
             projects: ["Retail Fuel Transport: 1 Project", "Industrial Fuel Transport (Franco): 3 Project", "Vendor Managed Inventory: 1 Lokasi", "Aviation Fuel Terminal: 2 Project", "KRP: 1 Project"]
         }
     };
@@ -511,10 +468,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 200);
 
         // Animate statistic values
-        animateCount(statMilikEl, parseCurrentValue(statMilikEl), data.stats.milik);
-        animateCount(statKelolaEl, parseCurrentValue(statKelolaEl), data.stats.kelola);
-        animateCount(statSpbuEl, parseCurrentValue(statSpbuEl), data.stats.spbu);
-        animateCount(statPertashopEl, parseCurrentValue(statPertashopEl), data.stats.pertashop);
+        animateCount(statRetailEl, parseCurrentValue(statRetailEl), data.stats.retail);
+        animateCount(statIndustrialEl, parseCurrentValue(statIndustrialEl), data.stats.industrial);
+        animateCount(statGasEl, parseCurrentValue(statGasEl), data.stats.gas);
+        animateCount(statVmiEl, parseCurrentValue(statVmiEl), data.stats.vmi);
+        animateCount(statAviationEl, parseCurrentValue(statAviationEl), data.stats.aviation);
+        animateCount(statLubricantsEl, parseCurrentValue(statLubricantsEl), data.stats.lubricants);
+        animateCount(statWarehouseEl, parseCurrentValue(statWarehouseEl), data.stats.warehouse);
+        animateCount(statFuelTermEl, parseCurrentValue(statFuelTermEl), data.stats.fuelterm);
+        animateCount(statKrpEl, parseCurrentValue(statKrpEl), data.stats.krp);
     };
 
     // Marker click event
@@ -539,10 +501,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // No counter animation on page load, just set values immediately
         const defaultData = morDb["MOR-III"];
         if (defaultData) {
-            if (statMilikEl) statMilikEl.textContent = defaultData.stats.milik.toLocaleString("id-ID");
-            if (statKelolaEl) statKelolaEl.textContent = defaultData.stats.kelola.toLocaleString("id-ID");
-            if (statSpbuEl) statSpbuEl.textContent = defaultData.stats.spbu.toLocaleString("id-ID");
-            if (statPertashopEl) statPertashopEl.textContent = defaultData.stats.pertashop.toLocaleString("id-ID");
+            if (statRetailEl) statRetailEl.textContent = defaultData.stats.retail.toLocaleString("id-ID");
+            if (statIndustrialEl) statIndustrialEl.textContent = defaultData.stats.industrial.toLocaleString("id-ID");
+            if (statGasEl) statGasEl.textContent = defaultData.stats.gas.toLocaleString("id-ID");
+            if (statVmiEl) statVmiEl.textContent = defaultData.stats.vmi.toLocaleString("id-ID");
+            if (statAviationEl) statAviationEl.textContent = defaultData.stats.aviation.toLocaleString("id-ID");
+            if (statLubricantsEl) statLubricantsEl.textContent = defaultData.stats.lubricants.toLocaleString("id-ID");
+            if (statWarehouseEl) statWarehouseEl.textContent = defaultData.stats.warehouse.toLocaleString("id-ID");
+            if (statFuelTermEl) statFuelTermEl.textContent = defaultData.stats.fuelterm.toLocaleString("id-ID");
+            if (statKrpEl) statKrpEl.textContent = defaultData.stats.krp.toLocaleString("id-ID");
 
             // Pre-populate project list for default region
             const projectList = document.getElementById("panel-mor-projects-list");
