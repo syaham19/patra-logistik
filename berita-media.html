@@ -1394,9 +1394,18 @@
                             </div>
                         </a>
                         
+                                                <!-- Tags Filter -->
+                        <div class="news-tags-filter" id="news-tags-filter">
+                            <button class="news-tag-btn active" data-filter="all">All News</button>
+                            <button class="news-tag-btn" data-filter="csr">CSR/Sustainability</button>
+                            <button class="news-tag-btn" data-filter="profile">Profile Business</button>
+                            <button class="news-tag-btn" data-filter="innovation">Innovation</button>
+                            <button class="news-tag-btn" data-filter="services">Services</button>
+                        </div>
+                        
                         <!-- Remaining Cards Grid -->
                         <div class="news-grid" id="news-grid">
-                            <div class="news-card" data-index="0">
+                            <div class="news-card" data-index="0" data-category="innovation">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #ED1C24 0%, #BA1C21 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">28 Mei 2026</span></div>
@@ -1404,7 +1413,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="1">
+                            <div class="news-card" data-index="1" data-category="services">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #10B981 0%, #064E3B 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">15 Mei 2026</span></div>
@@ -1412,7 +1421,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="2">
+                            <div class="news-card" data-index="2" data-category="profile">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #F59E0B 0%, #B45309 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">02 Mei 2026</span></div>
@@ -1420,7 +1429,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="3">
+                            <div class="news-card" data-index="3" data-category="profile">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #8B5CF6 0%, #4C1D95 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">20 April 2026</span></div>
@@ -1428,7 +1437,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="4">
+                            <div class="news-card" data-index="4" data-category="services">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #06B6D4 0%, #164E63 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">11 April 2026</span></div>
@@ -1436,7 +1445,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="5">
+                            <div class="news-card" data-index="5" data-category="csr">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">05 April 2026</span></div>
@@ -1444,7 +1453,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="6">
+                            <div class="news-card" data-index="6" data-category="profile">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #EAB308 0%, #A16207 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">25 Maret 2026</span></div>
@@ -1452,7 +1461,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="7">
+                            <div class="news-card" data-index="7" data-category="services">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">12 Maret 2026</span></div>
@@ -1460,7 +1469,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="8">
+                            <div class="news-card" data-index="8" data-category="csr">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">01 Maret 2026</span></div>
@@ -1468,7 +1477,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="9">
+                            <div class="news-card" data-index="9" data-category="services">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">20 Februari 2026</span></div>
@@ -1476,7 +1485,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="10">
+                            <div class="news-card" data-index="10" data-category="innovation">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">10 Februari 2026</span></div>
@@ -1484,7 +1493,7 @@
                                     <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
                                 </div>
                             </div>
-                            <div class="news-card" data-index="11">
+                            <div class="news-card" data-index="11" data-category="profile">
                                 <div class="news-card-img" style="background: linear-gradient(135deg, #64748B 0%, #334155 100%);"></div>
                                 <div class="news-card-body">
                                     <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">25 Januari 2026</span></div>
@@ -2367,6 +2376,30 @@
             menuBtns.forEach(btn => {
                 btn.addEventListener("click", () => {
                     switchTab(btn.getAttribute("data-target"));
+                });
+            });
+
+            
+            // News Tags Filter Logic
+            const newsTags = document.querySelectorAll('.news-tag-btn');
+            const newsCards = document.querySelectorAll('.news-card[data-category]');
+
+            newsTags.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    newsTags.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    newsCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
                 });
             });
 
