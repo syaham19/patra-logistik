@@ -361,8 +361,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const morDb = {
         "MOR-I": {
             code: "Region I",
-            title: "Region I Sumatra Bagian Utara",
-            subtitle: "Wilayah Layanan: Sumatra Bagian Utara",
+            title: "Region I Sumatera Bagian Utara",
+            subtitle: "Wilayah Layanan: Sumatera Bagian Utara",
             cities: ["Medan", "Banda Aceh", "Pekanbaru", "Batam", "Padang"],
             // Data: Retail=1, Industrial=27, VMI=9, Total=51
             stats: {retail: 1, industrial: 27, gas: 0, vmi: 9, aviation: 1, lubricants: 4, warehouse: 4, fuelterm: 0, krp: 5},
@@ -370,8 +370,8 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         "MOR-II": {
             code: "Region II",
-            title: "Region II Sumatra Bagian Selatan",
-            subtitle: "Wilayah Layanan: Sumatra Bagian Selatan",
+            title: "Region II Sumatera Bagian Selatan",
+            subtitle: "Wilayah Layanan: Sumatera Bagian Selatan",
             cities: ["Palembang", "Lampung", "Jambi", "Bengkulu", "Pangkalpinang"],
             // Data: Retail=7, Industrial=12, VMI=12, Total=38
             stats: {retail: 7, industrial: 12, gas: 0, vmi: 12, aviation: 1, lubricants: 1, warehouse: 4, fuelterm: 0, krp: 1},
