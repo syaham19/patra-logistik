@@ -1,5 +1,8 @@
 const translations = {
     id: {
+        "about_162": "PT Patra Logistik",
+        "about_163": "bergerak dibidang logistik dengan kompetensi utama yaitu Transportasi, Pengelolaan Gudang, Customs Clearance dan Support Logistik lainnya.",
+        "about_164": "Berkomitmen dan berusaha penuh dengan sumber daya yang kami miliki untuk mengokohkan kompetensinya sebagai Perusahaan Logistik dengan memberikan layanan yang prima, PT Patra Logistik mengedepankan etos kerja yang profesional, transparan, dengan integritas yang tinggi yang berorientasi pada kepuasan pelanggan, stakeholder dan kesejahteraan serta tanggap dalam menghadapi dinamika bisnis yang berlandaskan pada Good Corporate Governance, Risk Awareness & Corporate Social Responsibility.",
         "biz_0": "Solusi Logistik & Energi",
         "biz_1": "Bisnis Kami",
         "biz_2": "Menyediakan rantai pasokan logistik energi yang terintegrasi, andal, dan berstandar internasional di seluruh Indonesia.",
@@ -405,6 +408,9 @@ const translations = {
         "footer.copyright": "© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang."
     },
     en: {
+        "about_162": "PT Patra Logistik",
+        "about_163": "operates in logistics with main competencies in Transportation, Warehouse Management, Customs Clearance and other Logistics Support.",
+        "about_164": "Committed and striving fully with our resources to strengthen its competence as a Logistics Company by providing prime service, PT Patra Logistik puts forward a professional, transparent work ethic with high integrity oriented towards customer and stakeholder satisfaction, welfare, and responsiveness in facing business dynamics based on Good Corporate Governance, Risk Awareness & Corporate Social Responsibility.",
         "biz_0": "Logistics & Energy Solutions",
         "biz_1": "Our Business",
         "biz_2": "Providing an integrated, reliable, and international-standard energy logistics supply chain across Indonesia.",
