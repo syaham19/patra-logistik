@@ -1246,25 +1246,25 @@
                     </ul>
                 </li>
                 <li class="has-dropdown">
-                    <a href="bisnis.html" class="nav-link" data-text="Bisnis">Bisnis</a>
+                    <a href="bisnis.html" class="nav-link" data-text="Bisnis" data-i18n="nav.business">Bisnis</a>
                     <ul class="dropdown-menu">
-                        <li><a href="bisnis.html?tab=transportasi">Transportasi</a></li>
-                        <li><a href="bisnis.html?tab=inventory">Inventory Management</a></li>
-                        <li><a href="bisnis.html?tab=other">Lainnya</a></li>
-                        <li><a href="bisnis.html?tab=fleet">Fleet Management</a></li>
+                        <li><a href="bisnis.html?tab=transportasi" data-i18n="nav.biz.transport">Transportasi</a></li>
+                        <li><a href="bisnis.html?tab=inventory" data-i18n="nav.biz.inventory">Inventory Management</a></li>
+                        <li><a href="bisnis.html?tab=other" data-i18n="nav.biz.other">Lainnya</a></li>
+                        <li><a href="bisnis.html?tab=fleet" data-i18n="nav.biz.fleet">Fleet Management</a></li>
                     </ul>
                 </li>
                 <li class="has-dropdown">
-                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor">Hubungan Investor</a>
+                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor" data-i18n="nav.investor">Hubungan Investor</a>
                     <ul class="dropdown-menu">
                         <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
                         <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
                         <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
                     </ul>
                 </li>
-                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability">Sustainability</a></li>
+                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability" data-i18n="nav.sustainability">Sustainability</a></li>
                 <li class="has-dropdown">
-                    <a href="berita-media.html" class="nav-link active" data-text="Berita & Media">Berita & Media</a>
+                    <a href="berita-media.html" class="nav-link active" data-text="Berita & Media" data-i18n="nav.news">Berita & Media</a>
                     <ul class="dropdown-menu">
                         <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
                         <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
@@ -1273,7 +1273,7 @@
                         <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
                     </ul>
                 </li>
-                <li><a href="karir.html" class="nav-link" data-text="Karir">Karir</a></li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir" data-i18n="nav.career">Karir</a></li>
             </ul>
             <div class="nav-cta">
                 <div class="lang-switch has-dropdown" aria-label="Language Switch">
@@ -1297,7 +1297,7 @@
                         </li>
                     </ul>
                 </div>
-                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;">HUBUNGI KAMI</button>
+                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;" data-i18n="nav.contact">HUBUNGI KAMI</button>
             </div>
         </div>
     </header>
@@ -1722,34 +1722,88 @@
                             <h2 class="section-header__title">Tanggung Jawab Sosial Perusahaan</h2>
                             <p class="section-header__desc">Kisah nyata kontribusi Patra Logistik untuk masyarakat, lingkungan, dan keberlangsungan energi bangsa.</p>
                         </div>
-                        <div class="csr-grid">
-                            <div class="csr-card">
-                                <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="csr-card-img">
-                                <div class="csr-card-body">
-                                    <div class="csr-card-meta"><span class="csr-card-tag">Pendidikan</span><span class="csr-card-date">02 Mei 2026</span></div>
-                                    <h4 class="csr-card-title">Kenalkan Budaya Keselamatan dan Hemat Energi, Patra Logistik Jangkau Lebih dari 3.000 Pelajar</h4>
-                                    <p class="csr-card-excerpt">Program edukasi keselamatan kerja dan hemat energi menyentuh lebih dari 3.000 pelajar di seluruh wilayah operasional.</p>
-                                    <a href="#" class="csr-card-cta">Selengkapnya &rarr;</a>
+                        
+                        <!-- Featured CSR -->
+                        <div class="csr-featured">
+                            <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="csr-featured-img">
+                            <div class="csr-featured-content">
+                                <div class="csr-featured-tag">Sorotan CSR</div>
+                                <h3 class="csr-featured-title">Kenalkan Budaya Keselamatan dan Hemat Energi, Patra Logistik Jangkau Lebih dari 3.000 Pelajar</h3>
+                                <p class="csr-featured-excerpt">Program edukasi keselamatan kerja dan hemat energi menyentuh lebih dari 3.000 pelajar di seluruh wilayah operasional melalui kolaborasi dengan sekolah dasar dan menengah setempat, mengedukasi generasi muda mengenai pentingnya menjaga energi dan bertindak aman sejak dini.</p>
+                                <div class="csr-featured-footer">
+                                    <span class="csr-featured-date">02 Mei 2026 &bull; Pendidikan</span>
+                                    <a href="berita-detail.html" class="csr-featured-cta">Baca Artikel Penuh &rarr;</a>
                                 </div>
                             </div>
-                            <div class="csr-card">
+                        </div>
+
+                        <!-- CSR Grid -->
+                        <div class="csr-grid">
+                            <a href="berita-detail.html" class="csr-card">
                                 <div class="csr-card-img" style="background: linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 100%);"></div>
                                 <div class="csr-card-body">
                                     <div class="csr-card-meta"><span class="csr-card-tag">Lingkungan</span><span class="csr-card-date">18 April 2026</span></div>
                                     <h4 class="csr-card-title">Patra Logistik Tanam 10.000 Pohon Mangrove di Pesisir Kalimantan Timur</h4>
-                                    <p class="csr-card-excerpt">Inisiatif penghijauan pesisir untuk mendukung ekosistem bahari dan mitigasi perubahan iklim di wilayah operasional Kalimantan.</p>
-                                    <a href="#" class="csr-card-cta">Selengkapnya &rarr;</a>
+                                    <p class="csr-card-excerpt">Inisiatif penghijauan pesisir untuk mendukung ekosistem bahari dan mitigasi perubahan iklim di wilayah operasional.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
                                 </div>
-                            </div>
-                            <div class="csr-card">
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
                                 <div class="csr-card-img" style="background: linear-gradient(135deg, #BBF7D0 0%, #34D399 100%);"></div>
                                 <div class="csr-card-body">
                                     <div class="csr-card-meta"><span class="csr-card-tag">Pemberdayaan</span><span class="csr-card-date">28 Maret 2026</span></div>
-                                    <h4 class="csr-card-title">Beasiswa Energi: 50 Putra-Putri Daerah Terima Beasiswa Kuliah dari Patra Logistik</h4>
-                                    <p class="csr-card-excerpt">Program beasiswa untuk mendorong generasi muda di sekitar wilayah operasional agar memiliki akses pendidikan tinggi yang berkualitas.</p>
-                                    <a href="#" class="csr-card-cta">Selengkapnya &rarr;</a>
+                                    <h4 class="csr-card-title">Beasiswa Energi: 50 Putra-Putri Daerah Terima Beasiswa Kuliah </h4>
+                                    <p class="csr-card-excerpt">Program beasiswa untuk mendorong generasi muda di sekitar wilayah operasional agar memiliki akses pendidikan tinggi.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
                                 </div>
-                            </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Kesehatan</span><span class="csr-card-date">12 Maret 2026</span></div>
+                                    <h4 class="csr-card-title">Cek Kesehatan Gratis & Pembagian Sembako untuk Masyarakat Nelayan</h4>
+                                    <p class="csr-card-excerpt">Layanan medis keliling dan dukungan logistik pangan untuk membantu kesejahteraan masyarakat pesisir pantai.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #D1FAE5 0%, #10B981 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Pendidikan</span><span class="csr-card-date">25 Februari 2026</span></div>
+                                    <h4 class="csr-card-title">Bantuan Perbaikan Fasilitas Sekolah di Daerah 3T (Tertinggal, Terdepan, Terluar)</h4>
+                                    <p class="csr-card-excerpt">Renovasi perpustakaan dan penyediaan alat belajar di daerah pelosok guna mendukung semangat belajar siswa.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #059669 0%, #064E3B 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Lingkungan</span><span class="csr-card-date">10 Januari 2026</span></div>
+                                    <h4 class="csr-card-title">Kampanye Pengurangan Sampah Plastik di Lingkungan Operasional</h4>
+                                    <p class="csr-card-excerpt">Sosialisasi diet plastik dan penyediaan sarana air minum isi ulang bagi pekerja dan masyarakat sekitar.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #10B981 0%, #047857 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Bencana Alam</span><span class="csr-card-date">15 Desember 2025</span></div>
+                                    <h4 class="csr-card-title">Tanggap Darurat: Patra Logistik Salurkan Energi dan Logistik ke Area Terdampak Banjir</h4>
+                                    <p class="csr-card-excerpt">Distribusi BBM khusus dan suplai bahan makanan pokok bagi pengungsi bencana banjir di wilayah operasional.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="page-btn"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span style="color:#94A3B8;">...</span>
+                            <button class="page-btn">8</button>
+                            <button class="page-btn"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
                         </div>
                     </div>
 
@@ -1885,17 +1939,95 @@
                         </div>
                     </div>
 
-                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 32px;">Berita CSR</div>
+                    <!-- TAB 3: BERITA CSR (ENG) -->
+                    <div class="about-tab-content" id="tab-berita-csr">
+                        <div class="section-header">
+                            <span class="section-header__tag" style="color:#059669;">CSR News</span>
+                            <h2 class="section-header__title">Corporate Social Responsibility</h2>
+                            <p class="section-header__desc">Real stories of Patra Logistik's contribution to society, environment, and the sustainability of the nation's energy.</p>
+                        </div>
                         
-                        <div style="display: flex; justify-content: center;">
-                            <div class="news-card" style="width: 420px; max-width: 100%;">
-                                <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="news-card-img" style="height: 240px;">
-                                <div class="news-card-body">
-                                    <span class="news-card-tag" style="color: #ED1C24;">BERITA CSR</span>
-                                    <h4 class="news-card-title">Kenalkan Budaya Keselamatan dan Hemat Energi, Patra Logistik Jangkau Lebih dari...</h4>
-                                    <span class="news-card-date">02 Mei 2026</span>
+                        <!-- Featured CSR -->
+                        <div class="csr-featured">
+                            <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="csr-featured-img">
+                            <div class="csr-featured-content">
+                                <div class="csr-featured-tag">CSR Spotlight</div>
+                                <h3 class="csr-featured-title">Introducing Safety and Energy Saving Culture, Patra Logistik Reaches Over 3,000 Students</h3>
+                                <p class="csr-featured-excerpt">The occupational safety and energy-saving education program reached more than 3,000 students across operational areas through collaboration with local schools, educating the younger generation on the importance of energy conservation and safe behavior.</p>
+                                <div class="csr-featured-footer">
+                                    <span class="csr-featured-date">May 02, 2026 &bull; Education</span>
+                                    <a href="berita-detail.html" class="csr-featured-cta">Read Full Article &rarr;</a>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- CSR Grid -->
+                        <div class="csr-grid">
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Environment</span><span class="csr-card-date">Apr 18, 2026</span></div>
+                                    <h4 class="csr-card-title">Patra Logistik Plants 10,000 Mangrove Trees in East Kalimantan Coastal Area</h4>
+                                    <p class="csr-card-excerpt">Coastal greening initiative to support marine ecosystems and mitigate climate change in the Kalimantan operational area.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #BBF7D0 0%, #34D399 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Empowerment</span><span class="csr-card-date">Mar 28, 2026</span></div>
+                                    <h4 class="csr-card-title">Energy Scholarship: 50 Local Youths Receive Scholarships from Patra Logistik</h4>
+                                    <p class="csr-card-excerpt">Scholarship program to encourage young generations around operational areas to access quality higher education.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Healthcare</span><span class="csr-card-date">Mar 12, 2026</span></div>
+                                    <h4 class="csr-card-title">Free Health Checks & Food Supply Distribution for Fishing Communities</h4>
+                                    <p class="csr-card-excerpt">Mobile medical services and food logistics support to improve the welfare of coastal communities.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #D1FAE5 0%, #10B981 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Education</span><span class="csr-card-date">Feb 25, 2026</span></div>
+                                    <h4 class="csr-card-title">Support for School Facility Repairs in Underdeveloped Remote Areas</h4>
+                                    <p class="csr-card-excerpt">Library renovations and provision of learning equipment in remote areas to support students' enthusiasm for learning.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #059669 0%, #064E3B 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Environment</span><span class="csr-card-date">Jan 10, 2026</span></div>
+                                    <h4 class="csr-card-title">Plastic Waste Reduction Campaign in Operational Environments</h4>
+                                    <p class="csr-card-excerpt">Socialization of plastic diets and provision of drinking water refill facilities for workers and surrounding communities.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #10B981 0%, #047857 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Disaster Relief</span><span class="csr-card-date">Dec 15, 2025</span></div>
+                                    <h4 class="csr-card-title">Emergency Response: Energy and Logistics Delivery to Flood-Affected Areas</h4>
+                                    <p class="csr-card-excerpt">Distribution of specialized fuel and supply of basic food items for flood evacuees in operational regions.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="page-btn"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span style="color:#94A3B8;">...</span>
+                            <button class="page-btn">8</button>
+                            <button class="page-btn"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
                         </div>
                     </div>
 
