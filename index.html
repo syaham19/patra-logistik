@@ -116,14 +116,6 @@
             </div>
         </div>
 
-        <!-- Prev / Next Buttons (outside slideshow div, anchored to .hero) -->
-        <button class="hero-slide-btn hero-slide-btn--prev" id="hero-slide-prev" aria-label="Slide sebelumnya">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <button class="hero-slide-btn hero-slide-btn--next" id="hero-slide-next" aria-label="Slide berikutnya">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
-        </button>
-
         <!-- Dot Indicators (outside slideshow div, anchored to .hero) -->
         <div class="hero-slide-indicators" role="tablist" aria-label="Pilih slide">
             <button class="hero-slide-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
@@ -1468,8 +1460,6 @@
         const DURATION = 4000; // ms per slide
         const slides = document.querySelectorAll('.hero-slide');
         const dots   = document.querySelectorAll('.hero-slide-dot');
-        const btnPrev = document.getElementById('hero-slide-prev');
-        const btnNext = document.getElementById('hero-slide-next');
         let current = 0;
         let timer   = null;
 
@@ -1497,10 +1487,6 @@
             goTo(index);
             startAuto(); // reset interval after manual navigation
         }
-
-        // Wire up buttons
-        if (btnPrev) btnPrev.addEventListener('click', () => manualNav(current - 1));
-        if (btnNext) btnNext.addEventListener('click', () => manualNav(current + 1));
 
         // Wire up dots
         dots.forEach(dot => {
