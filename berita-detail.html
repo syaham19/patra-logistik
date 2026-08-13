@@ -1092,8 +1092,38 @@
             justify-content: center;
             height: 90px;
         }
+    
+        #navbar .logo-image {
+            content: url('assets/logo.png') !important;
+        }
+
+    </style>
+
+    <style>
+        #navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
+            padding: 10px 0 !important;
+        }
+        #navbar .nav-link { 
+            background-image: linear-gradient(to right, #0056A6, #0056A6) !important; 
+        }
+        #navbar .nav-link::before { 
+            color: #1E293B !important; 
+        }
+        .breadcrumb-container {
+            margin-top: 0 !important;
+            padding-top: 120px !important;
+            padding-bottom: 20px !important;
+        }
+    
+        #navbar .logo-image {
+            content: url('assets/logo.png') !important;
+        }
+
     </style>
 </head>
+
 <body>
 <header id="navbar">
         <div class="container nav-wrapper">
@@ -1176,7 +1206,7 @@
     </header>
 
     <!-- Breadcrumb -->
-    <div class="breadcrumb-container" style="background: #f8fafc; padding: 20px 0; border-bottom: 1px solid #e2e8f0; margin-top: 80px;">
+    <div class="breadcrumb-container" style="background: #f8fafc; padding: 20px 0; border-bottom: 1px solid #e2e8f0; ">
         <div class="container">
             <span style="color: #64748b; font-size: 14px;">
                 <a href="index.html" style="color: #1E3A8A; text-decoration: none;">Beranda</a> &gt; 
