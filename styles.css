@@ -4794,6 +4794,7 @@ img {
     .mor-stats-grid--compact {
         grid-template-columns: repeat(2, 1fr);
     }
+}
 
 /* Map Zoom Controls */
 .map-card__visual {
