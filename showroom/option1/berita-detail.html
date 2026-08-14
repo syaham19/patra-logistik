@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Berita - Pertamina Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Khusus untuk Berita & Media */
+        .about-hero {
+            color: #ffffff;
+            padding: 100px 0 60px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, #F9F9F9, rgba(249, 249, 249, 0));
+            pointer-events: none;
+        }
+        .about-hero__tag {
+            background: rgba(237, 28, 36, 0.2);
+            color: #FF5A5F;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(237, 28, 36, 0.3);
+        }
+        .about-hero__title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .about-hero__desc {
+            font-size: 16px;
+            color: #A0C4DF;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        /* Layout Grid */
+        .about-layout {
+            padding: 20px 0 100px;
+            background-color: #FFFFFF;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Navigation Drawer */
+        .about-sidebar {
+            position: fixed !important;
+            top: 0;
+            left: -340px; /* Hidden off-screen */
+            width: 320px;
+            height: 100vh;
+            background: #ffffff;
+            box-shadow: 20px 0 40px rgba(15, 23, 42, 0.15);
+            z-index: 2000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px;
+            border-radius: 0;
+            border: none;
+            border-right: 1px solid #E2E8F0;
+            overflow-y: auto;
+        }
+        .about-sidebar.open {
+            left: 0 !important;
+        }
+
+        /* Drawer Backdrop Overlay */
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .sidebar-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Drawer Header */
+        .sidebar-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 16px;
+        }
+        .sidebar-drawer-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #64748B;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+        .sidebar-drawer-close:hover {
+            color: #ED1C24;
+        }
+
+        /* Floating category trigger button */
+        .category-toggle-btn {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background: #0056A6;
+            color: #ffffff;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            padding: 16px 20px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .category-toggle-btn:hover {
+            background: #ED1C24;
+            padding-left: 28px;
+        }
+
+        /* Inline category trigger button */
+        .category-inline-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #F1F5F9;
+            color: #1E293B;
+            border: 1px solid #E2E8F0;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+        }
+        .category-inline-trigger:hover {
+            background: #0056A6;
+            color: #ffffff;
+            border-color: #0056A6;
+        }
+        
+        /* Mobile Dropdown Styling */
+        .about-mobile-select-wrapper {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .about-mobile-select-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .about-mobile-select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1E293B;
+            background-color: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            border-radius: 0;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .about-mobile-select:focus {
+            border-color: #0056A6;
+        }
+
+        .about-menu-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-left: 12px;
+        }
+
+
+        /* Content Area */
+        .about-content-pane {
+            background: transparent;
+            border-radius: 0;
+            padding: 40px 0 80px;
+            box-shadow: none;
+            border: none;
+            min-height: 500px;
+        }
+
+        .about-tab-content {
+            display: none;
+            animation: mediaFadeIn 0.4s ease forwards;
+        }
+        .about-tab-content.active {
+            display: block;
+        }
+        @keyframes mediaFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === SECTION HEADER === */
+        .section-header {
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid #F1F5F9;
+        }
+        .section-header__tag {
+            font-size: 11px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .section-header__title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1E293B;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .section-header__desc {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.7;
+        }
+
+        /* === TAB 1: SIARAN PERS — Featured Hero + Grid === */
+        .press-hero-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 280px;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+            margin-bottom: 32px;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .press-hero-card:hover {
+            box-shadow: 0 16px 48px rgba(0, 86, 166, 0.1);
+        }
+        .press-hero-card:hover .press-hero-cta {
+            color: #ED1C24;
+        }
+        @media (max-width: 768px) {
+            .press-hero-card { grid-template-columns: 1fr; }
+        }
+        .press-hero-img {
+            min-height: 260px;
+            background: linear-gradient(135deg, #0056A6 0%, #1E293B 100%);
+            object-fit: cover;
+            width: 100%;
+        }
+        .press-hero-body {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #FFFFFF;
+        }
+        .press-hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .press-tag {
+            font-size: 10px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: #FEF2F2;
+            padding: 4px 10px;
+            border-radius: 3px;
+        }
+        .press-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+        .press-hero-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.35;
+            margin-bottom: 14px;
+            letter-spacing: -0.3px;
+        }
+        .press-hero-excerpt {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .press-hero-cta {
+            font-size: 11px;
+            font-weight: 800;
+            color: #0056A6;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s ease;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 1200px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
+
+        .news-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 86, 166, 0.08);
+            border-color: #0056A6;
+        }
+        .news-card-img {
+            width: 100%;
+            height: 160px;
+            background: #E2E8F0;
+            object-fit: cover;
+            display: block;
+        }
+        .news-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .news-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .news-card-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            background: #FEF2F2;
+            padding: 3px 8px;
+            border-radius: 2px;
+        }
+        .news-card-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+        .news-card-title {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.45;
+            margin-bottom: auto;
+            padding-bottom: 16px;
+            flex-grow: 1;
+        }
+        .news-card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding-top: 14px;
+            border-top: 1px solid #F1F5F9;
+            font-size: 10px;
+            font-weight: 800;
+            color: #0056A6;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .news-card:hover .news-card-cta { color: #ED1C24; }
+
+        /* === TAB 2: PENGUMUMAN — Bulletin List === */
+        .ann-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1px solid #E2E8F0;
+        }
+        .ann-item {
+            display: grid;
+            grid-template-columns: 48px 1fr auto;
+            gap: 20px;
+            align-items: center;
+            padding: 22px 28px;
+            border-bottom: 1px solid #F1F5F9;
+            background: #FFFFFF;
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+        .ann-item:last-child { border-bottom: none; }
+        .ann-item:hover { background: #F8FAFF; }
+        @media (max-width: 640px) {
+            .ann-item { grid-template-columns: 40px 1fr; gap: 12px; }
+            .ann-item-action { display: none; }
+        }
+        .ann-icon {
+            width: 48px;
+            height: 48px;
+            background: #EFF6FF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .ann-icon svg { width: 20px; height: 20px; stroke: #0056A6; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .ann-item:hover .ann-icon { background: #0056A6; }
+        .ann-item:hover .ann-icon svg { stroke: #FFFFFF; }
+        .ann-item-body {}
+        .ann-item-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1E293B;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+        .ann-item-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .ann-item-badge {
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 3px 8px;
+            background: #FEF2F2;
+            color: #ED1C24;
+            border-radius: 2px;
+        }
+        .ann-item-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+        .ann-item-action {
+            flex-shrink: 0;
+        }
+        .btn-ann-more {
+            border: 1.5px solid #E2E8F0;
+            background: transparent;
+            color: #475569;
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .ann-item:hover .btn-ann-more {
+            border-color: #0056A6;
+            color: #0056A6;
+            background: #EFF6FF;
+        }
+
+        /* === TAB 3: BERITA CSR — Grid with green badge === */
+        .csr-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 900px) { .csr-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 580px) { .csr-grid { grid-template-columns: 1fr; } }
+
+        .csr-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .csr-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(16, 185, 129, 0.08);
+            border-color: #10B981;
+        }
+        .csr-card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #D1FAE5;
+        }
+        .csr-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .csr-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .csr-card-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #059669;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            background: #D1FAE5;
+            padding: 3px 8px;
+            border-radius: 2px;
+        }
+        .csr-card-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+        .csr-card-title {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+        .csr-card-excerpt {
+            font-size: 12.5px;
+            color: #64748B;
+            line-height: 1.6;
+            margin-bottom: auto;
+            padding-bottom: 14px;
+        }
+        .csr-card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding-top: 14px;
+            border-top: 1px solid #F1F5F9;
+            font-size: 10px;
+            font-weight: 800;
+            color: #059669;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .csr-card:hover .csr-card-cta { color: #0056A6; }
+
+        /* === TAB 4: JOURNEY MAGAZINE — Bookstore Showcase === */
+        .mag-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        @media (max-width: 600px) { .mag-showcase { grid-template-columns: 1fr; justify-items: center; } }
+        .mag-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .mag-cover-wrap {
+            position: relative;
+            width: 200px;
+        }
+        .mag-cover {
+            width: 200px;
+            height: 270px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18), -6px 0 0 #D1D5DB;
+            border: 1px solid #E2E8F0;
+            transition: all 0.35s ease;
+        }
+        .mag-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .mag-item:hover .mag-cover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 30px 80px rgba(0, 86, 166, 0.2), -6px 0 0 #0056A6;
+        }
+        .mag-item-info {
+            text-align: center;
+        }
+        .mag-item-edition {
+            font-size: 11px;
+            font-weight: 800;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .mag-item-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 14px;
+        }
+        .btn-mag-read {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #0056A6;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 24px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-mag-read:hover { background: #ED1C24; }
+
+        /* === TAB 5: BRAND GUIDELINE — Structured Panels === */
+        .brand-panel {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        .brand-panel:last-child { margin-bottom: 0; }
+        .brand-panel-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .brand-panel-icon {
+            width: 36px;
+            height: 36px;
+            background: #EFF6FF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-panel-icon svg { width: 18px; height: 18px; stroke: #0056A6; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .brand-panel-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1E293B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-colors {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .brand-color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand-color-swatch {
+            width: 96px;
+            height: 96px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+        }
+        .brand-color-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #1E293B;
+        }
+        .brand-color-hex {
+            font-size: 11px;
+            font-family: monospace;
+            color: #64748B;
+            background: #F8FAFC;
+            padding: 2px 8px;
+            border-radius: 3px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .brand-logos {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .brand-logo-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-logo-preview {
+            width: 180px;
+            height: 100px;
+            background: #F8FAFC;
+            border: 1.5px dashed #CBD5E1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-logo-preview.dark {
+            background: #1E293B;
+        }
+        .brand-logo-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-download-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 500px) { .brand-download-grid { grid-template-columns: 1fr; } }
+        .btn-brand-download {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 24px;
+            border: 1.5px solid #E2E8F0;
+            background: #FFFFFF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-brand-download:hover {
+            border-color: #0056A6;
+            background: #EFF6FF;
+        }
+        .btn-brand-download:hover .btn-brand-download-icon { background: #0056A6; }
+        .btn-brand-download:hover .btn-brand-download-icon svg { stroke: #FFFFFF; }
+        .btn-brand-download-icon {
+            width: 40px;
+            height: 40px;
+            background: #F1F5F9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        .btn-brand-download-icon svg { width: 18px; height: 18px; stroke: #475569; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s ease; }
+        .btn-brand-download-text {}
+        .btn-brand-download-label {
+            font-size: 13px;
+            font-weight: 800;
+            color: #1E293B;
+            display: block;
+        }
+        .btn-brand-download-size {
+            font-size: 11px;
+            color: #94A3B8;
+        }
+
+        /* Announcement Layout (keep for compat) */
+        .ann-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        @media (max-width: 768px) { .ann-grid { grid-template-columns: 1fr; } }
+        .ann-card {
+            background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 0;
+            padding: 24px; display: flex; flex-direction: column;
+            justify-content: space-between; min-height: 165px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01); transition: all 0.3s ease;
+        }
+        .ann-card:hover { border-color: #0056A6; box-shadow: 0 10px 20px rgba(0, 86, 166, 0.04); }
+        .ann-card-title { font-size: 15px; font-weight: 800; color: #1E293B; line-height: 1.5; margin-bottom: 20px; }
+        .btn-more {
+            background: #FFFFFF; border: 1.5px solid #E2E8F0; color: #1E293B;
+            padding: 8px 24px; border-radius: 50px; font-size: 11.5px; font-weight: 800;
+            cursor: pointer; transition: all 0.2s ease; align-self: flex-start; text-align: center;
+        }
+        .btn-more:hover { border-color: #0056A6; color: #0056A6; background: #F0F9FF; }
+
+        .content-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 18px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .content-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 32px;
+        }
+
+        /* News & Media Specific Styles */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 1200px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 991px) {
+            .about-grid { grid-template-columns: 1fr; gap: 0; }
+            .about-mobile-select-wrapper { display: none !important; }
+            .about-menu { display: flex !important; }
+        }
+        @media (max-width: 768px) {
+            .about-content-pane { padding: 24px; }
+        }
+        @media (max-width: 600px) {
+            .news-grid { grid-template-columns: 1fr; }
+        }
+
+        .news-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 86, 166, 0.06);
+            border-color: #0056A6;
+        }
+        .news-card-img {
+            width: 100%;
+            height: 160px;
+            background: #E2E8F0;
+            object-fit: cover;
+        }
+        .news-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .news-card-tag {
+            font-size: 10px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .news-card-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+        .news-card-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+        .news-card-cta {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 16px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #0056A6;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .news-card:hover .news-card-cta {
+            color: #ED1C24;
+        }
+
+        /* Announcement Layout */
+        .ann-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .ann-grid { grid-template-columns: 1fr; }
+        }
+        .ann-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 165px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+        }
+        .ann-card:hover {
+            border-color: #0056A6;
+            box-shadow: 0 10px 20px rgba(0, 86, 166, 0.04);
+        }
+        .ann-card-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .btn-more {
+            background: #FFFFFF;
+            border: 1.5px solid #E2E8F0;
+            color: #1E293B;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+            text-align: center;
+        }
+        .btn-more:hover {
+            border-color: #0056A6;
+            color: #0056A6;
+            background: #F0F9FF;
+        }
+
+        /* Journey Magazine Layout */
+        .mag-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 180px);
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+        }
+        @media (max-width: 480px) {
+            .mag-grid { grid-template-columns: 1fr; justify-items: center; }
+        }
+        .mag-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mag-cover {
+            width: 180px;
+            height: 240px;
+            border-radius: 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .mag-card:hover .mag-cover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 86, 166, 0.15);
+        }
+
+        /* Brand Guideline Layout */
+        .brand-subtitle {
+            font-size: 14px;
+            font-weight: 800;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            margin-top: 24px;
+        }
+        .color-palette {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+        .color-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .color-block {
+            width: 80px;
+            height: 80px;
+            border-radius: 0;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+        }
+        .color-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+        }
+        .logo-config-box {
+            background: #FFFFFF;
+            border: 1.5px dashed #CBD5E1;
+            border-radius: 0;
+            padding: 32px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        .logo-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-slot-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .logo-img-placeholder {
+            padding: 16px 24px;
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            background: #F8FAFC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90px;
+        }
+    </style>
+
+    <style>
+        /* Force Scrolled Navbar Styling */
+        #navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
+            padding: 10px 0 !important;
+        }
+        #navbar .nav-link { 
+            background-image: linear-gradient(to right, #0056A6, #0056A6) !important; 
+        }
+        #navbar .nav-link::before { 
+            color: #1E293B !important; 
+        }
+        #navbar .nav-link::after { 
+            color: #0056A6 !important; 
+        }
+        #navbar .lang-btn-current {
+            color: #1E293B !important;
+        }
+        #navbar .menu-toggle {
+            color: #1E293B !important;
+        }
+        /* Disable CSS content replacement and filter to show original colored logo */
+        #navbar .logo-image {
+            content: none !important;
+            filter: none !important;
+        }
+    </style>
+</head>
+
+<body>
+<header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami" data-i18n="nav.about">Tentang Kami</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tentang-kami.html?tab=profil" data-i18n="nav.about.profile">Profil Perusahaan</a></li>
+                        <li><a href="tentang-kami.html?tab=visi-misi" data-i18n="nav.about.vision">Visi Misi</a></li>
+                        <li><a href="tentang-kami.html?tab=nilai" data-i18n="nav.about.values">Tata Nilai</a></li>
+                        <li><a href="tentang-kami.html?tab=sejarah" data-i18n="nav.about.history">Sejarah</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris" data-i18n="nav.about.board">Dewan Komisaris</a></li>
+                        <li><a href="tentang-kami.html?tab=direksi" data-i18n="nav.about.directors">Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=struktur" data-i18n="nav.about.structure">Struktur Organisasi</a></li>
+                        <li><a href="tentang-kami.html?tab=sertifikat" data-i18n="nav.about.certification">Sertifikasi</a></li>
+                        <li><a href="tentang-kami.html?tab=penghargaan" data-i18n="nav.about.awards">Penghargaan</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="bisnis.html" class="nav-link" data-text="Bisnis" data-i18n="nav.business">Bisnis</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bisnis.html?tab=transportasi" data-i18n="nav.biz.transport">Transportasi</a></li>
+                        <li><a href="bisnis.html?tab=inventory" data-i18n="nav.biz.inventory">Inventory Management</a></li>
+                        <li><a href="bisnis.html?tab=other" data-i18n="nav.biz.other">Lainnya</a></li>
+                        <li><a href="bisnis.html?tab=fleet" data-i18n="nav.biz.fleet">Fleet Management</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor" data-i18n="nav.investor">Hubungan Investor</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+                        <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+                        <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+                    </ul>
+                </li>
+                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability" data-i18n="nav.sustainability">Sustainability</a></li>
+                <li class="has-dropdown">
+                    <a href="berita-media.html" class="nav-link active" data-text="Berita & Media" data-i18n="nav.news">Berita & Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+                        <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+                        <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+                        <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+                        <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+                    </ul>
+                </li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir" data-i18n="nav.career">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="lang-switch has-dropdown" aria-label="Language Switch">
+                    <button class="lang-btn-current" id="lang-btn-current" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag" id="current-lang-flag">
+                        <span class="lang-text" id="current-lang-text">INA</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="lang-dropdown-menu">
+                        <li>
+                            <button class="lang-option" data-lang="id">
+                                <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag">
+                                <span class="lang-text">INA</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="lang-option" data-lang="en">
+                                <img src="https://flagcdn.com/w20/gb.png" alt="EN Flag" class="lang-flag">
+                                <span class="lang-text">ENG</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;" data-i18n="nav.contact">HUBUNGI KAMI</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Spacer to prevent overlap -->
+    <div style="height: 100px; background: #f8fafc;"></div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-container" style="background: #f8fafc; padding: 20px 0 20px 0; border-bottom: 1px solid #e2e8f0;">
+        <div class="container">
+            <span style="color: #64748b; font-size: 14px;">
+                <a href="index.html" style="color: #1E3A8A; text-decoration: none;">Beranda</a> &gt; 
+                <a href="berita-media.html" style="color: #1E3A8A; text-decoration: none;" data-i18n="nav.news">Berita & Media</a> &gt; 
+                <a href="berita-media.html?tab=siaran-pers" style="color: #1E3A8A; text-decoration: none;">Siaran Pers</a> &gt; 
+                <span style="color: #475569; font-weight: 500;">Detail Berita</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- Article Section -->
+    <article class="article-detail" style="padding: 60px 0 80px 0; background: #fff;">
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            <div style="margin-bottom: 30px;">
+                <a href="berita-media.html" style="display: inline-flex; align-items: center; gap: 8px; color: #0056A6; font-size: 14px; font-weight: 600; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#ED1C24'" onmouseout="this.style.color='#0056A6'">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    <span data-i18n="kembali_berita">Kembali ke Daftar Berita</span>
+                </a>
+            </div>
+
+            <div class="article-header" style="margin-bottom: 40px; text-align: center;">
+                <div style="margin-bottom: 16px;">
+                    <span style="display: inline-block; padding: 6px 12px; background: #E0F2FE; color: #0284C7; font-size: 12px; font-weight: 600; border-radius: 4px; letter-spacing: 0.5px;">SIARAN PERS</span>
+                    <span style="display: inline-block; color: #64748b; font-size: 14px; margin-left: 12px;">05 Juni 2026</span>
+                </div>
+                <h1 style="font-size: 36px; color: #0f172a; line-height: 1.3; font-weight: 700; margin-bottom: 24px;">Patra Logistik Dukung Bauran Energi Nasional Melalui Pengangkutan FAME</h1>
+                
+                <div style="display: flex; justify-content: center; align-items: center; gap: 16px; color: #64748b; font-size: 14px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span>Corporate Secretary</span>
+                    </div>
+                    <span>&bull;</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>3 menit baca</span>
+                    </div>
+                </div>
+            </div>
+
+            <figure class="article-hero" style="margin-bottom: 48px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);">
+                <div style="width: 100%; height: 450px; background: url('assets/Mobil%20Tangki%20Maos.png') center/cover no-repeat; display: flex; justify-content: center; align-items: center;">
+                </div>
+                <figcaption style="padding: 12px; font-size: 13px; color: #64748b; text-align: center; border-bottom: 1px solid #e2e8f0;">Ilustrasi pengangkutan Fatty Acid Methyl Ester (FAME) oleh PT Patra Logistik</figcaption>
+            </figure>
+
+            <div class="article-body" style="font-size: 17px; line-height: 1.8; color: #334155;">
+                <p style="margin-bottom: 24px;"><strong style="color: #0f172a;">JAKARTA</strong> – PT Patra Logistik, anak perusahaan dari PT Pertamina Patra Niaga, resmi mendukung program transisi energi pemerintah melalui percepatan distribusi bahan bakar campuran nabati (FAME) ke berbagai wilayah strategis nasional mulai kuartal ketiga tahun 2026.</p>
+                
+                <p style="margin-bottom: 24px;">Langkah ini merupakan bagian dari komitmen berkelanjutan Pertamina Group dalam mendukung target pemerintah mencapai bauran energi baru terbarukan (EBT) sebesar 23% pada tahun mendatang, sekaligus memperkuat ketahanan energi nasional dan mengurangi defisit neraca perdagangan melalui efisiensi impor bahan bakar.</p>
+                
+                <blockquote style="margin: 40px 0; padding: 24px 32px; border-left: 4px solid #1E3A8A; background: #F8FAFC; border-radius: 0 8px 8px 0; font-style: italic; font-size: 18px; color: #1e293b;">
+                    "Keberhasilan penyaluran FAME tidak hanya bergantung pada kapasitas kilang, namun sangat bergantung pada keandalan rantai pasok dan logistik di lapangan. Kami hadir untuk memastikan setiap titik suplai terhubung dengan sempurna."
+                    <footer style="margin-top: 16px; font-size: 14px; font-style: normal; color: #64748b; font-weight: 600;">— Direktur Utama PT Patra Logistik</footer>
+                </blockquote>
+                
+                <h3 style="font-size: 22px; color: #0f172a; margin: 32px 0 16px 0; font-weight: 700;">Optimalisasi Armada dan Titik Integrasi</h3>
+                
+                <p style="margin-bottom: 24px;">Dalam operasionalnya, Patra Logistik mengalokasikan lebih dari 150 unit armada truk angkutan khusus (mobil tangki tersertifikasi) dan mengoptimalkan manajemen perkapalan rute domestik. Armada ini diawasi dengan sistem <em>Fleet Management System</em> yang terintegrasi secara <em>real-time</em>, memastikan produk tiba tepat waktu, tepat kualitas, dan tepat kuantitas (3T).</p>
+                
+                <p style="margin-bottom: 24px;">"Seluruh armada telah dilengkapi dengan sistem pengawasan khusus dan sensor kualitas untuk menjaga standar produk FAME tetap dalam kondisi prima. Kami sangat menekankan pada standar HSSE (Health, Safety, Security, and Environment) karena keselamatan adalah prioritas tanpa kompromi," tambah Manajemen Patra Logistik.</p>
+
+                <h3 style="font-size: 22px; color: #0f172a; margin: 32px 0 16px 0; font-weight: 700;">Dampak Sosial dan Lingkungan</h3>
+
+                <p style="margin-bottom: 24px;">Selain aspek bisnis, proyek pengangkutan FAME ini juga memberikan <em>multiplier effect</em> bagi perekonomian lokal. Dengan terbukanya rute distribusi baru di Sumatra dan Jawa, Patra Logistik turut menyerap ratusan tenaga kerja lokal sebagai awak armada (AMT) dan tenaga operasional depot.</p>
+                
+                <p style="margin-bottom: 48px;">Sejalan dengan komitmen keberlanjutan, efisiensi logistik ini diperkirakan mampu menekan emisi karbon operasional perusahaan hingga 12% dibandingkan tahun sebelumnya, menciptakan siklus distribusi yang tidak hanya menguntungkan secara ekonomi tetapi juga ramah lingkungan.</p>
+                
+                <!-- Social Share -->
+                <div style="padding: 24px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-weight: 600; font-size: 15px; color: #0f172a;">Bagikan Artikel:</span>
+                    <div style="display: flex; gap: 12px;">
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: #F1F5F9; display: flex; justify-content: center; align-items: center; color: #475569; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: #F1F5F9; display: flex; justify-content: center; align-items: center; color: #475569; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: #F1F5F9; display: flex; justify-content: center; align-items: center; color: #475569; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: #F1F5F9; display: flex; justify-content: center; align-items: center; color: #475569; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <!-- Related News -->
+    <section class="related-news" style="padding: 60px 0 100px 0; background: #F8FAFC;">
+        <div class="container">
+            <h2 style="font-size: 24px; color: #0f172a; font-weight: 700; margin-bottom: 32px; text-align: center;">Baca Juga Berita Lainnya</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- Card 1 -->
+                <div class="news-card" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s;">
+                    <div style="height: 200px; background: linear-gradient(135deg, #ED1C24 0%, #BA1C21 100%);"></div>
+                    <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px;">
+                            <span style="color: #0284C7; font-weight: 600;">Siaran Pers</span>
+                            <span style="color: #64748b;">28 Mei 2026</span>
+                        </div>
+                        <h4 style="font-size: 18px; color: #0f172a; font-weight: 600; margin-bottom: 16px; line-height: 1.4;">Implementasi Aplikasi SIOD Guna Efisiensi Armada Mobil Tangki</h4>
+                        <a href="berita-detail.html" style="margin-top: auto; color: #1E3A8A; font-weight: 600; text-decoration: none; font-size: 14px;">Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="news-card" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s;">
+                    <div style="height: 200px; background: linear-gradient(135deg, #10B981 0%, #064E3B 100%);"></div>
+                    <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px;">
+                            <span style="color: #0284C7; font-weight: 600;">Siaran Pers</span>
+                            <span style="color: #64748b;">15 Mei 2026</span>
+                        </div>
+                        <h4 style="font-size: 18px; color: #0f172a; font-weight: 600; margin-bottom: 16px; line-height: 1.4;">Sinergi BUMN: Patra Logistik Salurkan Energi Ke Wilayah Terpencil</h4>
+                        <a href="berita-detail.html" style="margin-top: auto; color: #1E3A8A; font-weight: 600; text-decoration: none; font-size: 14px;">Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="news-card" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s;">
+                    <div style="height: 200px; background: linear-gradient(135deg, #F59E0B 0%, #B45309 100%);"></div>
+                    <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px;">
+                            <span style="color: #0284C7; font-weight: 600;">Siaran Pers</span>
+                            <span style="color: #64748b;">02 Mei 2026</span>
+                        </div>
+                        <h4 style="font-size: 18px; color: #0f172a; font-weight: 600; margin-bottom: 16px; line-height: 1.4;">Penghargaan Keselamatan Kerja (Zero Accident Award) 2026</h4>
+                        <a href="berita-detail.html" style="margin-top: auto; color: #1E3A8A; font-weight: 600; text-decoration: none; font-size: 14px;">Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer class="footer-new">
+            <div class="footer-new__watermark"></div>
+
+            <div class="footer-new__top container">
+                <!-- Column 1 -->
+                <div class="footer-col-1">
+                    <div class="footer-logo"></div>
+                    <div class="footer-contact-list">
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="margin-top: 2px;">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span><strong>Kantor Pusat</strong><br>Garden Avenue Rasuna Lantai 1-3, Jalan Epicentrum Tengah No. 3, RT.2/RW.5, Karet Kuningan, Kecamatan Setiabudi, Jakarta Selatan.</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <span>(021)-25196699</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                            <span>info.patralogistik@pertamina.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="X">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4l16 16M4 20L20 4"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-col-2">
+                    <h3 data-i18n="footer.col1">PERUSAHAAN</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tentang-kami.html" data-i18n="nav.about">Tentang Kami</a></li>
+                        <li><a href="bisnis.html" data-i18n="nav.business">Bisnis</a></li>
+                        <li><a href="karir.html" data-i18n="nav.career">Karir</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="footer-col-3">
+                    <h3 data-i18n="footer.col2">INFORMASI PUBLIK</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="#">Tata Kelola</a></li>
+                        <li><a href="hubungan-investor.html" data-i18n="nav.investor">Hubungan Investor</a></li>
+                        <li><a href="berita-media.html" data-i18n="nav.news">Berita &amp; Media</a></li>
+                        <li><a href="#">Situs Terkait</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div class="footer-col-4">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                        <img src="./assets/Image%20(Pertamina%20Call%20Center).png" alt="Pertamina Call Center 135" style="max-width: 55%; height: auto; display: block;">
+                        <img src="./assets/callcenter15.png" alt="Call Center 135" style="max-width: 40%; height: auto; display: block;">
+                    </div>
+                    <div class="call-center-btn">
+                        <div class="icon-circle">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="text">
+                            <span class="title">Whistle Blowing System</span>
+                            <span class="link">https://pertaminaclean.tipoffs.info/</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-new__bottom container">
+                <div class="bottom-left">
+                    <span class="affiliate-label">AFFILIATE OF:</span>
+                    <span class="affiliate-box">PERTAMINA PATRA NIAGA</span>
+                </div>
+                <div class="bottom-right">
+                    <span class="copyright" data-i18n="footer.copyright">© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang.</span>
+                    <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan
+                        PT Pertamina (Persero).</span>
+                </div>
+            </div>
+        </footer>
+
+
+    <!-- Interactive script switching logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sidebar = document.getElementById("about-sidebar");
+            const backdrop = document.getElementById("sidebar-backdrop");
+            const triggerFixed = document.getElementById("sidebar-trigger-fixed");
+            const triggerInline = document.getElementById("sidebar-trigger-inline");
+            const closeBtn = document.getElementById("sidebar-close-btn");
+            const menuBtns = document.querySelectorAll(".about-menu-btn");
+            const tabContents = document.querySelectorAll(".about-tab-content");
+
+            function openSidebar() {
+                if(sidebar) sidebar.classList.add("open");
+                if(backdrop) backdrop.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeSidebar() {
+                if(sidebar) sidebar.classList.remove("open");
+                if(backdrop) backdrop.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            if (triggerFixed) triggerFixed.addEventListener("click", openSidebar);
+            if (triggerInline) triggerInline.addEventListener("click", openSidebar);
+            if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
+            if (backdrop) backdrop.addEventListener("click", closeSidebar);
+
+            function switchTab(target) {
+                // Hide all tabs and remove active from all buttons
+                tabContents.forEach(tab => tab.classList.remove("active"));
+                menuBtns.forEach(btn => btn.classList.remove("active"));
+
+                // Show target tab
+                const targetSection = document.getElementById(`tab-${target}`);
+                if (targetSection) targetSection.classList.add("active");
+
+                // Set active on corresponding buttons
+                menuBtns.forEach(btn => {
+                    if (btn.getAttribute("data-target") === target) btn.classList.add("active");
+                });
+
+                // Close drawer if open
+                closeSidebar();
+
+                // Update URL
+                const url = new URL(window.location);
+                url.searchParams.set('tab', target);
+                window.history.pushState({}, '', url);
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            menuBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    switchTab(btn.getAttribute("data-target"));
+                });
+            });
+
+            // Check URL on load
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            if (tabParam && ['siaran-pers', 'pengumuman', 'berita-csr', 'journey-magazine', 'brand-guideline'].includes(tabParam)) {
+                setTimeout(() => switchTab(tabParam), 50);
+            } else {
+                setTimeout(() => switchTab('siaran-pers'), 50);
+            }
+        });
+    </script>
+
+    <script src="lang.js"></script>
+    <script src="script.js?v=2"></script>
+</body>

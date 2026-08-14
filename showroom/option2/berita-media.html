@@ -1,0 +1,2453 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita & Media - PT Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Khusus untuk Berita & Media */
+        .about-hero {
+            color: #ffffff;
+            padding: 100px 0 60px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, #F9F9F9, rgba(249, 249, 249, 0));
+            pointer-events: none;
+        }
+        .about-hero__tag {
+            background: rgba(237, 28, 36, 0.2);
+            color: #FF5A5F;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(237, 28, 36, 0.3);
+        }
+        .about-hero__title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .about-hero__desc {
+            font-size: 16px;
+            color: #A0C4DF;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        /* Layout Grid */
+        .about-layout {
+            padding: 20px 0 100px;
+            background-color: #FFFFFF;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Navigation Drawer */
+        .about-sidebar {
+            position: fixed !important;
+            top: 0;
+            left: -340px; /* Hidden off-screen */
+            width: 320px;
+            height: 100vh;
+            background: #ffffff;
+            box-shadow: 20px 0 40px rgba(15, 23, 42, 0.15);
+            z-index: 2000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px;
+            border-radius: 0;
+            border: none;
+            border-right: 1px solid #E2E8F0;
+            overflow-y: auto;
+        }
+        .about-sidebar.open {
+            left: 0 !important;
+        }
+
+        /* Drawer Backdrop Overlay */
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .sidebar-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Drawer Header */
+        .sidebar-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 16px;
+        }
+        .sidebar-drawer-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #64748B;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+        .sidebar-drawer-close:hover {
+            color: #ED1C24;
+        }
+
+        /* Floating category trigger button */
+        .category-toggle-btn {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background: #0056A6;
+            color: #ffffff;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            padding: 16px 20px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .category-toggle-btn:hover {
+            background: #ED1C24;
+            padding-left: 28px;
+        }
+
+        /* Inline category trigger button */
+        .category-inline-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #F1F5F9;
+            color: #1E293B;
+            border: 1px solid #E2E8F0;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+        }
+        .category-inline-trigger:hover {
+            background: #0056A6;
+            color: #ffffff;
+            border-color: #0056A6;
+        }
+        
+        /* Mobile Dropdown Styling */
+        .about-mobile-select-wrapper {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .about-mobile-select-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .about-mobile-select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1E293B;
+            background-color: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            border-radius: 0;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .about-mobile-select:focus {
+            border-color: #0056A6;
+        }
+
+        .about-menu-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-left: 12px;
+        }
+
+
+        /* Content Area */
+        .about-content-pane {
+            background: transparent;
+            border-radius: 0;
+            padding: 40px 0 80px;
+            box-shadow: none;
+            border: none;
+            min-height: 500px;
+        }
+
+        .about-tab-content {
+            display: none;
+            animation: mediaFadeIn 0.4s ease forwards;
+        }
+        .about-tab-content.active {
+            display: block;
+        }
+        @keyframes mediaFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === SECTION HEADER === */
+        .section-header {
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid #F1F5F9;
+        }
+        .section-header__tag {
+            font-size: 11px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .section-header__title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1E293B;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .section-header__desc {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.7;
+        }
+
+        /* === TAB 1: SIARAN PERS — Featured Hero + Grid === */
+        .press-hero-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 280px;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+            margin-bottom: 32px;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .press-hero-card:hover {
+            box-shadow: 0 16px 48px rgba(0, 86, 166, 0.1);
+        }
+        .press-hero-card:hover .press-hero-cta {
+            color: #ED1C24;
+        }
+        @media (max-width: 768px) {
+            .press-hero-card { grid-template-columns: 1fr; }
+        }
+        .press-hero-img {
+            min-height: 260px;
+            background: linear-gradient(135deg, #0056A6 0%, #1E293B 100%);
+            object-fit: cover;
+            width: 100%;
+        }
+        .press-hero-body {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #FFFFFF;
+        }
+        .press-hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .press-tag {
+            font-size: 10px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: #FEF2F2;
+            padding: 4px 10px;
+            border-radius: 3px;
+        }
+        .press-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+        .press-hero-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.35;
+            margin-bottom: 14px;
+            letter-spacing: -0.3px;
+        }
+        .press-hero-excerpt {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .press-hero-cta {
+            font-size: 11px;
+            font-weight: 800;
+            color: #0056A6;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s ease;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 1200px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
+
+        .news-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 86, 166, 0.08);
+            border-color: #0056A6;
+        }
+        .news-card-img {
+            width: 100%;
+            height: 160px;
+            background: #E2E8F0;
+            object-fit: cover;
+            display: block;
+        }
+        .news-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .news-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .news-card-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            background: #FEF2F2;
+            padding: 3px 8px;
+            border-radius: 2px;
+        }
+        .news-card-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+        .news-card-title {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.45;
+            margin-bottom: auto;
+            padding-bottom: 16px;
+            flex-grow: 1;
+        }
+        .news-card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding-top: 14px;
+            border-top: 1px solid #F1F5F9;
+            font-size: 10px;
+            font-weight: 800;
+            color: #0056A6;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .news-card:hover .news-card-cta { color: #ED1C24; }
+
+        /* === TAB 2: PENGUMUMAN — New Modern Design === */
+        .ann-board { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+        @media (max-width: 960px) { .ann-board { grid-template-columns: 1fr; } .ann-sidebar { display: none; } }
+
+        /* Filter Bar */
+        .ann-filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .ann-filter-btn {
+            padding: 7px 16px;
+            border: 1.5px solid #E2E8F0;
+            background: #fff;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .ann-filter-btn:hover, .ann-filter-btn.active {
+            background: #0056A6;
+            color: #fff;
+            border-color: #0056A6;
+        }
+
+        /* Featured Announcement */
+        .ann-featured {
+            position: relative;
+            background: linear-gradient(135deg, #0056A6 0%, #1E3A8A 100%);
+            border-radius: 14px;
+            padding: 36px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ann-featured:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,86,166,0.2); }
+        .ann-featured::before {
+            content: '';
+            position: absolute; top: -60px; right: -60px;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            pointer-events: none;
+        }
+        .ann-featured::after {
+            content: '';
+            position: absolute; bottom: -40px; left: 100px;
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            pointer-events: none;
+        }
+        .ann-featured-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(237,28,36,0.8);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 5px 12px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+        .ann-featured-label { background: rgba(255,255,255,0.15); color: #CBD5E1; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+        .ann-featured-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            max-width: 520px;
+        }
+        .ann-featured-excerpt { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 24px; max-width: 500px; }
+        .ann-featured-footer { display: flex; align-items: center; justify-content: space-between; }
+        .ann-featured-date { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600; }
+        .ann-featured-cta {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.15);
+            color: #fff; font-size: 12px; font-weight: 700;
+            padding: 9px 18px; border-radius: 50px;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            cursor: pointer; transition: all 0.2s;
+            font-family: inherit;
+        }
+        .ann-featured-cta:hover { background: rgba(255,255,255,0.3); }
+
+        /* Announcement Timeline List */
+        .ann-list-v2 { display: flex; flex-direction: column; gap: 12px; }
+        .ann-card-v2 {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 18px;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #E8EFF8;
+            border-radius: 10px;
+            padding: 18px 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .ann-card-v2::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: #E2E8F0;
+            transition: background 0.25s ease;
+        }
+        .ann-card-v2:hover { border-color: #BFDBFE; box-shadow: 0 4px 20px rgba(0,86,166,0.08); transform: translateX(4px); }
+        .ann-card-v2:hover::before { background: #0056A6; }
+        .ann-card-v2-date-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 44px;
+            padding-left: 8px;
+        }
+        .ann-card-v2-day { font-size: 22px; font-weight: 800; color: #0f172a; line-height: 1; }
+        .ann-card-v2-month { font-size: 10px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+        .ann-card-v2-divider { width: 1px; height: 100%; background: #E2E8F0; align-self: stretch; }
+        .ann-card-v2-body {}
+        .ann-card-v2-tag {
+            font-size: 9px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; padding: 3px 8px; border-radius: 3px;
+            display: inline-block; margin-bottom: 6px;
+        }
+        .tag-pengadaan { background: #FEF3C7; color: #D97706; }
+        .tag-korporasi { background: #EFF6FF; color: #0056A6; }
+        .tag-hse { background: #DCFCE7; color: #15803D; }
+        .tag-sdm { background: #F3E8FF; color: #7C3AED; }
+        .tag-teknologi { background: #E0F2FE; color: #0284C7; }
+        .tag-keuangan { background: #FFF1F2; color: #BE123C; }
+        .ann-card-v2-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1E293B;
+            line-height: 1.4;
+        }
+        .ann-card-v2-action {
+            flex-shrink: 0;
+            display: flex; align-items: center;
+        }
+        .ann-card-v2-arrow {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: #F1F5F9;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.25s ease;
+        }
+        .ann-card-v2:hover .ann-card-v2-arrow { background: #0056A6; }
+        .ann-card-v2-arrow svg { width: 14px; height: 14px; stroke: #64748b; fill: none; stroke-width: 2.5; transition: stroke 0.25s; }
+        .ann-card-v2:hover .ann-card-v2-arrow svg { stroke: #fff; }
+        @media (max-width: 640px) {
+            .ann-card-v2 { grid-template-columns: auto 1fr; }
+            .ann-card-v2-action { display: none; }
+        }
+
+        /* Sidebar */
+        .ann-sidebar {
+            position: sticky;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .ann-sidebar-card {
+            background: #fff;
+            border: 1px solid #E8EFF8;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .ann-sidebar-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #E2E8F0;
+        }
+        .ann-stat-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; }
+        .ann-stat-row:last-child { border-bottom: none; }
+        .ann-stat-label { font-size: 13px; color: #475569; font-weight: 500; }
+        .ann-stat-value { font-size: 22px; font-weight: 800; color: #0056A6; }
+        .ann-cat-list { display: flex; flex-direction: column; gap: 8px; }
+        .ann-cat-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 14px; border-radius: 8px;
+            background: #F8FAFC; cursor: pointer; transition: background 0.2s;
+        }
+        .ann-cat-item:hover { background: #EFF6FF; }
+        .ann-cat-name { font-size: 13px; color: #1E293B; font-weight: 600; }
+        .ann-cat-count { font-size: 11px; background: #E2E8F0; color: #64748b; padding: 2px 8px; border-radius: 50px; font-weight: 700; }
+        .ann-subscribe-box { background: linear-gradient(135deg, #0056A6 0%, #1E3A8A 100%); color: #fff; border-radius: 12px; padding: 24px; text-align: center; }
+        .ann-subscribe-box h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+        .ann-subscribe-box p { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 16px; line-height: 1.5; }
+        .ann-subscribe-btn { display: block; width: 100%; padding: 10px; background: rgba(255,255,255,0.15); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 50px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+        .ann-subscribe-btn:hover { background: rgba(255,255,255,0.3); }
+
+        /* === TAB 3: BERITA CSR — New Modern Design === */
+        .csr-featured {
+            position: relative;
+            background: linear-gradient(135deg, #059669 0%, #064E3B 100%);
+            border-radius: 14px;
+            padding: 40px;
+            margin-bottom: 32px;
+            overflow: hidden;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .csr-featured:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(5,150,105,0.2); }
+        .csr-featured::before {
+            content: '';
+            position: absolute; top: -100px; left: -100px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+            pointer-events: none;
+        }
+        .csr-featured-img {
+            width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .csr-featured-content {
+            flex: 1;
+            z-index: 1;
+        }
+        .csr-featured-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #10B981; color: #fff;
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; padding: 5px 12px; border-radius: 50px;
+            margin-bottom: 16px;
+        }
+        .csr-featured-title { font-size: 24px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 12px; }
+        .csr-featured-excerpt { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 24px; }
+        .csr-featured-footer { display: flex; align-items: center; justify-content: space-between; }
+        .csr-featured-date { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600; }
+        .csr-featured-cta {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.15); color: #fff; font-size: 12px; font-weight: 700;
+            padding: 9px 18px; border-radius: 50px; border: 1.5px solid rgba(255,255,255,0.25);
+            cursor: pointer; transition: all 0.2s; text-decoration: none;
+        }
+        .csr-featured-cta:hover { background: rgba(255,255,255,0.3); }
+
+        @media (max-width: 768px) {
+            .csr-featured { flex-direction: column; padding: 24px; gap: 24px; }
+            .csr-featured-img { width: 100%; height: auto; aspect-ratio: 16/9; }
+        }
+
+        .csr-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 900px) { .csr-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 580px) { .csr-grid { grid-template-columns: 1fr; } }
+
+        .csr-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+        .csr-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(16, 185, 129, 0.08);
+            border-color: #34D399;
+        }
+        .csr-card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #D1FAE5;
+        }
+        .csr-card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .csr-card-meta {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+        }
+        .csr-card-tag {
+            font-size: 9px; font-weight: 800; color: #059669; text-transform: uppercase;
+            letter-spacing: 0.8px; background: #D1FAE5; padding: 4px 10px; border-radius: 4px;
+        }
+        .csr-card-date { font-size: 11px; color: #94A3B8; font-weight: 600; }
+        .csr-card-title {
+            font-size: 15px; font-weight: 800; color: #1E293B; line-height: 1.4; margin-bottom: 12px;
+        }
+        .csr-card-excerpt {
+            font-size: 13px; color: #64748B; line-height: 1.6; margin-bottom: auto;
+        }
+        .csr-card-footer {
+            margin-top: 20px; padding-top: 16px; border-top: 1px solid #F1F5F9;
+            display: flex; align-items: center; gap: 6px;
+            font-size: 12px; font-weight: 700; color: #059669; transition: color 0.2s;
+        }
+        .csr-card:hover .csr-card-footer { color: #047857; }
+
+        .pagination {
+            display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 40px;
+        }
+        .page-btn {
+            width: 36px; height: 36px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            background: #fff; border: 1px solid #E2E8F0; color: #64748B;
+            font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .page-btn:hover { border-color: #059669; color: #059669; }
+        .page-btn.active { background: #059669; color: #fff; border-color: #059669; }
+
+        /* === TAB 4: JOURNEY MAGAZINE — Bookstore Showcase === */
+        .mag-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        @media (max-width: 600px) { .mag-showcase { grid-template-columns: 1fr; justify-items: center; } }
+        .mag-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .mag-cover-wrap {
+            position: relative;
+            width: 200px;
+        }
+        .mag-cover {
+            width: 200px;
+            height: 270px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18), -6px 0 0 #D1D5DB;
+            border: 1px solid #E2E8F0;
+            transition: all 0.35s ease;
+        }
+        .mag-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .mag-item:hover .mag-cover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 30px 80px rgba(0, 86, 166, 0.2), -6px 0 0 #0056A6;
+        }
+        .mag-item-info {
+            text-align: center;
+        }
+        .mag-item-edition {
+            font-size: 11px;
+            font-weight: 800;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .mag-item-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 14px;
+        }
+        .btn-mag-read {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #0056A6;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 24px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-mag-read:hover { background: #ED1C24; }
+
+        /* === TAB 5: BRAND GUIDELINE — Structured Panels === */
+        .brand-panel {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        .brand-panel:last-child { margin-bottom: 0; }
+        .brand-panel-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .brand-panel-icon {
+            width: 36px;
+            height: 36px;
+            background: #EFF6FF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-panel-icon svg { width: 18px; height: 18px; stroke: #0056A6; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .brand-panel-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1E293B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-colors {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .brand-color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand-color-swatch {
+            width: 96px;
+            height: 96px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+        }
+        .brand-color-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #1E293B;
+        }
+        .brand-color-hex {
+            font-size: 11px;
+            font-family: monospace;
+            color: #64748B;
+            background: #F8FAFC;
+            padding: 2px 8px;
+            border-radius: 3px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .brand-logos {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .brand-logo-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-logo-preview {
+            width: 180px;
+            height: 100px;
+            background: #F8FAFC;
+            border: 1.5px dashed #CBD5E1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-logo-preview.dark {
+            background: #1E293B;
+        }
+        .brand-logo-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-download-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 500px) { .brand-download-grid { grid-template-columns: 1fr; } }
+        .btn-brand-download {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 24px;
+            border: 1.5px solid #E2E8F0;
+            background: #FFFFFF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-brand-download:hover {
+            border-color: #0056A6;
+            background: #EFF6FF;
+        }
+        .btn-brand-download:hover .btn-brand-download-icon { background: #0056A6; }
+        .btn-brand-download:hover .btn-brand-download-icon svg { stroke: #FFFFFF; }
+        .btn-brand-download-icon {
+            width: 40px;
+            height: 40px;
+            background: #F1F5F9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        .btn-brand-download-icon svg { width: 18px; height: 18px; stroke: #475569; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s ease; }
+        .btn-brand-download-text {}
+        .btn-brand-download-label {
+            font-size: 13px;
+            font-weight: 800;
+            color: #1E293B;
+            display: block;
+        }
+        .btn-brand-download-size {
+            font-size: 11px;
+            color: #94A3B8;
+        }
+
+        /* Announcement Layout (keep for compat) */
+        .ann-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        @media (max-width: 768px) { .ann-grid { grid-template-columns: 1fr; } }
+        .ann-card {
+            background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 0;
+            padding: 24px; display: flex; flex-direction: column;
+            justify-content: space-between; min-height: 165px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01); transition: all 0.3s ease;
+        }
+        .ann-card:hover { border-color: #0056A6; box-shadow: 0 10px 20px rgba(0, 86, 166, 0.04); }
+        .ann-card-title { font-size: 15px; font-weight: 800; color: #1E293B; line-height: 1.5; margin-bottom: 20px; }
+        .btn-more {
+            background: #FFFFFF; border: 1.5px solid #E2E8F0; color: #1E293B;
+            padding: 8px 24px; border-radius: 50px; font-size: 11.5px; font-weight: 800;
+            cursor: pointer; transition: all 0.2s ease; align-self: flex-start; text-align: center;
+        }
+        .btn-more:hover { border-color: #0056A6; color: #0056A6; background: #F0F9FF; }
+
+        .content-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 18px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .content-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 32px;
+        }
+
+        /* === NEWS TAGS FILTER === */
+        .news-tags-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .news-tag-btn {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            color: #475569;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .news-tag-btn:hover {
+            background: #F1F5F9;
+            border-color: #CBD5E1;
+            color: #1E293B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .news-tag-btn.active {
+            background: #ED1C24;
+            border-color: #ED1C24;
+            color: #FFFFFF;
+            box-shadow: 0 6px 12px rgba(237, 28, 36, 0.2);
+        }
+
+        /* News & Media Specific Styles */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 1200px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 991px) {
+            .about-grid { grid-template-columns: 1fr; gap: 0; }
+            .about-mobile-select-wrapper { display: none !important; }
+            .about-menu { display: flex !important; }
+        }
+        @media (max-width: 768px) {
+            .about-content-pane { padding: 24px; }
+        }
+        @media (max-width: 600px) {
+            .news-grid { grid-template-columns: 1fr; }
+        }
+
+        .news-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 86, 166, 0.06);
+            border-color: #0056A6;
+        }
+        .news-card-img {
+            width: 100%;
+            height: 160px;
+            background: #E2E8F0;
+            object-fit: cover;
+        }
+        .news-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .news-card-tag {
+            font-size: 10px;
+            font-weight: 800;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .news-card-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+        .news-card-date {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+        .news-card-cta {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 16px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #0056A6;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .news-card:hover .news-card-cta {
+            color: #ED1C24;
+        }
+
+        /* Announcement Layout */
+        .ann-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .ann-grid { grid-template-columns: 1fr; }
+        }
+        .ann-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 165px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+        }
+        .ann-card:hover {
+            border-color: #0056A6;
+            box-shadow: 0 10px 20px rgba(0, 86, 166, 0.04);
+        }
+        .ann-card-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1E293B;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .btn-more {
+            background: #FFFFFF;
+            border: 1.5px solid #E2E8F0;
+            color: #1E293B;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+            text-align: center;
+        }
+        .btn-more:hover {
+            border-color: #0056A6;
+            color: #0056A6;
+            background: #F0F9FF;
+        }
+
+        /* Journey Magazine Layout */
+        .mag-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 180px);
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+        }
+        @media (max-width: 480px) {
+            .mag-grid { grid-template-columns: 1fr; justify-items: center; }
+        }
+        .mag-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mag-cover {
+            width: 180px;
+            height: 240px;
+            border-radius: 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .mag-card:hover .mag-cover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 86, 166, 0.15);
+        }
+
+        /* Brand Guideline Layout */
+        .brand-subtitle {
+            font-size: 14px;
+            font-weight: 800;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            margin-top: 24px;
+        }
+        .color-palette {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+        .color-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .color-block {
+            width: 80px;
+            height: 80px;
+            border-radius: 0;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+        }
+        .color-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+        }
+        .logo-config-box {
+            background: #FFFFFF;
+            border: 1.5px dashed #CBD5E1;
+            border-radius: 0;
+            padding: 32px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        .logo-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-slot-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .logo-img-placeholder {
+            padding: 16px 24px;
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            background: #F8FAFC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar -->
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami" data-i18n="nav.about">Tentang Kami</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tentang-kami.html?tab=profil" data-i18n="nav.about.profile">Profil Perusahaan</a></li>
+                        <li><a href="tentang-kami.html?tab=visi-misi" data-i18n="nav.about.vision">Visi Misi</a></li>
+                        <li><a href="tentang-kami.html?tab=nilai" data-i18n="nav.about.values">Tata Nilai</a></li>
+                        <li><a href="tentang-kami.html?tab=sejarah" data-i18n="nav.about.history">Sejarah</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris" data-i18n="nav.about.board">Dewan Komisaris</a></li>
+                        <li><a href="tentang-kami.html?tab=direksi" data-i18n="nav.about.directors">Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=struktur" data-i18n="nav.about.structure">Struktur Organisasi</a></li>
+                        <li><a href="tentang-kami.html?tab=sertifikat" data-i18n="nav.about.certification">Sertifikasi</a></li>
+                        <li><a href="tentang-kami.html?tab=penghargaan" data-i18n="nav.about.awards">Penghargaan</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="bisnis.html" class="nav-link" data-text="Bisnis" data-i18n="nav.business">Bisnis</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bisnis.html?tab=transportasi" data-i18n="nav.biz.transport">Transportasi</a></li>
+                        <li><a href="bisnis.html?tab=inventory" data-i18n="nav.biz.inventory">Inventory Management</a></li>
+                        <li><a href="bisnis.html?tab=other" data-i18n="nav.biz.other">Lainnya</a></li>
+                        <li><a href="bisnis.html?tab=fleet" data-i18n="nav.biz.fleet">Fleet Management</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor" data-i18n="nav.investor">Hubungan Investor</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+                        <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+                        <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+                    </ul>
+                </li>
+                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability" data-i18n="nav.sustainability">Sustainability</a></li>
+                <li class="has-dropdown">
+                    <a href="berita-media.html" class="nav-link active" data-text="Berita & Media" data-i18n="nav.news">Berita & Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+                        <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+                        <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+                        <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+                        <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+                    </ul>
+                </li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir" data-i18n="nav.career">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="lang-switch has-dropdown" aria-label="Language Switch">
+                    <button class="lang-btn-current" id="lang-btn-current" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag" id="current-lang-flag">
+                        <span class="lang-text" id="current-lang-text">INA</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="lang-dropdown-menu">
+                        <li>
+                            <button class="lang-option" data-lang="id">
+                                <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag">
+                                <span class="lang-text">INA</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="lang-option" data-lang="en">
+                                <img src="https://flagcdn.com/w20/gb.png" alt="EN Flag" class="lang-flag">
+                                <span class="lang-text">ENG</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;" data-i18n="nav.contact">HUBUNGI KAMI</button>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Sub-Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <span class="about-hero__tag">Pusat Informasi</span>
+            <h1 class="about-hero__title">Berita & Media</h1>
+            <p class="about-hero__desc">Menyajikan siaran pers, pengumuman korporasi, publikasi majalah internal, dan panduan merek resmi PT Patra Logistik.</p>
+        </div>
+    </section>
+
+    <!-- Sticky Horizontal Sub Navigation -->
+    <div class="page-subnav">
+        <div class="container">
+            <div class="page-subnav__list">
+                <button class="about-menu-btn active" data-target="siaran-pers">Siaran Pers</button>
+                <button class="about-menu-btn" data-target="pengumuman">Pengumuman</button>
+                <button class="about-menu-btn" data-target="berita-csr">Berita CSR</button>
+                <button class="about-menu-btn" data-target="journey-magazine">Journey Magazine</button>
+                <button class="about-menu-btn" data-target="brand-guideline">Brand Guideline</button>
+            </div>
+        </div>
+    </div>
+    <!-- Content Layout -->
+    <section class="about-layout">
+        <div class="container">
+            <div class="about-grid">
+                
+                <main class="about-content-pane">
+
+                    <!-- TAB 1: SIARAN PERS (PRESS RELEASE) -->
+                    <div class="about-tab-content active" id="tab-siaran-pers">
+                        <div class="section-header">
+                            <span class="section-header__tag">Siaran Pers</span>
+                            <h2 class="section-header__title">Rilis Berita Resmi Korporasi</h2>
+                            <p class="section-header__desc">Ikuti perkembangan terbaru mengenai pencapaian bisnis, ekspansi operasional, serta kerja sama strategis PT Patra Logistik.</p>
+                        </div>
+
+                        <!-- Featured Hero Card -->
+                        <a href="berita-detail.html" class="press-hero-card" style="text-decoration:none;">
+                            <div class="press-hero-img" style="background: url(\'assets/Mobil%20Tangki%20Maos.png\') center/cover no-repeat;"></div>
+                            <div class="press-hero-body">
+                                <div class="press-hero-meta">
+                                    <span class="press-tag">Siaran Pers</span>
+                                    <span class="press-date">05 Juni 2026</span>
+                                </div>
+                                <h3 class="press-hero-title">Patra Logistik Dukung Bauran Energi Nasional Melalui Pengangkutan FAME</h3>
+                                <p class="press-hero-excerpt">PT Patra Logistik resmi mendukung program transisi energi pemerintah melalui distribusi bahan bakar campuran nabati (FAME) ke berbagai wilayah strategis nasional.</p>
+                                <span class="press-hero-cta">Selengkapnya &rarr;</span>
+                            </div>
+                        </a>
+                        
+                                                <!-- Tags Filter -->
+                        <div class="news-tags-filter" id="news-tags-filter">
+                            <button class="news-tag-btn active" data-filter="all">All News</button>
+                            <button class="news-tag-btn" data-filter="csr">CSR/Sustainability</button>
+                            <button class="news-tag-btn" data-filter="profile">Profile Business</button>
+                            <button class="news-tag-btn" data-filter="innovation">Innovation</button>
+                            <button class="news-tag-btn" data-filter="services">Services</button>
+                        </div>
+                        
+                        <!-- Remaining Cards Grid -->
+                        <div class="news-grid" id="news-grid">
+                            <div class="news-card" data-index="0" data-category="innovation">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #ED1C24 0%, #BA1C21 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">28 Mei 2026</span></div>
+                                    <h4 class="news-card-title">Implementasi Aplikasi SIOD Guna Efisiensi dan Keamanan Armada Mobil Tangki</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="1" data-category="services">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #10B981 0%, #064E3B 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">15 Mei 2026</span></div>
+                                    <h4 class="news-card-title">Sinergi BUMN: Patra Logistik Salurkan Energi Ke Wilayah Terpencil Indonesia</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="2" data-category="profile">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #F59E0B 0%, #B45309 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">02 Mei 2026</span></div>
+                                    <h4 class="news-card-title">Penghargaan Keselamatan Kerja (Zero Accident Award) Patra Logistik 2026</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="3" data-category="profile">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #8B5CF6 0%, #4C1D95 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">20 April 2026</span></div>
+                                    <h4 class="news-card-title">Kerjasama Strategis Transportasi Petrokimia Skala Besar dengan Mitra Global</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="4" data-category="services">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #06B6D4 0%, #164E63 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">11 April 2026</span></div>
+                                    <h4 class="news-card-title">Perluasan Fasilitas Inventory Management System di Indonesia Timur</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="5" data-category="csr">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">05 April 2026</span></div>
+                                    <h4 class="news-card-title">Langkah Nyata Patra Logistik dalam Mendukung Energi Terbarukan (EBT)</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="6" data-category="profile">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #EAB308 0%, #A16207 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">25 Maret 2026</span></div>
+                                    <h4 class="news-card-title">Patra Logistik Berhasil Mempertahankan Sertifikasi ISO 9001:2015</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="7" data-category="services">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">12 Maret 2026</span></div>
+                                    <h4 class="news-card-title">Penambahan Armada Kapal Pengangkut Minyak Guna Tingkatkan Kapasitas</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="8" data-category="csr">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">01 Maret 2026</span></div>
+                                    <h4 class="news-card-title">Komitmen Tanggung Jawab Sosial: Pembangunan Fasilitas Air Bersih</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="9" data-category="services">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">20 Februari 2026</span></div>
+                                    <h4 class="news-card-title">Optimalisasi Rantai Pasok Avtur ke Bandara Internasional</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="10" data-category="innovation">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">10 Februari 2026</span></div>
+                                    <h4 class="news-card-title">Transformasi Digital dalam Proses Bisnis Vendor Management</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="news-card" data-index="11" data-category="profile">
+                                <div class="news-card-img" style="background: linear-gradient(135deg, #64748B 0%, #334155 100%);"></div>
+                                <div class="news-card-body">
+                                    <div class="news-card-meta"><span class="news-card-tag">Siaran Pers</span><span class="news-card-date">25 Januari 2026</span></div>
+                                    <h4 class="news-card-title">Rapat Umum Pemegang Saham Tahunan (RUPST) Tahun Buku 2025</h4>
+                                    <a href="berita-detail.html" class="news-card-cta">Selengkapnya &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pagination UI -->
+                        <div class="pagination-wrapper" style="display: flex; justify-content: center; gap: 8px; margin-top: 32px;">
+                            <button class="btn-page prev-page" id="prev-page" style="padding: 8px 16px; border: 1px solid #CBD5E1; background: #fff; border-radius: 4px; cursor: pointer; color: #1E3A8A; font-weight: 500;">&laquo; Prev</button>
+                            <div id="page-numbers" style="display: flex; gap: 8px;"></div>
+                            <button class="btn-page next-page" id="next-page" style="padding: 8px 16px; border: 1px solid #CBD5E1; background: #fff; border-radius: 4px; cursor: pointer; color: #1E3A8A; font-weight: 500;">Next &raquo;</button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: PENGUMUMAN -->
+                    <div class="about-tab-content" id="tab-pengumuman">
+                         <div class="section-header">
+                             <span class="section-header__tag">Pengumuman</span>
+                             <h2 class="section-header__title">Pengumuman Korporasi</h2>
+                             <p class="section-header__desc">Informasi resmi mengenai pengadaan, kebijakan, dan pemberitahuan korporasi PT Patra Logistik.</p>
+                         </div>
+
+                         <div class="ann-board">
+                             <!-- LEFT: Main Content -->
+                             <div class="ann-main">
+
+                                 <!-- Filter Bar -->
+                                 <div class="ann-filter-bar">
+                                     <button class="ann-filter-btn active">Semua</button>
+                                     <button class="ann-filter-btn">Pengadaan</button>
+                                     <button class="ann-filter-btn">Korporasi</button>
+                                     <button class="ann-filter-btn">HSE</button>
+                                     <button class="ann-filter-btn">SDM</button>
+                                     <button class="ann-filter-btn">Teknologi</button>
+                                 </div>
+
+                                 <!-- Featured Card -->
+                                 <div class="ann-featured">
+                                     <div class="ann-featured-tag">
+                                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                         Pengumuman Terbaru
+                                         <span class="ann-featured-label">RUPS</span>
+                                     </div>
+                                     <div class="ann-featured-title">Pengumuman Rapat Umum Pemegang Saham Tahunan (RUPS) 2026</div>
+                                     <div class="ann-featured-excerpt">PT Patra Logistik mengumumkan pelaksanaan RUPS Tahunan Tahun Buku 2025. Seluruh pemegang saham diundang untuk berpartisipasi sesuai dengan ketentuan Anggaran Dasar Perseroan.</div>
+                                     <div class="ann-featured-footer">
+                                         <span class="ann-featured-date">12 Maret 2026</span>
+                                         <button class="ann-featured-cta">
+                                             Baca Selengkapnya
+                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                         </button>
+                                     </div>
+                                 </div>
+
+                                 <!-- Announcement List -->
+                                 <div class="ann-list-v2">
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">20</span>
+                                             <span class="ann-card-v2-month">Mei</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-sdm">SDM</span>
+                                             <div class="ann-card-v2-title">Rekrutmen Perwira Patra Logistik Batch 2026 – Program Management Trainee</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">05</span>
+                                             <span class="ann-card-v2-month">Apr</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-hse">HSE</span>
+                                             <div class="ann-card-v2-title">Pembaruan Kebijakan Sistem Manajemen Keselamatan & Kesehatan Kerja (SMK3)</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">25</span>
+                                             <span class="ann-card-v2-month">Feb</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-teknologi">Teknologi</span>
+                                             <div class="ann-card-v2-title">Digitalisasi Vendor Management Patra Logistik Menggunakan iVendor</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">10</span>
+                                             <span class="ann-card-v2-month">Jan</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-pengadaan">Pengadaan</span>
+                                             <div class="ann-card-v2-title">Rencana Pengadaan Armada Mobil Tangki BBM Periode Januari 2026</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col">
+                                             <span class="ann-card-v2-day">15</span>
+                                             <span class="ann-card-v2-month">Des</span>
+                                         </div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body">
+                                             <span class="ann-card-v2-tag tag-keuangan">Keuangan</span>
+                                             <div class="ann-card-v2-title">Laporan Keuangan Audit Tahun Buku 2025 PT Patra Logistik</div>
+                                         </div>
+                                         <div class="ann-card-v2-action">
+                                             <div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <!-- RIGHT: Sidebar -->
+                             <aside class="ann-sidebar">
+                                 <!-- Stat Card -->
+                                 <div class="ann-sidebar-card">
+                                     <div class="ann-sidebar-title">Statistik 2026</div>
+                                     <div class="ann-stat-row">
+                                         <span class="ann-stat-label">Total Pengumuman</span>
+                                         <span class="ann-stat-value">24</span>
+                                     </div>
+                                     <div class="ann-stat-row">
+                                         <span class="ann-stat-label">Bulan Ini</span>
+                                         <span class="ann-stat-value">3</span>
+                                     </div>
+                                     <div class="ann-stat-row">
+                                         <span class="ann-stat-label">Dokumen Unduhan</span>
+                                         <span class="ann-stat-value">18</span>
+                                     </div>
+                                 </div>
+
+                                 <!-- Category Card -->
+                                 <div class="ann-sidebar-card">
+                                     <div class="ann-sidebar-title">Kategori</div>
+                                     <div class="ann-cat-list">
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">Pengadaan</span>
+                                             <span class="ann-cat-count">7</span>
+                                         </div>
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">Korporasi</span>
+                                             <span class="ann-cat-count">5</span>
+                                         </div>
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">HSE</span>
+                                             <span class="ann-cat-count">4</span>
+                                         </div>
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">SDM</span>
+                                             <span class="ann-cat-count">4</span>
+                                         </div>
+                                         <div class="ann-cat-item">
+                                             <span class="ann-cat-name">Teknologi</span>
+                                             <span class="ann-cat-count">4</span>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <!-- Subscribe Box -->
+                                 <div class="ann-subscribe-box">
+                                     <h4>Notifikasi Pengumuman</h4>
+                                     <p>Dapatkan notifikasi langsung setiap ada pengumuman resmi terbaru dari PT Patra Logistik.</p>
+                                     <button class="ann-subscribe-btn">Daftarkan Email Anda</button>
+                                 </div>
+                             </aside>
+                         </div>
+                     </div>
+
+                    <!-- TAB 2: PENGUMUMAN (ENG) -->
+                     <div class="about-tab-content" id="tab-pengumuman">
+                         <div class="section-header">
+                             <span class="section-header__tag">Announcements</span>
+                             <h2 class="section-header__title">Corporate Announcements</h2>
+                             <p class="section-header__desc">Official information regarding procurement, policies, and corporate notices from PT Patra Logistik.</p>
+                         </div>
+
+                         <div class="ann-board">
+                             <div class="ann-main">
+                                 <div class="ann-filter-bar">
+                                     <button class="ann-filter-btn active">All</button>
+                                     <button class="ann-filter-btn">Procurement</button>
+                                     <button class="ann-filter-btn">Corporate</button>
+                                     <button class="ann-filter-btn">HSE</button>
+                                     <button class="ann-filter-btn">HR</button>
+                                     <button class="ann-filter-btn">Technology</button>
+                                 </div>
+                                 <div class="ann-featured">
+                                     <div class="ann-featured-tag">
+                                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                         Latest Announcement
+                                         <span class="ann-featured-label">GMS</span>
+                                     </div>
+                                     <div class="ann-featured-title">Annual General Meeting of Shareholders (GMS) 2026 Notice</div>
+                                     <div class="ann-featured-excerpt">PT Patra Logistik announces the Annual General Meeting of Shareholders for Fiscal Year 2025. All shareholders are invited to participate in accordance with the Company's Articles of Association.</div>
+                                     <div class="ann-featured-footer">
+                                         <span class="ann-featured-date">March 12, 2026</span>
+                                         <button class="ann-featured-cta">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                                     </div>
+                                 </div>
+                                 <div class="ann-list-v2">
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col"><span class="ann-card-v2-day">20</span><span class="ann-card-v2-month">May</span></div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body"><span class="ann-card-v2-tag tag-sdm">HR</span><div class="ann-card-v2-title">Patra Logistik Officer Recruitment Batch 2026 – Management Trainee Program</div></div>
+                                         <div class="ann-card-v2-action"><div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col"><span class="ann-card-v2-day">05</span><span class="ann-card-v2-month">Apr</span></div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body"><span class="ann-card-v2-tag tag-hse">HSE</span><div class="ann-card-v2-title">Update on Occupational Health & Safety Management System (OHS-MS) Policy</div></div>
+                                         <div class="ann-card-v2-action"><div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col"><span class="ann-card-v2-day">25</span><span class="ann-card-v2-month">Feb</span></div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body"><span class="ann-card-v2-tag tag-teknologi">Technology</span><div class="ann-card-v2-title">Digitalization of Patra Logistik Vendor Management Using iVendor System</div></div>
+                                         <div class="ann-card-v2-action"><div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
+                                     </div>
+                                     <div class="ann-card-v2">
+                                         <div class="ann-card-v2-date-col"><span class="ann-card-v2-day">10</span><span class="ann-card-v2-month">Jan</span></div>
+                                         <div class="ann-card-v2-divider"></div>
+                                         <div class="ann-card-v2-body"><span class="ann-card-v2-tag tag-pengadaan">Procurement</span><div class="ann-card-v2-title">Fuel Tanker Fleet Procurement Plan for January 2026 Period</div></div>
+                                         <div class="ann-card-v2-action"><div class="ann-card-v2-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <aside class="ann-sidebar">
+                                 <div class="ann-sidebar-card">
+                                     <div class="ann-sidebar-title">2026 Statistics</div>
+                                     <div class="ann-stat-row"><span class="ann-stat-label">Total Announcements</span><span class="ann-stat-value">24</span></div>
+                                     <div class="ann-stat-row"><span class="ann-stat-label">This Month</span><span class="ann-stat-value">3</span></div>
+                                     <div class="ann-stat-row"><span class="ann-stat-label">Documents</span><span class="ann-stat-value">18</span></div>
+                                 </div>
+                                 <div class="ann-sidebar-card">
+                                     <div class="ann-sidebar-title">Categories</div>
+                                     <div class="ann-cat-list">
+                                         <div class="ann-cat-item"><span class="ann-cat-name">Procurement</span><span class="ann-cat-count">7</span></div>
+                                         <div class="ann-cat-item"><span class="ann-cat-name">Corporate</span><span class="ann-cat-count">5</span></div>
+                                         <div class="ann-cat-item"><span class="ann-cat-name">HSE</span><span class="ann-cat-count">4</span></div>
+                                         <div class="ann-cat-item"><span class="ann-cat-name">HR</span><span class="ann-cat-count">4</span></div>
+                                         <div class="ann-cat-item"><span class="ann-cat-name">Technology</span><span class="ann-cat-count">4</span></div>
+                                     </div>
+                                 </div>
+                                 <div class="ann-subscribe-box">
+                                     <h4>Announcement Alerts</h4>
+                                     <p>Get notified whenever a new official announcement is published by PT Patra Logistik.</p>
+                                     <button class="ann-subscribe-btn">Register Your Email</button>
+                                 </div>
+                             </aside>
+                         </div>
+                     </div>
+
+                    <!-- TAB 3: BERITA CSR -->
+                    <div class="about-tab-content" id="tab-berita-csr">
+                        <div class="section-header">
+                            <span class="section-header__tag" style="color:#059669;">Berita CSR</span>
+                            <h2 class="section-header__title">Tanggung Jawab Sosial Perusahaan</h2>
+                            <p class="section-header__desc">Kisah nyata kontribusi Patra Logistik untuk masyarakat, lingkungan, dan keberlangsungan energi bangsa.</p>
+                        </div>
+                        
+                        <!-- Featured CSR -->
+                        <div class="csr-featured">
+                            <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="csr-featured-img">
+                            <div class="csr-featured-content">
+                                <div class="csr-featured-tag">Sorotan CSR</div>
+                                <h3 class="csr-featured-title">Kenalkan Budaya Keselamatan dan Hemat Energi, Patra Logistik Jangkau Lebih dari 3.000 Pelajar</h3>
+                                <p class="csr-featured-excerpt">Program edukasi keselamatan kerja dan hemat energi menyentuh lebih dari 3.000 pelajar di seluruh wilayah operasional melalui kolaborasi dengan sekolah dasar dan menengah setempat, mengedukasi generasi muda mengenai pentingnya menjaga energi dan bertindak aman sejak dini.</p>
+                                <div class="csr-featured-footer">
+                                    <span class="csr-featured-date">02 Mei 2026 &bull; Pendidikan</span>
+                                    <a href="berita-detail.html" class="csr-featured-cta">Baca Artikel Penuh &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CSR Grid -->
+                        <div class="csr-grid">
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Lingkungan</span><span class="csr-card-date">18 April 2026</span></div>
+                                    <h4 class="csr-card-title">Patra Logistik Tanam 10.000 Pohon Mangrove di Pesisir Kalimantan Timur</h4>
+                                    <p class="csr-card-excerpt">Inisiatif penghijauan pesisir untuk mendukung ekosistem bahari dan mitigasi perubahan iklim di wilayah operasional.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #BBF7D0 0%, #34D399 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Pemberdayaan</span><span class="csr-card-date">28 Maret 2026</span></div>
+                                    <h4 class="csr-card-title">Beasiswa Energi: 50 Putra-Putri Daerah Terima Beasiswa Kuliah </h4>
+                                    <p class="csr-card-excerpt">Program beasiswa untuk mendorong generasi muda di sekitar wilayah operasional agar memiliki akses pendidikan tinggi.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Kesehatan</span><span class="csr-card-date">12 Maret 2026</span></div>
+                                    <h4 class="csr-card-title">Cek Kesehatan Gratis & Pembagian Sembako untuk Masyarakat Nelayan</h4>
+                                    <p class="csr-card-excerpt">Layanan medis keliling dan dukungan logistik pangan untuk membantu kesejahteraan masyarakat pesisir pantai.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #D1FAE5 0%, #10B981 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Pendidikan</span><span class="csr-card-date">25 Februari 2026</span></div>
+                                    <h4 class="csr-card-title">Bantuan Perbaikan Fasilitas Sekolah di Daerah 3T (Tertinggal, Terdepan, Terluar)</h4>
+                                    <p class="csr-card-excerpt">Renovasi perpustakaan dan penyediaan alat belajar di daerah pelosok guna mendukung semangat belajar siswa.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #059669 0%, #064E3B 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Lingkungan</span><span class="csr-card-date">10 Januari 2026</span></div>
+                                    <h4 class="csr-card-title">Kampanye Pengurangan Sampah Plastik di Lingkungan Operasional</h4>
+                                    <p class="csr-card-excerpt">Sosialisasi diet plastik dan penyediaan sarana air minum isi ulang bagi pekerja dan masyarakat sekitar.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #10B981 0%, #047857 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Bencana Alam</span><span class="csr-card-date">15 Desember 2025</span></div>
+                                    <h4 class="csr-card-title">Tanggap Darurat: Patra Logistik Salurkan Energi dan Logistik ke Area Terdampak Banjir</h4>
+                                    <p class="csr-card-excerpt">Distribusi BBM khusus dan suplai bahan makanan pokok bagi pengungsi bencana banjir di wilayah operasional.</p>
+                                    <div class="csr-card-footer">Baca Selengkapnya &rarr;</div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="page-btn"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span style="color:#94A3B8;">...</span>
+                            <button class="page-btn">8</button>
+                            <button class="page-btn"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: MAJALAH JOURNEY -->
+                    <div class="about-tab-content" id="tab-journey-magazine">
+                        <div class="section-header">
+                            <span class="section-header__tag">Majalah Internal</span>
+                            <h2 class="section-header__title">Journey Magazine</h2>
+                            <p class="section-header__desc">Wadah berbagi cerita inspiratif, inovasi, dan budaya kerja para Perwira Patra Logistik dalam mengawal distribusi energi nasional.</p>
+                        </div>
+                        <div class="mag-showcase">
+                            <div class="mag-item">
+                                <div class="mag-cover-wrap">
+                                    <div class="mag-cover">
+                                        <img src="assets/journey_magazine_blue.png" alt="Journey Magazine Edisi Biru">
+                                    </div>
+                                </div>
+                                <div class="mag-item-info">
+                                    <div class="mag-item-edition">Edisi I &bull; 2025</div>
+                                    <div class="mag-item-title">Journey: Energi untuk Negeri</div>
+                                    <button class="btn-mag-read">
+                                        <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                        Baca Sekarang
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mag-item">
+                                <div class="mag-cover-wrap">
+                                    <div class="mag-cover">
+                                        <img src="assets/journey_magazine_white.png" alt="Journey Magazine Edisi Putih">
+                                    </div>
+                                </div>
+                                <div class="mag-item-info">
+                                    <div class="mag-item-edition">Edisi II &bull; 2025</div>
+                                    <div class="mag-item-title">Journey: Inovasi Tanpa Batas</div>
+                                    <button class="btn-mag-read">
+                                        <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                        Baca Sekarang
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: PANDUAN MERK -->
+                    <div class="about-tab-content" id="tab-brand-guideline">
+                        <div class="section-header">
+                            <span class="section-header__tag">Brand Identity</span>
+                            <h2 class="section-header__title">Panduan Merek Patra Logistik</h2>
+                            <p class="section-header__desc">Panduan penggunaan identitas visual resmi PT Patra Logistik untuk menjaga konsistensi dan integritas merek di setiap media komunikasi.</p>
+                        </div>
+
+                        <!-- Panel 1: Warna Utama -->
+                        <div class="brand-panel">
+                            <div class="brand-panel-header">
+                                <div class="brand-panel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+                                <span class="brand-panel-title">Warna Utama</span>
+                            </div>
+                            <div class="brand-colors">
+                                <div class="brand-color-item">
+                                    <div class="brand-color-swatch" style="background:#ED1C24;"></div>
+                                    <span class="brand-color-name">Pertamina Red</span>
+                                    <span class="brand-color-hex">#ED1C24</span>
+                                </div>
+                                <div class="brand-color-item">
+                                    <div class="brand-color-swatch" style="background:#0056A6;"></div>
+                                    <span class="brand-color-name">Pertamina Blue</span>
+                                    <span class="brand-color-hex">#0056A6</span>
+                                </div>
+                                <div class="brand-color-item">
+                                    <div class="brand-color-swatch" style="background:#A3C639;"></div>
+                                    <span class="brand-color-name">Pertamina Green</span>
+                                    <span class="brand-color-hex">#A3C639</span>
+                                </div>
+                                <div class="brand-color-item">
+                                    <div class="brand-color-swatch" style="background:#1E2022; border:1px solid #E2E8F0;"></div>
+                                    <span class="brand-color-name">Navy Dark</span>
+                                    <span class="brand-color-hex">#1E2022</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 2: Konfigurasi Logo -->
+                        <div class="brand-panel">
+                            <div class="brand-panel-header">
+                                <div class="brand-panel-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+                                <span class="brand-panel-title">Konfigurasi Logo</span>
+                            </div>
+                            <div class="brand-logos">
+                                <div class="brand-logo-slot">
+                                    <div class="brand-logo-preview">
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <svg viewBox="0 0 40 40" style="width:32px;height:32px;"><path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24"/><path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#0056A6"/></svg>
+                                            <div style="text-align:left;"><div style="font-weight:900;font-size:12px;color:#ED1C24;line-height:1;">PERTAMINA</div><div style="font-weight:800;font-size:8px;color:#0056A6;line-height:1;letter-spacing:0.5px;">PATRA LOGISTIK</div></div>
+                                        </div>
+                                    </div>
+                                    <span class="brand-logo-label">Logo Utama (Light)</span>
+                                </div>
+                                <div class="brand-logo-slot">
+                                    <div class="brand-logo-preview dark">
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <svg viewBox="0 0 40 40" style="width:32px;height:32px;"><path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24"/><path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#60A5FA"/></svg>
+                                            <div style="text-align:left;"><div style="font-weight:900;font-size:12px;color:#ED1C24;line-height:1;">PERTAMINA</div><div style="font-weight:800;font-size:93C5FD;line-height:1;letter-spacing:0.5px;">PATRA LOGISTIK</div></div>
+                                        </div>
+                                    </div>
+                                    <span class="brand-logo-label">Logo Utama (Dark)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 3: Unduhan -->
+                        <div class="brand-panel">
+                            <div class="brand-panel-header">
+                                <div class="brand-panel-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                                <span class="brand-panel-title">Unduhan Aset</span>
+                            </div>
+                            <div class="brand-download-grid">
+                                <a href="#" class="btn-brand-download">
+                                    <div class="btn-brand-download-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+                                    <div class="btn-brand-download-text">
+                                        <span class="btn-brand-download-label">Paket Logo</span>
+                                        <span class="btn-brand-download-size">PNG, SVG, AI &bull; ~2.4 MB</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="btn-brand-download">
+                                    <div class="btn-brand-download-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+                                    <div class="btn-brand-download-text">
+                                        <span class="btn-brand-download-label">Panduan Merek (Brand Book)</span>
+                                        <span class="btn-brand-download-size">PDF &bull; ~8.1 MB</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: BERITA CSR (ENG) -->
+                    <div class="about-tab-content" id="tab-berita-csr">
+                        <div class="section-header">
+                            <span class="section-header__tag" style="color:#059669;">CSR News</span>
+                            <h2 class="section-header__title">Corporate Social Responsibility</h2>
+                            <p class="section-header__desc">Real stories of Patra Logistik's contribution to society, environment, and the sustainability of the nation's energy.</p>
+                        </div>
+                        
+                        <!-- Featured CSR -->
+                        <div class="csr-featured">
+                            <img src="assets/csr_safety_culture.png" alt="CSR Safety Culture" class="csr-featured-img">
+                            <div class="csr-featured-content">
+                                <div class="csr-featured-tag">CSR Spotlight</div>
+                                <h3 class="csr-featured-title">Introducing Safety and Energy Saving Culture, Patra Logistik Reaches Over 3,000 Students</h3>
+                                <p class="csr-featured-excerpt">The occupational safety and energy-saving education program reached more than 3,000 students across operational areas through collaboration with local schools, educating the younger generation on the importance of energy conservation and safe behavior.</p>
+                                <div class="csr-featured-footer">
+                                    <span class="csr-featured-date">May 02, 2026 &bull; Education</span>
+                                    <a href="berita-detail.html" class="csr-featured-cta">Read Full Article &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CSR Grid -->
+                        <div class="csr-grid">
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Environment</span><span class="csr-card-date">Apr 18, 2026</span></div>
+                                    <h4 class="csr-card-title">Patra Logistik Plants 10,000 Mangrove Trees in East Kalimantan Coastal Area</h4>
+                                    <p class="csr-card-excerpt">Coastal greening initiative to support marine ecosystems and mitigate climate change in the Kalimantan operational area.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #BBF7D0 0%, #34D399 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Empowerment</span><span class="csr-card-date">Mar 28, 2026</span></div>
+                                    <h4 class="csr-card-title">Energy Scholarship: 50 Local Youths Receive Scholarships from Patra Logistik</h4>
+                                    <p class="csr-card-excerpt">Scholarship program to encourage young generations around operational areas to access quality higher education.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Healthcare</span><span class="csr-card-date">Mar 12, 2026</span></div>
+                                    <h4 class="csr-card-title">Free Health Checks & Food Supply Distribution for Fishing Communities</h4>
+                                    <p class="csr-card-excerpt">Mobile medical services and food logistics support to improve the welfare of coastal communities.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #D1FAE5 0%, #10B981 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Education</span><span class="csr-card-date">Feb 25, 2026</span></div>
+                                    <h4 class="csr-card-title">Support for School Facility Repairs in Underdeveloped Remote Areas</h4>
+                                    <p class="csr-card-excerpt">Library renovations and provision of learning equipment in remote areas to support students' enthusiasm for learning.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #059669 0%, #064E3B 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Environment</span><span class="csr-card-date">Jan 10, 2026</span></div>
+                                    <h4 class="csr-card-title">Plastic Waste Reduction Campaign in Operational Environments</h4>
+                                    <p class="csr-card-excerpt">Socialization of plastic diets and provision of drinking water refill facilities for workers and surrounding communities.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html" class="csr-card">
+                                <div class="csr-card-img" style="background: linear-gradient(135deg, #10B981 0%, #047857 100%);"></div>
+                                <div class="csr-card-body">
+                                    <div class="csr-card-meta"><span class="csr-card-tag">Disaster Relief</span><span class="csr-card-date">Dec 15, 2025</span></div>
+                                    <h4 class="csr-card-title">Emergency Response: Energy and Logistics Delivery to Flood-Affected Areas</h4>
+                                    <p class="csr-card-excerpt">Distribution of specialized fuel and supply of basic food items for flood evacuees in operational regions.</p>
+                                    <div class="csr-card-footer">Read More &rarr;</div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="page-btn"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span style="color:#94A3B8;">...</span>
+                            <button class="page-btn">8</button>
+                            <button class="page-btn"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: MAJALAH JOURNEY -->
+                    <div class="about-tab-content" id="tab-journey-magazine">
+                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 12px;">JOURNEY</div>
+                        <p class="content-text" style="text-align: center; max-width: 750px; margin: 0 auto 32px;">Majalah <em>Journey</em> menjadi wadah untuk berbagi cerita inspiratif, inovasi, budaya kerja, hingga kontribusi Perwira Patra Logistik dalam mengawal dan menjaga distribusi energi tetap aman dan andal.</p>
+                        
+                        <div class="mag-grid">
+                            <!-- Cover 1: Blue -->
+                            <div class="mag-card">
+                                <div class="mag-cover">
+                                    <img src="assets/journey_magazine_blue.png" alt="Journey Magazine Blue Cover" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <button class="btn-more" style="align-self: center; width: 100px;">Baca</button>
+                            </div>
+                            <!-- Cover 2: White -->
+                            <div class="mag-card">
+                                <div class="mag-cover">
+                                    <img src="assets/journey_magazine_white.png" alt="Journey Magazine White Cover" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <button class="btn-more" style="align-self: center; width: 100px;">Baca</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: PANDUAN MERK -->
+                    <div class="about-tab-content" id="tab-brand-guideline">
+                        <div class="content-title" style="text-align: center; display: block; margin-bottom: 24px;">Panduan Merek</div>
+                        <div style="width: 100%; height: 1.5px; background: #E2E8F0; margin-bottom: 32px;"></div>
+                        
+                        <!-- Core Colors Section -->
+                        <h4 class="brand-subtitle">Warna Utama</h4>
+                        <div class="color-palette">
+                            <div class="color-wrapper">
+                                <div class="color-block" style="background: #ED1C24;"></div>
+                                <span class="color-label">Pertamina Red</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-block" style="background: #A3C639;"></div>
+                                <span class="color-label">Pertamina Green</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-block" style="background: #0056A6;"></div>
+                                <span class="color-label">Pertamina Blue</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-block" style="background: #1E2022;"></div>
+                                <span class="color-label">Navy Dark</span>
+                            </div>
+                        </div>
+
+                        <!-- Logo Configuration Section -->
+                        <h4 class="brand-subtitle" style="margin-top: 40px; margin-bottom: 12px;">Konfigurasi Logo</h4>
+                        <div class="logo-config-box">
+                            <!-- Logo Utama -->
+                            <div class="logo-slot">
+                                <span class="logo-slot-title">Logo Utama</span>
+                                <div class="logo-img-placeholder">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <!-- Mini Pertamina Symbol -->
+                                        <svg viewBox="0 0 40 40" style="width: 32px; height: 32px;">
+                                            <path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24" />
+                                            <path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#0056A6" />
+                                        </svg>
+                                        <div style="text-align: left;">
+                                            <div style="font-weight: 900; font-size: 13px; color: #ED1C24; line-height: 1;">PERTAMINA</div>
+                                            <div style="font-weight: 800; font-size: 9px; color: #0056A6; line-height: 1; letter-spacing: 0.5px;">PATRA LOGISTIK</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Logo Frame -->
+                            <div class="logo-slot">
+                                <span class="logo-slot-title">Logo Frame</span>
+                                <div class="logo-img-placeholder" style="width: 140px;">
+                                    <div style="text-align: center;">
+                                        <svg viewBox="0 0 40 40" style="width: 28px; height: 28px; margin: 0 auto 4px;">
+                                            <path d="M5,15 L22,5 L35,15 L35,28 L5,28 Z" fill="#ED1C24" />
+                                            <path d="M12,28 L28,28 L28,32 L12,32 Z" fill="#0056A6" />
+                                        </svg>
+                                        <div style="font-weight: 900; font-size: 10px; color: #ED1C24; line-height: 1;">PERTAMINA</div>
+                                        <div style="font-weight: 800; font-size: 7px; color: #0056A6; line-height: 1; letter-spacing: 0.5px;">PATRA LOGISTIK</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 16px;">
+                            <a href="#" class="btn-more" style="display: flex; align-items: center; gap: 8px; padding: 12px 28px;">
+                                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span>UNDUH LOGO</span>
+                            </a>
+                            <a href="#" class="btn-more" style="display: flex; align-items: center; gap: 8px; padding: 12px 28px;">
+                                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span>PEDOMAN LOGO</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </main>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Bar -->
+            <footer class="footer-new">
+            <div class="footer-new__watermark"></div>
+
+            <div class="footer-new__top container">
+                <!-- Column 1 -->
+                <div class="footer-col-1">
+                    <div class="footer-logo"></div>
+                    <div class="footer-contact-list">
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="margin-top: 2px;">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span><strong>Kantor Pusat</strong><br>Garden Avenue Rasuna Lantai 1-3, Jalan Epicentrum Tengah No. 3, RT.2/RW.5, Karet Kuningan, Kecamatan Setiabudi, Jakarta Selatan.</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <span>(021)-25196699</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                            <span>info.patralogistik@pertamina.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="X">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4l16 16M4 20L20 4"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-col-2">
+                    <h3 data-i18n="footer.col1">PERUSAHAAN</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tentang-kami.html" data-i18n="nav.about">Tentang Kami</a></li>
+                        <li><a href="bisnis.html" data-i18n="nav.business">Bisnis</a></li>
+                        <li><a href="karir.html" data-i18n="nav.career">Karir</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="footer-col-3">
+                    <h3 data-i18n="footer.col2">INFORMASI PUBLIK</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="#">Tata Kelola</a></li>
+                        <li><a href="hubungan-investor.html" data-i18n="nav.investor">Hubungan Investor</a></li>
+                        <li><a href="berita-media.html" data-i18n="nav.news">Berita &amp; Media</a></li>
+                        <li><a href="#">Situs Terkait</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div class="footer-col-4">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                        <img src="./assets/Image%20(Pertamina%20Call%20Center).png" alt="Pertamina Call Center 135" style="max-width: 55%; height: auto; display: block;">
+                        <img src="./assets/callcenter15.png" alt="Call Center 135" style="max-width: 40%; height: auto; display: block;">
+                    </div>
+                    <div class="call-center-btn">
+                        <div class="icon-circle">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="text">
+                            <span class="title">Whistle Blowing System</span>
+                            <span class="link">https://pertaminaclean.tipoffs.info/</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-new__bottom container">
+                <div class="bottom-left">
+                    <span class="affiliate-label">AFFILIATE OF:</span>
+                    <span class="affiliate-box">PERTAMINA PATRA NIAGA</span>
+                </div>
+                <div class="bottom-right">
+                    <span class="copyright" data-i18n="footer.copyright">© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang.</span>
+                    <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan
+                        PT Pertamina (Persero).</span>
+                </div>
+            </div>
+        </footer>
+
+
+    <!-- Interactive script switching logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sidebar = document.getElementById("about-sidebar");
+            const backdrop = document.getElementById("sidebar-backdrop");
+            const triggerFixed = document.getElementById("sidebar-trigger-fixed");
+            const triggerInline = document.getElementById("sidebar-trigger-inline");
+            const closeBtn = document.getElementById("sidebar-close-btn");
+            const menuBtns = document.querySelectorAll(".about-menu-btn");
+            const tabContents = document.querySelectorAll(".about-tab-content");
+
+            function openSidebar() {
+                if(sidebar) sidebar.classList.add("open");
+                if(backdrop) backdrop.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeSidebar() {
+                if(sidebar) sidebar.classList.remove("open");
+                if(backdrop) backdrop.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            if (triggerFixed) triggerFixed.addEventListener("click", openSidebar);
+            if (triggerInline) triggerInline.addEventListener("click", openSidebar);
+            if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
+            if (backdrop) backdrop.addEventListener("click", closeSidebar);
+
+            function switchTab(target) {
+                // Hide all tabs and remove active from all buttons
+                tabContents.forEach(tab => tab.classList.remove("active"));
+                menuBtns.forEach(btn => btn.classList.remove("active"));
+
+                // Show target tab
+                const targetSection = document.getElementById(`tab-${target}`);
+                if (targetSection) targetSection.classList.add("active");
+
+                // Set active on corresponding buttons
+                menuBtns.forEach(btn => {
+                    if (btn.getAttribute("data-target") === target) btn.classList.add("active");
+                });
+
+                // Close drawer if open
+                closeSidebar();
+
+                // Update URL
+                const url = new URL(window.location);
+                url.searchParams.set('tab', target);
+                window.history.pushState({}, '', url);
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            menuBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    switchTab(btn.getAttribute("data-target"));
+                });
+            });
+
+            
+            // News Tags Filter Logic
+            const newsTags = document.querySelectorAll('.news-tag-btn');
+            const newsCards = document.querySelectorAll('.news-card[data-category]');
+
+            newsTags.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    newsTags.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    newsCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Check URL on load
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            if (tabParam && ['siaran-pers', 'pengumuman', 'berita-csr', 'journey-magazine', 'brand-guideline'].includes(tabParam)) {
+                setTimeout(() => switchTab(tabParam), 50);
+            } else {
+                setTimeout(() => switchTab('siaran-pers'), 50);
+            }
+        });
+    </script>
+
+    <script src="lang.js"></script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>

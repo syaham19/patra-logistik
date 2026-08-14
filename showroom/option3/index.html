@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patra Logistik - Slicing Framework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=3">
+</head>
+
+<body class="loading">
+
+    <div id="page-loader" class="page-loader" aria-live="polite" aria-label="Memuat halaman">
+        <div class="page-loader__inner">
+            <img src="assets/logo-transparent.png" alt="Patra Logistik" class="page-loader__logo">
+            <div class="page-loader__percent" id="loader-percent">0%</div>
+            <div class="page-loader__bar">
+                <div class="page-loader__bar-fill" id="loader-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false"
+                aria-controls="nav-links">
+                ☰
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami" data-i18n="nav.about">Tentang Kami</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tentang-kami.html?tab=profil" data-i18n="nav.about.profile">Profil Perusahaan</a></li>
+                        <li><a href="tentang-kami.html?tab=visi-misi" data-i18n="nav.about.vision">Visi Misi</a></li>
+                        <li><a href="tentang-kami.html?tab=nilai" data-i18n="nav.about.values">Tata Nilai</a></li>
+                        <li><a href="tentang-kami.html?tab=sejarah" data-i18n="nav.about.history">Sejarah</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris" data-i18n="nav.about.board">Dewan Komisaris</a></li>
+                        <li><a href="tentang-kami.html?tab=direksi" data-i18n="nav.about.directors">Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=struktur" data-i18n="nav.about.structure">Struktur Organisasi</a></li>
+                        <li><a href="tentang-kami.html?tab=sertifikat" data-i18n="nav.about.certification">Sertifikasi</a></li>
+                        <li><a href="tentang-kami.html?tab=penghargaan" data-i18n="nav.about.awards">Penghargaan</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="bisnis.html" class="nav-link" data-text="Bisnis" data-i18n="nav.business">Bisnis</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bisnis.html?tab=transportasi" data-i18n="nav.biz.transport">Transportasi</a></li>
+                        <li><a href="bisnis.html?tab=inventory" data-i18n="nav.biz.inventory">Inventory Management</a></li>
+                        <li><a href="bisnis.html?tab=other" data-i18n="nav.biz.other">Lainnya</a></li>
+                        <li><a href="bisnis.html?tab=fleet" data-i18n="nav.biz.fleet">Fleet Management</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor" data-i18n="nav.investor">Hubungan Investor</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+                        <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+                        <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+                    </ul>
+                </li>
+                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability" data-i18n="nav.sustainability">Sustainability</a></li>
+                <li class="has-dropdown">
+                    <a href="berita-media.html" class="nav-link" data-text="Berita & Media" data-i18n="nav.news">Berita & Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+                        <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+                        <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+                        <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+                        <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+                    </ul>
+                </li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir" data-i18n="nav.career">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="lang-switch has-dropdown" aria-label="Language Switch">
+                    <button class="lang-btn-current" id="lang-btn-current" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag" id="current-lang-flag">
+                        <span class="lang-text" id="current-lang-text">INA</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="lang-dropdown-menu">
+                        <li>
+                            <button class="lang-option" data-lang="id">
+                                <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag">
+                                <span class="lang-text">INA</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="lang-option" data-lang="en">
+                                <img src="https://flagcdn.com/w20/gb.png" alt="EN Flag" class="lang-flag">
+                                <span class="lang-text">ENG</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 0;" data-i18n="nav.contact">HUBUNGI KAMI</button>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <!-- Hero Slideshow -->
+        <div class="hero-slideshow" id="hero-slideshow" aria-label="Hero Slideshow" role="region">
+            <div class="hero-slides">
+                <div class="hero-slide active" style="background-image: url('assets/Landscape%20MT.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/Mobil%20Tangki%20Maos.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/LPR00887%20(1).png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/DSC00198.png');"></div>
+                <div class="hero-slide" style="background-image: url('assets/gambar%20karyawan.png');"></div>
+            </div>
+        </div>
+
+        <!-- Design Option 3: Vertical Right Timeline Indicators -->
+        <div class="hero-timeline-indicators" role="tablist" aria-label="Pilih slide">
+            <div class="hero-timeline-container">
+                <div class="hero-slide-dot timeline-item active" data-slide="0" role="tab" aria-selected="true">
+                    <span class="timeline-text">RELIABLE</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/Landscape%20MT.png" alt="Slide 1">
+                        <div class="timeline-card-content">
+                            <h4>Reliable Energy for Today</h4>
+                            <p>Delivering reliable energy and integrated solutions to power progress.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide-dot timeline-item" data-slide="1" role="tab" aria-selected="false">
+                    <span class="timeline-text">INNOVATIVE</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/Mobil%20Tangki%20Maos.png" alt="Slide 2">
+                        <div class="timeline-card-content">
+                            <h4>Innovating for Tomorrow</h4>
+                            <p>Driving innovation and digital solutions to shape the future of energy.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide-dot timeline-item" data-slide="2" role="tab" aria-selected="false">
+                    <span class="timeline-text">SUSTAINABLE</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/LPR00887%20(1).png" alt="Slide 3">
+                        <div class="timeline-card-content">
+                            <h4>Sustainable for Future</h4>
+                            <p>Commitment to sustainability and green energy transitions for all.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide-dot timeline-item" data-slide="3" role="tab" aria-selected="false">
+                    <span class="timeline-text">INTEGRATED</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/DSC00198.png" alt="Slide 4">
+                        <div class="timeline-card-content">
+                            <h4>Integrated Operations</h4>
+                            <p>Seamless end-to-end logistics with real-time integrated tracking.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide-dot timeline-item" data-slide="4" role="tab" aria-selected="false">
+                    <span class="timeline-text">MODERN</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/gambar%20karyawan.png" alt="Slide 5">
+                        <div class="timeline-card-content">
+                            <h4>Modern Fleet & Teams</h4>
+                            <p>Empowering our professional teams and modern fleet networks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="hero-grid-wrapper">
+                <div class="hero-content fade-up">
+                    <span class="hero-tag" data-i18n="hero.tag">Penyaluran dan Transportasi</span>
+                    <h1 class="hero-title" data-i18n="hero.title">Logistik Energi, Andal, <br>Aman, Terintegrasi</h1>
+                    <p class="hero-desc" data-i18n="hero.desc">Memastikan pasokan energi nasional — aman, tepat waktu, tepat jumlah — dari
+                        Aceh hingga Papua.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary"><span data-i18n="hero.btn.route">Lihat Rute Penyaluran</span> <span class="btn-icon">→</span></button>
+                        <button class="btn btn-white"><span data-i18n="hero.btn.contact">Hubungi Kami</span> <span class="btn-icon">↗</span></button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="ticker-wrap">
+            <div class="ticker-content">
+                <div class="ticker-item" data-i18n="ticker.quality">Tepat Mutu</div>
+                <div class="ticker-item" data-i18n="ticker.time">Tepat Waktu</div>
+                <div class="ticker-item" data-i18n="ticker.quantity">Tepat Jumlah</div>
+                <div class="ticker-item" data-i18n="ticker.place">Tepat Tempat</div>
+                <div class="ticker-item" data-i18n="ticker.hsse">HSSE Terintegrasi</div>
+                <div class="ticker-item" data-i18n="ticker.tracking">Real-Time Tracking</div>
+                <div class="ticker-item" data-i18n="ticker.national">Distribusi Nasional</div>
+                <div class="ticker-item" data-i18n="ticker.modern">Armada Modern</div>
+                <div class="ticker-item" data-i18n="ticker.quality">Tepat Mutu</div>
+                <div class="ticker-item" data-i18n="ticker.time">Tepat Waktu</div>
+                <div class="ticker-item" data-i18n="ticker.quantity">Tepat Jumlah</div>
+                <div class="ticker-item" data-i18n="ticker.place">Tepat Tempat</div>
+                <div class="ticker-item" data-i18n="ticker.hsse">HSSE Terintegrasi</div>
+                <div class="ticker-item" data-i18n="ticker.tracking">Real-Time Tracking</div>
+                <div class="ticker-item" data-i18n="ticker.national">Distribusi Nasional</div>
+                <div class="ticker-item" data-i18n="ticker.modern">Armada Modern</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="page-content">
+        <!-- Floating Tracking Section -->
+        <div class="floating-tracking-section">
+            <div class="container">
+                <div class="tracking-card-horizontal fade-up">
+                    <div class="tracking-card-horizontal__info">
+                        <span class="tracking-card__subtitle" data-i18n="hero.track.subtitle">REAL-TIME MONITORING</span>
+                        <h3 class="tracking-card__title" data-i18n="hero.track.title">Lacak Pengiriman</h3>
+                        <p class="tracking-card__desc" data-i18n="hero.track.desc">Masukkan nomor Delivery Order (DO) untuk memantau status pengiriman BBM & LPG Anda secara langsung.</p>
+                    </div>
+                    <form id="tracking-form" class="tracking-form-horizontal">
+                        <div class="tracking-input-group">
+                            <span class="tracking-input-icon">🔍</span>
+                            <input type="text" id="do-number" name="do_number" class="tracking-input"
+                                placeholder="Masukkan No. DO (Contoh: DO-PATRA-001)" data-i18n="hero.track.placeholder" required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn btn-tracking">
+                            <span data-i18n="hero.track.btn">LACAK SEKARANG</span>
+                            <span class="btn-tracking__icon">→</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <section class="section" id="tentang-patra-logistik">
+            <div class="container about-grid">
+                <div class="about-images fade-up">
+                    <img src="assets/gambar karyawan.png" alt="Tentang Patra Logistik"
+                        style="grid-column: span 2; height: 100%; object-fit: cover; border-radius: 0;">
+                </div>
+                <div class="about-text fade-up">
+                    <span class="section-tag" data-i18n="about.tag">EST. SEJAK 1997</span>
+                    <h2 class="section-title" data-i18n="about.title">Tentang<br>Patra Logistik</h2>
+                    <p class="section-desc" data-i18n="about.desc">Temukan bagaimana kami menghadirkan efisiensi operasional yang tak
+                        tertandingi dalam distribusi energi. Dengan jaringan yang luas dan teknologi terkini, kami
+                        memastikan setiap pengiriman energi sampai tepat sasaran.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4 class="count-up" data-target="70" data-suffix="+">0+</h4>
+                            <p data-i18n="about.stat.city">Kota Operasi</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 class="count-up" data-target="100" data-suffix="%">0%</h4>
+                            <p data-i18n="about.stat.accuracy">Tracking Accuracy</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 class="count-up" data-target="98" data-suffix="%+">0%+</h4>
+                            <p data-i18n="about.stat.ontime">On-Time Delivery</p>
+                        </div>
+                    </div>
+                    <a href="#" class="link-arrow"><span data-i18n="about.btn">PELAJARI LEBIH LANJUT</span> <span class="arrow">→</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="new-services-section" id="layanan">
+            <img src="assets/kirilogo.png" alt="" class="services-bg-deco left" aria-hidden="true">
+            <img src="assets/kananlogo.png" alt="" class="services-bg-deco right" aria-hidden="true">
+            <div class="new-services-container">
+                <div class="new-services-header fade-up">
+                    <span class="new-services-tag" data-i18n="services.tag">Layanan Kami</span>
+                    <h1 class="new-services-title" data-i18n="services.title">Layanan & Solusi Logistik</h1>
+                    <p class="new-services-desc" data-i18n="services.desc">Kami hadir dengan layanan terintegrasi untuk memastikan setiap tetes
+                        energi sampai ke tujuan dengan aman dan tepat.</p>
+                </div>
+
+                <!-- Tabs Navigation -->
+                <div class="services-tabs-container fade-up">
+                    <div class="services-tabs-pill">
+                        <button class="services-tab-btn active" data-tab="transportasi">
+                            <span class="services-tab-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                            </span>
+                            <span data-i18n="services.tab.transport">Transportasi</span>
+                        </button>
+                        <button class="services-tab-btn" data-tab="inventory">
+                            <span class="services-tab-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                    </path>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                </svg>
+                            </span>
+                            <span data-i18n="services.tab.inventory">Inventory Management</span>
+                        </button>
+                        <button class="services-tab-btn" data-tab="other">
+                            <span class="services-tab-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path
+                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <span data-i18n="services.tab.other">Other Business</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Transportasi (Active) -->
+                <div class="services-tab-content active" id="tab-transportasi">
+                    <div class="services-cards-grid">
+                        <!-- Card 1 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img"
+                                style="background-image: url('assets/Mobil Tangki Maos.png');"></div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Pengangkutan BBM</h3>
+                                    <p class="service-card-desc">Pengiriman pelumas industri & otomotif Pertamina secara
+                                        aman dengan jaminan keaslian dan anti-kontaminasi.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/LPR00887 (1).png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Pengangkutan Gas</h3>
+                                    <p class="service-card-desc">Pengiriman pelumas industri & otomotif Pertamina secara
+                                        aman dengan jaminan keaslian dan anti-kontaminasi.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/DSC00198.png');"></div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Pengangkutan Pelumas</h3>
+                                    <p class="service-card-desc">Pengiriman pelumas industri & otomotif Pertamina secara
+                                        aman dengan jaminan keaslian dan anti-kontaminasi.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img"
+                                style="background-image: url('assets/Mobil Tangki Maos.png');"></div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Transportasi Multimoda</h3>
+                                    <p class="service-card-desc">Solusi pengiriman terintegrasi antar moda darat, laut,
+                                        dan udara secara efisien.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/LPR00887 (1).png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Pengangkutan Limbah B3</h3>
+                                    <p class="service-card-desc">Layanan pengelolaan dan pengangkutan limbah berbahaya
+                                        tersertifikasi dan aman.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Inventory Management -->
+                <div class="services-tab-content" id="tab-inventory">
+                    <div class="services-cards-grid">
+                        <!-- Card 1 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-8.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Vessel & Storage Management</h3>
+                                    <p class="service-card-desc">Pengelolaan kapasitas penyimpanan secara real-time
+                                        dengan akurasi dan efisiensi rantai pasok tinggi.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-9.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Stock Monitoring</h3>
+                                    <p class="service-card-desc">Pemantauan stok logistik energi terautomasi untuk
+                                        mencegah kekurangan pasok di terminal.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-10.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Automated Reporting</h3>
+                                    <p class="service-card-desc">Pelaporan logistik terintegrasi untuk mendukung
+                                        pengambilan keputusan bisnis yang cepat.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-8.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Warehouse Management</h3>
+                                    <p class="service-card-desc">Pengelolaan gudang terpadu dengan sistem yang
+                                        memastikan keamanan dan kemudahan akses produk.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-9.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Distribution Center</h3>
+                                    <p class="service-card-desc">Pusat distribusi modern yang mendistribusikan produk
+                                        tepat waktu dan efisien.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Manajemen Fasilitas -->
+                <div class="services-tab-content" id="tab-other">
+                    <div class="services-cards-grid">
+                        <!-- Card 1 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-6.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Custom Clearance</h3>
+                                    <p class="service-card-desc">Pengurusan administrasi kepabeanan energi terintegrasi
+                                        untuk kelancaran impor/ekspor.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-7.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Marine Fueling</h3>
+                                    <p class="service-card-desc">Bunker service pengisian kapal laut skala besar dengan
+                                        kualitas produk energi terjamin.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img"
+                                style="background-image: url('assets/logo-transparent.png'); background-size: contain; background-color: #1a2332; background-repeat: no-repeat;">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Terminal Management</h3>
+                                    <p class="service-card-desc">Pengelolaan terminal khusus energi secara efisien
+                                        dan aman berskala nasional.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-6.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Lubricant Sales</h3>
+                                    <p class="service-card-desc">Penjualan dan distribusi produk pelumas Pertamina
+                                        untuk kebutuhan industri dan perkapalan.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="service-card-item">
+                            <div class="service-card-img" style="background-image: url('assets/partner-frame-7.png');">
+                            </div>
+                            <div class="service-card-gradient"></div>
+                            <div class="service-card-overlay-blur">
+                                <div class="service-card-text-wrapper">
+                                    <h3 class="service-card-title">Ship Agency</h3>
+                                    <p class="service-card-desc">Keagenan kapal terpercaya yang memastikan kelancaran
+                                        operasional pelabuhan kapal pengangkut.</p>
+                                    <a href="#" class="service-card-btn">Selengkapnya <span style="font-size:14px;">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Navigation -->
+                <div class="carousel-nav-wrapper">
+                    <button class="carousel-arrow" id="carousel-prev" aria-label="Previous">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-arrow" id="carousel-next" aria-label="Next">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="section region-section" id="wilayah-operasi">
+            <div class="container region-container">
+                <div class="region-header fade-up">
+                    <div class="region-header__left">
+                        <span class="section-tag" data-i18n="map.tag">LAYANAN KAMI</span>
+                        <h2 class="section-title" style="margin-bottom: 0;" data-i18n="map.title">Wilayah Operasi</h2>
+                    </div>
+                    <div class="region-header__right">
+                        <p class="region-header__desc" data-i18n="map.desc">Menghubungkan rantai pasok energi Indonesia dari Sabang sampai
+                            Merauke secara presisi dan berkesinambungan melalui unit region strategis.</p>
+                    </div>
+                </div>
+
+                <div class="map-card fade-up">
+                    <div class="map-card__instruction">
+                        <span class="pulse-dot"></span> <span data-i18n="map.instruction">INTERAKTIF: KLIK WILAYAH REGION UNTUK DETAIL JANGKAUAN</span>
+                    </div>
+
+                <div class="mor-stats-grid mor-stats-grid--compact">
+                    <!-- Card 1 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">Retail Fuel<br>Transport</span>
+                            <h4 class="mor-stat-card__value" id="stat-retail">0</h4>
+                            <span class="mor-stat-card__unit">PROJECT</span>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">Industrial Fuel<br>Transport</span>
+                            <h4 class="mor-stat-card__value" id="stat-industrial">0</h4>
+                            <span class="mor-stat-card__unit">PROJECT</span>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">Gas<br>Transport</span>
+                            <h4 class="mor-stat-card__value" id="stat-gas">0</h4>
+                            <span class="mor-stat-card__unit">PROJECT</span>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">Vendor Managed<br>Inventory</span>
+                            <h4 class="mor-stat-card__value" id="stat-vmi">0</h4>
+                            <span class="mor-stat-card__unit">LOKASI</span>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">Aviation Fuel<br>Terminal</span>
+                            <h4 class="mor-stat-card__value" id="stat-aviation">0</h4>
+                            <span class="mor-stat-card__unit">PROJECT</span>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">Lubricants<br>Transport</span>
+                            <h4 class="mor-stat-card__value" id="stat-lubricants">0</h4>
+                            <span class="mor-stat-card__unit">PROJECT</span>
+                        </div>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">Warehouse<br>Service</span>
+                            <h4 class="mor-stat-card__value" id="stat-warehouse">0</h4>
+                            <span class="mor-stat-card__unit">PROJECT</span>
+                        </div>
+                    </div>
+                    <!-- Card 8 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">Fuel<br>Terminal</span>
+                            <h4 class="mor-stat-card__value" id="stat-fuelterm">0</h4>
+                            <span class="mor-stat-card__unit">TITIK</span>
+                        </div>
+                    </div>
+                    <!-- Card 9 -->
+                    <div class="mor-stat-card">
+                        <div class="mor-stat-card__content">
+                            <span class="mor-stat-card__label">KRP<br>&nbsp;</span>
+                            <h4 class="mor-stat-card__value" id="stat-krp">0</h4>
+                            <span class="mor-stat-card__unit">PROJECT</span>
+                        </div>
+                    </div>
+                </div> <!-- End mor-stats-grid -->
+                    <div class="map-card__visual" style="padding: 24px 0;">
+                        <div class="map-controls">
+                            <button type="button" class="btn-map-zoom" id="btn-zoom-in" aria-label="Zoom In">+</button>
+                            <button type="button" class="btn-map-zoom" id="btn-zoom-out" aria-label="Zoom Out">-</button>
+                        </div>
+                        <div class="map-wrapper"
+                            style="position: relative; width: 90%; max-width: 900px; aspect-ratio: 674 / 283; margin: 0 auto; background: url('./assets/id%201.svg') no-repeat center center; background-size: 100% 100%;">
+                            <!-- Markers positioned absolutely on top of map wrapper -->
+                            <!-- Coordinates mapped from SVG viewBox 0 0 1000 368 -->
+                            <!-- Long range: 95E–141E (46°), Lat range: 6N–11S (17°) -->
+
+                            <!-- MOR-I: Medan ~98.7E, 3.6N → left≈8%, top≈27% -->
+                            <button class="mor-marker" style="top: 23%; left: 8%;" data-mor="MOR-I"
+                                aria-label="Region I Sumatera Utara">
+                                <span class="mor-marker__pin">1</span>
+                            </button>
+
+                            <!-- MOR-II: Palembang ~104.7E, 2.9S → left≈21%, top≈55% -->
+                            <button class="mor-marker" style="top: 51%; left: 21%;" data-mor="MOR-II"
+                                aria-label="Region II Sumatera Selatan">
+                                <span class="mor-marker__pin">2</span>
+                            </button>
+
+                            <!-- MOR-III: Jakarta ~106.8E, 6.2S → left≈26%, top≈68% -->
+                            <button class="mor-marker" style="top: 66%; left: 26%;" data-mor="MOR-III"
+                                aria-label="Region III Jawa Barat">
+                                <span class="mor-marker__pin">3</span>
+                            </button>
+
+                            <!-- MOR-IV: Semarang ~110.4E, 7.0S → left≈33%, top≈72% -->
+                            <button class="mor-marker" style="top: 70%; left: 33%;" data-mor="MOR-IV"
+                                aria-label="Region IV Jawa Tengah">
+                                <span class="mor-marker__pin">4</span>
+                            </button>
+
+                            <!-- MOR-V: Surabaya ~112.7E, 7.2S → left≈38%, top≈74% -->
+                            <button class="mor-marker" style="top: 72%; left: 38%;" data-mor="MOR-V"
+                                aria-label="Region V Jatimbalinus">
+                                <span class="mor-marker__pin">5</span>
+                            </button>
+
+                            <!-- MOR-VI: Balikpapan ~116.8E, 1.2S → left≈47%, top≈42% -->
+                            <button class="mor-marker" style="top: 40%; left: 47%;" data-mor="MOR-VI"
+                                aria-label="Region VI Kalimantan">
+                                <span class="mor-marker__pin">6</span>
+                            </button>
+
+                            <!-- MOR-VII: Makassar ~119.4E, 5.1S → left≈53%, top≈62% -->
+                            <button class="mor-marker" style="top: 60%; left: 53%;" data-mor="MOR-VII"
+                                aria-label="Region VII Sulawesi">
+                                <span class="mor-marker__pin">7</span>
+                            </button>
+
+                            <!-- MOR-VIII: Sorong ~131.3E, 0.9S → left≈79%, top≈42% -->
+                            <button class="mor-marker" style="top: 42%; left: 79%;" data-mor="MOR-VIII"
+                                aria-label="Region VIII Maluku Papua">
+                                <span class="mor-marker__pin">8</span>
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <!-- Panel Detail Wilayah di bagian bawah map card -->
+                    <div class="mor-detail-panel">
+                        <div class="mor-detail-panel__info">
+                            <span class="mor-detail-panel__code" id="panel-mor-code">Region III</span>
+                            <h3 class="mor-detail-panel__title" id="panel-mor-title">Region III Jawa Bagian Barat</h3>
+                            <p class="mor-detail-panel__subtitle" id="panel-mor-subtitle">Wilayah Layanan: Jawa Bagian
+                                Barat</p>
+
+                            <div class="mor-project-dropdown" id="mor-project-dropdown">
+                                <button class="mor-project-btn" id="panel-mor-project-btn" aria-expanded="false">
+                                    <div style="display:flex; align-items:center; gap:8px;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                                        <span data-i18n="map.panel.btn">Informasi Project &amp; Layanan</span>
+                                    </div>
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </button>
+                                <div class="mor-project-content" id="panel-mor-project-content">
+                                    <ul class="mor-project-list" id="panel-mor-projects-list">
+                                        <!-- Projects injected by script.js on region click -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        </div>
+                    </div>
+                </div> <!-- End map-card -->
+
+            </div> <!-- End region-container -->
+        </section>
+
+        <section class="rtc-section" id="road-traffic-control">
+            <div class="container">
+                <div class="rtc-header-split fade-up">
+                    <div class="rtc-header-left">
+                        <div class="rtc-header-pill" data-i18n="rtc.pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                                <polyline points="16 6 12 2 8 6"/>
+                                <line x1="12" y1="2" x2="12" y2="15"/>
+                            </svg>
+                            PUSAT KENDALI OPERASI DIGITAL
+                        </div>
+                        <h2 class="rtc-title-split" data-i18n="rtc.title">Digital Logistic <span class="text-light-blue">Solution</span></h2>
+                    </div>
+                    <div class="rtc-header-right">
+                        <p class="rtc-desc-split" data-i18n="rtc.desc">Sistem pengawasan digital terpadu yang memantau pergerakan armada, kondisi pengemudi, serta keselamatan muatan energi secara real-time demi mewujudkan <span class="text-bold-blue">Zero Accident & High Reliability</span>.</p>
+                    </div>
+                </div>
+
+                <div class="rtc-grid fade-up">
+                    <!-- Card 1 -->
+                    <div class="rtc-card new-rtc-card">
+                        <div class="rtc-card-glow"></div>
+                        <div class="rtc-card-bg-graphic"></div>
+                        <div class="rtc-card-top">
+                            <div class="rtc-card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            </div>
+                            <div class="rtc-card-pill" data-i18n="rtc.card1.pill">IOT TRACKER</div>
+                        </div>
+                        <div class="rtc-card-content">
+                            <h3 class="rtc-card-title" data-i18n="rtc.card1.title">Fleet Management<br>System</h3>
+                            <p class="rtc-card-desc" data-i18n="rtc.card1.desc">Solusi GPS Tracker untuk Keamanan Armada Secara Real-Time</p>
+                        </div>
+                        <div class="rtc-card-footer">
+                            <a href="#" class="rtc-card-link"><span data-i18n="rtc.card.more">SELENGKAPNYA</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                        <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                        <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="rtc-card new-rtc-card">
+                        <div class="rtc-card-glow"></div>
+                        <div class="rtc-card-bg-graphic"></div>
+                        <div class="rtc-card-top">
+                            <div class="rtc-card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="12" rx="2" ry="2"/><path d="M16 8V6a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="3"/></svg>
+                            </div>
+                            <div class="rtc-card-pill" data-i18n="rtc.card2.pill">DUAL AI CAM</div>
+                        </div>
+                        <div class="rtc-card-content">
+                            <h3 class="rtc-card-title" data-i18n="rtc.card2.title">Video Monitoring<br>System</h3>
+                            <p class="rtc-card-desc" data-i18n="rtc.card2.desc">Kamera Dashcam dengan Fatigue Monitoring untuk Keamanan Armada</p>
+                        </div>
+                        <div class="rtc-card-footer">
+                            <a href="#" class="rtc-card-link"><span data-i18n="rtc.card.more">SELENGKAPNYA</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                        <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                        <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="rtc-card new-rtc-card">
+                        <div class="rtc-card-glow"></div>
+                        <div class="rtc-card-bg-graphic"></div>
+                        <div class="rtc-card-top">
+                            <div class="rtc-card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+                            </div>
+                            <div class="rtc-card-pill" data-i18n="rtc.card3.pill">SMART ROUTING</div>
+                        </div>
+                        <div class="rtc-card-content">
+                            <h3 class="rtc-card-title" data-i18n="rtc.card3.title">Transportation<br>Management System</h3>
+                            <p class="rtc-card-desc" data-i18n="rtc.card3.desc">Atur Rute & Pengiriman Lebih Cepat dan Tepat Waktu</p>
+                        </div>
+                        <div class="rtc-card-footer">
+                            <a href="#" class="rtc-card-link"><span data-i18n="rtc.card.more">SELENGKAPNYA</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                        <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                        <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="rtc-card new-rtc-card">
+                        <div class="rtc-card-glow"></div>
+                        <div class="rtc-card-bg-graphic"></div>
+                        <div class="rtc-card-top">
+                            <div class="rtc-card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            </div>
+                            <div class="rtc-card-pill" data-i18n="rtc.card4.pill">BEHAVIOR ANALYTICS</div>
+                        </div>
+                        <div class="rtc-card-content">
+                            <h3 class="rtc-card-title" data-i18n="rtc.card4.title">Kontrol Perilaku<br>Awak Mobil Tangki</h3>
+                            <p class="rtc-card-desc" data-i18n="rtc.card4.desc">Memberikan wawasan tentang perilaku pengemu...</p>
+                        </div>
+                        <div class="rtc-card-footer">
+                            <a href="#" class="rtc-card-link"><span data-i18n="rtc.card.more">SELENGKAPNYA</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                        <img src="assets/logowtmwh.png" class="rtc-card-logo rtc-logo-default" alt="WTM Logo">
+                        <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Section Berita (Informasi Terkini) hidden as requested
+   <section class="section" style="background-color: var(--bg-light);">
+    <div class="container">
+        <div class="news-header fade-up">
+            <div>
+                <span class="section-tag">BERITA & PENGUMUMAN</span>
+                <h2 class="section-title" style="margin-bottom:0;">INFORMASI<br>TERKINI</h2>
+            </div>
+            <a href="#" class="link-arrow" style="margin-top:0;">SEMUA BERITA →</a>
+        </div>
+
+        <div class="news-grid fade-up">
+            <div class="news-card">
+                <div class="news-img">ROAD</div>
+                <div class="news-content">
+                    <span class="news-tag">INOVASI DIGITAL</span>
+                    <h3 class="news-title">Patra Logistik Luncurkan Road Traffic Controller untuk Perkuat Kendali Distribusi BBM & LPG di Jawa Timur</h3>
+                    <p class="news-excerpt">Sistem baru ini memungkinkan pemantauan armada secara real-time untuk meningkatkan efisiensi dan keamanan distribusi di seluruh Jawa Timur.</p>
+                    <div class="news-meta">
+                        <span>April 2026 - Jawa Timur</span>
+                        <span class="news-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-img">FUEL</div>
+                <div class="news-content">
+                    <span class="news-tag">OPERASIONAL</span>
+                    <h3 class="news-title">Patra Logistik Dukung Penyaluran 193 Ribu KL BBM dari Ketapang untuk Wilayah 3T</h3>
+                    <p class="news-excerpt">Volume BBM melalui Fuel Terminal Ketapang terus meningkat untuk mendukung wilayah tertinggal, terdepan, dan terluar Indonesia.</p>
+                    <div class="news-meta">
+                        <span>8 April 2026 - Kalbar</span>
+                        <span class="news-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-img">SAFE</div>
+                <div class="news-content">
+                    <span class="news-tag">KESELAMATAN</span>
+                    <h3 class="news-title">Perkuat Keselamatan melalui Digital Tyre Management System Go Live di Jawa Barat</h3>
+                    <p class="news-excerpt">Implementasi DTMS untuk meningkatkan standar keselamatan armada distribusi energi di region Jawa Bagian Barat.</p>
+                    <div class="news-meta">
+                        <span>1 April 2026 - Jakarta</span>
+                        <span class="news-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+        <section class="partners-section">
+            <div class="container fade-up">
+                <h4 class="partners-title">DIPERCAYA OLEH INSTITUSI TERKEMUKA INDONESIA</h4>
+                <div class="partners-marquee-container">
+                    <div class="partners-logos">
+                        <img src="assets/partner-frame-10.png" alt="Logo institusi partner 1" class="partner-logo-img">
+                        <img src="assets/partner-frame-9.png" alt="Logo institusi partner 2" class="partner-logo-img">
+                        <img src="assets/Frame 8.png" alt="Logo institusi partner 3" class="partner-logo-img">
+                        <img src="assets/partner-frame-6.png" alt="Logo institusi partner 4" class="partner-logo-img">
+                        <img src="assets/partner-frame-7.png" alt="Logo institusi partner 5" class="partner-logo-img">
+                        <!-- Duplicate for seamless loop -->
+                        <img src="assets/partner-frame-10.png" alt="Logo institusi partner 1" class="partner-logo-img">
+                        <img src="assets/partner-frame-9.png" alt="Logo institusi partner 2" class="partner-logo-img">
+                        <img src="assets/Frame 8.png" alt="Logo institusi partner 3" class="partner-logo-img">
+                        <img src="assets/partner-frame-6.png" alt="Logo institusi partner 4" class="partner-logo-img">
+                        <img src="assets/partner-frame-7.png" alt="Logo institusi partner 5" class="partner-logo-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <div class="faq-grid">
+                    <div class="faq-left fade-up">
+                        <span class="section-tag">INFORMASI TAMBAHAN</span>
+                        <h2 class="section-title">Tanya Jawab Seputar Logistik B2B</h2>
+                        <p class="faq-desc">Punya pertanyaan mengenai kapasitas pengiriman, prosedur keselamatan, atau
+                            metode kontrak kami? Temukan jawabannya di bawah ini.</p>
+                    </div>
+                    <div class="faq-right fade-up delay-1">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <div class="faq-q-left">
+                                    <svg class="faq-icon-q" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                    <span>Berapakah volume minimum pengiriman BBM industri melalui Patra
+                                        Logistik?</span>
+                                </div>
+                                <svg class="faq-icon-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    <p>Untuk transportasi darat menggunakan mobil tangki, volume minimum pemesanan
+                                        adalah 8.000 liter (8 KL) per pengiriman. Sedangkan untuk transportasi laut
+                                        menggunakan Self-Propelled Oil Barge (SPOB) atau tanker, kapasitas disesuaikan
+                                        dengan Letter of Intent (LOI) dan kesepakatan kontrak, umumnya mulai dari 500 KL
+                                        hingga 5.000 KL.</p>
+                                    <span class="faq-category">KATEGORI: LAYANAN</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <div class="faq-q-left">
+                                    <svg class="faq-icon-q" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                    <span>Bagaimana Patra Logistik menjamin aspek keselamatan (HSSE) selama
+                                        perjalanan?</span>
+                                </div>
+                                <svg class="faq-icon-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    <p>Kami menerapkan sistem manajemen HSSE yang terintegrasi, termasuk pelatihan
+                                        pengemudi (Defensive Driving Training), inspeksi kendaraan secara berkala, dan
+                                        penggunaan GPS tracking pada seluruh armada.</p>
+                                    <span class="faq-category">KATEGORI: KESELAMATAN</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <div class="faq-q-left">
+                                    <svg class="faq-icon-q" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                    <span>Bagaimana cara memverifikasi bahwa BBM tidak terkontaminasi atau menyusut
+                                        melebihi batas toleransi?</span>
+                                </div>
+                                <svg class="faq-icon-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    <p>Setiap pengiriman dilengkapi dengan segel keamanan dan berita acara serah terima.
+                                        Kualitas BBM dapat diverifikasi melalui hasil uji laboratorium yang kami
+                                        sediakan.</p>
+                                    <span class="faq-category">KATEGORI: OPERASIONAL</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <div class="faq-q-left">
+                                    <svg class="faq-icon-q" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                    <span>Apakah Patra Logistik melayani kontrak jangka panjang untuk korporasi swasta
+                                        non-BUMN?</span>
+                                </div>
+                                <svg class="faq-icon-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    <p>Ya, kami melayani kontrak jangka panjang dengan perusahaan swasta nasional maupun
+                                        multinasional sesuai dengan kesepakatan komersial yang saling menguntungkan.</p>
+                                    <span class="faq-category">KATEGORI: KEMITRAAN</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <div class="faq-q-left">
+                                    <svg class="faq-icon-q" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                    <span>Apakah kami dapat melacak posisi truk pengirim BBM secara real-time?</span>
+                                </div>
+                                <svg class="faq-icon-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    <p>Ya, pelanggan B2B kami diberikan akses ke sistem pelacakan real-time kami yang
+                                        memungkinkan pemantauan status pengiriman setiap saat.</p>
+                                    <span class="faq-category">KATEGORI: TEKNOLOGI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner-section">
+            <div class="cta-banner-overlay-blur"></div>
+            <div class="container cta-banner-container fade-up">
+                <div class="cta-badge">
+                    <div class="cta-badge-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <span class="cta-badge-text">Layanan Handal Terpercaya Seluruh Nusantara</span>
+                </div>
+
+                <h2 class="cta-heading">Optimalkan Rantai Pasok Energi<br>Perusahaan Anda Hari Ini</h2>
+
+                <p class="cta-subtitle">Hubungi tim analis komersial kami untuk mendapatkan kuotasi biaya logistik
+                    khusus, konsultasi rute optimal, serta kepatuhan penuh atas keselamatan transportasi energi
+                    (BBM/LPG).</p>
+
+                <div class="cta-actions-wrapper">
+                    <div class="cta-contact-item">
+                        <div class="cta-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="cta-contact-text">
+                            <span class="cta-contact-label">Hotline Komersial</span>
+                            <a href="tel:+620215205678" class="cta-contact-value">+62 (021) 520-5678</a>
+                        </div>
+                    </div>
+
+                    <div class="cta-contact-item">
+                        <div class="cta-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                        </div>
+                        <div class="cta-contact-text">
+                            <span class="cta-contact-label">Email Business Desk</span>
+                            <a href="mailto:info@patralogistik.co.id"
+                                class="cta-contact-value email">info@patralogistik.co.id</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="cta-btn-primary">
+                        <span class="cta-btn-text">Hubungi Sales Desk</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEWSLETTER STRIP ===== -->
+        <section class="nl-strip" id="newsletter">
+            <div class="container nl-strip__inner">
+                <!-- Left copy -->
+                <div class="nl-strip__copy">
+                    <div class="nl-strip__badge">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        NEWSLETTER
+                    </div>
+                    <h2 class="nl-strip__title">Dapatkan Update Industri Logistik Energi</h2>
+                    <p class="nl-strip__desc">Berita terbaru dan laporan eksklusif langsung ke inbox Anda. Gratis, tanpa spam.</p>
+                </div>
+
+                <!-- Right form -->
+                <form class="nl-strip__form" id="nl-strip-form" novalidate>
+                    <div class="nl-strip__fields">
+                        <input
+                            type="text"
+                            id="nl-strip-name"
+                            name="name"
+                            class="nl-strip__input"
+                            placeholder="Nama Anda"
+                            autocomplete="given-name"
+                        >
+                        <input
+                            type="email"
+                            id="nl-strip-email"
+                            name="email"
+                            class="nl-strip__input"
+                            placeholder="Email Anda"
+                            required
+                            autocomplete="email"
+                            aria-describedby="nl-strip-error"
+                        >
+                        <button type="submit" class="nl-strip__btn" id="nl-strip-submit">
+                            <span>Subscribe</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="nl-strip__error" id="nl-strip-error" role="alert" aria-live="polite"></p>
+                    <p class="nl-strip__success" id="nl-strip-success" hidden>
+                        ✓ Terima kasih! Anda telah berhasil berlangganan.
+                    </p>
+                    <p class="nl-strip__privacy">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Data Anda aman. Berhenti berlangganan kapan saja.
+                    </p>
+                </form>
+            </div>
+        </section>
+        <!-- ===== END NEWSLETTER STRIP ===== -->
+
+        <footer class="footer-new">
+            <div class="footer-new__watermark"></div>
+
+            <div class="footer-new__top container">
+                <!-- Column 1 -->
+                <div class="footer-col-1">
+                    <div class="footer-logo"></div>
+                    <div class="footer-contact-list">
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="margin-top: 2px;">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span><strong>Kantor Pusat</strong><br>Garden Avenue Rasuna Lantai 1-3, Jalan Epicentrum Tengah No. 3, RT.2/RW.5, Karet Kuningan, Kecamatan Setiabudi, Jakarta Selatan.</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <span>(021)-25196699</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                            <span>info.patralogistik@pertamina.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="X">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4l16 16M4 20L20 4"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-col-2">
+                    <h3 data-i18n="footer.col1">PERUSAHAAN</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tentang-kami.html" data-i18n="nav.about">Tentang Kami</a></li>
+                        <li><a href="bisnis.html" data-i18n="nav.business">Bisnis</a></li>
+                        <li><a href="karir.html" data-i18n="nav.career">Karir</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="footer-col-3">
+                    <h3 data-i18n="footer.col2">INFORMASI PUBLIK</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="#">Tata Kelola</a></li>
+                        <li><a href="hubungan-investor.html" data-i18n="nav.investor">Hubungan Investor</a></li>
+                        <li><a href="berita-media.html" data-i18n="nav.news">Berita &amp; Media</a></li>
+                        <li><a href="#">Situs Terkait</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div class="footer-col-4">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                        <img src="./assets/Image%20(Pertamina%20Call%20Center).png" alt="Pertamina Call Center 135" style="max-width: 55%; height: auto; display: block;">
+                        <img src="./assets/callcenter15.png" alt="Call Center 135" style="max-width: 40%; height: auto; display: block;">
+                    </div>
+                    <div class="call-center-btn">
+                        <div class="icon-circle">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="text">
+                            <span class="title">Whistle Blowing System</span>
+                            <span class="link">https://pertaminaclean.tipoffs.info/</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-new__bottom container">
+                <div class="bottom-left">
+                    <span class="affiliate-label">AFFILIATE OF:</span>
+                    <span class="affiliate-box">PERTAMINA PATRA NIAGA</span>
+                </div>
+                <div class="bottom-right">
+                    <span class="copyright" data-i18n="footer.copyright">© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang.</span>
+                    <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan
+                        PT Pertamina (Persero).</span>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+
+    <!-- ===== NEWSLETTER POPUP MODAL ===== -->
+    <div id="nl-popup-overlay" class="nl-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="nl-popup-heading" aria-hidden="true">
+        <div class="nl-popup">
+            <!-- Close button -->
+            <button class="nl-popup-close" id="nl-popup-close" aria-label="Tutup popup newsletter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- LEFT PANEL: Branding -->
+            <div class="nl-popup-left">
+                <div class="nl-popup-left-grid"></div>
+                <div class="nl-popup-left-glow"></div>
+                <div class="nl-popup-left-content">
+                    <div class="nl-popup-icon-wrap">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                    </div>
+                    <p class="nl-popup-overline">NEWSLETTER EKSKLUSIF</p>
+                    <h2 class="nl-popup-title" id="nl-popup-heading">Dapatkan Insight Logistik Energi</h2>
+                    <p class="nl-popup-desc">Berita terbaru, laporan keberlanjutan, dan update proyek Patra Logistik langsung ke inbox Anda. Gratis, tanpa spam.</p>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: Form -->
+            <div class="nl-popup-right">
+                <div class="nl-popup-form-wrap" id="nl-popup-form-wrap">
+                    <h3 class="nl-popup-form-title">Daftar Sekarang</h3>
+                    <form class="nl-popup-form" id="nl-popup-form" novalidate>
+                        <!-- Honeypot -->
+                        <div style="display: none;" aria-hidden="true">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        <div class="nl-popup-input-group">
+                            <label for="nlp-email" class="sr-only">Alamat Email</label>
+                            <div class="nl-popup-input-wrapper">
+                                <svg class="nl-popup-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <input type="email" id="nlp-email" name="email" class="nl-popup-input" placeholder="nama@perusahaan.com" required>
+                            </div>
+                            <div class="nl-popup-error-msg" id="nlp-email-error"></div>
+                        </div>
+                        <button type="submit" class="nl-popup-btn" id="nlp-submit-btn">
+                            <span class="btn-text">Berlangganan</span>
+                            <div class="btn-loader">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                        <p class="nl-popup-disclaimer">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            Data Anda aman. Unsubscribe kapan saja.
+                        </p>
+                    </form>
+                    <button class="nl-popup-skip" id="nl-popup-skip">Tidak, terima kasih</button>
+                </div>
+
+                <!-- SUCCESS STATE -->
+                <div class="nl-popup-success" id="nl-popup-success" hidden>
+                    <div class="nl-popup-success-ring">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ACC32A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="nl-popup-success-title">Berhasil Terdaftar!</h3>
+                    <p class="nl-popup-success-desc">Cek inbox email Anda untuk konfirmasi. Selamat menikmati insight logistik energi terbaik dari Patra Logistik.</p>
+                    <button class="nl-popup-close-success" id="nl-popup-close-success">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END NEWSLETTER POPUP MODAL ===== -->
+
+    <!-- Modal Tracking Glassmorphism -->
+    <div id="tracking-modal" class="tracking-modal" aria-hidden="true" role="dialog">
+        <div class="tracking-modal__backdrop"></div>
+        <div class="tracking-modal__content">
+            <button id="close-modal" class="tracking-modal__close" aria-label="Tutup Detail Pelacakan">×</button>
+            <div id="tracking-result-content">
+                <!-- Konten dinamis dari JS akan di-insert di sini -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Newsletter Strip Handler -->
+    <script>
+    (function () {
+        const form    = document.getElementById('nl-strip-form');
+        const emailEl = document.getElementById('nl-strip-email');
+        const errorEl = document.getElementById('nl-strip-error');
+        const successEl = document.getElementById('nl-strip-success');
+        const btn     = document.getElementById('nl-strip-submit');
+        if (!form) return;
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            errorEl.textContent = '';
+
+            const email = emailEl.value.trim();
+            const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!email || !emailRe.test(email)) {
+                errorEl.textContent = 'Masukkan alamat email yang valid.';
+                emailEl.focus();
+                return;
+            }
+
+            // Simulate async submit
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            setTimeout(() => {
+                form.querySelector('.nl-strip__fields').style.display = 'none';
+                successEl.hidden = false;
+                btn.disabled = false;
+                btn.style.opacity = '';
+            }, 700);
+        });
+    })();
+    </script>
+
+    <!-- Hero Slideshow Controller -->
+    <script>
+    (function () {
+        const DURATION = 4000; // ms per slide
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots   = document.querySelectorAll('.hero-slide-dot');
+        let current = 0;
+        let timer   = null;
+
+        function goTo(index) {
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            dots[current].setAttribute('aria-selected', 'false');
+
+            current = (index + slides.length) % slides.length;
+
+            slides[current].classList.add('active');
+            // Re-trigger dot animation by removing & re-adding class
+            dots[current].classList.remove('active');
+            void dots[current].offsetWidth; // force reflow
+            dots[current].classList.add('active');
+            dots[current].setAttribute('aria-selected', 'true');
+        }
+
+        function startAuto() {
+            clearInterval(timer);
+            timer = setInterval(() => goTo(current + 1), DURATION);
+        }
+
+        function manualNav(index) {
+            goTo(index);
+            startAuto(); // reset interval after manual navigation
+        }
+
+        // Wire up dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => manualNav(parseInt(dot.dataset.slide, 10)));
+        });
+
+        // Keyboard navigation (left / right arrows)
+        const heroSlideshow = document.getElementById('hero-slideshow');
+        if (heroSlideshow) {
+            heroSlideshow.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft')  manualNav(current - 1);
+                if (e.key === 'ArrowRight') manualNav(current + 1);
+            });
+        }
+
+        // Start auto-play
+        startAuto();
+    })();
+    </script>
+
+    <script src="lang.js"></script>
+    <script src="script.js?v=2"></script>
+</body>
+
+</html>

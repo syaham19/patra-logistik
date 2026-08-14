@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patra Logistik - Design Options Showroom</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            background: #0f172a;
+        }
+        .showroom-header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px;
+            border-radius: 100px;
+            display: flex;
+            gap: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .showroom-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .showroom-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .showroom-btn.active {
+            background: #ACC32A;
+            color: #141923;
+            box-shadow: 0 0 15px rgba(172, 195, 42, 0.4);
+        }
+        .showroom-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        .presentation-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="showroom-header">
+        <button class="showroom-btn active" onclick="switchOption('option1', this)">Option 1 (Original)</button>
+        <button class="showroom-btn" onclick="switchOption('option2', this)">Option 2 (Bottom Equalizer)</button>
+        <button class="showroom-btn" onclick="switchOption('option3', this)">Option 3 (Right Timeline)</button>
+    </div>
+
+    <div class="presentation-badge">Interactive Preview</div>
+
+    <iframe id="previewFrame" class="showroom-frame" src="option1/index.html"></iframe>
+
+    <script>
+        function switchOption(option, btnElement) {
+            // Update iframe src
+            document.getElementById('previewFrame').src = option + '/index.html';
+            
+            // Update active state on buttons
+            document.querySelectorAll('.showroom-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            btnElement.classList.add('active');
+        }
+    </script>
+</body>
+</html>
