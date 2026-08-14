@@ -116,13 +116,65 @@
             </div>
         </div>
 
-        <!-- Dot Indicators (outside slideshow div, anchored to .hero) -->
-        <div class="hero-slide-indicators" role="tablist" aria-label="Pilih slide">
-            <button class="hero-slide-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
-            <button class="hero-slide-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
-            <button class="hero-slide-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
-            <button class="hero-slide-dot" data-slide="3" role="tab" aria-selected="false" aria-label="Slide 4"></button>
-            <button class="hero-slide-dot" data-slide="4" role="tab" aria-selected="false" aria-label="Slide 5"></button>
+        <!-- Design Option 3: Vertical Right Timeline Indicators -->
+        <div class="hero-timeline-indicators" role="tablist" aria-label="Pilih slide">
+            <div class="hero-timeline-container">
+                <div class="hero-slide-dot timeline-item active" data-slide="0" role="tab" aria-selected="true">
+                    <span class="timeline-text">RELIABLE</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/Landscape%20MT.png" alt="Slide 1">
+                        <div class="timeline-card-content">
+                            <h4>Reliable Energy for Today</h4>
+                            <p>Delivering reliable energy and integrated solutions to power progress.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide-dot timeline-item" data-slide="1" role="tab" aria-selected="false">
+                    <span class="timeline-text">INNOVATIVE</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/Mobil%20Tangki%20Maos.png" alt="Slide 2">
+                        <div class="timeline-card-content">
+                            <h4>Innovating for Tomorrow</h4>
+                            <p>Driving innovation and digital solutions to shape the future of energy.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide-dot timeline-item" data-slide="2" role="tab" aria-selected="false">
+                    <span class="timeline-text">SUSTAINABLE</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/LPR00887%20(1).png" alt="Slide 3">
+                        <div class="timeline-card-content">
+                            <h4>Sustainable for Future</h4>
+                            <p>Commitment to sustainability and green energy transitions for all.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide-dot timeline-item" data-slide="3" role="tab" aria-selected="false">
+                    <span class="timeline-text">INTEGRATED</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/DSC00198.png" alt="Slide 4">
+                        <div class="timeline-card-content">
+                            <h4>Integrated Operations</h4>
+                            <p>Seamless end-to-end logistics with real-time integrated tracking.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide-dot timeline-item" data-slide="4" role="tab" aria-selected="false">
+                    <span class="timeline-text">MODERN</span>
+                    <span class="timeline-line"></span>
+                    <div class="timeline-card-right">
+                        <img src="assets/gambar%20karyawan.png" alt="Slide 5">
+                        <div class="timeline-card-content">
+                            <h4>Modern Fleet & Teams</h4>
+                            <p>Empowering our professional teams and modern fleet networks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="container">
@@ -138,27 +190,7 @@
                     </div>
                 </div>
 
-                <div class="hero-tracking-card fade-up" style="transition-delay: 0.2s;">
-                    <div class="tracking-card">
-                        <div class="tracking-card__header">
-                            <span class="tracking-card__subtitle" data-i18n="hero.track.subtitle">REAL-TIME MONITORING</span>
-                            <h3 class="tracking-card__title" data-i18n="hero.track.title">Lacak Pengiriman</h3>
-                        </div>
-                        <p class="tracking-card__desc" data-i18n="hero.track.desc">Masukkan nomor Delivery Order (DO) untuk memantau status
-                            pengiriman BBM & LPG Anda secara langsung.</p>
-                        <form id="tracking-form" class="tracking-form">
-                            <div class="tracking-input-group">
-                                <span class="tracking-input-icon">🔍</span>
-                                <input type="text" id="do-number" name="do_number" class="tracking-input"
-                                    placeholder="Masukkan No. DO (Contoh: DO-PATRA-001)" data-i18n="hero.track.placeholder" required autocomplete="off">
-                            </div>
-                            <button type="submit" class="btn btn-tracking">
-                                <span data-i18n="hero.track.btn">LACAK SEKARANG</span>
-                                <span class="btn-tracking__icon">→</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
+
             </div>
         </div>
 
@@ -185,6 +217,30 @@
     </section>
 
     <main class="page-content">
+        <!-- Floating Tracking Section -->
+        <div class="floating-tracking-section">
+            <div class="container">
+                <div class="tracking-card-horizontal fade-up">
+                    <div class="tracking-card-horizontal__info">
+                        <span class="tracking-card__subtitle" data-i18n="hero.track.subtitle">REAL-TIME MONITORING</span>
+                        <h3 class="tracking-card__title" data-i18n="hero.track.title">Lacak Pengiriman</h3>
+                        <p class="tracking-card__desc" data-i18n="hero.track.desc">Masukkan nomor Delivery Order (DO) untuk memantau status pengiriman BBM & LPG Anda secara langsung.</p>
+                    </div>
+                    <form id="tracking-form" class="tracking-form-horizontal">
+                        <div class="tracking-input-group">
+                            <span class="tracking-input-icon">🔍</span>
+                            <input type="text" id="do-number" name="do_number" class="tracking-input"
+                                placeholder="Masukkan No. DO (Contoh: DO-PATRA-001)" data-i18n="hero.track.placeholder" required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn btn-tracking">
+                            <span data-i18n="hero.track.btn">LACAK SEKARANG</span>
+                            <span class="btn-tracking__icon">→</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <section class="section" id="tentang-patra-logistik">
             <div class="container about-grid">
                 <div class="about-images fade-up">
