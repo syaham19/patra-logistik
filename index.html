@@ -1588,12 +1588,31 @@
             }
         });
 
+        // Force position via JS in case CSS position: fixed bottom fails
+        function forceBottomPosition() {
+            switchers.forEach(switcher => {
+                if(switcher.style.display !== 'none') {
+                    // Force top property based on window height
+                    const h = switcher.offsetHeight || 44;
+                    switcher.style.top = (window.innerHeight - h - 24) + 'px';
+                    switcher.style.bottom = 'auto';
+                }
+            });
+        }
+        window.addEventListener('resize', forceBottomPosition);
+        window.addEventListener('scroll', forceBottomPosition);
+        // Run immediately and on load
+        forceBottomPosition();
+        setTimeout(forceBottomPosition, 500);
+
         // Close button functionality
         const closeBtns = document.querySelectorAll('.showroom-close-btn');
         closeBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const parent = e.target.closest('.showroom-option-switcher');
-                if (parent) parent.style.display = 'none';
+                if (parent) {
+                    parent.style.display = 'none';
+                }
             });
         });
 
