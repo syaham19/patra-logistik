@@ -8,48 +8,6 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         /* CSS Khusus untuk Hubungan Investor */
-        .about-hero {
-            color: #ffffff;
-            padding: 100px 0 60px;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-        }
-        .about-hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(to top, #F9F9F9, rgba(249, 249, 249, 0));
-            pointer-events: none;
-        }
-        .about-hero__tag {
-            background: rgba(237, 28, 36, 0.2);
-            color: #FF5A5F;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: inline-block;
-            margin-bottom: 16px;
-            border: 1px solid rgba(237, 28, 36, 0.3);
-        }
-        .about-hero__title {
-            font-size: 42px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-        }
-        .about-hero__desc {
-            font-size: 16px;
-            color: #A0C4DF;
-            max-width: 600px;
-            font-weight: 400;
-        }
 
         /* Layout Grid */
         .about-layout {
@@ -164,7 +122,7 @@
             color: #1E293B;
             border: 1px solid #E2E8F0;
             padding: 10px 18px;
-            border-radius: 50px;
+            border-radius: 0px;
             font-size: 13px;
             font-weight: 800;
             cursor: pointer;
@@ -648,6 +606,415 @@
                 margin-top: 0;
             }
         }
+        .year-filter-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .year-tab {
+            background: #FFFFFF;
+            color: #64748B;
+            border: 1px solid #E2E8F0;
+            padding: 10px 24px;
+            border-radius: 0px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .year-tab:hover {
+            background: #F1F5F9;
+            color: #1E293B;
+            border-color: #CBD5E1;
+        }
+        .year-tab.active {
+            background: #0056A6;
+            color: #FFFFFF;
+            border-color: #0056A6;
+            box-shadow: 0 4px 12px rgba(0, 86, 166, 0.2);
+        }
+        .report-panel {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+        .report-panel.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Pillar Sections */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        @media (max-width: 991px) {
+            .pillar-grid {
+                grid-template-columns: 1fr;
+            }
+            .pillar-grid > div:nth-child(2) {
+                order: -1;
+            }
+        }
+        .cta-csr-btn:hover {
+            background: #F1F5F9 !important;
+            transform: scale(1.02);
+        }
+    
+        
+        /* --- SCROLL REVEAL (Initial states, animated by GSAP) --- */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.94);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale, .gov-card-modern {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+/* --- GOVERNANCE MODAL DRAWER --- */
+        .gov-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .gov-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .gov-modal-card {
+            background: #FFFFFF;
+            border-radius: 0px;
+            max-width: 580px;
+            width: 100%;
+            padding: 36px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(0.92);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .gov-modal-overlay.active .gov-modal-card {
+            transform: scale(1);
+        }
+        .gov-modal-close {
+            position: absolute;
+            top: 24px; right: 24px;
+            background: #F1F5F9;
+            border: none;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            font-size: 20px; color: #64748B;
+            transition: all 0.2s ease;
+        }
+        .gov-modal-close:hover { background: #ED1C24; color: #FFFFFF; }
+        .gov-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 0px;
+            background: #DCFCE7;
+            color: #15803D;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        
+        /* --- SQUARE SHARP DIRECTIVE (NO ROUNDED) --- */
+        :root {
+            --radius-lg: 0px !important;
+            --radius-md: 0px !important;
+            --radius-pill: 0px !important;
+        }
+
+        .pillar-img-wrapper,
+        .pillar-img-wrapper img,
+        .calc-card,
+        .calc-metric-box,
+        .gov-card-modern,
+        .ar-container-modern,
+        .ar-cover-mockup-modern,
+        .gov-modal-card,
+        .cta-csr-section-modern,
+        .year-tab,
+        .pillar-tag,
+        .calc-preset-btn,
+        .cta-csr-btn-modern,
+        .gov-badge,
+        .calc-progress-bar-bg,
+        .calc-progress-bar-fill,
+        .about-hero__tag,
+        .calc-slider,
+        .gov-modal-close,
+        .gov-modal-close-btn,
+        .gov-modal-download-btn,
+        .gov-card-download-modern,
+        img {
+            border-radius: 0 !important;
+        }
+
+        /* --- MODERN UI/UX PRO MAX STYLES --- */
+        :root {
+            --color-primary: #0056A6;
+            --color-on-primary: #FFFFFF;
+            --color-accent: #ED1C24;
+            --color-background: #F8FAFC;
+            --color-surface: #FFFFFF;
+            --color-text-main: #1E293B;
+            --color-text-muted: #64748B;
+            --radius-lg: 0px;
+            --radius-md: 0px;
+            --radius-pill: 0px;
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 24px 48px rgba(0, 86, 166, 0.12);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pillar-section-modern {
+            padding: 100px max(24px, calc((100vw - 1240px) / 2));
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            display: flex;
+            align-items: center;
+        }
+        .pillar-bg-white { background: var(--color-surface); }
+        .pillar-bg-light { background: var(--color-background); }
+        
+        .pillar-tag {
+            display: inline-block;
+            background: #E2E8F0;
+            color: var(--color-primary);
+            font-weight: 800;
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .pillar-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--color-text-main);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .pillar-desc {
+            font-size: 16px;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        
+        .pillar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            color: var(--color-text-main);
+            font-weight: 600;
+        }
+        
+        .pillar-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .pillar-list li svg {
+            color: var(--color-primary);
+        }
+        
+        .pillar-img-wrapper {
+            border-radius: var(--radius-lg);
+            height: 400px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+        .pillar-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .pillar-img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .gov-card-modern {
+            background: var(--color-surface);
+            border: 1px solid #E2E8F0;
+            border-radius: var(--radius-md);
+            padding: 32px 24px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .gov-card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: transparent;
+            transition: var(--transition-smooth);
+        }
+        .gov-card-modern:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: transparent;
+        }
+        .gov-card-modern:hover::before {
+            background: var(--color-primary);
+        }
+        .gov-card-title-modern {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-text-main);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        .gov-card-download-modern {
+            align-self: flex-start;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #F1F5F9;
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+        }
+        .gov-card-modern:hover .gov-card-download-modern {
+            background: var(--color-primary);
+            color: #FFFFFF;
+        }
+        .gov-card-download-modern svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2.5;
+        }
+        
+        /* Tata Kelola Background override */
+        .tata-kelola-bg-section-modern {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            background: var(--color-background);
+            padding: 100px max(24px, calc((100vw - 1240px) / 2));
+            color: var(--color-text-main);
+        }
+        .tata-kelola-bg-section-modern .content-title { color: var(--color-text-main); }
+        .tata-kelola-bg-section-modern .content-text { color: var(--color-text-muted); max-width: 800px; margin-bottom: 48px; }
+
+        .ar-container-modern {
+            display: flex;
+            gap: 48px;
+            background: var(--color-surface);
+            border: 1px solid #E2E8F0;
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+        }
+        .ar-container-modern:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        .ar-cover-mockup-modern {
+            width: 200px;
+            height: 280px;
+            border-radius: 8px;
+            box-shadow: 12px 16px 32px rgba(0,0,0,0.1), inset 2px 0 5px rgba(255,255,255,0.2);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .ar-cover-mockup-modern::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 14px; height: 100%;
+            background: rgba(0,0,0,0.15);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        
+        .cta-csr-section-modern {
+            padding: 100px max(24px, calc((100vw - 1240px) / 2));
+            background: linear-gradient(135deg, var(--color-primary) 0%, #003F7A 100%);
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            text-align: center;
+            color: #FFFFFF;
+            border-radius: var(--radius-lg);
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+        .cta-csr-btn-modern {
+            background: #FFFFFF;
+            color: var(--color-primary);
+            padding: 16px 36px;
+            border-radius: var(--radius-pill);
+            font-weight: 800;
+            font-size: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .cta-csr-btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            background: #F8FAFC;
+        }
+
     </style>
 </head>
 <body>
@@ -728,14 +1095,14 @@
                         </li>
                     </ul>
                 </div>
-                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px;" data-i18n="nav.contact">HUBUNGI KAMI</button>
+                <button class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 0px;" data-i18n="nav.contact">HUBUNGI KAMI</button>
             </div>
         </div>
     </header>
 
 
     <!-- Sub-Hero Section -->
-    <section class="about-hero">
+    <section class="about-hero reveal-on-scroll">
         <div class="container">
             <span class="about-hero__tag">Keterbukaan Informasi</span>
             <h1 class="about-hero__title">Sustainability</h1>
@@ -751,108 +1118,254 @@
                 
                 <main class="about-content-pane">
 
-                    <!-- TAB 1: TATA KELOLA -->
-                    <div class="about-tab-content active" id="tab-tata-kelola">
-                        <div class="tata-kelola-bg-section">
-                            <div class="content-title">Tata Kelola Perusahaan</div>
-                            <p class="content-text">Penerapan Good Corporate Governance (GCG) di Patra Logistik dilakukan melalui serangkaian pedoman kepatuhan, sistem pengawasan internal, serta komitmen etika kerja yang diimplementasikan secara berkesinambungan.</p>
-                            
-                            <div class="gov-grid">
-                            <!-- Card 1: Sistem Manajemen HSSE -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Sistem Manajemen HSSE</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <!-- Pilar 1: Lingkungan -->
+                    <div class="pillar-section-modern pillar-bg-white reveal-on-scroll">
+                        <div class="container pillar-grid" style="max-width: 1240px; margin: 0 auto;">
+                            <div>
+                                <div class="pillar-tag">Pilar 1</div>
+                                <h2 class="pillar-title">Lingkungan (Environment)</h2>
+                                <p class="pillar-desc">Kami mengelola dampak lingkungan dari kegiatan operasional secara bertanggung jawab. Fokus kami meliputi pengurangan emisi karbon, optimalisasi efisiensi energi, dan pengelolaan limbah di setiap rantai pasok logistik.</p>
+                                <ul class="pillar-list">
+                                    <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Optimalisasi Rute Transportasi</li>
+                                    <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Pengurangan Emisi Gas Buang</li>
+                                    <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Pengelolaan Limbah Operasional</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-img-wrapper reveal-scale">
+                                <img src="assets/Landscape MT.png" alt="Pilar Lingkungan">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 2: Sosial -->
+                    <div class="pillar-section-modern pillar-bg-light reveal-on-scroll">
+                        <div class="container pillar-grid" style="max-width: 1240px; margin: 0 auto;">
+                            <div class="pillar-img-wrapper reveal-scale">
+                                <img src="assets/csr_safety_culture.png" alt="Pilar Sosial">
+                            </div>
+                            <div>
+                                <div class="pillar-tag">Pilar 2</div>
+                                <h2 class="pillar-title">Sosial (Social)</h2>
+                                <p class="pillar-desc">Kami peduli terhadap kesejahteraan karyawan dan masyarakat di sekitar wilayah operasi kami. Menciptakan lingkungan kerja yang inklusif, aman, serta mendukung pemberdayaan masyarakat lokal.</p>
+                                <ul class="pillar-list">
+                                    <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Budaya Keselamatan Kerja (HSSE)</li>
+                                    <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Program TJSL & CSR</li>
+                                    <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Pemberdayaan & Pelatihan Karyawan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- Pilar 3: TATA KELOLA -->
+                    <div class="pillar-section" style="width: 100vw; margin-left: calc(-50vw + 50%); margin-bottom: 60px;">
+                        <div class="tata-kelola-bg-section-modern">
+                            <div class="container" style="max-width: 1240px; margin: 0 auto;">
+                                <div class="pillar-tag reveal-on-scroll">Pilar 3</div>
+                                <h2 class="pillar-title reveal-on-scroll">Tata Kelola (Governance)</h2>
+                                <p class="content-text reveal-on-scroll">Penerapan Good Corporate Governance (GCG) di Patra Logistik dilakukan melalui serangkaian pedoman kepatuhan, sistem pengawasan internal, serta komitmen etika kerja yang diimplementasikan secara berkesinambungan.</p>
+                                
+                                <div class="gov-grid">
+                                
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Sistem Manajemen HSSE</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 2: Sistem Manajemen Keselamatan Kerja -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Sistem Manajemen Kesehatan dan Keselamatan Kerja</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Sistem Manajemen Kesehatan dan Keselamatan Kerja</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 3: GCG -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Tata Kelola Perusahaan Yang Baik</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Tata Kelola Perusahaan Yang Baik</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 4: Gratifikasi -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Pedoman Pengendalian Gratifikasi</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Pedoman Pengendalian Gratifikasi</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 5: Anti Penyuapan -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Sistem Manajemen Anti-Penyuapan</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Sistem Manajemen Anti-Penyuapan</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 6: WBS -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Whistleblowing System (WBS)</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Whistleblowing System (WBS)</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 7: Transparansi -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Transparansi dan Keterbukaan Informasi</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Transparansi dan Keterbukaan Informasi</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 8: Akuntabilitas SDM -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Akuntabilitas dan Pengelolaan SDM</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Akuntabilitas dan Pengelolaan SDM</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 9: Keadilan Keputusan (Highlighted in wireframe) -->
-                            <div class="gov-card" style="border: 2px solid #0056A6; box-shadow: 0 8px 20px rgba(0, 86, 166, 0.05);">
-                                <h4 class="gov-card-title">Keadilan dalam Pengambilan Keputusan</h4>
-                                <div class="gov-card-download" style="background:#0056A6; color:#FFFFFF;">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Keadilan dalam Pengambilan Keputusan</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 10: CSR -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Tanggung Jawab Sosial Perusahaan (CSR)</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Tanggung Jawab Sosial Perusahaan (CSR)</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 11: Pengawasan Efektif -->
-                            <div class="gov-card">
-                                <h4 class="gov-card-title">Pengawasan yang Efektif</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <div class="gov-card-modern">
+                                <h4 class="gov-card-title-modern">Pengawasan yang Efektif</h4>
+                                <div class="gov-card-download-modern">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
                             </div>
-                            <!-- Card 12: - -->
-                            <div class="gov-card" style="opacity: 0.65;">
-                                <h4 class="gov-card-title">-</h4>
-                                <div class="gov-card-download">
-                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                 </div>
-                            </div>
                             </div>
                         </div>
 
                         <!-- Tata Kelola Banner Section -->
-                        <div class="tata-kelola-banner">
                             <img src="assets/Landscape MT.png" alt="Tata Kelola Banner">
                         </div>
                     </div>
 
+                    <!-- Laporan Keberlanjutan Section -->
+                    <div class="sustainability-report-section reveal-on-scroll" style="display: none; padding: 60px max(24px, calc((100vw - 1240px) / 2)); background: #F8FAFC; width: 100vw; margin-left: calc(-50vw + 50%);">
+                        <div class="container" style="max-width: 1240px; margin: 0 auto;">
+                            <div class="content-title" style="margin-bottom: 24px; color: #1E293B;">Laporan Keberlanjutan (Sustainability Report)</div>
+                            
+                            <!-- Year Tags / Tabs -->
+                            <div class="year-filter-container">
+                                <button class="year-tab active" data-year="2026">2026</button>
+                                <button class="year-tab" data-year="2025">2025</button>
+                                <button class="year-tab" data-year="2024">2024</button>
+                                <button class="year-tab" data-year="2023">2023</button>
+                                <button class="year-tab" data-year="2022">2022</button>
+                            </div>
 
+                            <!-- Reports Content -->
+                            <div class="reports-content">
+                                <!-- 2026 -->
+                                <div class="report-panel active" id="sr-2026">
+                                    <div class="ar-container-modern">
+                                        <div class="ar-cover-mockup-modern" style="background: linear-gradient(135deg, #0056A6 0%, #003F7A 100%);">
+                                            <div class="ar-cover-logo">PATRA LOGISTIK</div>
+                                            <div class="ar-cover-title">SUSTAINABILITY<br>REPORT</div>
+                                            <div class="ar-cover-subtitle">Moving Forward Sustainably</div>
+                                            <div class="ar-cover-year">2026</div>
+                                        </div>
+                                        <div class="ar-info">
+                                            <h3 class="ar-info-title">Laporan Keberlanjutan 2026</h3>
+                                            <p class="ar-info-sub">Komitmen kami terhadap lingkungan, sosial, dan tata kelola perusahaan yang berkelanjutan di tahun 2026.</p>
+                                            <div class="ar-actions">
+                                                <a href="#" class="ar-btn-pdf">UNDUH PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <!-- 2025 -->
+                                <div class="report-panel" id="sr-2025">
+                                    <div class="ar-container-modern">
+                                        <div class="ar-cover-mockup-modern" style="background: linear-gradient(135deg, #008060 0%, #005A43 100%);">
+                                            <div class="ar-cover-logo">PATRA LOGISTIK</div>
+                                            <div class="ar-cover-title">SUSTAINABILITY<br>REPORT</div>
+                                            <div class="ar-cover-subtitle">Building a Greener Future</div>
+                                            <div class="ar-cover-year">2025</div>
+                                        </div>
+                                        <div class="ar-info">
+                                            <h3 class="ar-info-title">Laporan Keberlanjutan 2025</h3>
+                                            <p class="ar-info-sub">Komitmen kami terhadap lingkungan, sosial, dan tata kelola perusahaan yang berkelanjutan di tahun 2025.</p>
+                                            <div class="ar-actions">
+                                                <a href="#" class="ar-btn-pdf">UNDUH PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2024 -->
+                                <div class="report-panel" id="sr-2024">
+                                    <div class="ar-container-modern">
+                                        <div class="ar-cover-mockup-modern" style="background: linear-gradient(135deg, #E65C00 0%, #B34700 100%);">
+                                            <div class="ar-cover-logo">PATRA LOGISTIK</div>
+                                            <div class="ar-cover-title">SUSTAINABILITY<br>REPORT</div>
+                                            <div class="ar-cover-subtitle">Resilience and Sustainability</div>
+                                            <div class="ar-cover-year">2024</div>
+                                        </div>
+                                        <div class="ar-info">
+                                            <h3 class="ar-info-title">Laporan Keberlanjutan 2024</h3>
+                                            <p class="ar-info-sub">Komitmen kami terhadap lingkungan, sosial, dan tata kelola perusahaan yang berkelanjutan di tahun 2024.</p>
+                                            <div class="ar-actions">
+                                                <a href="#" class="ar-btn-pdf">UNDUH PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2023 -->
+                                <div class="report-panel" id="sr-2023">
+                                    <div class="ar-container-modern">
+                                        <div class="ar-cover-mockup-modern" style="background: linear-gradient(135deg, #6B21A8 0%, #4C1D95 100%);">
+                                            <div class="ar-cover-logo">PATRA LOGISTIK</div>
+                                            <div class="ar-cover-title">SUSTAINABILITY<br>REPORT</div>
+                                            <div class="ar-cover-subtitle">Foundation for Growth</div>
+                                            <div class="ar-cover-year">2023</div>
+                                        </div>
+                                        <div class="ar-info">
+                                            <h3 class="ar-info-title">Laporan Keberlanjutan 2023</h3>
+                                            <p class="ar-info-sub">Komitmen kami terhadap lingkungan, sosial, dan tata kelola perusahaan yang berkelanjutan di tahun 2023.</p>
+                                            <div class="ar-actions">
+                                                <a href="#" class="ar-btn-pdf">UNDUH PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2022 -->
+                                <div class="report-panel" id="sr-2022">
+                                    <div class="ar-container-modern">
+                                        <div class="ar-cover-mockup-modern" style="background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);">
+                                            <div class="ar-cover-logo">PATRA LOGISTIK</div>
+                                            <div class="ar-cover-title">SUSTAINABILITY<br>REPORT</div>
+                                            <div class="ar-cover-subtitle">Sustainable Logistics</div>
+                                            <div class="ar-cover-year">2022</div>
+                                        </div>
+                                        <div class="ar-info">
+                                            <h3 class="ar-info-title">Laporan Keberlanjutan 2022</h3>
+                                            <p class="ar-info-sub">Komitmen kami terhadap lingkungan, sosial, dan tata kelola perusahaan yang berkelanjutan di tahun 2022.</p>
+                                            <div class="ar-actions">
+                                                <a href="#" class="ar-btn-pdf">UNDUH PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Berita CSR -->
+                    <div class="cta-csr-section-modern reveal-scale">
+                        <div class="container" style="max-width: 800px; margin: 0 auto;">
+                            <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 20px; line-height: 1.3;">Ikuti Perjalanan Berkelanjutan Kami</h2>
+                            <p style="font-size: 18px; opacity: 0.9; margin-bottom: 40px; line-height: 1.7;">Kami terus berupaya memberikan dampak positif bagi lingkungan dan masyarakat sekitar melalui program-program Tanggung Jawab Sosial dan Lingkungan (TJSL). Temukan berbagai inisiatif dan cerita terbaru kami.</p>
+                            <a href="berita-media.html?tab=berita-csr" class="cta-csr-btn-modern">
+                                LIHAT BERITA CSR
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                            </a>
+                        </div>
+                    </div>
                 </main>
 
             </div>
@@ -869,35 +1382,40 @@
                     <div class="footer-logo"></div>
                     <div class="footer-contact-list">
                         <div class="footer-contact-item">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                style="margin-top: 2px;">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
+                            <div class="footer-contact-icon">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
                             <span><strong>Kantor Pusat</strong><br>Garden Avenue Rasuna Lantai 1-3, Jalan Epicentrum Tengah No. 3, RT.2/RW.5, Karet Kuningan, Kecamatan Setiabudi, Jakarta Selatan.</span>
                         </div>
                         <div class="footer-contact-item">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                </path>
-                            </svg>
+                            <div class="footer-contact-icon">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                            </div>
                             <span>(021)-25196699</span>
                         </div>
                         <div class="footer-contact-item">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                            </svg>
+                            <div class="footer-contact-icon">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                            </div>
                             <span>info.patralogistik@pertamina.com</span>
                         </div>
                     </div>
                     <div class="footer-social">
                         <a href="#" class="social-icon" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -905,25 +1423,25 @@
                             </svg>
                         </a>
                         <a href="#" class="social-icon" aria-label="TikTok">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
                             </svg>
                         </a>
                         <a href="#" class="social-icon" aria-label="X">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 4l16 16M4 20L20 4"></path>
                             </svg>
                         </a>
                         <a href="#" class="social-icon" aria-label="Facebook">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                             </svg>
                         </a>
                         <a href="#" class="social-icon" aria-label="YouTube">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path
                                     d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
@@ -958,11 +1476,11 @@
 
                 <!-- Column 4 -->
                 <div class="footer-col-4">
-                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
-                        <img src="./assets/Image%20(Pertamina%20Call%20Center).png" alt="Pertamina Call Center 135" style="max-width: 55%; height: auto; display: block;">
-                        <img src="./assets/callcenter15.png" alt="Call Center 135" style="max-width: 40%; height: auto; display: block;">
+                    <div class="footer-call-center-logos">
+                        <img src="./assets/Image%20(Pertamina%20Call%20Center).png" alt="Pertamina Call Center 135">
+                        <img src="./assets/callcenter15.png" alt="Call Center 135">
                     </div>
-                    <div class="call-center-btn">
+                    <a href="https://pertaminaclean.tipoffs.info/" target="_blank" rel="noopener noreferrer" class="call-center-btn">
                         <div class="icon-circle">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -975,7 +1493,7 @@
                             <span class="title">Whistle Blowing System</span>
                             <span class="link">https://pertaminaclean.tipoffs.info/</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
 
@@ -986,8 +1504,7 @@
                 </div>
                 <div class="bottom-right">
                     <span class="copyright" data-i18n="footer.copyright">© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang.</span>
-                    <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan
-                        PT Pertamina (Persero).</span>
+                    <span class="copyright-desc">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan PT Pertamina (Persero).</span>
                 </div>
             </div>
         </footer>
@@ -1080,10 +1597,211 @@
             if (tabParam && ['tata-kelola', 'shareholder', 'annual-report', 'financial-report'].includes(tabParam)) {
                 switchTab(tabParam);
             }
+
+            // Year filtering logic for Sustainability Reports
+            const yearTabs = document.querySelectorAll('.year-tab');
+            const reportPanels = document.querySelectorAll('.report-panel');
+
+            yearTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    yearTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+
+                    const selectedYear = tab.getAttribute('data-year');
+
+                    // Hide all panels and show the one matching the year
+                    reportPanels.forEach(panel => {
+                        if (panel.id === `sr-${selectedYear}`) {
+                            panel.classList.add('active');
+                        } else {
+                            panel.classList.remove('active');
+                        }
+                    });
+                });
+            });
         });
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="lang.js"></script>
     <script src="script.js?v=2"></script>
+
+    <!-- Governance Document Detail Modal -->
+    <div class="gov-modal-overlay" id="govModal">
+        <div class="gov-modal-card">
+            <button class="gov-modal-close" id="closeGovModal" aria-label="Tutup modal">&times;</button>
+            <div class="gov-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Dokumen Terverifikasi GCG
+            </div>
+            <h3 id="modalGovTitle" style="font-size: 22px; font-weight: 800; color: #1E293B; margin-bottom: 12px; line-height: 1.3;">Sistem Manajemen HSSE</h3>
+            <p id="modalGovDesc" style="font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 24px;">Pedoman standar keselamatan, kesehatan kerja, perlindungan lingkungan, serta kepatuhan tata kelola di seluruh operasi Pertamina Patra Logistik.</p>
+            
+            <div style="background: #F8FAFC; border-radius: 0px; padding: 16px; margin-bottom: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px;">
+                <div><strong style="color: #1E293B;">Kode Dokumen:</strong> <span id="modalGovCode" style="color: #0056A6; font-weight: 700;">DOC-HSSE-2026</span></div>
+                <div><strong style="color: #1E293B;">Ukuran File:</strong> <span style="color: #64748B;">2.4 MB (PDF)</span></div>
+                <div><strong style="color: #1E293B;">Status Kepatuhan:</strong> <span style="color: #16A34A; font-weight: 700;">Aktif</span></div>
+                <div><strong style="color: #1E293B;">Revisi Terakhir:</strong> <span style="color: #64748B;">Januari 2026</span></div>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                <button class="gov-modal-close-btn" id="closeGovModalBtn" style="padding: 12px 24px; border-radius: 0px; border: 1px solid #CBD5E1; background: #FFFFFF; font-weight: 700; cursor: pointer;">Tutup</button>
+                <a href="#" class="gov-modal-download-btn" style="padding: 12px 28px; border-radius: 0px; background: #0056A6; color: #FFFFFF; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,86,166,0.25);">
+                    UNDUH PDF
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scroll Reveal & Interactive Component Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- 1. GSAP SCROLL REVEAL ---
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // MatchMedia for accessibility (prefers-reduced-motion)
+            let mm = gsap.matchMedia();
+
+            mm.add("(prefers-reduced-motion: no-preference)", () => {
+                const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale');
+                
+                revealElements.forEach(el => {
+                    let fromVars = { opacity: 0 };
+                    if (el.classList.contains('reveal-on-scroll')) fromVars.y = 40;
+                    else if (el.classList.contains('reveal-left')) fromVars.x = -40;
+                    else if (el.classList.contains('reveal-right')) fromVars.x = 40;
+                    else if (el.classList.contains('reveal-scale')) { fromVars.scale = 0.94; fromVars.opacity = 0; }
+
+                    gsap.fromTo(el, fromVars, {
+                        opacity: 1,
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: 'expo.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                            once: true,
+                            onEnter: () => {
+                                // Trigger counter animation if inside calculator or has counters
+                                const counters = el.querySelectorAll('.counter-value');
+                                counters.forEach(counter => animateCounter(counter));
+                            }
+                        }
+                    });
+                });
+
+                // Stagger Governance Cards
+                gsap.fromTo('.gov-card-modern', 
+                    { opacity: 0, y: 30 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        stagger: 0.1,
+                        ease: 'expo.out',
+                        scrollTrigger: {
+                            trigger: '.gov-grid',
+                            start: 'top 85%',
+                            once: true
+                        }
+                    }
+                );
+
+                // Stagger Annual Reports
+                gsap.from('.report-panel.active .ar-container-modern', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    ease: 'expo.out',
+                    scrollTrigger: {
+                        trigger: '.reports-content',
+                        start: 'top 85%',
+                        once: true
+                    }
+                });
+            });
+
+            // --- 2. NUMBER COUNTER ANIMATION ---
+            function animateCounter(counter) {
+                if (counter.classList.contains('counted')) return;
+                counter.classList.add('counted');
+                
+                const target = parseInt(counter.getAttribute('data-target')) || 0;
+                const duration = 1600; // ms
+                const start = 0;
+                const startTime = performance.now();
+
+                function updateCount(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // EaseOutExpo curve
+                    const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                    const currentVal = Math.floor(easeProgress * (target - start) + start);
+
+                    counter.innerText = currentVal.toLocaleString('id-ID');
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target.toLocaleString('id-ID');
+                    }
+                }
+                requestAnimationFrame(updateCount);
+            }
+
+// --- 4. GOVERNANCE MODAL INTERACTIVITY ---
+            const govModal = document.getElementById('govModal');
+            const closeGovModal = document.getElementById('closeGovModal');
+            const closeGovModalBtn = document.getElementById('closeGovModalBtn');
+            const modalGovTitle = document.getElementById('modalGovTitle');
+            const modalGovCode = document.getElementById('modalGovCode');
+            const govCards = document.querySelectorAll('.gov-card-modern');
+
+            function openGovModal(title) {
+                if (modalGovTitle) modalGovTitle.innerText = title;
+                if (modalGovCode) {
+                    const cleanCode = title.replace(/[^a-zA-Z]/g, '').substring(0, 6).toUpperCase();
+                    modalGovCode.innerText = `DOC-${cleanCode}-2026`;
+                }
+                if (govModal) govModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideGovModal() {
+                if (govModal) govModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            govCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const titleEl = card.querySelector('.gov-card-title-modern');
+                    const title = titleEl ? titleEl.innerText : 'Dokumen GCG';
+                    openGovModal(title);
+                });
+            });
+
+            if (closeGovModal) closeGovModal.addEventListener('click', hideGovModal);
+            if (closeGovModalBtn) closeGovModalBtn.addEventListener('click', hideGovModal);
+            if (govModal) {
+                govModal.addEventListener('click', (e) => {
+                    if (e.target === govModal) hideGovModal();
+                });
+            }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && govModal && govModal.classList.contains('active')) {
+                    hideGovModal();
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
