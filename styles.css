@@ -5529,27 +5529,39 @@ img {
 
 /* --- DESIGN OPTION 3 STYLES --- */
 
-/* Vertical right side timeline indicators */
+/* Horizontal Bottom Timeline Indicators */
 .hero-timeline-indicators {
     position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 10;
+    width: auto;
+    max-width: 92%;
 }
 .hero-timeline-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 12px 28px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 .hero-timeline-container .timeline-item {
     position: relative;
     cursor: pointer;
     display: flex;
-    flex-direction: row;
-    gap: 16px;
+    flex-direction: column;
+    gap: 6px;
     align-items: center;
-    justify-content: flex-end;
-    padding: 12px 0;
+    justify-content: center;
+    padding: 4px 8px;
 }
 .hero-timeline-container .timeline-item.hero-slide-dot {
     width: auto;
@@ -5561,24 +5573,25 @@ img {
     display: none;
 }
 .hero-timeline-container .timeline-text {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 .hero-timeline-container .timeline-item.active .timeline-text {
     color: var(--primary-green, #ACC32A);
-    transform: translateX(-4px);
+    transform: translateY(-2px);
 }
 .hero-timeline-container .timeline-item:hover .timeline-text {
     color: white;
 }
 .hero-timeline-container .timeline-line {
-    width: 3px;
-    height: 40px;
+    width: 48px;
+    height: 3px;
     background: rgba(255, 255, 255, 0.2);
-    display: inline-block;
+    display: block;
     position: relative;
     transition: all 0.3s ease;
     border-radius: 4px;
@@ -5589,47 +5602,49 @@ img {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 0;
+    width: 0;
+    height: 100%;
     background: var(--primary-green, #ACC32A);
     box-shadow: 0 0 12px rgba(172, 195, 42, 0.6);
 }
 .hero-timeline-container .timeline-item.active .timeline-line {
-    height: 60px;
+    width: 64px;
 }
 .hero-timeline-container .timeline-item.active .timeline-line::after {
-    animation: timelineLoad 4s linear forwards;
+    animation: timelineLoadHoriz 4s linear forwards;
 }
 .hero-timeline-container .timeline-item:hover .timeline-line {
     background: rgba(255, 255, 255, 0.6);
 }
 
-@keyframes timelineLoad {
-    0% { height: 0; }
-    100% { height: 100%; }
+@keyframes timelineLoadHoriz {
+    0% { width: 0; }
+    100% { width: 100%; }
 }
 
-/* Hover Cards */
+/* Hover Cards (Popping Upwards Above Bottom Bar) */
 .hero-timeline-container .timeline-card-right {
     position: absolute;
-    right: calc(100% + 20px);
-    top: 50%;
-    transform: translateY(-50%) translateX(20px);
-    width: 280px;
+    bottom: calc(100% + 18px);
+    left: 50%;
+    top: auto;
+    right: auto;
+    transform: translateX(-50%) translateY(10px);
+    width: 260px;
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.3);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     z-index: 100;
 }
 .hero-timeline-container .timeline-item:hover .timeline-card-right {
     opacity: 1;
     visibility: visible;
-    transform: translateY(-50%) translateX(0);
+    transform: translateX(-50%) translateY(0);
     pointer-events: auto;
 }
 .timeline-card-right img {
@@ -5643,13 +5658,13 @@ img {
 }
 .timeline-card-right h4 {
     margin: 0 0 8px 0;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--primary-dark, #141923);
     font-weight: 800;
 }
 .timeline-card-right p {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     color: #475569;
     line-height: 1.4;
 }
