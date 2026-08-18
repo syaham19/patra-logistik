@@ -7,7 +7,7 @@
     <title>Patra Logistik - Slicing Framework</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=7">
 </head>
 
 <body class="loading">
@@ -1571,7 +1571,7 @@
     <script src="script.js?v=2"></script>
 
     <!-- Floating Showroom Design Option Switcher (Fixed Bottom) -->
-    <div class="showroom-option-switcher" id="showroom-option-switcher" role="region" aria-label="Tampilan Opsi Desain">
+    <div class="showroom-option-switcher" id="showroom-option-switcher" role="region" aria-label="Tampilan Opsi Desain" style="position: fixed !important; top: auto !important; bottom: 20px !important; left: 50% !important; transform: translateX(-50%) !important; z-index: 2147483647 !important;">
         <button class="showroom-option-btn active" data-option="1">Option 1 (Original)</button>
         <button class="showroom-option-btn" data-option="2">Option 2 (Bottom Equalizer)</button>
         <button class="showroom-option-btn" data-option="3">Option 3 (Right Timeline)</button>
@@ -1580,17 +1580,22 @@
 
     <script>
     (function () {
-        const switcher = document.getElementById('showroom-option-switcher');
-        if (switcher && switcher.parentNode !== document.documentElement) {
-            document.documentElement.appendChild(switcher);
-        }
+        // Move all showroom switchers to document.body to escape any containing blocks (like navbar)
+        const switchers = document.querySelectorAll('.showroom-option-switcher');
+        switchers.forEach(switcher => {
+            if (switcher.parentNode !== document.body) {
+                document.body.appendChild(switcher);
+            }
+        });
 
-        const closeBtn = document.getElementById('showroom-close-btn');
-        if (closeBtn && switcher) {
-            closeBtn.addEventListener('click', () => {
-                switcher.style.display = 'none';
+        // Close button functionality
+        const closeBtns = document.querySelectorAll('.showroom-close-btn');
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parent = e.target.closest('.showroom-option-switcher');
+                if (parent) parent.style.display = 'none';
             });
-        }
+        });
 
         const btns = document.querySelectorAll('.showroom-option-btn');
         if (!btns.length) return;
