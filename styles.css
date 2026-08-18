@@ -5777,3 +5777,137 @@ img {
         display: none;
     }
 }
+
+/* ================= FLOATING SHOWROOM DESIGN OPTION SWITCHER (FIXED BOTTOM) ================= */
+.showroom-option-switcher {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(11, 16, 26, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 6px 10px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    transition: all 0.3s ease;
+}
+
+.showroom-option-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.showroom-option-btn:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.showroom-option-btn.active {
+    background: var(--primary-green, #ACC32A);
+    color: #141923;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(172, 195, 42, 0.45);
+}
+
+/* Dynamic Option Variant Modes for Hero Indicators */
+/* Option 1: Original Bottom Indicators */
+body.hero-option-1 .hero-timeline-indicators {
+    display: none;
+}
+body.hero-option-1 .hero-slide-indicators {
+    display: flex !important;
+}
+
+/* Option 2: Bottom Equalizer Indicators */
+body.hero-option-2 .hero-slide-indicators {
+    display: none !important;
+}
+body.hero-option-2 .hero-timeline-indicators {
+    display: block !important;
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    right: auto;
+    top: auto;
+    transform: translateX(-50%);
+}
+body.hero-option-2 .hero-timeline-container {
+    flex-direction: row;
+    padding: 12px 28px;
+    border-radius: 40px;
+    background: rgba(15, 23, 42, 0.75);
+}
+body.hero-option-2 .hero-timeline-container .timeline-item {
+    flex-direction: column;
+}
+body.hero-option-2 .hero-timeline-container .timeline-card-right {
+    bottom: calc(100% + 18px);
+    left: 50%;
+    top: auto;
+    right: auto;
+    transform: translateX(-50%) translateY(10px);
+}
+
+/* Option 3: Vertical Right Timeline Indicators */
+body.hero-option-3 .hero-slide-indicators {
+    display: none !important;
+}
+body.hero-option-3 .hero-timeline-indicators {
+    display: block !important;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    left: auto;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+body.hero-option-3 .hero-timeline-container {
+    flex-direction: column;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+body.hero-option-3 .hero-timeline-container .timeline-item {
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-end;
+}
+body.hero-option-3 .hero-timeline-container .timeline-card-right {
+    right: calc(100% + 20px);
+    top: 50%;
+    left: auto;
+    bottom: auto;
+    transform: translateY(-50%) translateX(20px);
+}
+
+@media (max-width: 768px) {
+    .showroom-option-switcher {
+        bottom: 16px;
+        padding: 4px;
+        max-width: 94%;
+        overflow-x: auto;
+    }
+    .showroom-option-btn {
+        font-size: 11px;
+        padding: 6px 14px;
+    }
+}
+

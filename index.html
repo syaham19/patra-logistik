@@ -1569,6 +1569,41 @@
 
     <script src="lang.js"></script>
     <script src="script.js?v=2"></script>
+
+    <!-- Floating Showroom Design Option Switcher (Fixed Bottom) -->
+    <div class="showroom-option-switcher" role="region" aria-label="Tampilan Opsi Desain">
+        <button class="showroom-option-btn active" data-option="1">Option 1 (Original)</button>
+        <button class="showroom-option-btn" data-option="2">Option 2 (Bottom Equalizer)</button>
+        <button class="showroom-option-btn" data-option="3">Option 3 (Right Timeline)</button>
+    </div>
+
+    <script>
+    (function () {
+        const btns = document.querySelectorAll('.showroom-option-btn');
+        if (!btns.length) return;
+
+        function setOption(opt) {
+            document.body.classList.remove('hero-option-1', 'hero-option-2', 'hero-option-3');
+            document.body.classList.add(`hero-option-${opt}`);
+
+            btns.forEach(btn => {
+                const isActive = btn.getAttribute('data-option') === String(opt);
+                btn.classList.toggle('active', isActive);
+            });
+            localStorage.setItem('patra_hero_option', opt);
+        }
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const opt = btn.getAttribute('data-option');
+                setOption(opt);
+            });
+        });
+
+        const savedOption = localStorage.getItem('patra_hero_option') || '1';
+        setOption(savedOption);
+    })();
+    </script>
 </body>
 
 </html>
