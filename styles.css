@@ -5780,22 +5780,25 @@ img {
 
 /* ================= FLOATING SHOWROOM DESIGN OPTION SWITCHER (FIXED BOTTOM) ================= */
 .showroom-option-switcher {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(11, 16, 26, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding: 6px 10px;
-    border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-    transition: all 0.3s ease;
+    position: fixed !important;
+    top: auto !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(11, 16, 26, 0.92) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    padding: 6px 10px !important;
+    border-radius: 40px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.3s ease !important;
+    margin: 0 !important;
 }
 
 .showroom-option-btn {
