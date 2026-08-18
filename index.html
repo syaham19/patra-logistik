@@ -7,7 +7,7 @@
     <title>Patra Logistik - Slicing Framework</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=99">
+    <link rel="stylesheet" href="styles.css?v=100">
 </head>
 
 <body class="loading">
@@ -116,65 +116,13 @@
             </div>
         </div>
 
-        <!-- Design Option 3: Vertical Right Timeline Indicators -->
-        <div class="hero-timeline-indicators" role="tablist" aria-label="Pilih slide">
-            <div class="hero-timeline-container">
-                <div class="hero-slide-dot timeline-item active" data-slide="0" role="tab" aria-selected="true">
-                    <span class="timeline-text">RELIABLE</span>
-                    <span class="timeline-line"></span>
-                    <div class="timeline-card-right">
-                        <img src="assets/Landscape%20MT.png" alt="Slide 1">
-                        <div class="timeline-card-content">
-                            <h4>Reliable Energy for Today</h4>
-                            <p>Delivering reliable energy and integrated solutions to power progress.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide-dot timeline-item" data-slide="1" role="tab" aria-selected="false">
-                    <span class="timeline-text">INNOVATIVE</span>
-                    <span class="timeline-line"></span>
-                    <div class="timeline-card-right">
-                        <img src="assets/Mobil%20Tangki%20Maos.png" alt="Slide 2">
-                        <div class="timeline-card-content">
-                            <h4>Innovating for Tomorrow</h4>
-                            <p>Driving innovation and digital solutions to shape the future of energy.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide-dot timeline-item" data-slide="2" role="tab" aria-selected="false">
-                    <span class="timeline-text">SUSTAINABLE</span>
-                    <span class="timeline-line"></span>
-                    <div class="timeline-card-right">
-                        <img src="assets/LPR00887%20(1).png" alt="Slide 3">
-                        <div class="timeline-card-content">
-                            <h4>Sustainable for Future</h4>
-                            <p>Commitment to sustainability and green energy transitions for all.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide-dot timeline-item" data-slide="3" role="tab" aria-selected="false">
-                    <span class="timeline-text">INTEGRATED</span>
-                    <span class="timeline-line"></span>
-                    <div class="timeline-card-right">
-                        <img src="assets/DSC00198.png" alt="Slide 4">
-                        <div class="timeline-card-content">
-                            <h4>Integrated Operations</h4>
-                            <p>Seamless end-to-end logistics with real-time integrated tracking.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide-dot timeline-item" data-slide="4" role="tab" aria-selected="false">
-                    <span class="timeline-text">MODERN</span>
-                    <span class="timeline-line"></span>
-                    <div class="timeline-card-right">
-                        <img src="assets/gambar%20karyawan.png" alt="Slide 5">
-                        <div class="timeline-card-content">
-                            <h4>Modern Fleet & Teams</h4>
-                            <p>Empowering our professional teams and modern fleet networks.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Dot Indicators (outside slideshow div, anchored to .hero) -->
+        <div class="hero-slide-indicators" role="tablist" aria-label="Pilih slide">
+            <button class="hero-slide-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+            <button class="hero-slide-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+            <button class="hero-slide-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+            <button class="hero-slide-dot" data-slide="3" role="tab" aria-selected="false" aria-label="Slide 4"></button>
+            <button class="hero-slide-dot" data-slide="4" role="tab" aria-selected="false" aria-label="Slide 5"></button>
         </div>
 
         <div class="container">
@@ -1570,44 +1518,7 @@
     <script src="lang.js"></script>
     <script src="script.js?v=2"></script>
 
-    <script>
-    (function () {
-        // Close button functionality
-        const closeBtns = document.querySelectorAll('.showroom-close-btn');
-        closeBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const parent = e.target.closest('.showroom-option-switcher');
-                if (parent) {
-                    parent.style.display = 'none';
-                }
-            });
-        });
 
-        const btns = document.querySelectorAll('.showroom-option-btn');
-        if (!btns.length) return;
-
-        function setOption(opt) {
-            document.body.classList.remove('hero-option-1', 'hero-option-2', 'hero-option-3');
-            document.body.classList.add(`hero-option-${opt}`);
-
-            btns.forEach(btn => {
-                const isActive = btn.getAttribute('data-option') === String(opt);
-                btn.classList.toggle('active', isActive);
-            });
-            localStorage.setItem('patra_hero_option', opt);
-        }
-
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const opt = btn.getAttribute('data-option');
-                setOption(opt);
-            });
-        });
-
-        const savedOption = localStorage.getItem('patra_hero_option') || '1';
-        setOption(savedOption);
-    })();
-    </script>
 </body>
 
 </html>
