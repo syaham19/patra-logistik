@@ -5782,13 +5782,13 @@ img {
 html > .showroom-option-switcher,
 body > .showroom-option-switcher,
 .showroom-option-switcher {
-    position: fixed !important;
+    position: absolute !important;
     top: auto !important;
-    bottom: 20px !important;
+    bottom: 80px !important;
     left: 50% !important;
     right: auto !important;
     transform: translateX(-50%) !important;
-    z-index: 2147483647 !important;
+    z-index: 100 !important;
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;

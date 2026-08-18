@@ -194,6 +194,14 @@
             </div>
         </div>
 
+        <!-- Showroom Switcher (Now embedded in Hero to avoid blocking navbar) -->
+        <div class="showroom-option-switcher" id="showroom-option-switcher" role="region" aria-label="Tampilan Opsi Desain">
+            <button class="showroom-option-btn active" data-option="1">Option 1 (Original)</button>
+            <button class="showroom-option-btn" data-option="2">Option 2 (Bottom Equalizer)</button>
+            <button class="showroom-option-btn" data-option="3">Option 3 (Right Timeline)</button>
+            <button class="showroom-close-btn" id="showroom-close-btn" aria-label="Tutup showroom switcher" title="Tutup">&times;</button>
+        </div>
+
         <div class="ticker-wrap">
             <div class="ticker-content">
                 <div class="ticker-item" data-i18n="ticker.quality">Tepat Mutu</div>
@@ -1570,41 +1578,8 @@
     <script src="lang.js"></script>
     <script src="script.js?v=2"></script>
 
-    <!-- Floating Showroom Design Option Switcher (Fixed Bottom) -->
-    <div class="showroom-option-switcher" id="showroom-option-switcher" role="region" aria-label="Tampilan Opsi Desain" style="position: fixed !important; top: auto !important; bottom: 20px !important; left: 50% !important; transform: translateX(-50%) !important; z-index: 2147483647 !important;">
-        <button class="showroom-option-btn active" data-option="1">Option 1 (Original)</button>
-        <button class="showroom-option-btn" data-option="2">Option 2 (Bottom Equalizer)</button>
-        <button class="showroom-option-btn" data-option="3">Option 3 (Right Timeline)</button>
-        <button class="showroom-close-btn" id="showroom-close-btn" aria-label="Tutup showroom switcher" title="Tutup">&times;</button>
-    </div>
-
     <script>
     (function () {
-        // Move all showroom switchers to document.body to escape any containing blocks (like navbar)
-        const switchers = document.querySelectorAll('.showroom-option-switcher');
-        switchers.forEach(switcher => {
-            if (switcher.parentNode !== document.body) {
-                document.body.appendChild(switcher);
-            }
-        });
-
-        // Force position via JS in case CSS position: fixed bottom fails
-        function forceBottomPosition() {
-            switchers.forEach(switcher => {
-                if(switcher.style.display !== 'none') {
-                    // Force top property based on window height
-                    const h = switcher.offsetHeight || 44;
-                    switcher.style.top = (window.innerHeight - h - 24) + 'px';
-                    switcher.style.bottom = 'auto';
-                }
-            });
-        }
-        window.addEventListener('resize', forceBottomPosition);
-        window.addEventListener('scroll', forceBottomPosition);
-        // Run immediately and on load
-        forceBottomPosition();
-        setTimeout(forceBottomPosition, 500);
-
         // Close button functionality
         const closeBtns = document.querySelectorAll('.showroom-close-btn');
         closeBtns.forEach(btn => {
