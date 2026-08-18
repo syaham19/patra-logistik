@@ -5779,26 +5779,30 @@ img {
 }
 
 /* ================= FLOATING SHOWROOM DESIGN OPTION SWITCHER (FIXED BOTTOM) ================= */
+html > .showroom-option-switcher,
+body > .showroom-option-switcher,
 .showroom-option-switcher {
     position: fixed !important;
     top: auto !important;
-    bottom: 24px !important;
+    bottom: 20px !important;
     left: 50% !important;
     right: auto !important;
     transform: translateX(-50%) !important;
-    z-index: 999999 !important;
+    z-index: 2147483647 !important;
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
-    background: rgba(11, 16, 26, 0.92) !important;
+    background: rgba(11, 16, 26, 0.94) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    padding: 6px 10px !important;
+    padding: 6px 12px !important;
     border-radius: 40px !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
-    transition: all 0.3s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
     margin: 0 !important;
+    pointer-events: auto !important;
+    width: auto !important;
+    max-width: 92vw !important;
 }
 
 .showroom-option-btn {
@@ -5817,7 +5821,7 @@ img {
 
 .showroom-option-btn:hover {
     color: #FFFFFF;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .showroom-option-btn.active {
@@ -5825,6 +5829,28 @@ img {
     color: #141923;
     font-weight: 700;
     box-shadow: 0 4px 16px rgba(172, 195, 42, 0.45);
+}
+
+.showroom-close-btn {
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+    transition: all 0.2s ease;
+}
+
+.showroom-close-btn:hover {
+    background: rgba(237, 28, 36, 0.85);
+    color: #ffffff;
 }
 
 /* Dynamic Option Variant Modes for Hero Indicators */

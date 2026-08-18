@@ -7,7 +7,7 @@
     <title>Patra Logistik - Slicing Framework</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=6">
 </head>
 
 <body class="loading">
@@ -1571,14 +1571,27 @@
     <script src="script.js?v=2"></script>
 
     <!-- Floating Showroom Design Option Switcher (Fixed Bottom) -->
-    <div class="showroom-option-switcher" role="region" aria-label="Tampilan Opsi Desain">
+    <div class="showroom-option-switcher" id="showroom-option-switcher" role="region" aria-label="Tampilan Opsi Desain">
         <button class="showroom-option-btn active" data-option="1">Option 1 (Original)</button>
         <button class="showroom-option-btn" data-option="2">Option 2 (Bottom Equalizer)</button>
         <button class="showroom-option-btn" data-option="3">Option 3 (Right Timeline)</button>
+        <button class="showroom-close-btn" id="showroom-close-btn" aria-label="Tutup showroom switcher" title="Tutup">&times;</button>
     </div>
 
     <script>
     (function () {
+        const switcher = document.getElementById('showroom-option-switcher');
+        if (switcher && switcher.parentNode !== document.documentElement) {
+            document.documentElement.appendChild(switcher);
+        }
+
+        const closeBtn = document.getElementById('showroom-close-btn');
+        if (closeBtn && switcher) {
+            closeBtn.addEventListener('click', () => {
+                switcher.style.display = 'none';
+            });
+        }
+
         const btns = document.querySelectorAll('.showroom-option-btn');
         if (!btns.length) return;
 
