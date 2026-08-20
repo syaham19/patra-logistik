@@ -1483,6 +1483,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const H = canvas.height / (window.devicePixelRatio || 1);
         ctx.clearRect(0, 0, W, H);
 
+        // Apply same zoom transform as the background image
+        // CSS does: translate(-50%,-50%) scale(mapScale) from center
+        // Canvas mirrors: translate to center, scale, translate back
+        ctx.save();
+        ctx.translate(W / 2 + panX, H / 2 + panY);
+        ctx.scale(mapScale, mapScale);
+        ctx.translate(-W / 2, -H / 2);
+
         drawGridOverlay();
         drawCities();
         drawRoutes();
@@ -1490,8 +1498,8 @@ document.addEventListener('DOMContentLoaded', () => {
         trucks.forEach(truck => {
             truck.t += truck.speed;
             if (truck.t >= 1) {
-                truck.t       = 0;
-                truck.speed   = 0.0007 + Math.random() * 0.0005;
+                truck.t        = 0;
+                truck.speed    = 0.0007 + Math.random() * 0.0005;
                 truck.speedKmh = Math.floor(62 + Math.random() * 32);
             }
             truck.progress = Math.floor(truck.t * 100);
@@ -1499,6 +1507,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         trucks.forEach(truck => drawTruck(truck));
+
+        ctx.restore();
 
         if (ts - lastStatUpdate > 4000) {
             lastStatUpdate = ts;
@@ -1556,27 +1566,39 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tip) tip.classList.remove('visible');
     }
 
-    // ── Hit detection (radius in px) ──
-    function getTruckAt(mx, my) {
+    // ── Hit detection — inverse-transform mouse coords to match canvas space after zoom/pan ──
+    function screenToCanvas(ex, ey) {
+        const rect = canvas.getBoundingClientRect();
+        const W    = rect.width;
+        const H    = rect.height;
+        // Reverse the transform: translate(W/2+panX, H/2+panY) scale(mapScale) translate(-W/2,-H/2)
+        const sx = (ex - rect.left - W / 2 - panX) / mapScale + W / 2;
+        const sy = (ey - rect.top  - H / 2 - panY) / mapScale + H / 2;
+        return { x: sx, y: sy };
+    }
+
+    function getTruckAt(ex, ey) {
+        const { x: mx, y: my } = screenToCanvas(ex, ey);
         for (const truck of trucks) {
             if (activeFilter !== 'all' && truck.status !== activeFilter) continue;
             const pos = truckPos(truck);
+            // Hit radius scales inversely with zoom so it feels consistent
+            const hitR = 14 / mapScale;
             const d = Math.hypot(pos.x - mx, pos.y - my);
-            if (d < 14) return truck;
+            if (d < hitR) return truck;
         }
         return null;
     }
 
-    // ── Mouse / touch events ──
+    // ── Mouse events for hover/tooltip (separate from drag pan below) ──
     canvas.addEventListener('mousemove', e => {
-        const rect = canvas.getBoundingClientRect();
-        const mx = e.clientX - rect.left;
-        const my = e.clientY - rect.top;
-        const hit = getTruckAt(mx, my);
+        if (isDragging) return; // suppress tooltip while dragging
+        const hit = getTruckAt(e.clientX, e.clientY);
         if (hit) {
             hoveredTruck = hit;
             canvas.style.cursor = 'pointer';
-            showTooltip(hit, mx, my);
+            const rect = canvas.getBoundingClientRect();
+            showTooltip(hit, e.clientX - rect.left, e.clientY - rect.top);
         } else {
             hoveredTruck = null;
             canvas.style.cursor = 'crosshair';
@@ -1585,25 +1607,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     canvas.addEventListener('mouseleave', () => { hoveredTruck = null; hideTooltip(); });
 
-    // ── Zoom controls (zoom not needed for image-based map — removed for clarity) ──
-    // The real SVG map scales automatically via CSS object-fit: cover
+    // ── Zoom + Pan controls ──
+    // Both canvas (via draw transform) AND image (via CSS transform) use same mapScale/panX/panY
     const zoomInBtn  = document.getElementById('zoom-in');
     const zoomOutBtn = document.getElementById('zoom-out');
     let mapScale = 1.0;
+    let panX = 0, panY = 0;
+    let isDragging = false, dragStartX = 0, dragStartY = 0, dragPanX = 0, dragPanY = 0;
     const bgImg = document.getElementById('truck-map-bg-img');
 
     function applyZoom() {
+        // Sync image transform: CSS origin is center (translate -50% -50%)
         if (bgImg) {
-            bgImg.style.transform = `translate(-50%, -50%) scale(${mapScale})`;
+            bgImg.style.transform = `translate(calc(-50% + ${panX}px), calc(-50% + ${panY}px)) scale(${mapScale})`;
         }
+        // Canvas transform is applied per-frame in draw() using same mapScale/panX/panY
     }
-    if (zoomInBtn)  zoomInBtn.addEventListener('click',  () => { mapScale = Math.min(mapScale + 0.2, 2.5); applyZoom(); });
-    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => { mapScale = Math.max(mapScale - 0.2, 0.8); applyZoom(); });
+
+    if (zoomInBtn)  zoomInBtn.addEventListener('click', () => { mapScale = Math.min(mapScale + 0.25, 3.0); applyZoom(); });
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => { mapScale = Math.max(mapScale - 0.25, 0.6); panX *= 0.8; panY *= 0.8; applyZoom(); });
+
+    // Wheel to zoom centered on cursor position
     canvas.addEventListener('wheel', e => {
         e.preventDefault();
-        mapScale = Math.max(0.8, Math.min(2.5, mapScale + (e.deltaY < 0 ? 0.12 : -0.12)));
+        const rect  = canvas.getBoundingClientRect();
+        const W     = rect.width;
+        const H     = rect.height;
+        const cx    = e.clientX - rect.left - W / 2;
+        const cy    = e.clientY - rect.top  - H / 2;
+        const delta = e.deltaY < 0 ? 0.15 : -0.15;
+        const newScale = Math.max(0.6, Math.min(3.0, mapScale + delta));
+        // Adjust pan to keep the point under cursor fixed
+        const ratio = newScale / mapScale;
+        panX = cx - ratio * (cx - panX);
+        panY = cy - ratio * (cy - panY);
+        mapScale = newScale;
         applyZoom();
     }, { passive: false });
+
+    // Drag to pan
+    canvas.addEventListener('mousedown', e => {
+        isDragging = true;
+        dragStartX = e.clientX;
+        dragStartY = e.clientY;
+        dragPanX   = panX;
+        dragPanY   = panY;
+        canvas.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        panX = dragPanX + (e.clientX - dragStartX);
+        panY = dragPanY + (e.clientY - dragStartY);
+        applyZoom();
+    });
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            canvas.style.cursor = 'crosshair';
+        }
+    });
 
     // ── Filter controls ──
     ['ctrl-all', 'ctrl-transit', 'ctrl-loaded'].forEach(id => {
