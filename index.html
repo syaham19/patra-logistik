@@ -829,6 +829,133 @@
                         <img src="assets/logowtmblue.png" class="rtc-card-logo rtc-logo-hover" alt="WTM Logo">
                     </div>
                 </div>
+
+                <!-- Live Truck Tracking Map Widget -->
+                <div class="truck-map-wrapper fade-up" id="truck-tracking-section">
+                    <!-- Header Bar -->
+                    <div class="truck-map-header">
+                        <div class="truck-map-header-left">
+                            <div class="truck-live-badge">
+                                <span class="truck-live-dot"></span>
+                                <span>LIVE</span>
+                            </div>
+                            <div class="truck-map-title-group">
+                                <h3 class="truck-map-title" data-i18n="tracking.title">Fleet Tracking</h3>
+                                <p class="truck-map-subtitle" data-i18n="tracking.subtitle">Pemantauan Armada Secara Real-Time</p>
+                            </div>
+                        </div>
+                        <div class="truck-map-header-right">
+                            <div class="truck-active-count">
+                                <span class="truck-active-num" id="truck-active-display">12</span>
+                                <span class="truck-active-label" data-i18n="tracking.active">Armada Aktif</span>
+                            </div>
+                            <div class="truck-map-controls">
+                                <button class="truck-ctrl-btn active" id="ctrl-all" data-i18n="tracking.ctrl.all">Semua</button>
+                                <button class="truck-ctrl-btn" id="ctrl-transit" data-i18n="tracking.ctrl.transit">Transit</button>
+                                <button class="truck-ctrl-btn" id="ctrl-loaded" data-i18n="tracking.ctrl.loaded">Bermuatan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Canvas Map -->
+                    <div class="truck-map-canvas-wrapper">
+                        <!-- Real Indonesia Map Background -->
+                        <img src="assets/indonesian map 2.svg" class="truck-map-bg" alt="Indonesia Map" id="truck-map-bg-img">
+                        <canvas id="truck-tracking-canvas"></canvas>
+                        <!-- Tooltip -->
+                        <div class="truck-tooltip" id="truck-tooltip">
+                            <div class="truck-tooltip-header">
+                                <span class="truck-tooltip-id" id="tt-id">PL-001</span>
+                                <span class="truck-tooltip-status" id="tt-status">TRANSIT</span>
+                            </div>
+                            <div class="truck-tooltip-row">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span id="tt-location">Jakarta → Surabaya</span>
+                            </div>
+                            <div class="truck-tooltip-row">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span id="tt-speed">72 km/h</span>
+                            </div>
+                            <div class="truck-tooltip-row">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                                <span id="tt-cargo">BBM Pertamina</span>
+                            </div>
+                            <div class="truck-tooltip-progress">
+                                <div class="truck-tooltip-progress-bar">
+                                    <div class="truck-tooltip-progress-fill" id="tt-progress"></div>
+                                </div>
+                                <span id="tt-progress-label">64% rute selesai</span>
+                            </div>
+                        </div>
+
+                        <!-- Map Legend -->
+                        <div class="truck-map-legend">
+                            <div class="truck-legend-item">
+                                <span class="truck-legend-dot" style="background:#F59E0B;"></span>
+                                <span data-i18n="tracking.legend.transit">Transit</span>
+                            </div>
+                            <div class="truck-legend-item">
+                                <span class="truck-legend-dot" style="background:#10B981;"></span>
+                                <span data-i18n="tracking.legend.loaded">Bermuatan</span>
+                            </div>
+                            <div class="truck-legend-item">
+                                <span class="truck-legend-dot" style="background:#60A5FA;"></span>
+                                <span data-i18n="tracking.legend.empty">Kosong</span>
+                            </div>
+                        </div>
+
+                        <!-- Zoom controls -->
+                        <div class="truck-map-zoom">
+                            <button class="truck-zoom-btn" id="zoom-in">+</button>
+                            <button class="truck-zoom-btn" id="zoom-out">−</button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Bar -->
+                    <div class="truck-stats-bar">
+                        <div class="truck-stat-item">
+                            <div class="truck-stat-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            </div>
+                            <div class="truck-stat-info">
+                                <span class="truck-stat-value" id="stat-total">12</span>
+                                <span class="truck-stat-label" data-i18n="tracking.stat.total">Total Aktif</span>
+                            </div>
+                        </div>
+                        <div class="truck-stat-divider"></div>
+                        <div class="truck-stat-item">
+                            <div class="truck-stat-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                            </div>
+                            <div class="truck-stat-info">
+                                <span class="truck-stat-value" id="stat-transit">8</span>
+                                <span class="truck-stat-label" data-i18n="tracking.stat.transit">Dalam Transit</span>
+                            </div>
+                        </div>
+                        <div class="truck-stat-divider"></div>
+                        <div class="truck-stat-item">
+                            <div class="truck-stat-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                            </div>
+                            <div class="truck-stat-info">
+                                <span class="truck-stat-value" id="stat-loaded">4</span>
+                                <span class="truck-stat-label" data-i18n="tracking.stat.loaded">BBM Dimuat</span>
+                            </div>
+                        </div>
+                        <div class="truck-stat-divider"></div>
+                        <div class="truck-stat-item">
+                            <div class="truck-stat-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <div class="truck-stat-info">
+                                <span class="truck-stat-value" id="stat-distance">2,847</span>
+                                <span class="truck-stat-label" data-i18n="tracking.stat.distance">km Hari Ini</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Truck Tracking Map Widget -->
+
             </div>
         </section>
 

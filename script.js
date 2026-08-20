@@ -1187,3 +1187,468 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial render
     renderPage(currentPage);
 });
+
+
+/* ============================================================
+   TRUCK TRACKING MAP — FlightRadar-Style Engine
+   Uses real Indonesia map from assets as background
+   ============================================================ */
+(function initTruckTracker() {
+
+    const canvas = document.getElementById('truck-tracking-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const wrapper = canvas.parentElement;
+
+    // ── City coordinates: calibrated from actual SVG path bounding boxes
+    // SVG viewBox: 0 0 1110 484. Coords are (x/1110, y/484) from path centroids.
+    // Kalimantan (path0): x~340-560, y~60-280 → center ~(450,170) → (0.405, 0.351)
+    // Sumatra  (path1): x~30-290, y~35-320  → center ~(160,175) → (0.144, 0.362)
+    // Papua    (path2): x~870-1088, y~180-490 → center ~(980,340) → (0.883, 0.702)
+    // Sulawesi (path3): x~575-725, y~130-320  → center ~(648,225) → (0.584, 0.465)
+    // Java     (path4): x~250-495, y~315-390  → center ~(370,355) → (0.333, 0.734)
+    const CITIES = {
+        // ── Jawa ──
+        jakarta:    { x: 0.268, y: 0.720, label: 'Jakarta' },
+        bandung:    { x: 0.295, y: 0.748, label: 'Bandung' },
+        semarang:   { x: 0.358, y: 0.720, label: 'Semarang' },
+        yogya:      { x: 0.375, y: 0.742, label: 'Yogyakarta' },
+        surabaya:   { x: 0.425, y: 0.718, label: 'Surabaya' },
+        malang:     { x: 0.432, y: 0.740, label: 'Malang' },
+        // ── Bali & Nusa Tenggara ──
+        bali:       { x: 0.466, y: 0.730, label: 'Bali' },
+        // ── Sumatra ──
+        medan:      { x: 0.128, y: 0.152, label: 'Medan' },
+        pekanbaru:  { x: 0.162, y: 0.338, label: 'Pekanbaru' },
+        palembang:  { x: 0.208, y: 0.492, label: 'Palembang' },
+        lampung:    { x: 0.238, y: 0.574, label: 'Lampung' },
+        // ── Kalimantan ──
+        balikpapan: { x: 0.470, y: 0.428, label: 'Balikpapan' },
+        banjarmasin:{ x: 0.428, y: 0.472, label: 'Banjarmasin' },
+        // ── Sulawesi ──
+        makassar:   { x: 0.580, y: 0.580, label: 'Makassar' },
+        manado:     { x: 0.636, y: 0.310, label: 'Manado' },
+        // ── Papua ──
+        sorong:     { x: 0.808, y: 0.440, label: 'Sorong' },
+        jayapura:   { x: 0.960, y: 0.480, label: 'Jayapura' },
+    };
+
+    // ── Truck fleet data — 12 active trucks ──
+    const TRUCK_ROUTES = [
+        { id:'PL-001', from:'jakarta',    to:'surabaya',    cargo:'Premium Pertamina',  status:'transit', color:'#F59E0B' },
+        { id:'PL-002', from:'semarang',   to:'jakarta',     cargo:'Solar B30',           status:'loaded',  color:'#10B981' },
+        { id:'PL-003', from:'bandung',    to:'semarang',    cargo:'Avtur',               status:'transit', color:'#F59E0B' },
+        { id:'PL-004', from:'surabaya',   to:'bali',        cargo:'Pertamax Turbo',      status:'loaded',  color:'#10B981' },
+        { id:'PL-005', from:'medan',      to:'pekanbaru',   cargo:'',                    status:'empty',   color:'#60A5FA' },
+        { id:'PL-006', from:'palembang',  to:'lampung',     cargo:'LPG 3kg',             status:'loaded',  color:'#10B981' },
+        { id:'PL-007', from:'lampung',    to:'jakarta',     cargo:'Solar Industri',      status:'transit', color:'#F59E0B' },
+        { id:'PL-008', from:'yogya',      to:'malang',      cargo:'Premium',             status:'transit', color:'#F59E0B' },
+        { id:'PL-009', from:'balikpapan', to:'banjarmasin', cargo:'',                    status:'empty',   color:'#60A5FA' },
+        { id:'PL-010', from:'makassar',   to:'manado',      cargo:'Avtur',               status:'loaded',  color:'#10B981' },
+        { id:'PL-011', from:'malang',     to:'semarang',    cargo:'LPG 12kg',            status:'transit', color:'#F59E0B' },
+        { id:'PL-012', from:'pekanbaru',  to:'palembang',   cargo:'Pertamax Plus',       status:'loaded',  color:'#10B981' },
+    ];
+
+    // ── State ──
+    let trucks       = [];
+    let hoveredTruck = null;
+    let activeFilter = 'all';
+    let animFrame    = null;
+    let lastStatUpdate = 0;
+    let distanceToday  = 2847;
+
+    // ── Create truck instances ──
+    function createTrucks() {
+        trucks = TRUCK_ROUTES.map((route, i) => {
+            const fromCity = CITIES[route.from];
+            const toCity   = CITIES[route.to];
+            const t = (i * 0.083 + Math.random() * 0.06) % 1.0;
+            return {
+                ...route,
+                fromCity, toCity,
+                t,
+                speed:    0.0007 + Math.random() * 0.0005,
+                speedKmh: Math.floor(62 + Math.random() * 32),
+                progress: Math.floor(t * 100),
+                pulse:    0,
+                pulseDir: 1,
+            };
+        });
+    }
+
+    // ── Convert normalized coords → canvas pixels ──
+    // Uses 'contain' scaling (Math.min) to match object-fit: contain on the image.
+    // Both image and canvas use the same scaling → dots always land on correct islands.
+    function normToCanvas(nx, ny) {
+        const W = canvas.width  / (window.devicePixelRatio || 1);
+        const H = canvas.height / (window.devicePixelRatio || 1);
+        const svgW = 1110, svgH = 484;
+        // contain = fit entire SVG inside canvas, maintain aspect, center remainder
+        const scale = Math.min(W / svgW, H / svgH);
+        const drawW = svgW * scale;
+        const drawH = svgH * scale;
+        const offX  = (W - drawW) / 2;
+        const offY  = (H - drawH) / 2;
+        return {
+            x: offX + nx * drawW,
+            y: offY + ny * drawH,
+        };
+    }
+
+    function truckPos(truck) {
+        const fx = truck.fromCity.x, fy = truck.fromCity.y;
+        const tx = truck.toCity.x,   ty = truck.toCity.y;
+        // Slight Bezier curve — arc perpendicular to route direction
+        const mx = (fx + tx) / 2 + (ty - fy) * 0.10;
+        const my = (fy + ty) / 2 - (tx - fx) * 0.10;
+        const t  = truck.t;
+        const nx = (1-t)*(1-t)*fx + 2*(1-t)*t*mx + t*t*tx;
+        const ny = (1-t)*(1-t)*fy + 2*(1-t)*t*my + t*t*ty;
+        const p  = normToCanvas(nx, ny);
+
+        // Heading angle — derivative of Bezier at t
+        const dx = 2*(1-t)*(mx - fx) + 2*t*(tx - mx);
+        const dy = 2*(1-t)*(my - fy) + 2*t*(ty - my);
+        return { x: p.x, y: p.y, angle: Math.atan2(dy, dx) };
+    }
+
+    // ── Resize canvas (HiDPI aware) ──
+    function resizeCanvas() {
+        const dpr  = window.devicePixelRatio || 1;
+        const rect = wrapper.getBoundingClientRect();
+        canvas.width        = rect.width  * dpr;
+        canvas.height       = rect.height * dpr;
+        canvas.style.width  = rect.width  + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.scale(dpr, dpr);
+    }
+
+    // ── Draw subtle dot-grid + radar rings (overlay only) ──
+    function drawGridOverlay() {
+        const W = canvas.width  / (window.devicePixelRatio || 1);
+        const H = canvas.height / (window.devicePixelRatio || 1);
+        // Very subtle dot grid
+        ctx.fillStyle = 'rgba(56,189,248,0.04)';
+        const step = 36;
+        for (let gx = step; gx < W; gx += step) {
+            for (let gy = step; gy < H; gy += step) {
+                ctx.beginPath();
+                ctx.arc(gx, gy, 1, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        // Subtle vignette dark edges
+        const vig = ctx.createRadialGradient(W/2, H/2, H*0.2, W/2, H/2, H*0.85);
+        vig.addColorStop(0, 'rgba(6,14,26,0)');
+        vig.addColorStop(1, 'rgba(6,14,26,0.55)');
+        ctx.fillStyle = vig;
+        ctx.fillRect(0, 0, W, H);
+    }
+
+    // ── Draw city dots (overlaid on real map) ──
+    function drawCities() {
+        Object.values(CITIES).forEach(city => {
+            const p = normToCanvas(city.x, city.y);
+            // Outer glow ring
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 7, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(56,189,248,0.20)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            // Inner dot
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(56,189,248,0.80)';
+            ctx.fill();
+        });
+    }
+
+    // ── Draw dashed route paths ──
+    function drawRoutes() {
+        trucks.forEach(truck => {
+            if (activeFilter !== 'all' && truck.status !== activeFilter) return;
+            const fx = truck.fromCity.x, fy = truck.fromCity.y;
+            const tx = truck.toCity.x,   ty = truck.toCity.y;
+            const mx = (fx + tx) / 2 + (ty - fy) * 0.10;
+            const my = (fy + ty) / 2 - (tx - fx) * 0.10;
+            const pFrom = normToCanvas(fx, fy);
+            const pMid  = normToCanvas(mx, my);
+            const pTo   = normToCanvas(tx, ty);
+            ctx.beginPath();
+            ctx.moveTo(pFrom.x, pFrom.y);
+            ctx.quadraticCurveTo(pMid.x, pMid.y, pTo.x, pTo.y);
+            ctx.strokeStyle = 'rgba(56,189,248,0.10)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 9]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        });
+    }
+
+    // ── Draw glowing trail behind each truck ──
+    function drawTrail(truck) {
+        if (activeFilter !== 'all' && truck.status !== activeFilter) return;
+        const fx = truck.fromCity.x, fy = truck.fromCity.y;
+        const tx = truck.toCity.x,   ty = truck.toCity.y;
+        const mx = (fx + tx) / 2 + (ty - fy) * 0.10;
+        const my = (fy + ty) / 2 - (tx - fx) * 0.10;
+        const tStart = Math.max(0, truck.t - 0.14);
+        const steps  = 22;
+        ctx.lineWidth = 2.5;
+        for (let i = 0; i < steps; i++) {
+            const t0 = tStart + (truck.t - tStart) * (i / steps);
+            const t1 = tStart + (truck.t - tStart) * ((i + 1) / steps);
+            const n0x = (1-t0)*(1-t0)*fx + 2*(1-t0)*t0*mx + t0*t0*tx;
+            const n0y = (1-t0)*(1-t0)*fy + 2*(1-t0)*t0*my + t0*t0*ty;
+            const n1x = (1-t1)*(1-t1)*fx + 2*(1-t1)*t1*mx + t1*t1*tx;
+            const n1y = (1-t1)*(1-t1)*fy + 2*(1-t1)*t1*my + t1*t1*ty;
+            const p0  = normToCanvas(n0x, n0y);
+            const p1  = normToCanvas(n1x, n1y);
+            const alpha = (i / steps) * 0.75;
+            // Parse hex color to rgba
+            const hex = truck.color.replace('#', '');
+            const r = parseInt(hex.slice(0,2), 16);
+            const g = parseInt(hex.slice(2,4), 16);
+            const b = parseInt(hex.slice(4,6), 16);
+            ctx.beginPath();
+            ctx.moveTo(p0.x, p0.y);
+            ctx.lineTo(p1.x, p1.y);
+            ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
+            ctx.stroke();
+        }
+    }
+
+    // ── Draw truck icon (arrow/chevron pointing in heading direction) ──
+    function drawTruck(truck) {
+        if (activeFilter !== 'all' && truck.status !== activeFilter) return;
+        const pos = truckPos(truck);
+        const { x, y, angle } = pos;
+        const isHovered = hoveredTruck && hoveredTruck.id === truck.id;
+        const size = isHovered ? 11 : 8;
+        const hex  = truck.color.replace('#', '');
+        const r = parseInt(hex.slice(0,2), 16);
+        const g = parseInt(hex.slice(2,4), 16);
+        const b = parseInt(hex.slice(4,6), 16);
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+
+        // Hover glow
+        if (isHovered) {
+            truck.pulse += 0.07 * truck.pulseDir;
+            if (truck.pulse >= 1) truck.pulseDir = -1;
+            if (truck.pulse <= 0) truck.pulseDir = 1;
+            const gr = 20 + truck.pulse * 9;
+            const grd = ctx.createRadialGradient(0, 0, 2, 0, 0, gr);
+            grd.addColorStop(0, `rgba(${r},${g},${b},0.65)`);
+            grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+            ctx.fillStyle = grd;
+            ctx.beginPath();
+            ctx.arc(0, 0, gr, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Chevron arrow shape
+        ctx.beginPath();
+        ctx.moveTo(size, 0);
+        ctx.lineTo(-size * 0.65, -size * 0.6);
+        ctx.lineTo(-size * 0.25, 0);
+        ctx.lineTo(-size * 0.65,  size * 0.6);
+        ctx.closePath();
+        ctx.fillStyle   = isHovered ? '#FFFFFF' : truck.color;
+        ctx.strokeStyle = isHovered ? truck.color : `rgba(0,0,0,0.35)`;
+        ctx.lineWidth   = isHovered ? 1.5 : 0.8;
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.restore();
+
+        // ID label on hover
+        if (isHovered) {
+            ctx.font      = 'bold 10px "Helvetica Neue", sans-serif';
+            ctx.fillStyle = '#F1F5F9';
+            ctx.textAlign = 'center';
+            ctx.shadowColor = 'rgba(0,0,0,0.8)';
+            ctx.shadowBlur  = 4;
+            ctx.fillText(truck.id, x, y - 16);
+            ctx.shadowBlur = 0;
+        }
+    }
+
+    // ── Main animation loop ──
+    function draw(ts) {
+        const W = canvas.width  / (window.devicePixelRatio || 1);
+        const H = canvas.height / (window.devicePixelRatio || 1);
+        ctx.clearRect(0, 0, W, H);
+
+        drawGridOverlay();
+        drawCities();
+        drawRoutes();
+
+        trucks.forEach(truck => {
+            truck.t += truck.speed;
+            if (truck.t >= 1) {
+                truck.t       = 0;
+                truck.speed   = 0.0007 + Math.random() * 0.0005;
+                truck.speedKmh = Math.floor(62 + Math.random() * 32);
+            }
+            truck.progress = Math.floor(truck.t * 100);
+            drawTrail(truck);
+        });
+
+        trucks.forEach(truck => drawTruck(truck));
+
+        if (ts - lastStatUpdate > 4000) {
+            lastStatUpdate = ts;
+            updateLiveStats();
+        }
+
+        animFrame = requestAnimationFrame(draw);
+    }
+
+    // ── Live stats tick ──
+    function updateLiveStats() {
+        distanceToday += Math.floor(Math.random() * 20 + 6);
+        const el = document.getElementById('stat-distance');
+        if (el) {
+            el.textContent = distanceToday.toLocaleString('id-ID');
+            el.classList.add('updated');
+            setTimeout(() => el.classList.remove('updated'), 600);
+        }
+        const transit = 6 + Math.floor(Math.random() * 4);
+        const elT = document.getElementById('stat-transit');
+        if (elT && Number(elT.textContent) !== transit) {
+            elT.textContent = transit;
+            elT.classList.add('updated');
+            setTimeout(() => elT.classList.remove('updated'), 600);
+        }
+    }
+
+    // ── Tooltip ──
+    function showTooltip(truck, mx, my) {
+        const tip = document.getElementById('truck-tooltip');
+        if (!tip) return;
+        document.getElementById('tt-id').textContent       = truck.id;
+        document.getElementById('tt-location').textContent = truck.fromCity.label + ' → ' + truck.toCity.label;
+        document.getElementById('tt-speed').textContent    = truck.speedKmh + ' km/h';
+        document.getElementById('tt-cargo').textContent    = truck.cargo || 'Kosong';
+        document.getElementById('tt-progress').style.width = truck.progress + '%';
+        document.getElementById('tt-progress-label').textContent = truck.progress + '% rute selesai';
+        const statusEl = document.getElementById('tt-status');
+        statusEl.textContent = truck.status === 'transit' ? 'TRANSIT' : truck.status === 'loaded' ? 'BERMUATAN' : 'KOSONG';
+        statusEl.className   = 'truck-tooltip-status' +
+            (truck.status === 'loaded' ? ' status-loaded' : truck.status === 'empty' ? ' status-empty' : '');
+        const wRect = wrapper.getBoundingClientRect();
+        const tipW = 210, tipH = 165;
+        let left = mx + 16, top = my - 20;
+        if (left + tipW > wRect.width)  left = mx - tipW - 16;
+        if (top  + tipH > wRect.height) top  = my - tipH;
+        if (top < 0) top = 4;
+        tip.style.left = left + 'px';
+        tip.style.top  = top  + 'px';
+        tip.classList.add('visible');
+    }
+
+    function hideTooltip() {
+        const tip = document.getElementById('truck-tooltip');
+        if (tip) tip.classList.remove('visible');
+    }
+
+    // ── Hit detection (radius in px) ──
+    function getTruckAt(mx, my) {
+        for (const truck of trucks) {
+            if (activeFilter !== 'all' && truck.status !== activeFilter) continue;
+            const pos = truckPos(truck);
+            const d = Math.hypot(pos.x - mx, pos.y - my);
+            if (d < 14) return truck;
+        }
+        return null;
+    }
+
+    // ── Mouse / touch events ──
+    canvas.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const hit = getTruckAt(mx, my);
+        if (hit) {
+            hoveredTruck = hit;
+            canvas.style.cursor = 'pointer';
+            showTooltip(hit, mx, my);
+        } else {
+            hoveredTruck = null;
+            canvas.style.cursor = 'crosshair';
+            hideTooltip();
+        }
+    });
+    canvas.addEventListener('mouseleave', () => { hoveredTruck = null; hideTooltip(); });
+
+    // ── Zoom controls (zoom not needed for image-based map — removed for clarity) ──
+    // The real SVG map scales automatically via CSS object-fit: cover
+    const zoomInBtn  = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    let mapScale = 1.0;
+    const bgImg = document.getElementById('truck-map-bg-img');
+
+    function applyZoom() {
+        if (bgImg) {
+            bgImg.style.transform = `translate(-50%, -50%) scale(${mapScale})`;
+        }
+    }
+    if (zoomInBtn)  zoomInBtn.addEventListener('click',  () => { mapScale = Math.min(mapScale + 0.2, 2.5); applyZoom(); });
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => { mapScale = Math.max(mapScale - 0.2, 0.8); applyZoom(); });
+    canvas.addEventListener('wheel', e => {
+        e.preventDefault();
+        mapScale = Math.max(0.8, Math.min(2.5, mapScale + (e.deltaY < 0 ? 0.12 : -0.12)));
+        applyZoom();
+    }, { passive: false });
+
+    // ── Filter controls ──
+    ['ctrl-all', 'ctrl-transit', 'ctrl-loaded'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.truck-ctrl-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeFilter = id === 'ctrl-all' ? 'all' : id === 'ctrl-transit' ? 'transit' : 'loaded';
+            const count = activeFilter === 'all' ? trucks.length : trucks.filter(t => t.status === activeFilter).length;
+            const numEl = document.getElementById('truck-active-display');
+            if (numEl) numEl.textContent = count;
+        });
+    });
+
+    // ── Start / stop with IntersectionObserver ──
+    function start() {
+        resizeCanvas();
+        createTrucks();
+        animFrame = requestAnimationFrame(draw);
+    }
+
+    const section = document.getElementById('truck-tracking-section');
+    if (section && 'IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animFrame) {
+                    start();
+                } else if (!entry.isIntersecting && animFrame) {
+                    cancelAnimationFrame(animFrame);
+                    animFrame = null;
+                }
+            });
+        }, { threshold: 0.1 });
+        obs.observe(section);
+    } else {
+        start();
+    }
+
+    // Resize handler
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => { if (animFrame) resizeCanvas(); }, 200);
+    });
+
+})();
+
