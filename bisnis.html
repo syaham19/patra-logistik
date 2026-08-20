@@ -855,8 +855,29 @@
             margin-top: 2px;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 </head>
-<body>
+<body class="loading">
+
+    <div id="page-loader" class="page-loader" aria-live="polite" aria-label="Memuat halaman">
+        <div class="page-loader__inner">
+            <div class="page-loader__brand">
+                <img src="assets/logo-transparent.png" alt="Patra Logistik" class="page-loader__logo">
+            </div>
+            <div class="page-loader__counter">
+                <span class="page-loader__percent" id="loader-percent">0%</span>
+            </div>
+            <div class="page-loader__track-wrapper">
+                <div class="page-loader__truck-wrapper" id="loader-truck-wrapper">
+                    <div id="loader-truck-anim" class="page-loader__truck"></div>
+                </div>
+                <div class="page-loader__bar">
+                    <div class="page-loader__bar-fill" id="loader-bar-fill"></div>
+                </div>
+                <div class="page-loader__road-line"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Header / Navigation Bar -->
     <header id="navbar">

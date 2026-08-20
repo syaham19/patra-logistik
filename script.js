@@ -4,21 +4,79 @@ if (history.scrollRestoration) {
 }
 window.scrollTo(0, 0);
 
+// Track internal link navigation to skip loader when clicking links between pages
+document.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (link && link.href && !link.target && link.origin === window.location.origin) {
+        const isSamePageHash = link.pathname === window.location.pathname && link.hash;
+        if (!isSamePageHash) {
+            sessionStorage.setItem("is_internal_nav", "true");
+        }
+    }
+});
+
 (function initPageLoader() {
     const loader = document.getElementById("page-loader");
+    if (!loader) return;
+
+    // Detect navigation type: 'reload' (refresh) vs 'navigate' (initial open or link click)
+    const navEntries = performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
+    const isReload = navEntries.length > 0 ? navEntries[0].type === "reload" : (performance.navigation && performance.navigation.type === 1);
+    const isInternalNav = sessionStorage.getItem("is_internal_nav") === "true";
+
+    // Clear flag for subsequent reloads or visits
+    sessionStorage.removeItem("is_internal_nav");
+
+    // If navigating internally between pages (and NOT reloading/refreshing), skip the loader immediately
+    if (isInternalNav && !isReload) {
+        document.body.classList.remove("loading");
+        loader.remove();
+        return;
+    }
+
     const percentEl = document.getElementById("loader-percent");
     const barFill = document.getElementById("loader-bar-fill");
+    const truckWrapper = document.getElementById("loader-truck-wrapper");
+    const truckAnimEl = document.getElementById("loader-truck-anim");
 
-    if (!loader || !percentEl || !barFill) return;
+    if (!percentEl || !barFill) return;
 
     let progress = 0;
     let isPageLoaded = false;
     let hideTimeout;
 
+    // Load Lottie animation for truck
+    if (truckAnimEl) {
+        const startLottie = () => {
+            if (window.lottie) {
+                window.lottie.loadAnimation({
+                    container: truckAnimEl,
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: 'assets/truck-loader.json'
+                });
+            }
+        };
+
+        if (window.lottie) {
+            startLottie();
+        } else {
+            const script = document.createElement("script");
+            script.src = "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js";
+            script.onload = startLottie;
+            document.head.appendChild(script);
+        }
+    }
+
     const updateProgress = (value) => {
-        progress = Math.min(100, Math.max(0, Math.round(value)));
-        percentEl.textContent = `${progress}%`;
+        progress = Math.min(100, Math.max(0, value));
+        const displayPercent = Math.min(100, Math.floor(progress));
+        percentEl.textContent = `${displayPercent}%`;
         barFill.style.width = `${progress}%`;
+        if (truckWrapper) {
+            truckWrapper.style.left = `${progress}%`;
+        }
     };
 
     const hideLoader = () => {
@@ -28,18 +86,29 @@ window.scrollTo(0, 0);
 
         hideTimeout = window.setTimeout(() => {
             loader.remove();
-        }, 600);
+        }, 700);
     };
 
-    const tick = () => {
+    let lastTime = null;
+    const totalDuration = 2400; // ~2.4 seconds for smooth drive
+
+    const tick = (timestamp) => {
         if (progress >= 100) return;
 
-        const target = isPageLoaded ? 100 : 90;
-        const step = progress < 70 ? 4 : progress < 90 ? 2 : 1;
+        if (!lastTime) lastTime = timestamp;
+        const deltaTime = timestamp - lastTime;
+        lastTime = timestamp;
 
-        if (progress < target) {
-            updateProgress(progress + step);
+        // Base progress rate (~100% in 2.4s)
+        let rate = 100 / totalDuration; // % per ms
+        if (!isPageLoaded && progress >= 88) {
+            rate *= 0.15; // Slow down slightly near 88% if page resources are still loading
+        } else if (isPageLoaded && progress < 100) {
+            rate *= 1.4; // Smooth finish when loaded
         }
+
+        const nextProgress = progress + (rate * deltaTime);
+        updateProgress(nextProgress);
 
         if (progress < 100) {
             window.requestAnimationFrame(tick);
@@ -60,7 +129,7 @@ window.scrollTo(0, 0);
             isPageLoaded = true;
             hideLoader();
         }
-    }, 5000);
+    }, 6000);
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
