@@ -2493,11 +2493,24 @@
                 url.searchParams.set('tab', target);
                 window.history.pushState({}, '', url);
 
-                // Scroll to top of page
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                // Center active subnav button in horizontal scroll container
+                const activeBtn = document.querySelector(`.page-subnav__list .about-menu-btn[data-target="${target}"]`);
+                if (activeBtn) {
+                    activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+
+                // Maintain viewport at the sub-menu section if scrolled down, preventing scroll to top of page
+                const subnav = document.querySelector('.page-subnav') || document.querySelector('.about-layout');
+                if (subnav) {
+                    const navHeight = document.getElementById('navbar')?.offsetHeight || 72;
+                    const subnavTop = subnav.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    if (window.pageYOffset > subnavTop + 10) {
+                        window.scrollTo({
+                            top: subnavTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             }
 
             menuBtns.forEach(btn => {
