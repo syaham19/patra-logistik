@@ -1251,12 +1251,27 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // ── State ──
-    let trucks       = [];
-    let hoveredTruck = null;
-    let activeFilter = 'all';
-    let animFrame    = null;
+    let trucks        = [];
+    let hoveredTruck  = null;
+    let focusedTruck  = null;   // truck currently in focus/detail mode
+    let autoFollow    = true;   // auto-pan to follow focused truck
+    let activeFilter  = 'all';
+    let animFrame     = null;
     let lastStatUpdate = 0;
     let distanceToday  = 2847;
+
+    // Approximate route distances in km (for ETA estimation)
+    const ROUTE_DISTANCES = {
+        'jakarta-surabaya': 780, 'semarang-jakarta': 450, 'bandung-semarang': 380,
+        'surabaya-bali': 300,    'medan-pekanbaru': 370,   'palembang-lampung': 220,
+        'lampung-jakarta': 250,  'yogya-malang': 200,      'balikpapan-banjarmasin': 290,
+        'makassar-manado': 870,  'malang-semarang': 380,   'pekanbaru-palembang': 400,
+    };
+    function getRouteDist(truck) {
+        const key = truck.from + '-' + truck.to;
+        return ROUTE_DISTANCES[key] || 500;
+    }
+
 
     // ── Create truck instances ──
     function createTrucks() {
@@ -1425,56 +1440,102 @@ document.addEventListener('DOMContentLoaded', () => {
         const pos = truckPos(truck);
         const { x, y, angle } = pos;
         const isHovered = hoveredTruck && hoveredTruck.id === truck.id;
-        const size = isHovered ? 11 : 8;
-        const hex  = truck.color.replace('#', '');
+        const isFocused = focusedTruck  && focusedTruck.id  === truck.id;
+        const isDimmed  = focusedTruck  && !isFocused;
+
+        const hex = truck.color.replace('#', '');
         const r = parseInt(hex.slice(0,2), 16);
         const g = parseInt(hex.slice(2,4), 16);
         const b = parseInt(hex.slice(4,6), 16);
 
+        // Dimmed ghost for background trucks in focus mode
+        if (isDimmed && !isHovered) {
+            ctx.save();
+            ctx.globalAlpha = 0.18;
+            ctx.translate(x, y); ctx.rotate(angle);
+            ctx.beginPath();
+            ctx.moveTo(7, 0); ctx.lineTo(-4.5, -4.2); ctx.lineTo(-1.75, 0); ctx.lineTo(-4.5, 4.2);
+            ctx.closePath();
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
+            ctx.fill();
+            ctx.restore();
+            return;
+        }
+
+        const size = (isFocused || isHovered) ? 12 : 8;
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(angle);
 
-        // Hover glow
-        if (isHovered) {
+        if (isFocused || isHovered) {
             truck.pulse += 0.07 * truck.pulseDir;
             if (truck.pulse >= 1) truck.pulseDir = -1;
             if (truck.pulse <= 0) truck.pulseDir = 1;
-            const gr = 20 + truck.pulse * 9;
+            const gr  = (isFocused ? 28 : 20) + truck.pulse * 10;
             const grd = ctx.createRadialGradient(0, 0, 2, 0, 0, gr);
-            grd.addColorStop(0, `rgba(${r},${g},${b},0.65)`);
+            grd.addColorStop(0, `rgba(${r},${g},${b},${isFocused ? 0.75 : 0.55})`);
             grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
             ctx.fillStyle = grd;
-            ctx.beginPath();
-            ctx.arc(0, 0, gr, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(0, 0, gr, 0, Math.PI * 2); ctx.fill();
         }
 
-        // Chevron arrow shape
         ctx.beginPath();
         ctx.moveTo(size, 0);
         ctx.lineTo(-size * 0.65, -size * 0.6);
         ctx.lineTo(-size * 0.25, 0);
         ctx.lineTo(-size * 0.65,  size * 0.6);
         ctx.closePath();
-        ctx.fillStyle   = isHovered ? '#FFFFFF' : truck.color;
-        ctx.strokeStyle = isHovered ? truck.color : `rgba(0,0,0,0.35)`;
-        ctx.lineWidth   = isHovered ? 1.5 : 0.8;
-        ctx.fill();
-        ctx.stroke();
-
+        ctx.fillStyle   = (isFocused || isHovered) ? '#FFFFFF' : truck.color;
+        ctx.strokeStyle = isFocused ? truck.color : (isHovered ? truck.color : 'rgba(0,0,0,0.35)');
+        ctx.lineWidth   = isFocused ? 2 : (isHovered ? 1.5 : 0.8);
+        ctx.fill(); ctx.stroke();
         ctx.restore();
 
-        // ID label on hover
-        if (isHovered) {
-            ctx.font      = 'bold 10px "Helvetica Neue", sans-serif';
-            ctx.fillStyle = '#F1F5F9';
+        if (isFocused || isHovered) {
+            ctx.font = `bold ${isFocused ? 11 : 10}px "Helvetica Neue", sans-serif`;
+            ctx.fillStyle = '#FFFFFF';
             ctx.textAlign = 'center';
-            ctx.shadowColor = 'rgba(0,0,0,0.8)';
-            ctx.shadowBlur  = 4;
-            ctx.fillText(truck.id, x, y - 16);
+            ctx.shadowColor = 'rgba(0,0,0,0.9)';
+            ctx.shadowBlur  = 5;
+            ctx.fillText(truck.id, x, y - (isFocused ? 19 : 16));
             ctx.shadowBlur = 0;
         }
+    }
+
+    // ── Highlighted route for focused truck ──
+    function drawFocusedRoute(truck) {
+        const fx = truck.fromCity.x, fy = truck.fromCity.y;
+        const tx = truck.toCity.x,   ty = truck.toCity.y;
+        const mx = (fx + tx) / 2 + (ty - fy) * 0.10;
+        const my = (fy + ty) / 2 - (tx - fx) * 0.10;
+        const pFrom = normToCanvas(fx, fy);
+        const pMid  = normToCanvas(mx, my);
+        const pTo   = normToCanvas(tx, ty);
+        const hex   = truck.color.replace('#', '');
+        const r = parseInt(hex.slice(0,2), 16);
+        const g = parseInt(hex.slice(2,4), 16);
+        const b = parseInt(hex.slice(4,6), 16);
+
+        // Glow pass
+        ctx.beginPath();
+        ctx.moveTo(pFrom.x, pFrom.y);
+        ctx.quadraticCurveTo(pMid.x, pMid.y, pTo.x, pTo.y);
+        ctx.strokeStyle = `rgba(${r},${g},${b},0.18)`;
+        ctx.lineWidth = 14; ctx.setLineDash([]); ctx.stroke();
+        // Core line
+        ctx.beginPath();
+        ctx.moveTo(pFrom.x, pFrom.y);
+        ctx.quadraticCurveTo(pMid.x, pMid.y, pTo.x, pTo.y);
+        ctx.strokeStyle = `rgba(${r},${g},${b},0.9)`;
+        ctx.lineWidth = 2.5; ctx.stroke();
+
+        [[pFrom, truck.fromCity.label], [pTo, truck.toCity.label]].forEach(([p, label]) => {
+            ctx.font = 'bold 10px "Helvetica Neue", sans-serif';
+            ctx.fillStyle = '#E2E8F0'; ctx.textAlign = 'center';
+            ctx.shadowColor = 'rgba(0,0,0,0.9)'; ctx.shadowBlur = 6;
+            ctx.fillText(label, p.x, p.y - 12);
+            ctx.shadowBlur = 0;
+        });
     }
 
     // ── Main animation loop ──
@@ -1483,9 +1544,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const H = canvas.height / (window.devicePixelRatio || 1);
         ctx.clearRect(0, 0, W, H);
 
-        // Apply same zoom transform as the background image
-        // CSS does: translate(-50%,-50%) scale(mapScale) from center
-        // Canvas mirrors: translate to center, scale, translate back
+        // Auto-follow: smoothly pan toward focused truck
+        if (focusedTruck && autoFollow) {
+            const pos      = truckPos(focusedTruck);
+            const targetPX = W / 2 - pos.x * mapScale;
+            const targetPY = H / 2 - pos.y * mapScale;
+            panX += (targetPX - panX) * 0.04;
+            panY += (targetPY - panY) * 0.04;
+            applyZoom();
+        }
+
         ctx.save();
         ctx.translate(W / 2 + panX, H / 2 + panY);
         ctx.scale(mapScale, mapScale);
@@ -1494,6 +1562,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawGridOverlay();
         drawCities();
         drawRoutes();
+        if (focusedTruck) drawFocusedRoute(focusedTruck);
 
         trucks.forEach(truck => {
             truck.t += truck.speed;
@@ -1507,16 +1576,103 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         trucks.forEach(truck => drawTruck(truck));
-
         ctx.restore();
+
+        if (focusedTruck) updateFocusPanel(focusedTruck);
 
         if (ts - lastStatUpdate > 4000) {
             lastStatUpdate = ts;
             updateLiveStats();
         }
-
         animFrame = requestAnimationFrame(draw);
     }
+
+    // ── Focus a truck: auto-zoom to route ──
+    function focusTruck(truck) {
+        focusedTruck = truck;
+        autoFollow   = document.getElementById('fp-follow-check')?.checked ?? true;
+
+        const W = canvas.width  / (window.devicePixelRatio || 1);
+        const H = canvas.height / (window.devicePixelRatio || 1);
+        const pFrom = normToCanvas(truck.fromCity.x, truck.fromCity.y);
+        const pTo   = normToCanvas(truck.toCity.x, truck.toCity.y);
+        const routeW = Math.abs(pTo.x - pFrom.x) + 160;
+        const routeH = Math.abs(pTo.y - pFrom.y) + 120;
+        const newScale = Math.min(W / routeW, H / routeH, 3.0);
+        mapScale = Math.max(newScale, 1.8);
+        const cx = (pFrom.x + pTo.x) / 2;
+        const cy = (pFrom.y + pTo.y) / 2;
+        panX = W / 2 - cx * mapScale;
+        panY = H / 2 - cy * mapScale;
+        applyZoom();
+
+        document.getElementById('truck-focus-panel')?.classList.add('visible');
+        wrapper.classList.add('focus-active');
+        document.getElementById('truck-click-hint')?.classList.add('hidden');
+        document.querySelectorAll('.fleet-list-item').forEach(el =>
+            el.classList.toggle('active', el.dataset.id === truck.id));
+        updateFocusPanel(truck);
+    }
+
+    // ── Exit focus mode ──
+    function exitFocus() {
+        focusedTruck = null;
+        document.getElementById('truck-focus-panel')?.classList.remove('visible');
+        wrapper.classList.remove('focus-active');
+        document.getElementById('truck-click-hint')?.classList.remove('hidden');
+        document.querySelectorAll('.fleet-list-item').forEach(el => el.classList.remove('active'));
+        mapScale = 1.0; panX = 0; panY = 0;
+        applyZoom();
+    }
+
+    // ── Update focus panel DOM with live data ──
+    function updateFocusPanel(truck) {
+        const dist   = getRouteDist(truck);
+        const done   = truck.progress;
+        const remKm  = Math.round(dist * (1 - done / 100));
+        const etaH   = Math.floor(remKm / truck.speedKmh);
+        const etaM   = Math.round((remKm / truck.speedKmh - etaH) * 60);
+        const etaStr = etaH > 0 ? `~${etaH}j ${etaM}m` : `~${etaM}m`;
+
+        const el = id => document.getElementById(id);
+        if (!el('fp-id')) return;
+        el('fp-id').textContent               = truck.id;
+        el('fp-from').textContent             = truck.fromCity.label;
+        el('fp-to').textContent               = truck.toCity.label;
+        el('fp-speed').textContent            = truck.speedKmh + ' km/h';
+        el('fp-cargo').textContent            = truck.cargo || 'Kosong';
+        el('fp-eta').textContent              = etaStr;
+        el('fp-dist').textContent             = remKm.toLocaleString('id-ID') + ' km';
+        el('fp-progress-label').textContent   = done + '% selesai';
+        el('fp-route-fill').style.width       = done + '%';
+        el('fp-route-truck').style.left       = done + '%';
+        const statusEl = el('fp-status');
+        statusEl.textContent = truck.status === 'loaded' ? 'BERMUATAN' :
+                               truck.status === 'empty'  ? 'KOSONG' : 'TRANSIT';
+        statusEl.className   = 'truck-focus-status-badge' +
+            (truck.status === 'loaded' ? ' loaded' : truck.status === 'empty' ? ' empty' : '');
+    }
+
+    // ── Build fleet list sidebar ──
+    function buildFleetList() {
+        const body = document.getElementById('fleet-list-body');
+        if (!body) return;
+        body.innerHTML = trucks.map(t => `
+            <div class="fleet-list-item" data-id="${t.id}">
+                <div class="fleet-list-dot" style="background:${t.color}"></div>
+                <div class="fleet-list-info">
+                    <div class="fleet-list-id">${t.id}</div>
+                    <div class="fleet-list-route">${t.fromCity.label} → ${t.toCity.label}</div>
+                </div>
+            </div>`).join('');
+        body.querySelectorAll('.fleet-list-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const truck = trucks.find(t => t.id === item.dataset.id);
+                if (truck) { focusTruck(truck); document.getElementById('fleet-list-panel')?.classList.remove('open'); }
+            });
+        });
+    }
+
 
     // ── Live stats tick ──
     function updateLiveStats() {
@@ -1685,8 +1841,49 @@ document.addEventListener('DOMContentLoaded', () => {
     function start() {
         resizeCanvas();
         createTrucks();
+        buildFleetList();
         animFrame = requestAnimationFrame(draw);
+
+        // ── Click on canvas → focus truck ──
+        canvas.addEventListener('click', e => {
+            if (isDragging) return;
+            const hit = getTruckAt(e.clientX, e.clientY);
+            if (hit) {
+                focusTruck(hit);
+            } else if (focusedTruck) {
+                // Click empty area exits focus
+                exitFocus();
+            }
+        });
+
+        // ── Close focus panel ──
+        document.getElementById('truck-focus-close')?.addEventListener('click', exitFocus);
+
+        // ── ESC key exits focus ──
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && focusedTruck) exitFocus();
+        });
+
+        // ── Zoom reset button ──
+        document.getElementById('zoom-reset')?.addEventListener('click', () => {
+            if (focusedTruck) exitFocus();
+            else { mapScale = 1.0; panX = 0; panY = 0; applyZoom(); }
+        });
+
+        // ── Fleet list toggle ──
+        document.getElementById('fleet-list-toggle')?.addEventListener('click', () => {
+            document.getElementById('fleet-list-panel')?.classList.toggle('open');
+        });
+        document.getElementById('fleet-list-close')?.addEventListener('click', () => {
+            document.getElementById('fleet-list-panel')?.classList.remove('open');
+        });
+
+        // ── Follow toggle ──
+        document.getElementById('fp-follow-check')?.addEventListener('change', e => {
+            autoFollow = e.target.checked;
+        });
     }
+
 
     const section = document.getElementById('truck-tracking-section');
     if (section && 'IntersectionObserver' in window) {

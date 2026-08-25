@@ -908,6 +908,100 @@
                         <div class="truck-map-zoom">
                             <button class="truck-zoom-btn" id="zoom-in">+</button>
                             <button class="truck-zoom-btn" id="zoom-out">−</button>
+                            <button class="truck-zoom-btn" id="zoom-reset" title="Reset View">⌂</button>
+                        </div>
+
+                        <!-- Fleet List Toggle -->
+                        <button class="fleet-list-toggle" id="fleet-list-toggle" title="Daftar Armada">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            <span>Armada</span>
+                        </button>
+
+                        <!-- Fleet List Sidebar -->
+                        <div class="fleet-list-panel" id="fleet-list-panel">
+                            <div class="fleet-list-header">
+                                <span>Daftar Armada Aktif</span>
+                                <button class="fleet-list-close" id="fleet-list-close">×</button>
+                            </div>
+                            <div class="fleet-list-body" id="fleet-list-body">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Focus Panel — appears on truck click -->
+                        <div class="truck-focus-panel" id="truck-focus-panel">
+                            <div class="truck-focus-header">
+                                <div class="truck-focus-id-group">
+                                    <div class="truck-focus-truck-icon">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                                    </div>
+                                    <div>
+                                        <div class="truck-focus-id" id="fp-id">PL-001</div>
+                                        <div class="truck-focus-status-badge" id="fp-status">TRANSIT</div>
+                                    </div>
+                                </div>
+                                <button class="truck-focus-close" id="truck-focus-close">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                </button>
+                            </div>
+
+                            <!-- Route Visualization -->
+                            <div class="truck-focus-route">
+                                <div class="truck-focus-city from">
+                                    <div class="truck-focus-city-dot"></div>
+                                    <span id="fp-from">Jakarta</span>
+                                </div>
+                                <div class="truck-focus-route-line">
+                                    <div class="truck-focus-route-track">
+                                        <div class="truck-focus-route-fill" id="fp-route-fill"></div>
+                                        <div class="truck-focus-route-truck" id="fp-route-truck">▶</div>
+                                    </div>
+                                </div>
+                                <div class="truck-focus-city to">
+                                    <div class="truck-focus-city-dot"></div>
+                                    <span id="fp-to">Surabaya</span>
+                                </div>
+                            </div>
+                            <div class="truck-focus-progress-label" id="fp-progress-label">64% selesai</div>
+
+                            <!-- Key Metrics -->
+                            <div class="truck-focus-metrics">
+                                <div class="truck-focus-metric">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    <span class="truck-focus-metric-label">Kecepatan</span>
+                                    <span class="truck-focus-metric-value" id="fp-speed">72 km/h</span>
+                                </div>
+                                <div class="truck-focus-metric">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                                    <span class="truck-focus-metric-label">Muatan</span>
+                                    <span class="truck-focus-metric-value" id="fp-cargo">Premium</span>
+                                </div>
+                                <div class="truck-focus-metric">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    <span class="truck-focus-metric-label">ETA</span>
+                                    <span class="truck-focus-metric-value" id="fp-eta">~2j 15m</span>
+                                </div>
+                                <div class="truck-focus-metric">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                    <span class="truck-focus-metric-label">Sisa Jarak</span>
+                                    <span class="truck-focus-metric-value" id="fp-dist">~180 km</span>
+                                </div>
+                            </div>
+
+                            <!-- Follow toggle -->
+                            <div class="truck-focus-follow">
+                                <label class="truck-follow-toggle">
+                                    <input type="checkbox" id="fp-follow-check" checked>
+                                    <span class="truck-follow-slider"></span>
+                                    <span class="truck-follow-label">Auto-follow truk</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Hint overlay — shown when no truck selected -->
+                        <div class="truck-click-hint" id="truck-click-hint">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l6 6m-11-4a7 7 0 1 1 0-14 7 7 0 0 1 0 14z"/></svg>
+                            Klik truk untuk melihat detail perjalanan
                         </div>
                     </div>
 
