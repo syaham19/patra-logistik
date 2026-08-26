@@ -7113,7 +7113,7 @@ body.hero-option-3 .hero-timeline-container .timeline-card-right {
     100% { background-position: 0% 0; }
 }
 
-/* Glassmorphism Hover Card - Ultra Clean & Crystalline */
+/* Glassmorphism Hover Card - Ultra Clean, Crystalline & Geometric Sharp */
 .freq-item .timeline-card {
     position: absolute;
     bottom: 100%;
@@ -7126,7 +7126,7 @@ body.hero-option-3 .hero-timeline-container .timeline-card-right {
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-top: 1px solid rgba(255, 255, 255, 0.45);
     border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 18px;
+    border-radius: 0;
     padding: 8px;
     opacity: 0;
     visibility: hidden;
@@ -7176,7 +7176,7 @@ body.hero-option-3 .hero-timeline-container .timeline-card-right {
     width: 100%;
     height: 140px;
     object-fit: cover;
-    border-radius: 13px;
+    border-radius: 0;
     margin-bottom: 10px;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
@@ -7212,7 +7212,7 @@ body.hero-option-3 .hero-timeline-container .timeline-card-right {
     text-decoration: none;
     font-weight: 600;
     padding: 5px 13px;
-    border-radius: 20px;
+    border-radius: 0;
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(12px);
