@@ -241,7 +241,7 @@
             padding: 32px;
             border-radius: 0;
         }
-        #tab-komisaris, #tab-direksi {
+        #tab-komisaris-direksi, #tab-komisaris, #tab-direksi {
             background: transparent;
             padding: 64px 0;
             margin-bottom: 0;
@@ -249,7 +249,7 @@
             border-radius: 0;
             position: relative;
         }
-        #tab-komisaris::before, #tab-direksi::before {
+        #tab-komisaris-direksi::before, #tab-komisaris::before, #tab-direksi::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1380,6 +1380,255 @@
             grid-column: 3 / 4;
             grid-row: 2 / 3;
         }
+    
+        /* Board Modal Styles */
+        .board-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .board-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .board-modal-content {
+            background: #fff;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .board-modal-overlay.active .board-modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        @media (min-width: 768px) {
+            .board-modal-content {
+                flex-direction: row;
+            }
+        }
+        
+        .board-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        
+        .board-modal-close:hover {
+            background: #ED1C24;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .board-modal-image-col {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            background: #f3f4f6;
+        }
+        
+        @media (min-width: 768px) {
+            .board-modal-image-col {
+                width: 40%;
+                height: auto;
+            }
+        }
+        
+        .board-modal-image-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+        
+        .board-modal-info-col {
+            width: 100%;
+            padding: 32px;
+            overflow-y: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .board-modal-info-col {
+                width: 60%;
+                padding: 40px;
+            }
+        }
+        
+        .board-modal-header {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .board-modal-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 8px 0;
+            line-height: 1.2;
+        }
+        
+        .board-modal-role {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ED1C24;
+            margin: 0;
+        }
+        
+        .board-modal-section {
+            margin-bottom: 24px;
+        }
+        
+        .board-modal-section h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #374151;
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .board-modal-section h4 i {
+            color: #0056A6;
+        }
+        
+        .board-modal-section p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #4B5563;
+            margin: 0;
+            white-space: pre-line;
+        }
+        
+        
+        /* Timeline Styles */
+        .board-timeline {
+            position: relative;
+            padding-left: 24px !important;
+            list-style: none !important;
+            margin: 0 !important;
+        }
+        .board-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 7px;
+            height: 100%;
+            width: 2px;
+            background: #e5e7eb;
+        }
+        .board-timeline li {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .board-timeline li:last-child {
+            margin-bottom: 0;
+        }
+        .board-timeline li::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: -21px; /* 24px padding - 3px center */
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ED1C24;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #ED1C24;
+        }
+        .timeline-year {
+            font-weight: 800;
+            color: #0056A6;
+            font-size: 13px;
+            display: inline-block;
+            margin-bottom: 4px;
+            background: #f0f7ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .timeline-pos {
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+        .timeline-desc {
+            font-size: 13px;
+            color: #6B7280;
+            line-height: 1.5;
+        }
+
+        /* Make board cards clickable */
+        .board-card {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .board-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+        .board-card::after {
+            content: '\f05a'; /* Info circle icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: white;
+            color: #0056A6;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        .board-card:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
     </style>
 </head>
 <body>
@@ -1401,8 +1650,7 @@
                         <li><a href="tentang-kami.html?tab=visi-misi" data-i18n="nav.about.vision">Visi Misi</a></li>
                         <li><a href="tentang-kami.html?tab=nilai" data-i18n="nav.about.values">Tata Nilai</a></li>
                         <li><a href="tentang-kami.html?tab=sejarah" data-i18n="nav.about.history">Sejarah</a></li>
-                        <li><a href="tentang-kami.html?tab=komisaris" data-i18n="nav.about.board" data-i18n="about_64">Dewan Komisaris</a></li>
-                        <li><a href="tentang-kami.html?tab=direksi" data-i18n="nav.about.directors">Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris-direksi" data-i18n="nav.about.board_directors">Dewan Komisaris & Direksi</a></li>
                         <li><a href="tentang-kami.html?tab=struktur" data-i18n="nav.about.structure">Struktur Organisasi</a></li>
                         <li><a href="tentang-kami.html?tab=sertifikat" data-i18n="nav.about.certification">Sertifikasi</a></li>
                         <li><a href="tentang-kami.html?tab=penghargaan" data-i18n="nav.about.awards">Penghargaan</a></li>
@@ -1483,8 +1731,7 @@
                 <button class="about-menu-btn" data-target="visi-misi" data-i18n="nav.about.vision">Visi Misi</button>
                 <button class="about-menu-btn" data-target="nilai" data-i18n="nav.about.values">Tata Nilai</button>
                 <button class="about-menu-btn" data-target="sejarah" data-i18n="nav.about.history">Sejarah</button>
-                <button class="about-menu-btn" data-target="komisaris" data-i18n="nav.about.board" data-i18n="about_64">Dewan Komisaris</button>
-                <button class="about-menu-btn" data-target="direksi" data-i18n="nav.about.directors">Direksi</button>
+                <button class="about-menu-btn" data-target="komisaris-direksi" data-i18n="nav.about.board_directors">Dewan Komisaris & Direksi</button>
                 <button class="about-menu-btn" data-target="struktur" data-i18n="nav.about.structure">Struktur Organisasi</button>
                 <button class="about-menu-btn" data-target="sertifikat" data-i18n="nav.about.certification">Sertifikasi</button>
                 <button class="about-menu-btn" data-target="penghargaan" data-i18n="nav.about.awards">Penghargaan</button>
@@ -1857,51 +2104,62 @@
                         </div>
                     </div>
 
-                    <!-- TAB 5: DEWAN KOMISARIS -->
-                    <div class="about-tab-content" id="tab-komisaris">
-                        <h2 class="content-title" data-i18n="about_64">Dewan Komisaris</h2>
-                        <div class="board-grid">
-                            <div class="board-card">
-                                <div class="board-avatar" style="overflow: hidden;">
-                                    <img src="assets/Komisarisut.png" alt="Budi YP Hutagaol" style="width: 100%; height: 100%; object-fit: cover;">
+                    <!-- TAB 5: DEWAN KOMISARIS & DIREKSI -->
+                    <div class="about-tab-content" id="tab-komisaris-direksi">
+                        <h2 class="content-title" data-i18n="about_board_directors">Dewan Komisaris & Direksi</h2>
+                        
+                        <!-- Dewan Komisaris Section -->
+                        <div class="board-group" style="margin-bottom: 48px;">
+                            <h3 class="board-subtitle" style="font-size: 20px; font-weight: 700; color: #0056A6; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="display: inline-block; width: 4px; height: 20px; background: #ED1C24; border-radius: 2px;"></span>
+                                <span data-i18n="about_64">Dewan Komisaris</span>
+                            </h3>
+                            <div class="board-grid" style="margin-top: 0;">
+                                <div class="board-card" data-member="budi" style="position: relative;">
+                                    <div class="board-avatar" style="overflow: hidden;">
+                                        <img src="assets/Komisarisut.png" alt="Budi YP Hutagaol" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div class="board-info">
+                                        <div class="board-name" data-i18n="about_65">Budi YP Hutagaol</div>
+                                        <div class="board-role" data-i18n="about_66">Komisaris Utama</div>
+                                    </div>
                                 </div>
-                                <div class="board-info">
-                                    <div class="board-name" data-i18n="about_65">Budi YP Hutagaol</div>
-                                    <div class="board-role" data-i18n="about_66">Komisaris Utama</div>
-                                </div>
-                            </div>
-                            <div class="board-card">
-                                <div class="board-avatar" style="overflow: hidden;">
-                                    <img src="assets/Komisarisind.png" alt="Achmad Tjachja Nugraha" style="width: 100%; height: 100%; object-fit: cover;">
-                                </div>
-                                <div class="board-info">
-                                    <div class="board-name" data-i18n="about_67">Achmad Tjachja Nugraha</div>
-                                    <div class="board-role" data-i18n="about_68">Komisaris Independent</div>
+                                <div class="board-card" data-member="achmad" style="position: relative;">
+                                    <div class="board-avatar" style="overflow: hidden;">
+                                        <img src="assets/Komisarisind.png" alt="Achmad Tjachja Nugraha" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div class="board-info">
+                                        <div class="board-name" data-i18n="about_67">Achmad Tjachja Nugraha</div>
+                                        <div class="board-role" data-i18n="about_68">Komisaris Independent</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- TAB 6: DEWAN DIREKSI -->
-                    <div class="about-tab-content" id="tab-direksi">
-                        <h2 class="content-title" data-i18n="about_69">Dewan Direksi</h2>
-                        <div class="board-grid">
-                            <div class="board-card">
-                                <div class="board-avatar" style="overflow: hidden;">
-                                    <img src="assets/Dirut.png" alt="Yock Yorlando" style="width: 100%; height: 100%; object-fit: cover;">
+                        <!-- Dewan Direksi Section -->
+                        <div class="board-group">
+                            <h3 class="board-subtitle" style="font-size: 20px; font-weight: 700; color: #0056A6; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="display: inline-block; width: 4px; height: 20px; background: #ED1C24; border-radius: 2px;"></span>
+                                <span data-i18n="about_69">Dewan Direksi</span>
+                            </h3>
+                            <div class="board-grid" style="margin-top: 0;">
+                                <div class="board-card" data-member="yock" style="position: relative;">
+                                    <div class="board-avatar" style="overflow: hidden;">
+                                        <img src="assets/Dirut.png" alt="Yock Yorlando" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div class="board-info">
+                                        <div class="board-name" data-i18n="about_70">Yock Yorlando</div>
+                                        <div class="board-role" data-i18n="about_71">Direktur Utama</div>
+                                    </div>
                                 </div>
-                                <div class="board-info">
-                                    <div class="board-name" data-i18n="about_70">Yock Yorlando</div>
-                                    <div class="board-role" data-i18n="about_71">Direktur Utama</div>
-                                </div>
-                            </div>
-                            <div class="board-card">
-                                <div class="board-avatar" style="overflow: hidden;">
-                                    <img src="assets/Dirops.png" alt="Joko Priyambodo" style="width: 100%; height: 100%; object-fit: cover;">
-                                </div>
-                                <div class="board-info">
-                                    <div class="board-name" data-i18n="about_72">Joko Priyambodo</div>
-                                    <div class="board-role" data-i18n="about_73">Direktur Operasional & Pemasaran</div>
+                                <div class="board-card" data-member="joko" style="position: relative;">
+                                    <div class="board-avatar" style="overflow: hidden;">
+                                        <img src="assets/Dirops.png" alt="Joko Priyambodo" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div class="board-info">
+                                        <div class="board-name" data-i18n="about_72">Joko Priyambodo</div>
+                                        <div class="board-role" data-i18n="about_73">Direktur Operasional & Pemasaran</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2445,7 +2703,41 @@
                         PT Pertamina (Persero).</span>
                 </div>
             </div>
-        </footer>
+        
+    <!-- Board Member Modal -->
+    <div id="boardModal" class="board-modal-overlay">
+        <div class="board-modal-content">
+            <button class="board-modal-close" id="closeBoardModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="board-modal-image-col">
+                <img id="bmImage" src="" alt="Board Member">
+            </div>
+            <div class="board-modal-info-col">
+                <div class="board-modal-header">
+                    <h3 id="bmName" class="board-modal-name">Name</h3>
+                    <p id="bmRole" class="board-modal-role">Role</p>
+                </div>
+                
+                <div class="board-modal-section">
+                    <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span data-i18n="modal_background">Latar Belakang</span></h4>
+                    <p id="bmBackground" data-i18n=""></p>
+                </div>
+                
+                <div class="board-modal-section">
+                    <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> <span data-i18n="modal_experience">Pengalaman Kerja</span></h4>
+                    <p id="bmExperience" data-i18n=""></p>
+                </div>
+                
+                <div class="board-modal-section">
+                    <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg> <span data-i18n="modal_achievements">Prestasi</span></h4>
+                    <p id="bmAchievements" data-i18n=""></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </footer>
 
 
     <!-- Tab Switching Logic Script -->
@@ -2545,7 +2837,10 @@
 
             // Check URL query parameters on load to support direct tab linking
             const urlParams = new URLSearchParams(window.location.search);
-            const tabParam = urlParams.get('tab');
+            let tabParam = urlParams.get('tab');
+            if (tabParam === 'komisaris' || tabParam === 'direksi') {
+                tabParam = 'komisaris-direksi';
+            }
             if (tabParam) {
                 setTimeout(() => switchTab(tabParam), 50);
             } else {
@@ -2562,8 +2857,7 @@
                 { selector: '#tab-visi-misi .mission-card', class: 'reveal-right' },
                 { selector: '#tab-nilai .akhlak-card', class: 'reveal-up' },
                 { selector: '#tab-sejarah .timeline-node', class: 'reveal-up' },
-                { selector: '#tab-komisaris .board-card', class: 'reveal-up' },
-                { selector: '#tab-direksi .board-card', class: 'reveal-up' },
+                { selector: '#tab-komisaris-direksi .board-card', class: 'reveal-up' },
                 { selector: '#tab-struktur .org-node-card', class: 'reveal-up' },
                 { selector: '#tab-struktur .org-shareholder-connector', class: 'reveal-up' },
                 { selector: '#tab-sertifikat .cert-list-item', class: 'reveal-left' },
@@ -2610,5 +2904,78 @@
     </script>
     <script src="lang.js"></script>
     <script src="script.js?v=2"></script>
+<script>
+    // Board Member Modal Logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const boardCards = document.querySelectorAll('.board-card');
+        const modal = document.getElementById('boardModal');
+        const closeBtn = document.getElementById('closeBoardModal');
+        
+        if(boardCards.length > 0 && modal) {
+            boardCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const memberId = this.getAttribute('data-member');
+                    if(!memberId) return;
+                    
+                    // Get data from clicked card
+                    const img = this.querySelector('img').src;
+                    const nameKey = this.querySelector('.board-name').getAttribute('data-i18n');
+                    const roleKey = this.querySelector('.board-role').getAttribute('data-i18n');
+                    
+                    // Update Modal Content
+                    document.getElementById('bmImage').src = img;
+                    
+                    document.getElementById('bmName').setAttribute('data-i18n', nameKey);
+                    document.getElementById('bmRole').setAttribute('data-i18n', roleKey);
+                    
+                    document.getElementById('bmBackground').setAttribute('data-i18n', 'bio_' + memberId + '_bg');
+                    document.getElementById('bmExperience').setAttribute('data-i18n', 'bio_' + memberId + '_exp');
+                    document.getElementById('bmAchievements').setAttribute('data-i18n', 'bio_' + memberId + '_achieve');
+                    
+                    
+                    // Trigger language update for these specific elements or globally
+                    const lang = localStorage.getItem('patra_lang') || 'id';
+                    if (typeof translations !== 'undefined' && translations[lang]) {
+                        const dict = translations[lang];
+                        document.getElementById('bmName').innerHTML = dict[nameKey] || nameKey;
+                        document.getElementById('bmRole').innerHTML = dict[roleKey] || roleKey;
+                        document.getElementById('bmBackground').innerHTML = dict['bio_' + memberId + '_bg'] || '';
+                        document.getElementById('bmExperience').innerHTML = dict['bio_' + memberId + '_exp'] || '';
+                        document.getElementById('bmAchievements').innerHTML = dict['bio_' + memberId + '_achieve'] || '';
+                        
+                        document.querySelectorAll('[data-i18n="modal_background"]').forEach(el => el.innerHTML = dict['modal_background']);
+                        document.querySelectorAll('[data-i18n="modal_experience"]').forEach(el => el.innerHTML = dict['modal_experience']);
+                        document.querySelectorAll('[data-i18n="modal_achievements"]').forEach(el => el.innerHTML = dict['modal_achievements']);
+                    }
+                    
+                    // Show modal
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+            
+            // Close modal functions
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            };
+            
+            closeBtn.addEventListener('click', closeModal);
+            
+            modal.addEventListener('click', function(e) {
+                if(e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if(e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+    });
+
+</script>
 </body>
 </html>
