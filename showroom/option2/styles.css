@@ -2931,7 +2931,7 @@ header.scrolled .lang-btn-current:hover {
 /* Compact Stats Grid (inside detail panel) */
 .mor-stats-grid--compact {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 8px;
     flex: 2.2;
     margin-top: 0;
@@ -2975,7 +2975,7 @@ header.scrolled .lang-btn-current:hover {
         gap: 20px;
     }
     .mor-stats-grid--compact {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
