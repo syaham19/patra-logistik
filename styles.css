@@ -3796,7 +3796,7 @@ header.scrolled .lang-btn-current:hover {
     padding: 16px 4px;
     margin-right: 8px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 700;
     color: transparent !important;
     cursor: pointer;
     white-space: nowrap;
@@ -3817,6 +3817,7 @@ header.scrolled .lang-btn-current:hover {
     pointer-events: none;
 }
 .about-menu-btn::before {
+    font-weight: 500;
     color: #64748B;
     transform: translateY(0);
     opacity: 1;

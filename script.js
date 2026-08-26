@@ -1006,7 +1006,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update data-text attributes for hover effects on nav links
-        document.querySelectorAll('.nav-link[data-i18n]').forEach(el => {
+        document.querySelectorAll('.nav-link[data-i18n], .about-menu-btn[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (dict[key]) {
                 el.setAttribute('data-text', dict[key]);
