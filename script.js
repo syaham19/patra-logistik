@@ -1297,6 +1297,75 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    // ── Inverse: canvas pixel → normalized [0-1] coord ──
+    function canvasToNorm(cx, cy) {
+        const W = canvas.width  / (window.devicePixelRatio || 1);
+        const H = canvas.height / (window.devicePixelRatio || 1);
+        const svgW = 1110, svgH = 484;
+        const scale = Math.min(W / svgW, H / svgH);
+        const drawW = svgW * scale, drawH = svgH * scale;
+        const offX  = (W - drawW) / 2, offY  = (H - drawH) / 2;
+        return { nx: (cx - offX) / drawW, ny: (cy - offY) / drawH };
+    }
+
+    // ── Geographic regions — bounding boxes in normalized [0-1] coords ──
+    const REGIONS = {
+        sumatra:     { label: 'Sumatra',              color: '#38BDF8', x1: 0.04, y1: 0.04, x2: 0.28, y2: 0.68,
+                       cities: ['medan','pekanbaru','palembang','lampung'] },
+        jabar:       { label: 'Jawa Barat & Jakarta', color: '#A78BFA', x1: 0.24, y1: 0.68, x2: 0.34, y2: 0.82,
+                       cities: ['jakarta','bandung','lampung'] },
+        jateng:      { label: 'Jawa Tengah & DIY',    color: '#F59E0B', x1: 0.33, y1: 0.68, x2: 0.42, y2: 0.82,
+                       cities: ['semarang','yogya'] },
+        jatim:       { label: 'Jawa Timur',            color: '#F87171', x1: 0.41, y1: 0.68, x2: 0.50, y2: 0.82,
+                       cities: ['surabaya','malang'] },
+        bali:        { label: 'Bali',                  color: '#34D399', x1: 0.45, y1: 0.68, x2: 0.53, y2: 0.82,
+                       cities: ['bali'] },
+        kalimantan:  { label: 'Kalimantan',            color: '#10B981', x1: 0.35, y1: 0.17, x2: 0.62, y2: 0.56,
+                       cities: ['balikpapan','banjarmasin'] },
+        sulawesi:    { label: 'Sulawesi',              color: '#FB923C', x1: 0.54, y1: 0.24, x2: 0.72, y2: 0.68,
+                       cities: ['makassar','manado'] },
+        papua:       { label: 'Papua',                 color: '#60A5FA', x1: 0.76, y1: 0.32, x2: 1.00, y2: 0.88,
+                       cities: ['sorong','jayapura'] },
+    };
+
+    // ── Get current normalized position of a truck (Bezier at t) ──
+    function truckNormPos(truck) {
+        const fx = truck.fromCity.x, fy = truck.fromCity.y;
+        const tx = truck.toCity.x,   ty = truck.toCity.y;
+        const mx = (fx + tx) / 2 + (ty - fy) * 0.10;
+        const my = (fy + ty) / 2 - (tx - fx) * 0.10;
+        const t  = truck.t;
+        return {
+            nx: (1-t)*(1-t)*fx + 2*(1-t)*t*mx + t*t*tx,
+            ny: (1-t)*(1-t)*fy + 2*(1-t)*t*my + t*t*ty,
+        };
+    }
+
+    // ── Detect which region a normalized point falls in ──
+    function getRegionAt(nx, ny) {
+        // Priority order: smaller/more specific regions first
+        const order = ['bali','jatim','jateng','jabar','sulawesi','kalimantan','papua','sumatra'];
+        for (const key of order) {
+            const r = REGIONS[key];
+            if (nx >= r.x1 && nx <= r.x2 && ny >= r.y1 && ny <= r.y2) {
+                return { key, ...r };
+            }
+        }
+        return null;
+    }
+
+    // ── Get trucks whose route or current position overlaps a region ──
+    function getTrucksInRegion(regionKey) {
+        const r = REGIONS[regionKey];
+        return trucks.filter(truck => {
+            // Include if either endpoint city is in this region
+            if (r.cities.includes(truck.from) || r.cities.includes(truck.to)) return true;
+            // OR if current position is within region bounds
+            const { nx, ny } = truckNormPos(truck);
+            return nx >= r.x1 && nx <= r.x2 && ny >= r.y1 && ny <= r.y2;
+        });
+    }
+
     function truckPos(truck) {
         const fx = truck.fromCity.x, fy = truck.fromCity.y;
         const tx = truck.toCity.x,   ty = truck.toCity.y;
@@ -1549,6 +1618,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawCities();
         drawRoutes();
         if (focusedTruck) drawFocusedRoute(focusedTruck);
+        drawRegionHighlight();
 
         trucks.forEach(truck => {
             truck.t += truck.speed;
@@ -1609,6 +1679,142 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.fleet-list-item').forEach(el => el.classList.remove('active'));
         mapScale = 1.0; panX = 0; panY = 0;
         applyZoom();
+    }
+
+    // ── Region panel state ──
+    let activeRegion = null;
+
+    // ── Show region panel with all trucks in that area ──
+    function showRegionPanel(region, regionTrucks) {
+        if (focusedTruck) exitFocus();
+        activeRegion = region;
+
+        const panel = document.getElementById('region-panel');
+        const badge = document.getElementById('rp-region-name');
+        const count = document.getElementById('rp-truck-count');
+        const list  = document.getElementById('rp-truck-list');
+        if (!panel) return;
+
+        badge.textContent = region.label;
+        badge.style.color        = region.color;
+        badge.style.borderColor  = region.color + '55';
+        badge.style.background   = region.color + '18';
+        count.textContent = regionTrucks.length + ' armada';
+
+        list.innerHTML = regionTrucks.length === 0
+            ? '<div class="rp-empty">Tidak ada armada di wilayah ini saat ini.</div>'
+            : regionTrucks.map(t => {
+                const dist  = getRouteDist(t);
+                const remKm = Math.round(dist * (1 - t.progress / 100));
+                const etaH  = Math.floor(remKm / t.speedKmh);
+                const etaM  = Math.round((remKm / t.speedKmh - etaH) * 60);
+                const etaStr = etaH > 0 ? `${etaH}j ${etaM}m` : `${etaM}m`;
+                const statusLabel = t.status === 'loaded' ? 'Bermuatan' : t.status === 'empty' ? 'Kosong' : 'Transit';
+                return `
+                <div class="rp-truck-card" data-id="${t.id}" style="--truck-color:${t.color}">
+                    <div class="rp-truck-card-header">
+                        <div class="rp-truck-id-row">
+                            <span class="rp-truck-color-dot" style="background:${t.color}"></span>
+                            <span class="rp-truck-id">${t.id}</span>
+                            <span class="rp-truck-status ${t.status}">${statusLabel}</span>
+                        </div>
+                        <button class="rp-focus-btn" data-id="${t.id}">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            Fokus
+                        </button>
+                    </div>
+                    <div class="rp-truck-route">
+                        <span class="rp-city from">${t.fromCity.label}</span>
+                        <div class="rp-mini-track">
+                            <div class="rp-mini-fill" style="width:${t.progress}%;background:${t.color}"></div>
+                        </div>
+                        <span class="rp-city to">${t.toCity.label}</span>
+                    </div>
+                    <div class="rp-truck-meta">
+                        <span>⚡ ${t.speedKmh} km/h</span>
+                        <span>📦 ${t.cargo || 'Kosong'}</span>
+                        <span>⏱ ~${etaStr}</span>
+                        <span>📍 ${t.progress}%</span>
+                    </div>
+                </div>`;
+            }).join('');
+
+        // Wire focus buttons
+        list.querySelectorAll('.rp-focus-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const truck = trucks.find(t => t.id === btn.dataset.id);
+                if (truck) { exitRegion(); focusTruck(truck); }
+            });
+        });
+
+        // Wire card click = same as focus
+        list.querySelectorAll('.rp-truck-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const truck = trucks.find(t => t.id === card.dataset.id);
+                if (truck) { exitRegion(); focusTruck(truck); }
+            });
+        });
+
+        panel.classList.add('visible');
+        document.getElementById('truck-click-hint')?.classList.add('hidden');
+
+        // Zoom to fit region
+        const W = canvas.width  / (window.devicePixelRatio || 1);
+        const H = canvas.height / (window.devicePixelRatio || 1);
+        const svgW = 1110, svgH = 484;
+        const scale = Math.min(W / svgW, H / svgH);
+        const drawW = svgW * scale, drawH = svgH * scale;
+        const offX  = (W - drawW) / 2, offY  = (H - drawH) / 2;
+        const rx1 = offX + region.x1 * drawW, rx2 = offX + region.x2 * drawW;
+        const ry1 = offY + region.y1 * drawH, ry2 = offY + region.y2 * drawH;
+        const pad = 80;
+        const rW = Math.abs(rx2 - rx1) + pad * 2;
+        const rH = Math.abs(ry2 - ry1) + pad * 2;
+        const newScale = Math.min(W / rW, H / rH, 3.0);
+        mapScale = Math.max(newScale, 1.4);
+        const cx = (rx1 + rx2) / 2, cy = (ry1 + ry2) / 2;
+        panX = W / 2 - cx * mapScale;
+        panY = H / 2 - cy * mapScale;
+        applyZoom();
+    }
+
+    // ── Exit region view ──
+    function exitRegion() {
+        activeRegion = null;
+        document.getElementById('region-panel')?.classList.remove('visible');
+        document.getElementById('truck-click-hint')?.classList.remove('hidden');
+        mapScale = 1.0; panX = 0; panY = 0;
+        applyZoom();
+    }
+
+    // ── Draw highlighted region border on canvas ──
+    function drawRegionHighlight() {
+        if (!activeRegion) return;
+        const r = activeRegion;
+        const p1 = normToCanvas(r.x1, r.y1);
+        const p2 = normToCanvas(r.x2, r.y2);
+        const hex = r.color.replace('#','');
+        const ri = parseInt(hex.slice(0,2),16);
+        const gi = parseInt(hex.slice(2,4),16);
+        const bi = parseInt(hex.slice(4,6),16);
+        const rW = p2.x - p1.x, rH = p2.y - p1.y;
+        // Fill
+        ctx.fillStyle = `rgba(${ri},${gi},${bi},0.06)`;
+        ctx.fillRect(p1.x, p1.y, rW, rH);
+        // Border
+        ctx.strokeStyle = `rgba(${ri},${gi},${bi},0.55)`;
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([6, 4]);
+        ctx.strokeRect(p1.x, p1.y, rW, rH);
+        ctx.setLineDash([]);
+        // Label
+        ctx.font = 'bold 11px "Helvetica Neue", sans-serif';
+        ctx.fillStyle = `rgba(${ri},${gi},${bi},0.85)`;
+        ctx.textAlign = 'center';
+        ctx.shadowColor = 'rgba(0,0,0,0.8)'; ctx.shadowBlur = 4;
+        ctx.fillText(r.label, p1.x + rW / 2, p1.y + 14);
+        ctx.shadowBlur = 0;
     }
 
     // ── Update focus panel DOM with live data ──
@@ -1830,31 +2036,53 @@ document.addEventListener('DOMContentLoaded', () => {
         buildFleetList();
         animFrame = requestAnimationFrame(draw);
 
-        // ── Click on canvas → focus truck ──
+        // ── Click on canvas → focus truck OR show region panel ──
         canvas.addEventListener('click', e => {
             if (isDragging) return;
             const hit = getTruckAt(e.clientX, e.clientY);
             if (hit) {
+                if (activeRegion) exitRegion();
                 focusTruck(hit);
-            } else if (focusedTruck) {
-                // Click empty area exits focus
-                exitFocus();
+                return;
+            }
+            if (focusedTruck) { exitFocus(); return; }
+            if (activeRegion)  { exitRegion(); return; }
+
+            // Detect region from click position
+            const rect   = canvas.getBoundingClientRect();
+            const W      = rect.width, H = rect.height;
+            // Inverse-transform screen → canvas (undo zoom/pan)
+            const cx = (e.clientX - rect.left - W / 2 - panX) / mapScale + W / 2;
+            const cy = (e.clientY - rect.top  - H / 2 - panY) / mapScale + H / 2;
+            const { nx, ny } = canvasToNorm(cx, cy);
+            const region = getRegionAt(nx, ny);
+            if (region) {
+                const regionTrucks = getTrucksInRegion(region.key);
+                showRegionPanel(region, regionTrucks);
             }
         });
+
 
         // ── Close focus panel ──
         document.getElementById('truck-focus-close')?.addEventListener('click', exitFocus);
 
-        // ── ESC key exits focus ──
+        // ── ESC key exits focus OR region ──
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && focusedTruck) exitFocus();
+            if (e.key === 'Escape') {
+                if (focusedTruck) exitFocus();
+                else if (activeRegion) exitRegion();
+            }
         });
 
         // ── Zoom reset button ──
         document.getElementById('zoom-reset')?.addEventListener('click', () => {
             if (focusedTruck) exitFocus();
+            else if (activeRegion) exitRegion();
             else { mapScale = 1.0; panX = 0; panY = 0; applyZoom(); }
         });
+
+        // ── Region panel close button ──
+        document.getElementById('region-panel-close')?.addEventListener('click', exitRegion);
 
         // ── Fleet list toggle ──
         document.getElementById('fleet-list-toggle')?.addEventListener('click', () => {

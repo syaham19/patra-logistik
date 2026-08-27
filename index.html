@@ -1045,11 +1045,32 @@
                             </div>
                         </div>
 
+
+                        <!-- Region Panel — slides in when user clicks a region -->
+                        <div class="region-panel" id="region-panel">
+                            <div class="region-panel-header">
+                                <div class="region-panel-title-row">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    <span class="region-panel-label" id="rp-region-name">Jawa Tengah & DIY</span>
+                                </div>
+                                <div class="region-panel-meta-row">
+                                    <span class="region-panel-count" id="rp-truck-count">3 armada</span>
+                                    <button class="region-panel-close" id="region-panel-close">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="region-panel-body" id="rp-truck-list">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
                         <!-- Hint overlay — shown when no truck selected -->
                         <div class="truck-click-hint" id="truck-click-hint">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l6 6m-11-4a7 7 0 1 1 0-14 7 7 0 0 1 0 14z"/></svg>
-                            Klik truk untuk melihat detail perjalanan
+                            Klik truk atau wilayah untuk melihat detail
                         </div>
+
                     </div>
 
                     <!-- Stats Bar -->

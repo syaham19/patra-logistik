@@ -6769,6 +6769,198 @@ body.hero-option-3 .hero-timeline-container .timeline-card-right {
 .truck-click-hint svg { color: #38BDF8; flex-shrink: 0; }
 .truck-click-hint.hidden { opacity: 0; }
 
+/* --- Region Panel ---------------------------------------------------------- */
+.region-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 270px;
+    max-height: calc(100% - 20px);
+    background: rgba(6, 15, 28, 0.93);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 14px;
+    z-index: 32;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(20px);
+    transition: opacity 0.26s ease, transform 0.26s ease;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.region-panel.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+}
+
+.region-panel-header {
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid rgba(148,163,184,0.08);
+    flex-shrink: 0;
+}
+.region-panel-title-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 5px;
+    color: #38BDF8;
+}
+.region-panel-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+}
+.region-panel-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.region-panel-count {
+    font-size: 10px;
+    color: #64748B;
+    font-weight: 600;
+}
+.region-panel-close {
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(148,163,184,0.18);
+    border-radius: 6px;
+    background: rgba(148,163,184,0.07);
+    color: #64748B;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+}
+.region-panel-close:hover { background: rgba(239,68,68,0.15); color: #F87171; }
+
+.region-panel-body {
+    overflow-y: auto;
+    flex: 1;
+    padding: 8px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Truck card inside region panel */
+.rp-truck-card {
+    background: rgba(148,163,184,0.04);
+    border: 1px solid rgba(148,163,184,0.10);
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+.rp-truck-card:hover {
+    background: rgba(var(--truck-color, 56,189,248), 0.07);
+    border-color: rgba(148,163,184,0.22);
+}
+.rp-truck-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.rp-truck-id-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.rp-truck-color-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.rp-truck-id {
+    font-size: 12px;
+    font-weight: 700;
+    color: #E2E8F0;
+}
+.rp-truck-status {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 10px;
+    letter-spacing: 0.4px;
+    background: rgba(245,158,11,0.15);
+    color: #F59E0B;
+}
+.rp-truck-status.loaded { background: rgba(16,185,129,0.15); color: #10B981; }
+.rp-truck-status.empty  { background: rgba(96,165,250,0.15);  color: #60A5FA; }
+
+.rp-focus-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #38BDF8;
+    background: rgba(56,189,248,0.10);
+    border: 1px solid rgba(56,189,248,0.25);
+    border-radius: 6px;
+    padding: 3px 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+    flex-shrink: 0;
+}
+.rp-focus-btn:hover { background: rgba(56,189,248,0.20); }
+
+/* Mini route progress bar */
+.rp-truck-route {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 7px;
+}
+.rp-city {
+    font-size: 9px;
+    font-weight: 600;
+    color: #94A3B8;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.rp-city.to { color: #10B981; }
+.rp-mini-track {
+    flex: 1;
+    height: 3px;
+    background: rgba(148,163,184,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.rp-mini-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+
+/* Meta info row */
+.rp-truck-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-size: 9px;
+    color: #64748B;
+}
+.rp-truck-meta span { display: flex; align-items: center; gap: 3px; }
+
+/* Empty state */
+.rp-empty {
+    font-size: 11px;
+    color: #475569;
+    text-align: center;
+    padding: 20px 10px;
+    line-height: 1.5;
+}
+
 /* --- Focus mode canvas dimming --------------------------------------------- */
 /* Applied via JS class on the canvas wrapper */
 .truck-map-canvas-wrapper.focus-active .truck-map-bg {
