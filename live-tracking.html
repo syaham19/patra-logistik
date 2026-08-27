@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor Armada Logistik - Patra Logistik</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#151e2e',
+                            900: '#0f172a',
+                        },
+                        emerald: {
+                            400: '#34d399',
+                            500: '#10b981',
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow: hidden; /* Prevent scrolling, full app view */
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+            background-color: #0f172a;
+        }
+        .custom-div-icon {
+            background: none;
+            border: none;
+        }
+        .event-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .event-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+        .event-scroll::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.3);
+            border-radius: 4px;
+        }
+        .truck-icon-wrapper {
+            background-color: #10b981;
+            border-radius: 50%;
+            padding: 6px;
+            border: 2px solid #fff;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+        .truck-icon-wrapper svg {
+            color: white;
+            width: 18px;
+            height: 18px;
+        }
+        .waypoint-marker {
+            background-color: #3b82f6;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            width: 12px;
+            height: 12px;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+        }
+        /* Custom Leaflet Tooltip for dark mode */
+        .leaflet-tooltip {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+            border-radius: 8px;
+            padding: 8px 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+        .leaflet-tooltip-top:before {
+            border-top-color: rgba(15, 23, 42, 0.9);
+        }
+        .leaflet-tooltip-bottom:before {
+            border-bottom-color: rgba(15, 23, 42, 0.9);
+        }
+        .leaflet-tooltip-left:before {
+            border-left-color: rgba(15, 23, 42, 0.9);
+        }
+        .leaflet-tooltip-right:before {
+            border-right-color: rgba(15, 23, 42, 0.9);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col font-sans">
+
+    <!-- Header -->
+    <header class="glass-panel z-10 px-6 py-4 flex items-center justify-between border-b border-slate-700">
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="p-2 hover:bg-slate-700 rounded-lg transition-colors text-slate-300 hover:text-white">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </a>
+            <div>
+                <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                    <i data-lucide="activity" class="w-5 h-5 text-emerald-400"></i>
+                    Monitor Armada Logistik
+                </h1>
+                <div class="text-sm text-slate-400 mt-0.5 flex items-center gap-2">
+                    <span>Status:</span>
+                    <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium border border-emerald-500/30">
+                        Perjalanan #JKT-BDG-8821
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="text-right">
+                <div id="live-clock" class="text-2xl font-mono font-bold text-white tabular-nums tracking-tight">00:00:00</div>
+                <div id="live-date" class="text-xs text-slate-400 uppercase tracking-wider">Senin, 1 Jan 2024</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex overflow-hidden relative">
+        
+        <!-- Map Container -->
+        <div id="map" class="absolute inset-0 z-0"></div>
+
+        <!-- Left Side Panel (Controls & Telemetry) -->
+        <div class="z-10 w-80 m-4 flex flex-col gap-4 pointer-events-none">
+            
+            <!-- Fleet Details Card -->
+            <div class="glass-panel p-4 rounded-xl shadow-lg pointer-events-auto">
+                <h2 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Detail Armada</h2>
+                <div class="flex items-start gap-3 mb-3">
+                    <div class="p-2 bg-slate-800 rounded-lg">
+                        <i data-lucide="truck" class="w-5 h-5 text-cyan-400"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-white">B 9842 XYZ</div>
+                        <div class="text-xs text-slate-400">Hino 500 Series</div>
+                    </div>
+                </div>
+                <div class="space-y-2 mt-4 pt-4 border-t border-slate-700/50 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Pengemudi:</span>
+                        <span class="font-medium text-white">Budi Santoso</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Kargo:</span>
+                        <span class="font-medium text-amber-400">Elektronik / Mudah Pecah</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Berat Muatan:</span>
+                        <span class="font-medium text-white">4.5 Ton</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Telemetry Card -->
+            <div class="glass-panel p-4 rounded-xl shadow-lg pointer-events-auto flex-1 flex flex-col min-h-0">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Telemetri Langsung</h2>
+                    <span class="flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                        <div class="text-slate-400 text-xs mb-1 flex items-center gap-1">
+                            <i data-lucide="gauge" class="w-3 h-3"></i> Kecepatan
+                        </div>
+                        <div class="text-xl font-bold text-white tabular-nums"><span id="speed-val">68</span> <span class="text-xs text-slate-400 font-normal">km/jam</span></div>
+                    </div>
+                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                        <div class="text-slate-400 text-xs mb-1 flex items-center gap-1">
+                            <i data-lucide="fuel" class="w-3 h-3"></i> Bahan Bakar
+                        </div>
+                        <div class="text-xl font-bold text-white tabular-nums"><span id="fuel-val">76</span><span class="text-xs text-slate-400 font-normal">%</span></div>
+                    </div>
+                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                        <div class="text-slate-400 text-xs mb-1 flex items-center gap-1">
+                            <i data-lucide="thermometer" class="w-3 h-3"></i> Suhu Kargo
+                        </div>
+                        <div class="text-xl font-bold text-white tabular-nums"><span id="temp-val">22</span><span class="text-xs text-slate-400 font-normal">°C</span></div>
+                    </div>
+                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                        <div class="text-slate-400 text-xs mb-1 flex items-center gap-1">
+                            <i data-lucide="map" class="w-3 h-3"></i> Odometer
+                        </div>
+                        <div class="text-xl font-bold text-white tabular-nums"><span id="odo-val">42</span><span class="text-xs text-slate-400 font-normal">km</span></div>
+                    </div>
+                </div>
+
+                <!-- ETA Countdown -->
+                <div class="bg-emerald-500/10 border border-emerald-500/30 p-3 rounded-lg mb-4">
+                    <div class="text-emerald-400 text-xs mb-1 flex items-center gap-1 font-medium">
+                        <i data-lucide="clock" class="w-3 h-3"></i> Estimasi Waktu Tiba (ETA)
+                    </div>
+                    <div class="text-lg font-bold text-white" id="eta-val">1 jam 15 menit</div>
+                </div>
+
+                <!-- Event Log -->
+                <h2 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2 mt-2">Log Kejadian</h2>
+                <div class="flex-1 overflow-y-auto event-scroll pr-2 space-y-3 relative" id="event-log">
+                    <!-- Logs injected via JS -->
+                </div>
+            </div>
+
+            <!-- Simulation Controls -->
+            <div class="glass-panel p-4 rounded-xl shadow-lg pointer-events-auto">
+                <h2 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Kontrol Simulasi</h2>
+                <div class="flex items-center gap-2 mb-4">
+                    <button id="btn-play-pause" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+                        <i data-lucide="pause" class="w-4 h-4" id="play-pause-icon"></i>
+                        <span id="play-pause-text">Jeda</span>
+                    </button>
+                    <button id="btn-reset" class="bg-slate-700 hover:bg-slate-600 text-white py-2 px-3 rounded-lg transition-colors" title="Reset Rute">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <div class="space-y-1">
+                    <div class="flex justify-between text-xs text-slate-400">
+                        <span>Kecepatan Simulasi</span>
+                        <span id="sim-speed-display" class="font-bold text-white">1x</span>
+                    </div>
+                    <input type="range" id="sim-speed" min="1" max="3" value="1" step="1" class="w-full accent-emerald-500">
+                    <div class="flex justify-between text-[10px] text-slate-500 px-1">
+                        <span>1x</span>
+                        <span>2x</span>
+                        <span>5x</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // --- Live Clock ---
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString('id-ID', { hour12: false });
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('live-date').textContent = now.toLocaleDateString('id-ID', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // --- Map Initialization (Leaflet) ---
+        // Dark mode tile layer (CartoDB Dark Matter)
+        const map = L.map('map', {
+            zoomControl: false,
+            attributionControl: false
+        }).setView([-6.550, 107.450], 9);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        L.control.zoom({ position: 'topright' }).addTo(map);
+
+        // --- Route Data (Jakarta to Bandung via Toll Road) ---
+        // Simplified route coordinates for simulation
+        const routeCoords = [
+            [-6.185, 106.945], // Gudang Cakung (Origin)
+            [-6.235, 107.010], // Bekasi Barat
+            [-6.275, 107.120], // Cikarang Barat
+            [-6.330, 107.280], // Karawang Barat
+            [-6.380, 107.360], // Karawang Timur
+            [-6.450, 107.440], // Dawuan
+            [-6.550, 107.450], // Purwakarta (Sadang)
+            [-6.650, 107.420], // Plered
+            [-6.750, 107.440], // Cikalong Wetan
+            [-6.840, 107.480], // Padalarang
+            [-6.890, 107.560], // Pasteur
+            [-6.930, 107.620], // Pasir Koja
+            [-6.950, 107.695]  // Hub Gedebage (Destination)
+        ];
+
+        // Draw Polyline for the entire route
+        const routeLine = L.polyline(routeCoords, {
+            color: '#334155', // slate-700
+            weight: 4,
+            opacity: 0.8,
+            dashArray: '8, 8'
+        }).addTo(map);
+
+        // Trailing polyline (path already travelled)
+        const travelledLine = L.polyline([routeCoords[0]], {
+            color: '#10b981', // emerald-500
+            weight: 5,
+            opacity: 1
+        }).addTo(map);
+
+        // Origin and Destination Markers
+        const originMarker = L.circleMarker(routeCoords[0], {
+            radius: 8,
+            fillColor: "#ef4444", // red-500
+            color: "#fff",
+            weight: 2,
+            fillOpacity: 1
+        }).addTo(map).bindTooltip("Gudang Cakung (Asal)", { permanent: true, direction: "right", className: "text-xs font-bold" });
+
+        const destMarker = L.circleMarker(routeCoords[routeCoords.length - 1], {
+            radius: 8,
+            fillColor: "#3b82f6", // blue-500
+            color: "#fff",
+            weight: 2,
+            fillOpacity: 1
+        }).addTo(map).bindTooltip("Hub Gedebage (Tujuan)", { permanent: true, direction: "left", className: "text-xs font-bold" });
+
+        // Add some visible waypoints
+        const waypoints = [
+            { index: 3, name: "Karawang" },
+            { index: 6, name: "Purwakarta" },
+            { index: 9, name: "Padalarang" }
+        ];
+
+        waypoints.forEach(wp => {
+            L.circleMarker(routeCoords[wp.index], {
+                radius: 5,
+                fillColor: "#64748b",
+                color: "#fff",
+                weight: 2,
+                fillOpacity: 1
+            }).addTo(map).bindTooltip(wp.name, { direction: "top", className: "text-xs" });
+        });
+
+        // Truck Marker
+        const truckIcon = L.divIcon({
+            html: `<div class="truck-icon-wrapper"><i data-lucide="truck"></i></div>`,
+            className: 'custom-div-icon',
+            iconSize: [34, 34],
+            iconAnchor: [17, 17]
+        });
+
+        const truckMarker = L.marker(routeCoords[0], { icon: truckIcon }).addTo(map);
+        lucide.createIcons(); // re-init icons for the marker
+
+        // Tooltip for truck marker
+        truckMarker.bindTooltip("Mulai perjalanan", { direction: 'top', offset: [0, -15] });
+
+        // Adjust map bounds to fit route
+        map.fitBounds(routeLine.getBounds(), { padding: [50, 50] });
+
+        // --- Simulation Logic ---
+        let simState = {
+            isPlaying: true,
+            speedMultiplier: 1,
+            progress: 0, // 0 to 1
+            currentSegment: 0,
+            segmentProgress: 0, // 0 to 1 within segment
+            fuel: 100,
+            distanceCovered: 0,
+            totalDistance: 152, // km approx
+        };
+
+        const eventLogData = [
+            { threshold: 0.0, msg: "Berangkat dari Gudang Cakung." },
+            { threshold: 0.15, msg: "Memasuki Tol Jakarta-Cikampek." },
+            { threshold: 0.25, msg: "Melewati Gerbang Tol Cikarang Utama." },
+            { threshold: 0.4, msg: "Kondisi lalu lintas lancar di area Karawang." },
+            { threshold: 0.6, msg: "Memasuki Tol Cipularang, jalan menanjak." },
+            { threshold: 0.75, msg: "Mendekati Area Istirahat KM 92." },
+            { threshold: 0.85, msg: "Melewati Padalarang, mendekati kota Bandung." },
+            { threshold: 0.95, msg: "Keluar Gerbang Tol Pasteur." },
+            { threshold: 1.0, msg: "Tiba di Hub Gedebage." }
+        ];
+        let loggedEvents = new Set();
+
+        const logContainer = document.getElementById('event-log');
+
+        function addLogEvent(msg, timeStr) {
+            if(!timeStr) {
+                const now = new Date();
+                timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            }
+            
+            const logEl = document.createElement('div');
+            logEl.className = "relative pl-4 border-l-2 border-slate-700 pb-3 last:border-0 last:pb-0";
+            logEl.innerHTML = `
+                <div class="absolute w-2 h-2 bg-emerald-500 rounded-full -left-[5px] top-1 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>
+                <div class="text-[10px] text-slate-500 mb-0.5">${timeStr}</div>
+                <div class="text-xs text-slate-300 leading-tight">${msg}</div>
+            `;
+            logContainer.prepend(logEl);
+        }
+
+        addLogEvent("Persiapan dokumen dan pengecekan mesin selesai.", "08:15");
+        addLogEvent("Berangkat dari Gudang Cakung.", "08:30");
+        loggedEvents.add(0.0);
+
+        // DOM Elements
+        const speedVal = document.getElementById('speed-val');
+        const fuelVal = document.getElementById('fuel-val');
+        const tempVal = document.getElementById('temp-val');
+        const odoVal = document.getElementById('odo-val');
+        const etaVal = document.getElementById('eta-val');
+
+        // Linear interpolation helper
+        function lerp(start, end, t) {
+            return start + (end - start) * t;
+        }
+
+        // Calculate distance between two lat/lng points (haversine approximation simplified for proportion)
+        function getSegmentLengths() {
+            let lengths = [];
+            let total = 0;
+            for(let i=0; i<routeCoords.length-1; i++) {
+                let dx = routeCoords[i+1][0] - routeCoords[i][0];
+                let dy = routeCoords[i+1][1] - routeCoords[i][1];
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                lengths.push(dist);
+                total += dist;
+            }
+            return {lengths, total};
+        }
+        
+        const {lengths: segLengths, total: totalSegLength} = getSegmentLengths();
+        
+        let lastTimestamp = 0;
+        
+        function animateSimulation(timestamp) {
+            if (!lastTimestamp) lastTimestamp = timestamp;
+            const dt = timestamp - lastTimestamp;
+            lastTimestamp = timestamp;
+
+            if (simState.isPlaying && simState.progress < 1) {
+                // Base speed is taking ~60 seconds for full trip at 1x
+                const baseProgressRate = 0.0003; 
+                simState.progress += baseProgressRate * simState.speedMultiplier * (dt / 16);
+                
+                if (simState.progress >= 1) {
+                    simState.progress = 1;
+                    simState.isPlaying = false;
+                    document.getElementById('play-pause-icon').setAttribute('data-lucide', 'play');
+                    document.getElementById('play-pause-text').textContent = 'Putar';
+                    lucide.createIcons();
+                    speedVal.textContent = "0";
+                    etaVal.textContent = "Tiba";
+                    truckMarker.setTooltipContent("Tiba di Tujuan");
+                }
+
+                // Update Position
+                let targetDist = simState.progress * totalSegLength;
+                let currentDist = 0;
+                let segIdx = 0;
+                
+                for(let i=0; i<segLengths.length; i++) {
+                    if (currentDist + segLengths[i] >= targetDist) {
+                        segIdx = i;
+                        break;
+                    }
+                    currentDist += segLengths[i];
+                }
+                
+                if (segIdx >= routeCoords.length - 1) segIdx = routeCoords.length - 2;
+                
+                let t = (targetDist - currentDist) / segLengths[segIdx];
+                if (t < 0) t = 0;
+                if (t > 1) t = 1;
+
+                const lat = lerp(routeCoords[segIdx][0], routeCoords[segIdx+1][0], t);
+                const lng = lerp(routeCoords[segIdx][1], routeCoords[segIdx+1][1], t);
+                
+                const newPos = [lat, lng];
+                truckMarker.setLatLng(newPos);
+
+                // Update travelled line
+                let travelledCoords = routeCoords.slice(0, segIdx + 1);
+                travelledCoords.push(newPos);
+                travelledLine.setLatLngs(travelledCoords);
+
+                // Check Events
+                eventLogData.forEach(ev => {
+                    if (simState.progress >= ev.threshold && !loggedEvents.has(ev.threshold)) {
+                        addLogEvent(ev.msg);
+                        loggedEvents.add(ev.threshold);
+                    }
+                });
+
+                // Update Telemetry
+                if (simState.progress < 1) {
+                    // Randomize speed slightly around a base value depending on terrain
+                    let baseSpeed = 60;
+                    if (simState.progress > 0.4 && simState.progress < 0.7) baseSpeed = 45; // Uphill Cipularang
+                    else if (simState.progress > 0.1 && simState.progress < 0.4) baseSpeed = 80; // Tol Japek
+                    
+                    const instantSpeed = Math.floor(baseSpeed + (Math.random() * 10 - 5));
+                    speedVal.textContent = instantSpeed;
+
+                    simState.distanceCovered = simState.progress * simState.totalDistance;
+                    odoVal.textContent = Math.floor(simState.distanceCovered);
+
+                    simState.fuel = 100 - (simState.progress * 40); // Drops to 60%
+                    fuelVal.textContent = Math.floor(simState.fuel);
+
+                    const temp = 22 + (Math.random() * 0.4 - 0.2);
+                    tempVal.textContent = temp.toFixed(1);
+
+                    // Update ETA
+                    const remainingProgress = 1 - simState.progress;
+                    const remainingMins = Math.floor(remainingProgress * 180); // Assume 3 hours total
+                    if(remainingMins > 60) {
+                        const h = Math.floor(remainingMins / 60);
+                        const m = remainingMins % 60;
+                        etaVal.textContent = `sisa ${h} jam ${m} menit`;
+                    } else {
+                        etaVal.textContent = `sisa ${remainingMins} menit`;
+                    }
+
+                    // Update Tooltip
+                    truckMarker.setTooltipContent(`
+                        <div class="text-xs">
+                            <div class="font-bold border-b border-slate-600 pb-1 mb-1">Posisi Saat Ini</div>
+                            <div>Lat: ${lat.toFixed(4)}</div>
+                            <div>Lng: ${lng.toFixed(4)}</div>
+                            <div class="mt-1 text-emerald-400">${instantSpeed} km/jam</div>
+                        </div>
+                    `);
+                }
+            }
+
+            requestAnimationFrame(animateSimulation);
+        }
+
+        // Start animation loop
+        requestAnimationFrame(animateSimulation);
+
+        // --- Controls Event Listeners ---
+        const btnPlayPause = document.getElementById('btn-play-pause');
+        const iconPlayPause = document.getElementById('play-pause-icon');
+        const textPlayPause = document.getElementById('play-pause-text');
+        
+        btnPlayPause.addEventListener('click', () => {
+            if (simState.progress >= 1) return; // Done
+            
+            simState.isPlaying = !simState.isPlaying;
+            if (simState.isPlaying) {
+                iconPlayPause.setAttribute('data-lucide', 'pause');
+                textPlayPause.textContent = 'Jeda';
+            } else {
+                iconPlayPause.setAttribute('data-lucide', 'play');
+                textPlayPause.textContent = 'Putar';
+                speedVal.textContent = "0"; // speed to zero on pause
+            }
+            lucide.createIcons();
+        });
+
+        const btnReset = document.getElementById('btn-reset');
+        btnReset.addEventListener('click', () => {
+            simState.progress = 0;
+            simState.distanceCovered = 0;
+            simState.fuel = 100;
+            loggedEvents.clear();
+            logContainer.innerHTML = '';
+            addLogEvent("Persiapan dokumen dan pengecekan mesin selesai.", "08:15");
+            addLogEvent("Berangkat dari Gudang Cakung.", "08:30");
+            loggedEvents.add(0.0);
+            
+            if(!simState.isPlaying) {
+                simState.isPlaying = true;
+                iconPlayPause.setAttribute('data-lucide', 'pause');
+                textPlayPause.textContent = 'Jeda';
+                lucide.createIcons();
+            }
+        });
+
+        const simSpeedSlider = document.getElementById('sim-speed');
+        const simSpeedDisplay = document.getElementById('sim-speed-display');
+        
+        simSpeedSlider.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            let multi = 1;
+            if (val === 1) multi = 1;
+            if (val === 2) multi = 2;
+            if (val === 3) multi = 5;
+
+            simSpeedDisplay.textContent = multi + 'x';
+            simState.speedMultiplier = multi;
+        });
+
+    </script>
+</body>
+</html>

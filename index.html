@@ -9,6 +9,11 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=101">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body class="loading">
@@ -904,36 +909,9 @@
                         </div>
                     </div>
 
-                    <!-- Canvas Map -->
+                    <!-- Leaflet Map -->
                     <div class="truck-map-canvas-wrapper">
-                        <!-- Real Indonesia Map Background -->
-                        <img src="assets/indonesian map 2.svg" class="truck-map-bg" alt="Indonesia Map" id="truck-map-bg-img">
-                        <canvas id="truck-tracking-canvas"></canvas>
-                        <!-- Tooltip -->
-                        <div class="truck-tooltip" id="truck-tooltip">
-                            <div class="truck-tooltip-header">
-                                <span class="truck-tooltip-id" id="tt-id">PL-001</span>
-                                <span class="truck-tooltip-status" id="tt-status">TRANSIT</span>
-                            </div>
-                            <div class="truck-tooltip-row">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                <span id="tt-location">Jakarta → Surabaya</span>
-                            </div>
-                            <div class="truck-tooltip-row">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                                <span id="tt-speed">72 km/h</span>
-                            </div>
-                            <div class="truck-tooltip-row">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                                <span id="tt-cargo">BBM Pertamina</span>
-                            </div>
-                            <div class="truck-tooltip-progress">
-                                <div class="truck-tooltip-progress-bar">
-                                    <div class="truck-tooltip-progress-fill" id="tt-progress"></div>
-                                </div>
-                                <span id="tt-progress-label">64% rute selesai</span>
-                            </div>
-                        </div>
+                        <div id="home-fleet-map" style="height: 100%; width: 100%; background: #060F1C; z-index: 1;"></div>
 
                         <!-- Map Legend -->
                         <div class="truck-map-legend">
