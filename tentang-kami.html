@@ -1157,6 +1157,193 @@
             }
         }
 
+        /* Certificate Popup Modal */
+        .cert-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(10, 20, 40, 0.82);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .cert-modal-overlay.active {
+            display: flex;
+            animation: certOverlayFadeIn 0.25s ease;
+        }
+        @keyframes certOverlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .cert-modal-box {
+            background: #FFFFFF;
+            border-radius: 2px;
+            width: 100%;
+            max-width: 860px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.45);
+            animation: certModalSlideUp 0.3s cubic-bezier(0.34,1.56,0.64,1);
+            overflow: hidden;
+            position: relative;
+        }
+        @keyframes certModalSlideUp {
+            from { opacity: 0; transform: translateY(32px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .cert-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            border-bottom: 1px solid #E2E8F0;
+            background: #F8FAFC;
+            flex-shrink: 0;
+        }
+        .cert-modal-header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .cert-modal-badge {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ED1C24;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .cert-modal-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1E293B;
+            margin: 0;
+        }
+        .cert-modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cert-modal-download-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            background: #0056A6;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 2px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+        .cert-modal-download-btn:hover {
+            background: #003d7a;
+            color: #FFFFFF;
+        }
+        .cert-modal-download-btn svg {
+            width: 15px;
+            height: 15px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .cert-modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid #CBD5E1;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #64748B;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .cert-modal-close:hover {
+            background: #FEE2E2;
+            border-color: #ED1C24;
+            color: #ED1C24;
+        }
+        .cert-modal-close svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+        }
+        .cert-modal-image-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: #F1F5F9;
+        }
+        .cert-modal-image-wrapper img {
+            max-width: 100%;
+            max-height: 62vh;
+            object-fit: contain;
+            border-radius: 2px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            display: block;
+        }
+        .cert-modal-footer {
+            padding: 14px 24px;
+            background: #F8FAFC;
+            border-top: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #94A3B8;
+            font-style: italic;
+            flex-shrink: 0;
+        }
+        .cert-modal-footer svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            flex-shrink: 0;
+            color: #64748B;
+        }
+        /* Cert card pointer cursor */
+        .cert-list-item {
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            .cert-modal-box {
+                max-height: 95vh;
+                border-radius: 2px;
+            }
+            .cert-modal-header {
+                padding: 14px 16px;
+            }
+            .cert-modal-image-wrapper {
+                padding: 16px;
+            }
+            .cert-modal-download-btn span {
+                display: none;
+            }
+            .cert-modal-footer {
+                padding: 10px 16px;
+            }
+        }
+
         /* Penghargaan - Grid & Cards Premium */
         .award-grid {
             display: grid;
@@ -1171,6 +1358,7 @@
             padding: 24px;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
             justify-content: space-between;
             min-height: 200px;
             box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
@@ -2274,7 +2462,7 @@
 
                         <div class="cert-list">
                             <!-- Card 1: ISO 9001 -->
-                            <div class="cert-list-item">
+                            <div class="cert-list-item" data-cert="iso9001" data-cert-badge="ISO 9001:2015" data-cert-title="Sistem Manajemen Mutu" data-cert-img="assets/cert_iso_9001.jpg" role="button" tabindex="0" aria-label="Lihat Sertifikat ISO 9001:2015">
                                 <div class="cert-card-content">
                                     <div class="cert-badge-tag" data-i18n="about_109">ISO 9001:2015</div>
                                     <h3 class="cert-title" data-i18n="about_110">Sistem Manajemen Mutu</h3>
@@ -2293,13 +2481,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="cert-arrow-circle" aria-label="Lihat Detail">
+                                <div class="cert-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 2: ISO 14001 -->
-                            <div class="cert-list-item">
+                            <div class="cert-list-item" data-cert="iso14001" data-cert-badge="ISO 14001:2015" data-cert-title="Sistem Manajemen Lingkungan" data-cert-img="assets/cert_iso_14001.jpg" role="button" tabindex="0" aria-label="Lihat Sertifikat ISO 14001:2015">
                                 <div class="cert-card-content">
                                     <div class="cert-badge-tag" data-i18n="about_112">ISO 14001:2015</div>
                                     <h3 class="cert-title" data-i18n="about_113">Sistem Manajemen Lingkungan</h3>
@@ -2318,13 +2506,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="cert-arrow-circle" aria-label="Lihat Detail">
+                                <div class="cert-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 3: ISO 45001 -->
-                            <div class="cert-list-item">
+                            <div class="cert-list-item" data-cert="iso45001" data-cert-badge="ISO 45001:2018" data-cert-title="Sistem Manajemen Kesehatan dan Keselamatan Kerja" data-cert-img="assets/cert_iso_45001.jpg" role="button" tabindex="0" aria-label="Lihat Sertifikat ISO 45001:2018">
                                 <div class="cert-card-content">
                                     <div class="cert-badge-tag" data-i18n="about_115">ISO 45001:2018</div>
                                     <h3 class="cert-title" data-i18n="about_116">Sistem Manajemen Kesehatan dan Keselamatan Kerja</h3>
@@ -2343,13 +2531,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="cert-arrow-circle" aria-label="Lihat Detail">
+                                <div class="cert-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 4: SMK3 -->
-                            <div class="cert-list-item">
+                            <div class="cert-list-item" data-cert="smk3" data-cert-badge="SMK3" data-cert-title="Sistem Manajemen Keselamatan dan Kesehatan Kerja" data-cert-img="assets/cert_smk3.jpg" role="button" tabindex="0" aria-label="Lihat Sertifikat SMK3">
                                 <div class="cert-card-content">
                                     <div class="cert-badge-tag">SMK3</div>
                                     <h3 class="cert-title" data-i18n="about_118">Sistem Manajemen Keselamatan dan Kesehatan Kerja</h3>
@@ -2368,7 +2556,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="cert-arrow-circle" aria-label="Lihat Detail">
+                                <div class="cert-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
@@ -2384,155 +2572,155 @@
 
                         <div class="award-grid">
                             <!-- Card 1 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="markplus2025" data-award-title="Sales Leaders Awards of The Year 2025" data-award-desc="Sales Strategy That Change The Game · Strategic Key Account Growth" data-award-year="2025" data-award-org="MarkPlus Inc." data-award-img="assets/award_markplus_2025.jpg" role="button" tabindex="0" aria-label="Lihat Piagam Sales Leaders Awards 2025">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_123">Sales Leaders Awards of The Year 2025 MarkPlus</div>
                                     <div class="award-desc" data-i18n="about_124">- Sales Strategy That Change The Game<br data-i18n="about_125">- Strategic Key Account Growth</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 2 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="csr2025" data-award-title="CSR Awards 2025 & CSR Brand Equity Summit" data-award-desc="CSR Equity Awards in Logistic Category" data-award-year="2025" data-award-org="CSR Brand Equity Summit" data-award-img="assets/award_csr_2025.jpg" role="button" tabindex="0" aria-label="Lihat Piagam CSR Awards 2025">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_126">CSR Awards 2025 and CSR Brand Equity Summit 2025</div>
                                     <div class="award-desc" data-i18n="about_127">CSR Equity Awards in Logistic Category</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 3 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="srm2025" data-award-title="Sumatera SRM Summit 2025" data-award-desc="Best Performance Sinergi Pertamina Group" data-award-year="2025" data-award-org="Pertamina" data-award-img="assets/award_srm_pertamina_2025.jpg" role="button" tabindex="0" aria-label="Lihat Piagam SRM Summit 2025">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_128">Sumatera Supplier Relationship Management (SRM) Summit 2025</div>
                                     <div class="award-desc" data-i18n="about_129">Best Performance Sinergi Pertamina Group</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 4 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="swa2024" data-award-title="SWA Media Awards 2024" data-award-desc="Indonesia Best Business Transformation 2024" data-award-year="2024" data-award-org="SWA Magazine" data-award-img="assets/award_swa_2024.jpg" role="button" tabindex="0" aria-label="Lihat Piagam SWA Media Awards 2024">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_130">SWA Media Awards 2024</div>
                                     <div class="award-desc" data-i18n="about_131">Indonesia Best Business Transformation 2024</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 5 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="ila2024" data-award-title="Indonesia Logistic Awards (ILA) 2024" data-award-desc="The Best Performer for Energy Logistic Distribution of The Year" data-award-year="2024" data-award-org="Supply Chain Indonesia" data-award-img="assets/award_ila_2024.jpg" role="button" tabindex="0" aria-label="Lihat Piagam ILA 2024">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_132">Indonesia Logistic Awards (ILA) 2024 by Supply Chain Indonesia</div>
                                     <div class="award-desc" data-i18n="about_133">The Best Performer for Energy Logistic Distribution of The Year</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 6 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="meca2024" data-award-title="Marketeers Editor's Choice Award (MECA) 2024" data-award-desc="Business Transformation of The Year" data-award-year="2024" data-award-org="Marketeers Magazine" data-award-img="assets/award_meca_2024.jpg" role="button" tabindex="0" aria-label="Lihat Piagam MECA 2024">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_134">Marketeers Editor's Choice Award (MECA) 2024</div>
                                     <div class="award-desc" data-i18n="about_135">Business Transformation of The Year</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 7 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="iconomics_innovation2024" data-award-title="Indonesia Innovation Awards 2024" data-award-desc="Indonesia Innovation Company in Logistic Category" data-award-year="2024" data-award-org="The Iconomics" data-award-img="assets/award_iconomics_innovation_2024.jpg" role="button" tabindex="0" aria-label="Lihat Piagam Indonesia Innovation Awards 2024">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_136">The Iconomics Indonesia Innovation Awards 2024</div>
                                     <div class="award-desc" data-i18n="about_137">Indonesia Innovation Company in Logistic Category</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 8 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="iconomics_pr2024" data-award-title="Indonesia Public Relations Summit 2024" data-award-desc="Indonesia Popular Corporate Reputation Awards" data-award-year="2024" data-award-org="The Iconomics" data-award-img="assets/award_iconomics_pr_2024.jpg" role="button" tabindex="0" aria-label="Lihat Piagam PR Summit 2024">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_138">Indonesia Public Relations Summit 2024 By The Iconomics</div>
                                     <div class="award-desc" data-i18n="about_139">Indonesia Popular Corporate Reputation Awards</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 9 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="gcg2023" data-award-title="Indonesia Fair Trusted Company GCG Awards 2023" data-award-desc="Fair Trusted Company — Corporate Governance Perception Index (CGPI)" data-award-year="2023" data-award-org="IICG / CGPI" data-award-img="assets/award_gcg_2023.jpg" role="button" tabindex="0" aria-label="Lihat Piagam GCG Awards 2023">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_140">Indonesia Fair Trusted Company GCG Awards 2023</div>
                                     <div class="award-desc" data-i18n="about_141">Fair Trusted Company Based On Corporate Governance Perception Index (CGPI)</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 10 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="vendor_kalsulpapua2024" data-award-title="Vendor Days Awards — Kalimantan, Sulawesi, Papua Maluku 2024" data-award-desc="Best Performance Pertamina Group Affiliates · Business Support BBM 1 Harga" data-award-year="2024" data-award-org="Pertamina Patra Niaga" data-award-img="assets/award_vendor_kalsulpapua_2024.svg" role="button" tabindex="0" aria-label="Lihat Piagam Vendor Days Kalimantan Sulawesi Papua 2024">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_142">Vendor Days Awards Pertamina Patra Niaga Reg. Kalimantan, Sulawesi, Papua Maluku 2024</div>
                                     <div class="award-desc" data-i18n="about_143">- Best Performance Pertamina Group Affiliates<br data-i18n="about_144">- Business Support Penyaluran BBM 1 Harga</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 11 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="vendor_lubricants2024" data-award-title="Vendor Day Awards — Pertamina Lubricants 2024" data-award-desc="The Best Synergistic Alliance Achievement" data-award-year="2024" data-award-org="PT Pertamina Lubricants" data-award-img="assets/award_vendor_lubricants_2024.svg" role="button" tabindex="0" aria-label="Lihat Piagam Vendor Day Pertamina Lubricants 2024">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_145">Vendor Day Awards PT Pertamina Lubricants 2024</div>
                                     <div class="award-desc" data-i18n="about_146">The Best Synergistic Alliance Achievement</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 12 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="bestpractice_ppn2024" data-award-title="Best Practice Awards Pertamina Patra Niaga 2024" data-award-desc="Pencapaian ABI Fisik dan Finansial Anak Perusahaan Terbaik" data-award-year="2024" data-award-org="PT Pertamina Patra Niaga" data-award-img="assets/award_best_practice_ppn_2024.svg" role="button" tabindex="0" aria-label="Lihat Piagam Best Practice Awards PPN 2024">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_147">Best Practice Awards Pertamina Patra Niaga 2024</div>
                                     <div class="award-desc" data-i18n="about_148">Performance Pencapaian ABI Fisik dan Finansial Anak Perusahaan Terbaik</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 13 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="airasia2024" data-award-title="Appreciation — PT Indonesia AirAsia 2024" data-award-desc="Pertamina Komodo Airport DPPU, Labuan Bajo" data-award-year="2024" data-award-org="PT Indonesia AirAsia" data-award-img="assets/award_airasia_appreciation.svg" role="button" tabindex="0" aria-label="Lihat Piagam Apresiasi AirAsia">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_149">Appreciation from President Director of PT Indonesia Air Asia</div>
                                     <div class="award-desc" data-i18n="about_150">Pertamina Komodo Airport Aircraft Refueling Depot, Labuan Bajo</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
 
                             <!-- Card 14 -->
-                            <div class="award-card">
+                            <div class="award-card" data-award="aviation2023" data-award-title="Nation Aviation Forum 2023" data-award-desc="DPPU KSO Terbaik — DPPU Banyuwangi, Closing Audit 100%" data-award-year="2023" data-award-org="Nation Aviation Forum" data-award-img="assets/award_aviation_forum_2023.svg" role="button" tabindex="0" aria-label="Lihat Piagam Nation Aviation Forum 2023">
                                 <div class="award-card-body">
                                     <div class="award-title" data-i18n="about_151">Nation Aviation Forum tahun 2023</div>
                                     <div class="award-desc" data-i18n="about_152">DPPU KSO Terbaik oleh DPPU Banyuwangi Atas Penyelesaian Closing Audit 100%</div>
                                 </div>
-                                <div class="award-arrow-circle" aria-label="Detail">
+                                <div class="award-arrow-circle" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
                             </div>
@@ -2953,6 +3141,190 @@
         }
     });
 
+</script>
+    <!-- Certificate Popup Modal -->
+    <div class="cert-modal-overlay" id="certModal" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+        <div class="cert-modal-box">
+            <div class="cert-modal-header">
+                <div class="cert-modal-header-info">
+                    <div class="cert-modal-badge" id="certModalBadge">ISO 9001:2015</div>
+                    <h2 class="cert-modal-title" id="certModalTitle">Sistem Manajemen Mutu</h2>
+                </div>
+                <div class="cert-modal-actions">
+                    <a id="certModalDownload" href="#" download class="cert-modal-download-btn" title="Unduh Sertifikat">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Unduh</span>
+                    </a>
+                    <button class="cert-modal-close" id="closeCertModal" aria-label="Tutup">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="cert-modal-image-wrapper">
+                <img id="certModalImg" src="" alt="Sertifikat" />
+            </div>
+            <div class="cert-modal-footer">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Dokumen ini merupakan tampilan dummy / ilustrasi sertifikat untuk keperluan demonstrasi.
+            </div>
+        </div>
+    </div>
+
+<script>
+    // Certificate Modal Logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const certCards = document.querySelectorAll('.cert-list-item[data-cert]');
+        const certModal = document.getElementById('certModal');
+        const closeCertBtn = document.getElementById('closeCertModal');
+        const certModalImg = document.getElementById('certModalImg');
+        const certModalBadge = document.getElementById('certModalBadge');
+        const certModalTitle = document.getElementById('certModalTitle');
+        const certModalDownload = document.getElementById('certModalDownload');
+
+        const openCertModal = (card) => {
+            const badge = card.getAttribute('data-cert-badge') || '';
+            const title = card.getAttribute('data-cert-title') || '';
+            const imgSrc = card.getAttribute('data-cert-img') || '';
+
+            certModalBadge.textContent = badge;
+            certModalTitle.textContent = title;
+            certModalImg.src = imgSrc;
+            certModalImg.alt = `Sertifikat ${badge}`;
+            certModalDownload.href = imgSrc;
+            certModalDownload.setAttribute('download', `sertifikat_${badge.replace(/[^a-z0-9]/gi,'_').toLowerCase()}.jpg`);
+
+            certModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Focus trap: move focus to close button
+            setTimeout(() => closeCertBtn.focus(), 50);
+        };
+
+        const closeCertModal = () => {
+            certModal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        certCards.forEach(card => {
+            card.addEventListener('click', function() {
+                openCertModal(this);
+            });
+            // Keyboard accessibility: Enter and Space open the modal
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openCertModal(this);
+                }
+            });
+        });
+
+        closeCertBtn.addEventListener('click', closeCertModal);
+
+        // Close on overlay click (outside modal box)
+        certModal.addEventListener('click', function(e) {
+            if (e.target === certModal) closeCertModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && certModal.classList.contains('active')) {
+                closeCertModal();
+            }
+        });
+    });
+</script>
+    <!-- Award Popup Modal -->
+    <div class="cert-modal-overlay" id="awardModal" role="dialog" aria-modal="true" aria-labelledby="awardModalTitle">
+        <div class="cert-modal-box" style="max-width:920px;">
+            <div class="cert-modal-header">
+                <div class="cert-modal-header-info">
+                    <div class="cert-modal-badge" id="awardModalYear" style="color:#D4AF37;">2024</div>
+                    <h2 class="cert-modal-title" id="awardModalTitle">Award Title</h2>
+                    <div style="font-size:12px;color:#64748B;margin-top:3px;" id="awardModalOrg">Organizer</div>
+                </div>
+                <div class="cert-modal-actions">
+                    <a id="awardModalDownload" href="#" download class="cert-modal-download-btn" title="Unduh Piagam">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Unduh</span>
+                    </a>
+                    <button class="cert-modal-close" id="closeAwardModal" aria-label="Tutup">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="cert-modal-image-wrapper" style="background:#1a1a2e;">
+                <img id="awardModalImg" src="" alt="Piagam Penghargaan" style="max-height:64vh;" />
+            </div>
+            <div class="cert-modal-footer">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span id="awardModalDesc">Dokumen ini merupakan ilustrasi piagam penghargaan untuk keperluan demonstrasi.</span>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // Award Modal Logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const awardCards = document.querySelectorAll('.award-card[data-award]');
+        const awardModal = document.getElementById('awardModal');
+        const closeAwardBtn = document.getElementById('closeAwardModal');
+        const awardModalImg = document.getElementById('awardModalImg');
+        const awardModalTitle = document.getElementById('awardModalTitle');
+        const awardModalYear = document.getElementById('awardModalYear');
+        const awardModalOrg = document.getElementById('awardModalOrg');
+        const awardModalDesc = document.getElementById('awardModalDesc');
+        const awardModalDownload = document.getElementById('awardModalDownload');
+
+        const openAwardModal = (card) => {
+            const title = card.getAttribute('data-award-title') || '';
+            const year = card.getAttribute('data-award-year') || '';
+            const org = card.getAttribute('data-award-org') || '';
+            const desc = card.getAttribute('data-award-desc') || '';
+            const imgSrc = card.getAttribute('data-award-img') || '';
+
+            awardModalTitle.textContent = title;
+            awardModalYear.textContent = year;
+            awardModalOrg.textContent = org;
+            awardModalDesc.textContent = desc || 'Dokumen ini merupakan ilustrasi piagam penghargaan untuk keperluan demonstrasi.';
+            awardModalImg.src = imgSrc;
+            awardModalImg.alt = `Piagam ${title}`;
+            awardModalDownload.href = imgSrc;
+            awardModalDownload.setAttribute('download', `piagam_${title.replace(/[^a-z0-9]/gi,'_').toLowerCase().slice(0,40)}`);
+
+            awardModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => closeAwardBtn.focus(), 50);
+        };
+
+        const closeAwardModal = () => {
+            awardModal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        awardCards.forEach(card => {
+            card.addEventListener('click', function() {
+                openAwardModal(this);
+            });
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openAwardModal(this);
+                }
+            });
+        });
+
+        closeAwardBtn.addEventListener('click', closeAwardModal);
+
+        awardModal.addEventListener('click', function(e) {
+            if (e.target === awardModal) closeAwardModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && awardModal.classList.contains('active')) {
+                closeAwardModal();
+            }
+        });
+    });
 </script>
 </body>
 </html>

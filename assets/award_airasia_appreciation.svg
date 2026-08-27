@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F5D033"/><stop offset="50%" style="stop-color:#D4AF37"/><stop offset="100%" style="stop-color:#B8860B"/></linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1200" height="110" fill="#CC0000"/>
+  <rect x="18" y="18" width="1164" height="764" rx="4" fill="none" stroke="url(#gold)" stroke-width="4"/>
+  <text x="600" y="52" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="34" font-weight="bold" fill="#FFFFFF" letter-spacing="-1">AirAsia</text>
+  <text x="600" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#FFCCCC" letter-spacing="5">PT INDONESIA AIRASIA</text>
+  <rect x="0" y="108" width="1200" height="4" fill="url(#gold)"/>
+  <text x="600" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#CC0000" letter-spacing="4">LETTER OF APPRECIATION</text>
+  <line x1="300" y1="175" x2="490" y2="175" stroke="url(#gold)" stroke-width="1"/>
+  <line x1="710" y1="175" x2="900" y2="175" stroke="url(#gold)" stroke-width="1"/>
+  <text x="600" y="230" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#444">This letter of appreciation is proudly presented by the</text>
+  <text x="600" y="255" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#CC0000">President Director of PT Indonesia AirAsia</text>
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#444">To</text>
+  <text x="600" y="352" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="bold" fill="#1a1a2e">PT PATRA LOGISTIK</text>
+  <line x1="250" y1="375" x2="950" y2="375" stroke="url(#gold)" stroke-width="1.5"/>
+  <text x="600" y="415" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#CC0000">FOR OUTSTANDING SERVICE AT</text>
+  <text x="600" y="445" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="bold" fill="#333">Pertamina Komodo Airport Aircraft Refueling Depot (DPPU)</text>
+  <text x="600" y="470" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#333">Labuan Bajo</text>
+  <text x="600" y="520" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#666">In recognition of exceptional support, professionalism, and dedication</text>
+  <text x="600" y="542" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#666">in ensuring safe and reliable aviation fuel supply operations.</text>
+  <line x1="750" y1="680" x2="1000" y2="680" stroke="#999" stroke-width="1"/>
+  <text x="875" y="700" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#555">President Director</text>
+  <text x="875" y="714" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#555">PT Indonesia AirAsia</text>
+  <circle cx="350" cy="690" r="50" fill="none" stroke="#CC0000" stroke-width="2"/>
+  <circle cx="350" cy="690" r="40" fill="none" stroke="#CC0000" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="350" y="685" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="14" fill="#CC0000">AirAsia</text>
+  <text x="350" y="702" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#999">INDONESIA 2024</text>
+</svg>
