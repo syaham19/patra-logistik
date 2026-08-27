@@ -1401,4 +1401,648 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })();
 
+/* ==========================================================================
+   FLOATING CHATBOT "TANYA JAKA" (DRAGGABLE & SIMULATED CHAT ENGINE)
+   ========================================================================== */
+(function initTanyaJakaChatbot() {
+    // Prevent multiple initializations
+    if (document.getElementById('jaka-chatbot-container')) return;
 
+    // Create container
+    const container = document.createElement('div');
+    container.id = 'jaka-chatbot-container';
+    container.className = 'jaka-chatbot-container';
+
+    // HTML Markup for Chatbot Button & Dialog
+    container.innerHTML = `
+        <!-- Floating Trigger Button Wrapper (Draggable) -->
+        <div id="jaka-float-btn-wrapper" class="jaka-float-btn-wrapper" title="Tahan & geser untuk memindahkan posisi">
+            <!-- Floating Greeting Tooltip -->
+            <div id="jaka-floating-tooltip" class="jaka-floating-tooltip">
+                <span class="jaka-tooltip-badge">Baru</span>
+                <span>👋 Butuh info? <strong>Tanya JAKA!</strong></span>
+            </div>
+
+            <!-- Mascot Button -->
+            <div id="jaka-float-btn" class="jaka-float-btn" role="button" aria-label="Buka Chat Tanya JAKA">
+                <img src="assets/tanyajaka.png" alt="Tanya JAKA Mascot" class="jaka-avatar-img" />
+                <span class="jaka-status-dot" title="JAKA Online"></span>
+            </div>
+        </div>
+
+        <!-- Chatbot Window Dialog -->
+        <div id="jaka-chat-window" class="jaka-chat-window" role="dialog" aria-labelledby="jaka-window-title" aria-modal="true">
+            <!-- Header -->
+            <div class="jaka-chat-header">
+                <div class="jaka-header-profile">
+                    <div class="jaka-header-avatar-wrap">
+                        <img src="assets/tanyajaka.png" alt="JAKA Avatar" class="jaka-header-avatar" />
+                    </div>
+                    <div class="jaka-header-info">
+                        <div id="jaka-window-title" class="jaka-header-name">
+                            Tanya JAKA <span class="jaka-verified-badge" title="Asisten Resmi Patra Logistik">✓</span>
+                        </div>
+                        <div class="jaka-header-status">
+                            <span class="jaka-header-status-dot"></span>
+                            <span>Asisten Virtual Patra Logistik</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="jaka-header-actions">
+                    <button type="button" id="jaka-btn-reset" class="jaka-btn-icon" title="Reset Percakapan" aria-label="Reset Percakapan">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                            <path d="M3 3v5h5"/>
+                        </svg>
+                    </button>
+                    <button type="button" id="jaka-btn-close" class="jaka-btn-icon" title="Tutup Chat" aria-label="Tutup Chat">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Messages Body -->
+            <div id="jaka-chat-body" class="jaka-chat-body">
+                <div class="jaka-chat-divider">
+                    <span>Hari ini</span>
+                </div>
+            </div>
+
+            <!-- Quick Suggestions Bar -->
+            <div class="jaka-suggestions-bar" id="jaka-suggestions-bar">
+                <button type="button" class="jaka-suggestion-pill" data-query="Lacak Pengiriman BBM">🚚 Lacak BBM</button>
+                <button type="button" class="jaka-suggestion-pill" data-query="Layanan Patra Logistik">⛽ Layanan Bisnis</button>
+                <button type="button" class="jaka-suggestion-pill" data-query="Wilayah Operasi Depo">📍 Wilayah Operasi</button>
+                <button type="button" class="jaka-suggestion-pill" data-query="Info Karir & Rekrutmen">💼 Karir</button>
+                <button type="button" class="jaka-suggestion-pill" data-query="Hubungi Call Center">📞 Kontak CS</button>
+            </div>
+
+            <!-- Footer / Input Form -->
+            <div class="jaka-chat-footer">
+                <form id="jaka-input-form" class="jaka-input-form" onsubmit="return false;">
+                    <input type="text" id="jaka-chat-input" class="jaka-chat-input" placeholder="Ketik pertanyaan untuk JAKA..." autocomplete="off" />
+                    <button type="submit" id="jaka-send-btn" class="jaka-send-btn" aria-label="Kirim Pesan" disabled>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+                <div class="jaka-footer-meta">
+                    Didukung oleh AI Virtual Assistant PT Patra Logistik
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(container);
+
+    // DOM Elements
+    const btnWrapper = document.getElementById('jaka-float-btn-wrapper');
+    const floatBtn = document.getElementById('jaka-float-btn');
+    const chatWindow = document.getElementById('jaka-chat-window');
+    const tooltip = document.getElementById('jaka-floating-tooltip');
+    const btnClose = document.getElementById('jaka-btn-close');
+    const btnReset = document.getElementById('jaka-btn-reset');
+    const chatBody = document.getElementById('jaka-chat-body');
+    const chatInput = document.getElementById('jaka-chat-input');
+    const sendBtn = document.getElementById('jaka-send-btn');
+    const inputForm = document.getElementById('jaka-input-form');
+    const suggestionsBar = document.getElementById('jaka-suggestions-bar');
+
+    let isOpen = false;
+    let isDragging = false;
+    let dragThresholdPassed = false;
+    let startX = 0;
+    let startY = 0;
+    let initialLeft = 0;
+    let initialTop = 0;
+
+    // Helper: format current time
+    function getNowTime() {
+        const d = new Date();
+        return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    }
+
+    // Toggle Chat Window
+    function toggleChat(forceState) {
+        isOpen = (forceState !== undefined) ? forceState : !isOpen;
+        if (isOpen) {
+            chatWindow.classList.add('is-open');
+            tooltip.classList.add('is-hidden');
+            repositionChatWindow();
+            setTimeout(() => {
+                chatInput.focus();
+            }, 300);
+        } else {
+            chatWindow.classList.remove('is-open');
+        }
+    }
+
+    // Smart repositioning of Chat Window based on mascot button coordinates
+    function repositionChatWindow() {
+        const btnRect = btnWrapper.getBoundingClientRect();
+        const winWidth = window.innerWidth;
+        const winHeight = window.innerHeight;
+        const chatWidth = Math.min(390, winWidth - 32);
+        const chatHeight = Math.min(590, winHeight - 130);
+
+        // Check horizontal placement (Left vs Right half)
+        if (btnRect.left + btnRect.width / 2 < winWidth / 2) {
+            // Anchor to Left
+            chatWindow.style.right = 'auto';
+            chatWindow.style.left = `${Math.max(16, Math.min(btnRect.left, winWidth - chatWidth - 16))}px`;
+            chatWindow.style.transformOrigin = 'bottom left';
+            tooltip.classList.add('is-left');
+        } else {
+            // Anchor to Right
+            chatWindow.style.left = 'auto';
+            chatWindow.style.right = `${Math.max(16, Math.min(winWidth - btnRect.right, winWidth - chatWidth - 16))}px`;
+            chatWindow.style.transformOrigin = 'bottom right';
+            tooltip.classList.remove('is-left');
+        }
+
+        // Check vertical placement (Top vs Bottom)
+        if (btnRect.top < winHeight / 2) {
+            // Button is on the top half -> open chat below button
+            chatWindow.style.bottom = 'auto';
+            chatWindow.style.top = `${Math.min(winHeight - chatHeight - 16, btnRect.bottom + 12)}px`;
+        } else {
+            // Button is on bottom half -> open chat above button
+            chatWindow.style.top = 'auto';
+            chatWindow.style.bottom = `${Math.max(16, Math.min(winHeight - btnRect.top + 12, winHeight - chatHeight - 16))}px`;
+        }
+    }
+
+    // ==========================================
+    // DRAGGABLE MASCOT BUTTON LOGIC (POINTER EVENTS)
+    // ==========================================
+    btnWrapper.addEventListener('pointerdown', (e) => {
+        // Only primary mouse button or touch
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
+        
+        isDragging = true;
+        dragThresholdPassed = false;
+        startX = e.clientX;
+        startY = e.clientY;
+
+        const rect = btnWrapper.getBoundingClientRect();
+        initialLeft = rect.left;
+        initialTop = rect.top;
+
+        btnWrapper.setPointerCapture(e.pointerId);
+    });
+
+    btnWrapper.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        const distance = Math.hypot(deltaX, deltaY);
+
+        if (distance > 5) {
+            dragThresholdPassed = true;
+            btnWrapper.classList.add('is-dragging');
+            tooltip.classList.add('is-hidden');
+
+            const btnWidth = btnWrapper.offsetWidth;
+            const btnHeight = btnWrapper.offsetHeight;
+            const winWidth = window.innerWidth;
+            const winHeight = window.innerHeight;
+
+            let newLeft = initialLeft + deltaX;
+            let newTop = initialTop + deltaY;
+
+            // Constrain within viewport bounds (with 10px margin)
+            newLeft = Math.max(10, Math.min(newLeft, winWidth - btnWidth - 10));
+            newTop = Math.max(10, Math.min(newTop, winHeight - btnHeight - 10));
+
+            btnWrapper.style.left = `${newLeft}px`;
+            btnWrapper.style.top = `${newTop}px`;
+            btnWrapper.style.right = 'auto';
+            btnWrapper.style.bottom = 'auto';
+
+            if (isOpen) {
+                repositionChatWindow();
+            }
+        }
+    });
+
+    function endDrag(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        btnWrapper.classList.remove('is-dragging');
+
+        try {
+            btnWrapper.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+
+        // If not dragged beyond threshold, treat as click to toggle chat
+        if (!dragThresholdPassed) {
+            toggleChat();
+        } else {
+            // Update tooltip position class after drag finishes
+            const btnRect = btnWrapper.getBoundingClientRect();
+            if (btnRect.left + btnRect.width / 2 < window.innerWidth / 2) {
+                tooltip.classList.add('is-left');
+            } else {
+                tooltip.classList.remove('is-left');
+            }
+        }
+    }
+
+    btnWrapper.addEventListener('pointerup', endDrag);
+    btnWrapper.addEventListener('pointercancel', endDrag);
+
+    // Close button
+    btnClose.addEventListener('click', () => toggleChat(false));
+    
+    // Tooltip click opens chat
+    tooltip.addEventListener('click', () => toggleChat(true));
+
+    // Reset button
+    btnReset.addEventListener('click', () => {
+        chatBody.innerHTML = `
+            <div class="jaka-chat-divider">
+                <span>Hari ini</span>
+            </div>
+        `;
+        renderWelcomeMessage();
+    });
+
+    // Input state listener
+    chatInput.addEventListener('input', () => {
+        sendBtn.disabled = chatInput.value.trim() === '';
+    });
+
+    // ==========================================
+    // SIMULATED CHATBOT KNOWLEDGE BASE & ENGINE
+    // ==========================================
+    const knowledgeBase = [
+        {
+            keywords: ['lacak', 'tracking', 'armada', 'mobil tangki', 'truk', 'posisi', 'pengiriman', 'order', 'status'],
+            response: (query) => {
+                const randomDo = 'DO-' + Math.floor(100000 + Math.random() * 900000);
+                return {
+                    text: `Halo! Berikut adalah <strong>Simulasi Live Tracking Armada</strong> untuk rute distribusi BBM aktif PT Patra Logistik:`,
+                    card: `
+                        <div class="jaka-rich-card">
+                            <div class="jaka-card-title">
+                                <span>🚛 PT. PATRA LOGISTIK - FLEET TRACKING</span>
+                            </div>
+                            <div class="jaka-card-row">
+                                <span>No. Delivery Order:</span>
+                                <strong>${randomDo}</strong>
+                            </div>
+                            <div class="jaka-card-row">
+                                <span>Armada / Nopol:</span>
+                                <strong>B 9842 PT (Tangki 24 KL)</strong>
+                            </div>
+                            <div class="jaka-card-row">
+                                <span>Awak Mobil Tangki:</span>
+                                <strong>Pak Suparman (AMT 1)</strong>
+                            </div>
+                            <div class="jaka-card-row">
+                                <span>Depo Asal:</span>
+                                <strong>Integrated Terminal Plumpang</strong>
+                            </div>
+                            <div class="jaka-card-row">
+                                <span>Tujuan:</span>
+                                <strong>SPBU 31.14201 (Jakarta Utara)</strong>
+                            </div>
+                            <div class="jaka-card-row">
+                                <span>Status Muatan:</span>
+                                <span class="jaka-card-status-badge">🚚 Dalam Perjalanan (ETA 25 Menit)</span>
+                            </div>
+                            <a href="live-tracking.html" class="jaka-card-btn-action" target="_blank">
+                                Buka Dashboard Live Tracking Penuh →
+                            </a>
+                        </div>
+                    `,
+                    quickReplies: [
+                        { text: 'Detail Armada Laut & Kapal', query: 'Armada Kapal' },
+                        { text: 'Layanan Distribusi Lainnya', query: 'Layanan Patra Logistik' }
+                    ]
+                };
+            }
+        },
+        {
+            keywords: ['layanan', 'bisnis', 'produk', 'jasa', 'transportasi', 'distribusi', 'bunkering', 'pelumas', 'depo', 'terminal'],
+            response: () => {
+                return {
+                    text: `PT Patra Logistik menyediakan solusi logistik energi terintegrasi dan andal di seluruh Indonesia:
+                    <br><br>
+                    <strong>1. Transportasi Darat (Road Transport)</strong><br>
+                    Pengelolaan ribuan Mobil Tangki modern berstandar HSSE tinggi untuk distribusi BBM ritel & industri.
+                    <br><br>
+                    <strong>2. Transportasi Laut (Sea Transportation)</strong><br>
+                    Armada Kapal Tanker & SPOB untuk penyeberangan antarpulau di nusantara.
+                    <br><br>
+                    <strong>3. Terminal & Depo Management</strong><br>
+                    Operasional dan perawatan fasilitas penyimpanan BBM, Avtur, serta Bunkering kapal laut.
+                    <br><br>
+                    <strong>4. Manajemen Gudang & Pelumas (Lubricants)</strong><br>
+                    Distribusi oli dan pelumas Pertamina Lubricants ke seluruh MOR.`,
+                    quickReplies: [
+                        { text: 'Kunjungi Halaman Bisnis', query: 'Halaman Bisnis' },
+                        { text: 'Wilayah Operasi', query: 'Wilayah Operasi' }
+                    ]
+                };
+            }
+        },
+        {
+            keywords: ['wilayah', 'operasi', 'lokasi', 'depo', 'mor', 'cabang', 'kantor', 'daerah'],
+            response: () => {
+                return {
+                    text: `Jangkauan operasional PT Patra Logistik mencakup <strong>8 Wilayah Operasional (Marketing Operation Region / MOR)</strong> di seluruh Indonesia:
+                    <br><br>
+                    • <strong>MOR I:</strong> Sumatera Bagian Utara (Medan, Aceh, Riau, Kepri)<br>
+                    • <strong>MOR II:</strong> Sumatera Bagian Selatan (Palembang, Lampung, Jambi, Bengkulu)<br>
+                    • <strong>MOR III:</strong> Jawa Bagian Barat (DKI Jakarta, Banten, Jawa Barat)<br>
+                    • <strong>MOR IV:</strong> Jawa Bagian Tengah (Semarang, Solo, DIY)<br>
+                    • <strong>MOR V:</strong> Jatim, Bali & Nusa Tenggara (Surabaya, Denpasar, Kupang)<br>
+                    • <strong>MOR VI:</strong> Kalimantan (Balikpapan, Banjarmasin, Pontianak)<br>
+                    • <strong>MOR VII:</strong> Sulawesi (Makassar, Manado, Palu, Kendari)<br>
+                    • <strong>MOR VIII:</strong> Maluku & Papua (Jayapura, Sorong, Ambon)`,
+                    quickReplies: [
+                        { text: 'Lacak Armada Terdekat', query: 'Lacak Pengiriman BBM' },
+                        { text: 'Hubungi Customer Service', query: 'Kontak CS' }
+                    ]
+                };
+            }
+        },
+        {
+            keywords: ['karir', 'rekrutmen', 'lowongan', 'kerja', 'magang', 'apply', 'job', 'hrd', 'interview', 'amt'],
+            response: () => {
+                return {
+                    text: `Ingin bergabung bersama keluarga besar PT Patra Logistik (Pertamina Group)?
+                    <br><br>
+                    📌 <strong>Informasi Resmi Rekrutmen:</strong><br>
+                    • Semua proses rekrutmen diumumkan secara transparan melalui portal resmi Pertamina & Patra Logistik.<br>
+                    • PT Patra Logistik <strong>TIDAK PERNAH</strong> memungut biaya apapun (gratis) dan tidak bekerja sama dengan agen travel mana pun.
+                    <br><br>
+                    Kunjungi menu <strong>Karir</strong> di website ini untuk melihat lowongan yang sedang dibuka.`,
+                    card: `
+                        <div class="jaka-rich-card">
+                            <div class="jaka-card-title">💼 Portal Rekrutmen Resmi</div>
+                            <div class="jaka-card-row">
+                                <span>Status Rekrutmen:</span>
+                                <strong style="color:#0056A6;">Pendaftaran Terbuka</strong>
+                            </div>
+                            <a href="karir.html" class="jaka-card-btn-action">Lihat Lowongan di Halaman Karir →</a>
+                        </div>
+                    `,
+                    quickReplies: [
+                        { text: 'Profil Perusahaan', query: 'Tentang Patra Logistik' },
+                        { text: 'Kontak HRD / Pertamina', query: 'Kontak CS' }
+                    ]
+                };
+            }
+        },
+        {
+            keywords: ['kontak', 'call center', 'cs', 'customer', 'hubungi', 'alamat', 'telepon', 'email', 'pengaduan', 'pcc', '135'],
+            response: () => {
+                return {
+                    text: `Anda dapat menghubungi layanan pelanggan resmi PT Patra Logistik & Pertamina melalui saluran berikut:
+                    <br><br>
+                    📞 <strong>Pertamina Call Center:</strong> 135 (Bebas pulsa / 24 Jam)<br>
+                    ✉️ <strong>Email Resmi:</strong> pcc135@pertamina.com / contact@patralogistik.com<br>
+                    🏢 <strong>Kantor Pusat:</strong><br>
+                    Graha Elnusa Lt. 5, Jl. TB Simatupang No. 1B, Cilandak, Jakarta Selatan 12560<br>
+                    📱 <strong>Media Sosial:</strong> Instagram @patralogistik`,
+                    quickReplies: [
+                        { text: 'Kirim Pesan Lainnya', query: 'Layanan Patra Logistik' }
+                    ]
+                };
+            }
+        },
+        {
+            keywords: ['tentang', 'profil', 'sejarah', 'visi', 'misi', 'pertamina', 'patra logistik', 'direksi'],
+            response: () => {
+                return {
+                    text: `<strong>PT Patra Logistik</strong> adalah anak perusahaan dari PT Pertamina Patra Niaga (Subholding Commercial & Trading Pertamina) yang berfokus pada penyediaan jasa logistik energi terintegrasi, handal, dan berdaya saing global dengan standar HSSE kelas dunia.`,
+                    quickReplies: [
+                        { text: 'Lihat Selengkapnya', query: 'Layanan Patra Logistik' },
+                        { text: 'Wilayah Operasi', query: 'Wilayah Operasi' }
+                    ]
+                };
+            }
+        },
+        {
+            keywords: ['halo', 'hai', 'pagi', 'siang', 'sore', 'malam', 'assalamualaikum', 'tes', 'test', 'help', 'bantuan'],
+            response: () => {
+                return {
+                    text: `Halo! Senang bertemu dengan Anda. Saya <strong>JAKA</strong> (Jaringan Asisten Komunikasi & Armada), siap membantu memberikan informasi terkait logistik energi PT Patra Logistik. Apa yang ingin Anda ketahui?`,
+                    quickReplies: [
+                        { text: '🚚 Lacak Pengiriman BBM', query: 'Lacak Pengiriman BBM' },
+                        { text: '⛽ Layanan Bisnis & Distribusi', query: 'Layanan Patra Logistik' },
+                        { text: '📍 Jangkauan Depo / Wilayah', query: 'Wilayah Operasi' },
+                        { text: '💼 Informasi Karir', query: 'Info Karir & Rekrutmen' }
+                    ]
+                };
+            }
+        },
+        {
+            keywords: ['makasih', 'terima kasih', 'thanks', 'thank you', 'ok', 'oke', 'sip', 'bagus', 'mantap'],
+            response: () => {
+                return {
+                    text: `Sama-sama! Senang bisa membantu Anda. Jika ada pertanyaan lain seputar operasional atau layanan PT Patra Logistik, jangan ragu untuk bertanya kepada JAKA kembali ya! Tetap utamakan keselamatan kerja (Safety First)! 🛡️✨`,
+                    quickReplies: [
+                        { text: 'Lacak Pengiriman BBM', query: 'Lacak Pengiriman BBM' },
+                        { text: 'Kontak Call Center 135', query: 'Kontak CS' }
+                    ]
+                };
+            }
+        }
+    ];
+
+    // Find match or fallback
+    function generateBotResponse(userInput) {
+        const cleanInput = userInput.toLowerCase();
+
+        for (const item of knowledgeBase) {
+            const isMatch = item.keywords.some(kw => cleanInput.includes(kw));
+            if (isMatch) {
+                return item.response(userInput);
+            }
+        }
+
+        // Fallback response
+        return {
+            text: `Terima kasih atas pertanyaannya. Mengenai "<em>${escapeHTML(userInput)}</em>", JAKA sarankan Anda memilih salah satu menu topik informasi di bawah ini atau menghubungi Contact Center Pertamina 135:`,
+            quickReplies: [
+                { text: '🚚 Simulasi Lacak Pengiriman BBM', query: 'Lacak Pengiriman BBM' },
+                { text: '⛽ Solusi Layanan & Armada', query: 'Layanan Patra Logistik' },
+                { text: '📍 Wilayah Operasi Seluruh Indonesia', query: 'Wilayah Operasi' },
+                { text: '📞 Hubungi Call Center 135', query: 'Kontak CS' }
+            ]
+        };
+    }
+
+    // Escape HTML helper
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag)
+        );
+    }
+
+    // Render message item
+    function appendMessage(sender, htmlContent, quickReplies = [], cardHtml = '') {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `jaka-msg jaka-msg-${sender}`;
+
+        const isBot = sender === 'bot';
+        const timeStr = getNowTime();
+
+        let avatarHtml = '';
+        if (isBot) {
+            avatarHtml = `
+                <div class="jaka-msg-avatar">
+                    <img src="assets/tanyajaka.png" alt="JAKA" />
+                </div>
+            `;
+        }
+
+        let chipRepliesHtml = '';
+        if (quickReplies && quickReplies.length > 0) {
+            chipRepliesHtml = `
+                <div class="jaka-quick-replies">
+                    ${quickReplies.map(chip => `
+                        <button type="button" class="jaka-chip-btn" data-query="${escapeHTML(chip.query || chip.text)}">
+                            <span class="jaka-chip-icon">👉</span>
+                            <span>${chip.text}</span>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        msgDiv.innerHTML = `
+            ${avatarHtml}
+            <div class="jaka-msg-content-wrapper">
+                <div class="jaka-msg-bubble">
+                    ${htmlContent}
+                    ${cardHtml || ''}
+                    ${chipRepliesHtml}
+                </div>
+                <div class="jaka-msg-time">${timeStr}</div>
+            </div>
+        `;
+
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Attach listeners to newly appended chips
+        msgDiv.querySelectorAll('.jaka-chip-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const q = btn.getAttribute('data-query');
+                handleUserSend(q);
+            });
+        });
+    }
+
+    // Show Typing indicator
+    function showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.id = 'jaka-typing-indicator';
+        typingDiv.className = 'jaka-msg jaka-msg-bot';
+        typingDiv.innerHTML = `
+            <div class="jaka-msg-avatar">
+                <img src="assets/tanyajaka.png" alt="JAKA" />
+            </div>
+            <div class="jaka-msg-content-wrapper">
+                <div class="jaka-typing-indicator">
+                    <div class="jaka-typing-dot"></div>
+                    <div class="jaka-typing-dot"></div>
+                    <div class="jaka-typing-dot"></div>
+                </div>
+            </div>
+        `;
+        chatBody.appendChild(typingDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        return typingDiv;
+    }
+
+    // Handle User Input Submission
+    function handleUserSend(textToSend) {
+        const text = textToSend || chatInput.value.trim();
+        if (!text) return;
+
+        // Render user message
+        appendMessage('user', escapeHTML(text));
+
+        // Clear input
+        if (!textToSend) {
+            chatInput.value = '';
+            sendBtn.disabled = true;
+        }
+
+        // Show typing indicator
+        const typingEl = showTypingIndicator();
+
+        // Simulate network / AI response delay (650ms - 900ms)
+        const delay = Math.floor(650 + Math.random() * 250);
+        setTimeout(() => {
+            if (typingEl && typingEl.parentNode) {
+                typingEl.remove();
+            }
+
+            const botResult = generateBotResponse(text);
+            appendMessage('bot', botResult.text, botResult.quickReplies, botResult.card);
+        }, delay);
+    }
+
+    // Initial Welcome Message
+    function renderWelcomeMessage() {
+        setTimeout(() => {
+            appendMessage(
+                'bot',
+                `Halo! Saya <strong>JAKA</strong> (Jaringan Asisten Komunikasi & Armada), asisten virtual PT Patra Logistik. 
+                <br><br>
+                Ada yang bisa JAKA bantu terkait operasional distribusi energi dan layanan kami hari ini? Silakan pilih opsi di bawah atau ketik pertanyaan Anda langsung:`,
+                [
+                    { text: '🚚 Simulasi Lacak Pengiriman BBM', query: 'Lacak Pengiriman BBM' },
+                    { text: '⛽ Layanan Bisnis & Armada', query: 'Layanan Patra Logistik' },
+                    { text: '📍 Wilayah Operasi & Depo', query: 'Wilayah Operasi Depo' },
+                    { text: '💼 Informasi Karir & Rekrutmen', query: 'Info Karir & Rekrutmen' },
+                    { text: '📞 Hubungi Customer Service 135', query: 'Hubungi Call Center' }
+                ]
+            );
+        }, 150);
+    }
+
+    // Form submit listener
+    inputForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleUserSend();
+    });
+
+    // Suggestion pills bar listener
+    if (suggestionsBar) {
+        suggestionsBar.querySelectorAll('.jaka-suggestion-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                const q = pill.getAttribute('data-query');
+                handleUserSend(q);
+            });
+        });
+    }
+
+    // Auto-dismiss tooltip after 8s if not interacted
+    setTimeout(() => {
+        if (!isOpen && tooltip) {
+            tooltip.classList.add('is-hidden');
+        }
+    }, 8000);
+
+    // Initial Render
+    renderWelcomeMessage();
+})();

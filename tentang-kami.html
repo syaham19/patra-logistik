@@ -1385,7 +1385,34 @@
             transition: color 0.3s ease;
         }
         .award-card:hover .award-title {
-            color: #FFFFFF;
+            color: #E65100;
+        }
+
+        /* Cursor Preview Image */
+        #cursor-preview {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0,0,0,0.15);
+            background: #fff;
+            width: 240px; /* Base width for preview */
+            border: 2px solid rgba(255,255,255,0.8);
+            transform-origin: center center;
+        }
+        #cursor-preview.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        #cursor-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
         .award-desc {
             font-size: 12px;
@@ -3323,6 +3350,85 @@
             if (e.key === 'Escape' && awardModal.classList.contains('active')) {
                 closeAwardModal();
             }
+        });
+    });
+</script>
+    <!-- Cursor Image Preview -->
+    <div id="cursor-preview">
+        <img src="" alt="Preview">
+    </div>
+
+<script>
+    // Cursor Preview Logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const cursorPreview = document.getElementById('cursor-preview');
+        const previewImg = cursorPreview.querySelector('img');
+        
+        // Select all certs and awards that have an image data attribute
+        const hoverCards = document.querySelectorAll('.cert-list-item[data-cert-img], .award-card[data-award-img]');
+        
+        let isHovering = false;
+        let currentMouseX = 0;
+        let currentMouseY = 0;
+        
+        // Offset from cursor to the image preview
+        const offsetX = 20;
+        const offsetY = 20;
+
+        const updateCursorPosition = () => {
+            if (!isHovering) return;
+            
+            // Get viewport dimensions
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            // Get preview box dimensions (hardcoded based on CSS, or dynamic)
+            const previewWidth = 240; 
+            const previewHeight = previewImg.clientHeight || 160; 
+            
+            let posX = currentMouseX + offsetX;
+            let posY = currentMouseY + offsetY;
+            
+            // Prevent overflowing right edge
+            if (posX + previewWidth > viewportWidth - 10) {
+                posX = currentMouseX - previewWidth - offsetX;
+            }
+            
+            // Prevent overflowing bottom edge
+            if (posY + previewHeight > viewportHeight - 10) {
+                posY = currentMouseY - previewHeight - offsetY;
+            }
+            
+            cursorPreview.style.left = `${posX}px`;
+            cursorPreview.style.top = `${posY}px`;
+            
+            requestAnimationFrame(updateCursorPosition);
+        };
+
+        hoverCards.forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                // Determine source image based on card type
+                const imgSrc = this.getAttribute('data-cert-img') || this.getAttribute('data-award-img');
+                if (imgSrc) {
+                    previewImg.src = imgSrc;
+                    isHovering = true;
+                    cursorPreview.classList.add('active');
+                    
+                    currentMouseX = e.clientX;
+                    currentMouseY = e.clientY;
+                    updateCursorPosition();
+                }
+            });
+
+            card.addEventListener('mousemove', function(e) {
+                currentMouseX = e.clientX;
+                currentMouseY = e.clientY;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                isHovering = false;
+                cursorPreview.classList.remove('active');
+            });
         });
     });
 </script>

@@ -1,0 +1,268 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="100%" height="100%" style="background: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F1F5F9" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#E2E8F0" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="seaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0369A1" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0056A6"/>
+      <stop offset="100%" stop-color="#003B73"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#B91C1C"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <!-- Filters & Shadows -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0056A6" flood-opacity="0.2"/>
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M1,1 L7,4 L1,7 Z" fill="#E30613"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M1,1 L7,4 L1,7 Z" fill="#0056A6"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M1,1 L7,4 L1,7 Z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <!-- Background Decorative City Skyline Silhouette -->
+  <g opacity="0.12" fill="#0056A6">
+    <rect x="40" y="140" width="25" height="120"/>
+    <rect x="70" y="110" width="35" height="150"/>
+    <rect x="110" y="160" width="20" height="100"/>
+    <rect x="135" y="130" width="30" height="130"/>
+    <rect x="170" y="90" width="40" height="170"/>
+    <rect x="215" y="150" width="25" height="110"/>
+    <rect x="245" y="120" width="35" height="140"/>
+    <rect x="285" y="170" width="20" height="90"/>
+    <rect x="310" y="140" width="30" height="120"/>
+    <rect x="345" y="100" width="45" height="160"/>
+    <rect x="395" y="150" width="25" height="110"/>
+    <rect x="425" y="130" width="35" height="130"/>
+    <rect x="465" y="80" width="40" height="180"/>
+    <rect x="510" y="160" width="30" height="100"/>
+    <rect x="545" y="110" width="40" height="150"/>
+    <rect x="590" y="140" width="25" height="120"/>
+    <rect x="620" y="95" width="45" height="165"/>
+    <rect x="670" y="150" width="30" height="110"/>
+    <rect x="705" y="120" width="40" height="140"/>
+    <rect x="750" y="70" width="50" height="190"/>
+    <rect x="805" y="130" width="35" height="130"/>
+    <rect x="845" y="105" width="45" height="155"/>
+    <rect x="895" y="160" width="25" height="100"/>
+    <rect x="925" y="120" width="40" height="140"/>
+    <rect x="970" y="85" width="50" height="175"/>
+    <rect x="1025" y="140" width="30" height="120"/>
+    <rect x="1060" y="110" width="40" height="150"/>
+    <rect x="1105" y="150" width="35" height="110"/>
+    <rect x="1145" y="130" width="30" height="130"/>
+  </g>
+
+  <!-- Section Upper Road / Bridge Platform (Direct to Retail SPBU) -->
+  <rect x="40" y="170" width="1120" height="24" rx="0" fill="url(#roadGrad)"/>
+  <line x1="40" y1="182" x2="1160" y2="182" stroke="#FBBF24" stroke-width="2" stroke-dasharray="14 10" opacity="0.8"/>
+
+  <!-- Section Lower Road / Waterway Platform -->
+  <rect x="40" y="380" width="1120" height="28" rx="0" fill="url(#roadGrad)"/>
+  <line x1="40" y1="394" x2="1160" y2="394" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="16 12" opacity="0.6"/>
+
+  <!-- Waterway section under SPOB -->
+  <rect x="230" y="380" width="250" height="28" fill="url(#seaGrad)"/>
+  <path d="M 230,394 Q 250,388 270,394 T 310,394 T 350,394 T 390,394 T 430,394 T 470,394" fill="none" stroke="#38BDF8" stroke-width="2" opacity="0.8"/>
+
+  <!-- ================= STAGE 1: SUPPLY POINT ================= -->
+  <g transform="translate(60, 270)" filter="url(#cardShadow)">
+    <!-- Main Tank -->
+    <rect x="20" y="30" width="70" height="75" rx="0" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
+    <ellipse cx="55" cy="30" rx="35" ry="10" fill="#CBD5E1" stroke="#94A3B8" stroke-width="2"/>
+    <ellipse cx="55" cy="105" rx="35" ry="10" fill="#94A3B8" opacity="0.4"/>
+    <!-- Tank Stripe -->
+    <rect x="20" y="55" width="70" height="12" fill="#0056A6"/>
+    <rect x="20" y="67" width="70" height="4" fill="#E30613"/>
+    <!-- Secondary Small Tank -->
+    <rect x="95" y="50" width="45" height="55" rx="0" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5"/>
+    <ellipse cx="117.5" cy="50" rx="22.5" ry="7" fill="#CBD5E1" stroke="#94A3B8" stroke-width="1.5"/>
+    <!-- Pipeline output -->
+    <path d="M 140,85 L 175,85" fill="none" stroke="#64748B" stroke-width="5"/>
+  </g>
+  <!-- Stage 1 Label Card -->
+  <g transform="translate(65, 425)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="130" height="56" rx="0" fill="#FFFFFF" stroke="#0056A6" stroke-width="1.5"/>
+    <rect x="0" y="0" width="130" height="4" fill="#0056A6"/>
+    <text x="65" y="24" text-anchor="middle" font-size="12" font-weight="800" fill="#0F172A">Supply Point</text>
+    <text x="65" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#64748B">Kilang / Terminal Utama</text>
+  </g>
+
+  <!-- Flow Line 1: Supply Point -> SPOB -->
+  <path d="M 205,370 L 255,370" fill="none" stroke="#E30613" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+
+  <!-- ================= STAGE 2: SPOB (Self Propelled Oil Barge) ================= -->
+  <g transform="translate(255, 290)" filter="url(#cardShadow)">
+    <!-- Vessel Hull -->
+    <path d="M 10,75 L 140,75 L 160,50 L 30,50 Z" fill="#DC2626" stroke="#991B1B" stroke-width="2"/>
+    <path d="M 20,50 L 145,50 L 150,40 L 25,40 Z" fill="#1E293B"/>
+    <!-- Cargo Tanks on Barge -->
+    <rect x="40" y="22" width="30" height="18" rx="0" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5"/>
+    <rect x="75" y="22" width="30" height="18" rx="0" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5"/>
+    <rect x="110" y="22" width="30" height="18" rx="0" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5"/>
+    <!-- Cabin & Mast -->
+    <rect x="22" y="15" width="16" height="25" rx="0" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+    <line x1="30" y1="5" x2="30" y2="15" stroke="#475569" stroke-width="2"/>
+    <!-- Pertamina Ribbon on Hull -->
+    <rect x="35" y="58" width="90" height="6" fill="#0056A6"/>
+    <rect x="35" y="64" width="90" height="3" fill="#FFFFFF"/>
+  </g>
+  <!-- Stage 2 Label Card -->
+  <g transform="translate(260, 425)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="160" height="56" rx="0" fill="#FFFFFF" stroke="#0056A6" stroke-width="1.5"/>
+    <rect x="0" y="0" width="160" height="4" fill="#0056A6"/>
+    <text x="80" y="22" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0F172A">SPOB</text>
+    <text x="80" y="40" text-anchor="middle" font-size="9.5" font-weight="600" fill="#64748B">Self Propelled Oil Barge</text>
+  </g>
+
+  <!-- Flow Line 2: SPOB -> Terminal BBM -->
+  <path d="M 430,370 L 485,370" fill="none" stroke="#E30613" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+
+  <!-- ================= STAGE 3: TERMINAL BBM (Fuel Terminal) ================= -->
+  <g transform="translate(490, 245)" filter="url(#cardShadow)">
+    <!-- Terminal Gantries & Buildings -->
+    <rect x="10" y="65" width="45" height="65" rx="0" fill="#E2E8F0" stroke="#64748B" stroke-width="2"/>
+    <ellipse cx="32.5" cy="65" rx="22.5" ry="8" fill="#CBD5E1" stroke="#64748B" stroke-width="2"/>
+    <rect x="10" y="85" width="45" height="10" fill="#0056A6"/>
+    <!-- Gantry Structure -->
+    <rect x="65" y="45" width="70" height="85" rx="0" fill="#F8FAFC" stroke="#0056A6" stroke-width="2"/>
+    <polygon points="60,45 100,20 140,45" fill="#0056A6"/>
+    <!-- Loading Arms -->
+    <path d="M 80,60 L 80,95 L 90,95" fill="none" stroke="#E30613" stroke-width="3"/>
+    <path d="M 115,60 L 115,95 L 105,95" fill="none" stroke="#E30613" stroke-width="3"/>
+    <rect x="72" y="105" width="56" height="25" fill="#E2E8F0"/>
+  </g>
+  <!-- Stage 3 Label Card -->
+  <g transform="translate(490, 425)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="145" height="56" rx="0" fill="#FFFFFF" stroke="#0056A6" stroke-width="1.5"/>
+    <rect x="0" y="0" width="145" height="4" fill="#0056A6"/>
+    <text x="72.5" y="24" text-anchor="middle" font-size="12" font-weight="800" fill="#0F172A">Terminal BBM</text>
+    <text x="72.5" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#64748B">Fuel Terminal Depot</text>
+  </g>
+
+  <!-- Flow Line 3: Terminal BBM -> Mobil Tangki -->
+  <path d="M 640,370 L 690,370" fill="none" stroke="#E30613" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+
+  <!-- ================= STAGE 4: MOBIL TANGKI (Tanker Truck) ================= -->
+  <g transform="translate(695, 290)" filter="url(#cardShadow)">
+    <!-- Tanker Body -->
+    <rect x="10" y="20" width="85" height="42" rx="0" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+    <!-- Pertamina Corporate Livery -->
+    <rect x="10" y="32" width="85" height="12" fill="#0056A6"/>
+    <rect x="10" y="44" width="85" height="5" fill="#E30613"/>
+    <!-- Cabin Truck -->
+    <path d="M 95,28 L 125,28 L 132,48 L 132,62 L 95,62 Z" fill="#E30613" stroke="#991B1B" stroke-width="1.5"/>
+    <rect x="102" y="33" width="18" height="14" rx="0" fill="#93C5FD"/>
+    <!-- Wheels -->
+    <circle cx="28" cy="65" r="10" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <circle cx="28" cy="65" r="4" fill="#E2E8F0"/>
+    <circle cx="52" cy="65" r="10" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <circle cx="52" cy="65" r="4" fill="#E2E8F0"/>
+    <circle cx="76" cy="65" r="10" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <circle cx="76" cy="65" r="4" fill="#E2E8F0"/>
+    <circle cx="118" cy="65" r="10" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <circle cx="118" cy="65" r="4" fill="#E2E8F0"/>
+  </g>
+  <!-- Stage 4 Label Card -->
+  <g transform="translate(695, 425)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="140" height="56" rx="0" fill="#FFFFFF" stroke="#0056A6" stroke-width="1.5"/>
+    <rect x="0" y="0" width="140" height="4" fill="#0056A6"/>
+    <text x="70" y="24" text-anchor="middle" font-size="12" font-weight="800" fill="#0F172A">Mobil Tangki</text>
+    <text x="70" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#64748B">Fleet AMT Berlisensi</text>
+  </g>
+
+  <!-- Flow Line 4A: Mobil Tangki -> Industri (Direct lower track) -->
+  <path d="M 845,370 L 915,370" fill="none" stroke="#E30613" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+
+  <!-- Flow Line 4B: Mobil Tangki Branching UP to SPBU / SPBU-K / Pertashop -->
+  <path d="M 825,360 L 825,185 L 885,185" fill="none" stroke="#E30613" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+  <circle cx="825" cy="360" r="5" fill="#E30613"/>
+  <circle cx="825" cy="185" r="5" fill="#E30613"/>
+
+  <!-- ================= DESTINATION 1: INDUSTRI ================= -->
+  <g transform="translate(920, 275)" filter="url(#cardShadow)">
+    <!-- Factory Building -->
+    <rect x="10" y="35" width="80" height="60" rx="0" fill="#E2E8F0" stroke="#64748B" stroke-width="2"/>
+    <polygon points="10,35 30,15 50,35 70,15 90,35" fill="#94A3B8"/>
+    <!-- Chimneys -->
+    <rect x="25" y="5" width="8" height="20" fill="#64748B"/>
+    <rect x="65" y="5" width="8" height="20" fill="#64748B"/>
+    <!-- Windows & Door -->
+    <rect x="25" y="45" width="16" height="16" fill="#93C5FD"/>
+    <rect x="55" y="45" width="16" height="16" fill="#93C5FD"/>
+    <rect x="40" y="70" width="20" height="25" fill="#334155"/>
+  </g>
+  <!-- Industri Label Card -->
+  <g transform="translate(915, 425)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="135" height="56" rx="0" fill="#FFFFFF" stroke="#0056A6" stroke-width="1.5"/>
+    <rect x="0" y="0" width="135" height="4" fill="#0056A6"/>
+    <text x="67.5" y="24" text-anchor="middle" font-size="12" font-weight="800" fill="#0F172A">Industri</text>
+    <text x="67.5" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#64748B">Komersial & Pabrik</text>
+  </g>
+
+  <!-- ================= DESTINATION 2: SPBU / SPBU-K / PERTASHOP (Upper Deck) ================= -->
+  <g transform="translate(895, 60)" filter="url(#cardShadow)">
+    <!-- SPBU Canopy -->
+    <rect x="10" y="25" width="160" height="16" rx="0" fill="#E30613" stroke="#B91C1C" stroke-width="1.5"/>
+    <rect x="10" y="37" width="160" height="4" fill="#0056A6"/>
+    <rect x="10" y="41" width="160" height="2" fill="#22C55E"/>
+    <!-- Pillars -->
+    <rect x="40" y="41" width="12" height="65" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1"/>
+    <rect x="128" y="41" width="12" height="65" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1"/>
+    <!-- Fuel Dispensers (Pumps) -->
+    <rect x="70" y="60" width="18" height="45" rx="0" fill="#0056A6" stroke="#003B73" stroke-width="1.5"/>
+    <rect x="73" y="66" width="12" height="10" fill="#FEF08A"/>
+    <rect x="94" y="60" width="18" height="45" rx="0" fill="#E30613" stroke="#991B1B" stroke-width="1.5"/>
+    <rect x="97" y="66" width="12" height="10" fill="#FEF08A"/>
+    <!-- Totem Sign Pole -->
+    <rect x="180" y="20" width="16" height="85" fill="#1E293B"/>
+    <rect x="175" y="10" width="26" height="35" fill="#E30613" stroke="#FFFFFF" stroke-width="1"/>
+    <rect x="178" y="15" width="20" height="6" fill="#0056A6"/>
+    <rect x="178" y="23" width="20" height="4" fill="#22C55E"/>
+    <rect x="178" y="29" width="20" height="12" fill="#000000"/>
+    <text x="188" y="38" text-anchor="middle" font-size="7" font-weight="900" fill="#FDE047">BBM</text>
+  </g>
+  <!-- SPBU Destination Label Card -->
+  <g transform="translate(890, 8)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="200" height="48" rx="0" fill="#FFFFFF" stroke="#0056A6" stroke-width="1.5"/>
+    <rect x="0" y="0" width="200" height="4" fill="#E30613"/>
+    <text x="100" y="20" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0F172A">SPBU / SPBU-K / Pertashop</text>
+    <text x="100" y="36" text-anchor="middle" font-size="9.5" font-weight="600" fill="#0056A6">Jaringan Titik Retail Energi</text>
+  </g>
+
+  <!-- Flow Sequence Header Pills on Top-Left -->
+  <g transform="translate(40, 20)">
+    <rect x="0" y="0" width="480" height="36" rx="0" fill="#0056A6"/>
+    <text x="20" y="23" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">ALUR MULTIMODA TRANSPORTASI BBM RETAIL</text>
+  </g>
+</svg>
