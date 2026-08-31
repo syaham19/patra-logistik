@@ -1202,14 +1202,16 @@
         .rft-delay-5 { transition-delay: 0.40s; }
         .rft-delay-6 { transition-delay: 0.48s; }
 
-        /* 1. Hero Section with Background Image & Gradient */
+        /* 1. Hero Section with Left-to-Right Fade Gradient Overlay (Opacity 0 on Right) */
         .rft-hero-section {
             position: relative;
-            background: linear-gradient(135deg, 
-                rgba(10, 25, 47, 0.94) 0%, 
-                rgba(0, 86, 166, 0.84) 55%, 
-                rgba(15, 23, 42, 0.96) 100%), 
-                url('assets/Mobil Tangki Maos.png') center center / cover no-repeat;
+            background: linear-gradient(90deg, 
+                rgba(10, 25, 47, 0.98) 0%, 
+                rgba(10, 32, 68, 0.95) 32%, 
+                rgba(0, 86, 166, 0.70) 52%, 
+                rgba(0, 86, 166, 0.20) 75%, 
+                rgba(0, 86, 166, 0) 100%), 
+                url('assets/Landscape MT.png') center right / cover no-repeat;
             color: #FFFFFF;
             padding: 140px 0 80px;
             min-height: 540px;
@@ -1217,16 +1219,6 @@
             flex-direction: column;
             justify-content: center;
             overflow: hidden;
-        }
-        .rft-hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 80% 30%, rgba(0, 86, 166, 0.35) 0%, transparent 65%);
-            pointer-events: none;
         }
         .rft-hero-inner {
             position: relative;
@@ -1329,7 +1321,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 16px;
-            margin-bottom: 44px;
+            margin-bottom: 0;
         }
         .rft-btn-primary {
             display: inline-flex;
@@ -1376,41 +1368,6 @@
             background: rgba(255, 255, 255, 0.22);
             color: #FFFFFF;
             transform: translateY(-2px);
-        }
-
-        /* Hero Feature Pills Strip */
-        .rft-hero-features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            max-width: 860px;
-        }
-        .rft-hero-feature-card {
-            background: rgba(15, 23, 42, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .rft-hero-feature-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(0, 86, 166, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: #FFFFFF;
-        }
-        .rft-hero-feature-text {
-            font-size: 13px;
-            font-weight: 600;
-            color: #FFFFFF;
-            line-height: 1.35;
         }
 
         /* 2. Informasi Layanan Section (Executive Split Layout) */
@@ -1865,97 +1822,221 @@
             background: #FFFFFF;
             overflow: hidden;
         }
-        .rft-cta-banner-card {
-            background: linear-gradient(135deg, #0A1B39 0%, #0056A6 100%);
-            color: #FFFFFF;
-            padding: 56px 48px;
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            box-shadow: 0 20px 40px -10px rgba(0, 86, 166, 0.25);
-            position: relative;
+        /* 5. Strategic Partnership & Appointment CTA Banner (Wireframe Form Card Layout) */
+        .rft-cta-banner-section {
+            padding: 80px 0 100px;
+            background: #FFFFFF;
             overflow: hidden;
         }
-        .rft-cta-banner-card::before {
+        .rft-cta-wireframe-card {
+            position: relative;
+            background: linear-gradient(135deg, 
+                rgba(10, 25, 47, 0.95) 0%, 
+                rgba(0, 59, 115, 0.88) 55%, 
+                rgba(10, 25, 47, 0.75) 100%), 
+                url('assets/Landscape MT.png') center center / cover no-repeat;
+            color: #FFFFFF;
+            padding: 56px 52px;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px;
+            align-items: center;
+            box-shadow: 0 24px 48px -12px rgba(10, 25, 47, 0.25);
+            overflow: hidden;
+        }
+        .rft-cta-wireframe-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 420px;
-            height: 420px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 86, 166, 0.3) 0%, transparent 70%);
             pointer-events: none;
         }
-        .rft-cta-banner-content {
-            position: relative;
-            z-index: 2;
-            max-width: 680px;
-        }
-        .rft-cta-banner-tag {
-            display: inline-block;
-            font-size: 11.5px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #BAE6FD;
-            margin-bottom: 12px;
-        }
-        .rft-cta-banner-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: #FFFFFF;
-            line-height: 1.3;
-            margin: 0 0 12px;
-        }
-        .rft-cta-banner-desc {
-            font-size: 15.5px;
-            color: rgba(255, 255, 255, 0.88);
-            line-height: 1.6;
-            margin: 0;
-        }
-        .rft-cta-banner-actions {
+        .rft-cta-left-content {
             position: relative;
             z-index: 2;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            min-width: 220px;
+            justify-content: center;
         }
-        .rft-cta-btn-white {
-            background: #FFFFFF;
-            color: #0056A6;
+        .rft-cta-headline {
+            font-size: 34px;
             font-weight: 800;
-            font-size: 14.5px;
-            padding: 14px 24px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            color: #FFFFFF;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            margin: 0 0 16px;
         }
-        .rft-cta-btn-white:hover {
-            background: #F1F5F9;
+        .rft-cta-subtext {
+            font-size: 15.5px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.65;
+            margin: 0 0 36px;
+            max-width: 540px;
+        }
+        .rft-cta-contacts-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 28px;
+        }
+        .rft-cta-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #FFFFFF;
+            transition: transform 0.2s ease;
+        }
+        .rft-cta-contact-item:hover {
             transform: translateY(-2px);
-            color: #003B73;
         }
-        .rft-cta-btn-outline {
-            background: transparent;
-            color: #FFFFFF;
-            font-weight: 700;
-            font-size: 14px;
-            padding: 12px 24px;
-            text-align: center;
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 0;
+        .rft-cta-contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 86, 166, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #38BDF8;
+            flex-shrink: 0;
             transition: all 0.3s ease;
         }
-        .rft-cta-btn-outline:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #FFFFFF;
+        .rft-cta-contact-item:hover .rft-cta-contact-icon {
+            background: #0056A6;
             color: #FFFFFF;
+            transform: scale(1.08);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        .rft-cta-contact-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .rft-cta-contact-label {
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .rft-cta-contact-val {
+            font-size: 14.5px;
+            color: #FFFFFF;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+        }
+
+        /* Floating Form Card */
+        .rft-cta-form-card {
+            position: relative;
+            z-index: 2;
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 34px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+        .rft-form-card-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--rft-dark);
+            margin: 0 0 20px;
+            line-height: 1.25;
+            letter-spacing: -0.3px;
+        }
+        .rft-form-body {
+            display: flex;
+            flex-direction: column;
+        }
+        .rft-form-group {
+            margin-bottom: 18px;
+        }
+        .rft-form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--rft-slate);
+            margin-bottom: 8px;
+        }
+        .rft-form-control {
+            width: 100%;
+            height: 46px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: var(--rft-dark);
+            background-color: #F8FAFC;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .rft-form-control:focus {
+            border-color: var(--rft-primary);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(0, 86, 166, 0.15);
+        }
+        .rft-select-wrap {
+            position: relative;
+        }
+        .rft-select-wrap select {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            padding-right: 36px;
+        }
+        .rft-select-arrow {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #64748B;
+        }
+        .rft-form-submit-btn {
+            width: 100%;
+            height: 48px;
+            background: #0056A6;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 16px rgba(0, 86, 166, 0.3);
+            margin-top: 8px;
+            font-family: inherit;
+        }
+        .rft-form-submit-btn:hover {
+            background: #003B73;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0, 86, 166, 0.45);
+        }
+        .rft-form-alert {
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: #DCFCE7;
+            border: 1px solid #86EFAC;
+            color: #166534;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.4;
         }
 
         /* Accessibility: Reduced Motion */
@@ -1989,31 +2070,31 @@
                 flex: 0 1 calc(50% - 12px);
                 max-width: none;
             }
-            .rft-cta-banner-card {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 40px 32px;
+            .rft-cta-wireframe-card {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 44px 36px;
             }
-            .rft-cta-banner-actions {
-                width: 100%;
-                flex-direction: row;
-                flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .rft-hero-section {
+                background: linear-gradient(180deg, 
+                    rgba(10, 25, 47, 0.96) 0%, 
+                    rgba(10, 32, 68, 0.90) 60%, 
+                    rgba(0, 86, 166, 0.45) 100%), 
+                    url('assets/Landscape MT.png') center center / cover no-repeat;
+                padding: 120px 0 60px;
+                min-height: auto;
             }
         }
 
         @media (max-width: 640px) {
-            .rft-hero-section {
-                padding: 120px 0 60px;
-                min-height: auto;
-            }
             .rft-hero-title {
                 font-size: 28px;
             }
             .rft-hero-subtitle {
                 font-size: 18px;
-            }
-            .rft-hero-features {
-                grid-template-columns: 1fr;
             }
             .rft-info-title {
                 font-size: 24px;
@@ -2041,12 +2122,19 @@
                 position: static;
                 margin-top: 12px;
             }
-            .rft-cta-banner-actions {
-                flex-direction: column;
-                width: 100%;
+            .rft-cta-wireframe-card {
+                padding: 32px 20px;
             }
-            .rft-cta-btn-white, .rft-cta-btn-outline {
-                width: 100%;
+            .rft-cta-headline {
+                font-size: 26px;
+            }
+            .rft-cta-contacts-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .rft-cta-form-card {
+                padding: 24px 18px;
             }
         }
     </style>
@@ -2072,11 +2160,14 @@
                     <span class="rft-breadcrumb-active" data-i18n="rft.breadcrumb.current">Retail Fuel Transport</span>
                 </nav>
 
-                <!-- Tag Badge -->
+                <!-- Tag Badge (Hidden) -->
+                <!--
                 <div class="rft-hero-tag-wrap rft-reveal rft-delay-2">
                     <span class="rft-hero-tag-dot"></span>
                     <span class="rft-hero-tag-text" data-i18n="rft.hero.tag">Layanan Transportasi Energi</span>
                 </div>
+                -->
+
 
                 <!-- Main Title & Subtitle -->
                 <h1 class="rft-hero-title rft-reveal rft-delay-3" data-i18n="rft.hero.title">RETAIL FUEL TRANSPORT</h1>
@@ -2102,36 +2193,6 @@
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </a>
-                </div>
-
-                <!-- Highlight Cards Strip -->
-                <div class="rft-hero-features">
-                    <div class="rft-hero-feature-card rft-reveal rft-delay-4">
-                        <div class="rft-hero-feature-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <div class="rft-hero-feature-text">Standar HSSE Berlapis & Kepatuhan Penuh</div>
-                    </div>
-                    <div class="rft-hero-feature-card rft-reveal rft-delay-5">
-                        <div class="rft-hero-feature-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <div class="rft-hero-feature-text">Distribusi Tepat Waktu Tanpa Stockout</div>
-                    </div>
-                    <div class="rft-hero-feature-card rft-reveal rft-delay-6">
-                        <div class="rft-hero-feature-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                        </div>
-                        <div class="rft-hero-feature-text">100% On-Spec & Kualitas Terjamin</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -2441,27 +2502,117 @@
         </div>
     </section>
 
-    <!-- 5. Strategic Partnership CTA Banner -->
+    <!-- 5. Strategic Partnership & Appointment CTA Banner (Wireframe Form Card Layout) -->
     <section class="rft-cta-banner-section">
         <div class="container">
-            <div class="rft-cta-banner-card rft-reveal-scale">
-                <div class="rft-cta-banner-content rft-reveal rft-delay-1">
-                    <span class="rft-cta-banner-tag" data-i18n="rft.cta_banner.tag">KEMITRAAN STRATEGIS</span>
-                    <h3 class="rft-cta-banner-title" data-i18n="rft.cta_banner.title">Siap Mengoptimalkan Distribusi BBM Retail Anda?</h3>
-                    <p class="rft-cta-banner-desc" data-i18n="rft.cta_banner.desc">
-                        Konsultasikan kebutuhan pasokan energi dan armada distribusi Anda bersama tim profesional Patra Logistik.
+            <div class="rft-cta-wireframe-card rft-reveal-scale">
+                <!-- Left Column: Engaging Copy & Direct Contact Info -->
+                <div class="rft-cta-left-content rft-reveal rft-delay-1">
+                    <h3 class="rft-cta-headline" data-i18n="rft.cta_banner.title">Mari Diskusikan Kebutuhan Retail Fuel Anda</h3>
+                    <p class="rft-cta-subtext" data-i18n="rft.cta_banner.desc">
+                        Jadwalkan pertemuan dengan tim pemasaran kami untuk mengeksplorasi bagaimana kami dapat mendukung operasi dan distribusi retail BBM Anda.
                     </p>
+
+                    <!-- Contact Channels Row -->
+                    <div class="rft-cta-contacts-row">
+                        <!-- Phone Contact -->
+                        <a href="tel:+620215205678" class="rft-cta-contact-item">
+                            <div class="rft-cta-contact-icon">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="rft-cta-contact-text">
+                                <span class="rft-cta-contact-label" data-i18n="rft.cta_banner.phone_label">Hubungi kami di</span>
+                                <span class="rft-cta-contact-val" data-i18n="rft.cta_banner.phone_val">+62 21 520 5678</span>
+                            </div>
+                        </a>
+
+                        <!-- Email Contact -->
+                        <a href="mailto:info@patralogistik.co.id" class="rft-cta-contact-item">
+                            <div class="rft-cta-contact-icon">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="rft-cta-contact-text">
+                                <span class="rft-cta-contact-label" data-i18n="rft.cta_banner.email_label">Email kami di</span>
+                                <span class="rft-cta-contact-val" data-i18n="rft.cta_banner.email_val">info@patralogistik.co.id</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="rft-cta-banner-actions rft-reveal rft-delay-2">
-                    <a href="kontak.html" class="rft-cta-btn-white" data-i18n="rft.cta_banner.btn_contact">Hubungi Tim Bisnis</a>
-                    <a href="bisnis.html" class="rft-cta-btn-outline" data-i18n="rft.cta_banner.btn_back">Kembali ke Bisnis</a>
+
+                <!-- Right Column: Interactive Form Card (Ajukan Janji Temu) -->
+                <div class="rft-cta-form-card rft-reveal rft-delay-2">
+                    <h4 class="rft-form-card-title" data-i18n="rft.cta_banner.form_title">Ajukan Janji Temu</h4>
+                    
+                    <form id="rftAppointmentForm" onsubmit="handleAppointmentSubmit(event)" class="rft-form-body">
+                        <!-- Select Service -->
+                        <div class="rft-form-group">
+                            <label for="rftServiceSelect" class="rft-form-label" data-i18n="rft.cta_banner.service_label">Pilih Layanan</label>
+                            <div class="rft-select-wrap">
+                                <select id="rftServiceSelect" name="service" class="rft-form-control" required>
+                                    <option value="Retail Fuel Transport" selected data-i18n="rft.cta_banner.service_opt1">Retail Fuel Transport</option>
+                                    <option value="Industrial Fuel Transport" data-i18n="rft.cta_banner.service_opt2">Industrial Fuel Transport</option>
+                                    <option value="Gas Transport" data-i18n="rft.cta_banner.service_opt3">Gas Transport</option>
+                                    <option value="Lubricants Transport" data-i18n="rft.cta_banner.service_opt4">Lubricants Transport</option>
+                                </select>
+                                <svg class="rft-select-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Preferred Date -->
+                        <div class="rft-form-group">
+                            <label for="rftDateInput" class="rft-form-label" data-i18n="rft.cta_banner.date_label">Tanggal yang Diinginkan</label>
+                            <div class="rft-input-wrap">
+                                <input type="date" id="rftDateInput" name="preferred_date" class="rft-form-control" required>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="rftSubmitBtn" class="rft-form-submit-btn">
+                            <span data-i18n="rft.cta_banner.btn_submit">Ajukan Janji Temu</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Success Message Alert -->
+                        <div id="rftFormSuccess" class="rft-form-alert" style="display: none;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span data-i18n="rft.cta_banner.success_msg">Terima kasih! Pengajuan janji temu Anda telah diterima. Tim kami akan segera menghubungi Anda.</span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Scroll Reveal Observer Script -->
+    <!-- Interactive Scroll Reveal Observer & Form Script -->
     <script>
+        function handleAppointmentSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('rftSubmitBtn');
+            const alertBox = document.getElementById('rftFormSuccess');
+            
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+            btn.innerText = 'Mengirim...';
+
+            setTimeout(() => {
+                btn.style.display = 'none';
+                alertBox.style.display = 'flex';
+            }, 600);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const revealElements = document.querySelectorAll('.rft-reveal, .rft-reveal-left, .rft-reveal-right, .rft-reveal-scale');
             

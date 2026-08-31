@@ -1,0 +1,2765 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Fuel Transport - PT Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Variables & Tokens */
+        :root {
+            --rft-primary: #0056A6;
+            --rft-primary-dark: #003B73;
+            --rft-primary-light: #EFF6FF;
+            --rft-primary-hover: #004080;
+            --rft-navy: #0A1B39;
+            --rft-dark: #0F172A;
+            --rft-slate: #334155;
+            --rft-muted: #64748B;
+            --rft-border: #E2E8F0;
+            --rft-border-light: rgba(226, 232, 240, 0.8);
+            --rft-bg-alt: #F8FAFC;
+            --rft-red: #E30613;
+        }
+
+        /* ================= SCROLL REVEAL ANIMATIONS (SMOOTH & PROFESSIONAL) ================= */
+        .rft-reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .rft-reveal-left {
+            opacity: 0;
+            transform: translateX(-36px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .rft-reveal-right {
+            opacity: 0;
+            transform: translateX(36px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .rft-reveal-scale {
+            opacity: 0;
+            transform: translateY(28px) scale(0.97);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        /* Revealed Active State */
+        .rft-reveal.is-revealed,
+        .rft-reveal-left.is-revealed,
+        .rft-reveal-right.is-revealed,
+        .rft-reveal-scale.is-revealed {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        /* Stagger Delays */
+        .rft-delay-1 { transition-delay: 0.08s; }
+        .rft-delay-2 { transition-delay: 0.16s; }
+        .rft-delay-3 { transition-delay: 0.24s; }
+        .rft-delay-4 { transition-delay: 0.32s; }
+        .rft-delay-5 { transition-delay: 0.40s; }
+        .rft-delay-6 { transition-delay: 0.48s; }
+
+        /* 1. Hero Section with Left-to-Right Fade Gradient Overlay */
+        .rft-hero-section {
+            position: relative;
+            background: linear-gradient(90deg, 
+                rgba(10, 25, 47, 0.98) 0%, 
+                rgba(10, 32, 68, 0.95) 32%, 
+                rgba(0, 86, 166, 0.70) 52%, 
+                rgba(0, 86, 166, 0.20) 75%, 
+                rgba(0, 86, 166, 0) 100%), 
+                url('assets/Landscape MT.png') center right / cover no-repeat;
+            color: #FFFFFF;
+            padding: 140px 0 80px;
+            min-height: 540px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .rft-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 980px;
+        }
+
+        /* In-Hero Modern Glass Breadcrumb */
+        .rft-hero-breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            margin-bottom: 24px;
+            font-size: 13px;
+        }
+        .rft-breadcrumb-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .rft-breadcrumb-link:hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+        .rft-breadcrumb-sep {
+            color: rgba(255, 255, 255, 0.4);
+            display: inline-flex;
+            align-items: center;
+        }
+        .rft-breadcrumb-active {
+            color: #93C5FD;
+            font-weight: 700;
+        }
+
+        /* Hero Typography */
+        .rft-hero-title {
+            font-size: 46px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            color: #FFFFFF;
+            margin: 0 0 16px;
+            text-transform: uppercase;
+        }
+        .rft-hero-subtitle {
+            font-size: 22px;
+            font-weight: 600;
+            color: #BAE6FD;
+            line-height: 1.4;
+            margin: 0 0 18px;
+            max-width: 860px;
+        }
+        .rft-hero-desc {
+            font-size: 16.5px;
+            color: rgba(255, 255, 255, 0.92);
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 0 32px;
+        }
+
+        /* Hero CTA Buttons */
+        .rft-hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 0;
+        }
+        .rft-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #0056A6;
+            color: #FFFFFF;
+            font-size: 14.5px;
+            font-weight: 700;
+            padding: 14px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 0;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 24px -4px rgba(0, 86, 166, 0.5);
+            cursor: pointer;
+        }
+        .rft-btn-primary:hover {
+            background: #003B73;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px -4px rgba(0, 86, 166, 0.7);
+            color: #FFFFFF;
+        }
+        .rft-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+            font-size: 14.5px;
+            font-weight: 600;
+            padding: 14px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .rft-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* 2. Informasi Layanan Section (Executive Split Layout) */
+        .rft-info-section {
+            padding: 96px 0;
+            background-color: #FFFFFF;
+        }
+        .rft-info-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 64px;
+            align-items: center;
+        }
+        .rft-section-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--rft-primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .rft-info-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--rft-navy);
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.3px;
+        }
+        .rft-info-lead {
+            font-size: 15.5px;
+            line-height: 1.75;
+            color: var(--rft-slate);
+            margin-bottom: 18px;
+        }
+        .rft-info-points {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 24px;
+        }
+        .rft-info-point-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .rft-info-point-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--rft-primary-light);
+            color: var(--rft-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .rft-info-point-text {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--rft-dark);
+        }
+
+        /* Visual Frame Showcase */
+        .rft-info-visual {
+            position: relative;
+        }
+        .rft-visual-frame {
+            position: relative;
+            background: #F1F5F9;
+            border: 1px solid var(--rft-border);
+            overflow: hidden;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+        }
+        .rft-visual-image {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .rft-visual-frame:hover .rft-visual-image {
+            transform: scale(1.03);
+        }
+        .rft-floating-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(10, 27, 57, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 14px 18px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+        .rft-floating-badge-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--rft-primary);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .rft-floating-badge-title {
+            font-size: 14px;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .rft-floating-badge-sub {
+            font-size: 11.5px;
+            color: #93C5FD;
+            margin: 2px 0 0;
+        }
+
+        /* ================= 3. SECTION: LAYANAN BBM INDUSTRI (MODERN TABS) ================= */
+        .ift-services-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0A1B39 0%, #0F2854 50%, #08162E 100%);
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ift-services-section::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 86, 166, 0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .ift-services-section::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .ift-services-header {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 44px;
+            position: relative;
+            z-index: 2;
+        }
+        .ift-services-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #38BDF8;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 6px 16px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+        .ift-services-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.4px;
+        }
+        .ift-services-desc {
+            font-size: 15.5px;
+            color: #94A3B8;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Consistent Tabs Navigation (Matching Section Layanan & Solusi Logistik) */
+        .ift-tabs-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 44px;
+            position: relative;
+            z-index: 2;
+        }
+        .ift-tabs-list {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 36px;
+            background: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            max-width: 100%;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0 12px;
+        }
+        .ift-tabs-list::-webkit-scrollbar {
+            display: none;
+        }
+        .ift-tab-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 12px;
+            gap: 12px;
+            border: none;
+            background: transparent;
+            border-radius: 0;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15.5px;
+            letter-spacing: 0.3px;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+        .ift-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--rft-red, #E30613);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center;
+        }
+        .ift-tab-btn:hover {
+            color: #FFFFFF;
+        }
+        .ift-tab-btn.active {
+            background: transparent;
+            color: #FFFFFF;
+            font-weight: 700;
+            box-shadow: none;
+        }
+        .ift-tab-btn.active::after {
+            transform: scaleX(1);
+        }
+        .ift-tab-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: currentColor;
+        }
+
+        /* Tab Content Card Frame */
+        .ift-tab-container {
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 48px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.45);
+        }
+        .ift-tab-pane {
+            display: none;
+        }
+        .ift-tab-pane.active {
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            gap: 52px;
+            align-items: center;
+            animation: iftTabFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes iftTabFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tab Pane Content */
+        .ift-pane-badge {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #38BDF8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: rgba(56, 189, 248, 0.12);
+            padding: 6px 14px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            margin-bottom: 18px;
+        }
+        .ift-pane-title {
+            font-size: 30px;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin: 0 0 20px;
+            letter-spacing: -0.4px;
+        }
+        .ift-pane-desc {
+            font-size: 15px;
+            color: #CBD5E1;
+            line-height: 1.75;
+            margin: 0 0 16px;
+        }
+        .ift-pane-points {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0 32px;
+        }
+        .ift-pane-point-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .ift-pane-point-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(0, 86, 166, 0.6);
+            color: #38BDF8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .ift-pane-point-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #F1F5F9;
+        }
+        .ift-pane-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0056A6;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 13px 26px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 20px -4px rgba(0, 86, 166, 0.5);
+            cursor: pointer;
+        }
+        .ift-pane-cta-btn:hover {
+            background: #003B73;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -4px rgba(0, 86, 166, 0.7);
+        }
+
+        /* Right Column: High Quality Corporate Image Card */
+        .ift-image-card {
+            position: relative;
+            background: #0F172A;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            overflow: hidden;
+            box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.5);
+        }
+        .ift-image-photo {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ift-image-card:hover .ift-image-photo {
+            transform: scale(1.04);
+        }
+        .ift-image-card-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(10, 27, 57, 0.96) 0%, rgba(10, 27, 57, 0.75) 75%, transparent 100%);
+            padding: 26px 22px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ift-image-card-caption-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #0056A6;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 86, 166, 0.4);
+        }
+        .ift-image-caption-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin: 0 0 3px;
+            letter-spacing: -0.2px;
+        }
+        .ift-image-caption-sub {
+            font-size: 12px;
+            color: #BAE6FD;
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        /* 4. Strategic Partnership & Appointment CTA Banner */
+        .rft-cta-banner-section {
+            padding: 96px 0;
+            background-color: var(--rft-bg-alt);
+        }
+        .rft-cta-wireframe-card {
+            background: #FFFFFF;
+            border: 1px solid var(--rft-border);
+            box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.08);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            padding: 56px 48px;
+            align-items: center;
+        }
+        .rft-cta-headline {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--rft-navy);
+            line-height: 1.25;
+            margin: 0 0 16px;
+            letter-spacing: -0.3px;
+        }
+        .rft-cta-subtext {
+            font-size: 15.5px;
+            color: var(--rft-slate);
+            line-height: 1.7;
+            margin: 0 0 32px;
+        }
+        .rft-cta-contacts-row {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        .rft-cta-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease;
+        }
+        .rft-cta-contact-item:hover {
+            transform: translateX(3px);
+        }
+        .rft-cta-contact-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--rft-primary-light);
+            color: var(--rft-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .rft-cta-contact-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .rft-cta-contact-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--rft-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .rft-cta-contact-val {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--rft-navy);
+        }
+
+        /* Form Card */
+        .rft-cta-form-card {
+            background: #F8FAFC;
+            border: 1px solid var(--rft-border);
+            padding: 32px 28px;
+        }
+        .rft-form-card-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--rft-navy);
+            margin: 0 0 20px;
+        }
+        .rft-form-body {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .rft-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .rft-form-label {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--rft-slate);
+        }
+        .rft-select-wrap,
+        .rft-input-wrap {
+            position: relative;
+            width: 100%;
+        }
+        .rft-form-control {
+            width: 100%;
+            height: 44px;
+            padding: 0 14px;
+            font-size: 14px;
+            color: var(--rft-dark);
+            background: #FFFFFF;
+            border: 1px solid var(--rft-border);
+            border-radius: 4px;
+            outline: none;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .rft-form-control:focus {
+            border-color: var(--rft-primary);
+            box-shadow: 0 0 0 3px rgba(0, 86, 166, 0.12);
+        }
+        .rft-select-arrow {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #64748B;
+        }
+        .rft-form-submit-btn {
+            width: 100%;
+            height: 48px;
+            background: #0056A6;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 16px rgba(0, 86, 166, 0.3);
+            margin-top: 8px;
+            font-family: inherit;
+        }
+        .rft-form-submit-btn:hover {
+            background: #003B73;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0, 86, 166, 0.45);
+        }
+        .rft-form-alert {
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: #DCFCE7;
+            border: 1px solid #86EFAC;
+            color: #166534;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        /* ================= 5. SECTION: SEKTOR INDUSTRI (CARD LAYOUT) ================= */
+        .ift-sectors-section {
+            padding: 96px 0 100px;
+            background-color: #F8FAFC;
+            border-top: 1px solid #E2E8F0;
+        }
+        .ift-sectors-header {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 52px;
+        }
+        .ift-sectors-tag {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #0056A6;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            padding: 6px 16px;
+            margin-bottom: 14px;
+        }
+        .ift-sectors-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: #0A1B39;
+            margin: 0 0 16px;
+            letter-spacing: -0.4px;
+            line-height: 1.25;
+        }
+        .ift-sectors-desc {
+            font-size: 15.5px;
+            color: #64748B;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .ift-sectors-desc strong {
+            color: #0A1B39;
+            font-weight: 700;
+        }
+
+        /* 5-Card Grid */
+        .ift-sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            align-items: stretch;
+        }
+        .ift-sector-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 6px 18px -4px rgba(15, 23, 42, 0.05);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ift-sector-card:hover {
+            transform: translateY(-6px);
+            border-color: #0056A6;
+            box-shadow: 0 20px 35px -8px rgba(0, 86, 166, 0.16);
+        }
+        .ift-sector-media {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+            background: #0A1B39;
+        }
+        .ift-sector-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ift-sector-card:hover .ift-sector-photo {
+            transform: scale(1.08);
+        }
+        .ift-sector-title-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(10, 27, 57, 0.94) 0%, rgba(10, 27, 57, 0.72) 70%, transparent 100%);
+            padding: 20px 14px 10px;
+            text-align: center;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .ift-sector-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin: 0;
+            letter-spacing: -0.2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+        .ift-sector-body {
+            padding: 20px 18px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+            gap: 20px;
+        }
+        .ift-sector-text {
+            font-size: 13px;
+            color: #64748B;
+            line-height: 1.65;
+            margin: 0;
+        }
+        .ift-sector-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: 1px solid #CBD5E1;
+            background: #FFFFFF;
+            color: #0056A6;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 10px 12px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .ift-sector-cta:hover {
+            background: #0056A6;
+            color: #FFFFFF;
+            border-color: #0056A6;
+            box-shadow: 0 4px 12px rgba(0, 86, 166, 0.25);
+        }
+
+        /* Sector Grid Breakpoints */
+        @media (max-width: 1200px) {
+            .ift-sectors-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .ift-sectors-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .ift-sectors-title {
+                font-size: 26px;
+            }
+        }
+        @media (max-width: 540px) {
+            .ift-sectors-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility: Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .rft-reveal,
+            .rft-reveal-left,
+            .rft-reveal-right,
+            .rft-reveal-scale {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .rft-hero-title {
+                font-size: 38px;
+            }
+            .rft-info-grid {
+                grid-template-columns: 1fr;
+                gap: 44px;
+            }
+            .ift-tab-pane.active {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .rft-cta-wireframe-card {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 44px 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rft-hero-section {
+                background: linear-gradient(180deg, 
+                    rgba(10, 25, 47, 0.96) 0%, 
+                    rgba(10, 32, 68, 0.90) 60%, 
+                    rgba(0, 86, 166, 0.45) 100%), 
+                    url('assets/Landscape MT.png') center center / cover no-repeat;
+                padding: 120px 0 60px;
+                min-height: auto;
+            }
+            .ift-tab-container {
+                padding: 28px 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .rft-hero-title {
+                font-size: 28px;
+            }
+            .rft-hero-subtitle {
+                font-size: 18px;
+            }
+            .rft-info-title, .ift-services-title {
+                font-size: 24px;
+            }
+            .ift-tab-btn {
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+            .rft-visual-image {
+                height: 260px;
+            }
+            .rft-floating-badge {
+                position: static;
+                margin-top: 12px;
+            }
+            .rft-cta-wireframe-card {
+                padding: 32px 20px;
+            }
+            .rft-cta-headline {
+                font-size: 26px;
+            }
+            .rft-cta-contacts-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .rft-cta-form-card {
+                padding: 24px 18px;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+</head>
+<body class="loading">
+
+    <div id="page-loader" class="page-loader" aria-live="polite" aria-label="Memuat halaman">
+        <div class="page-loader__inner">
+            <div class="page-loader__brand">
+                <img src="assets/logo-transparent.png" alt="Patra Logistik" class="page-loader__logo">
+            </div>
+            <div class="page-loader__counter">
+                <span class="page-loader__percent" id="loader-percent">0%</span>
+            </div>
+            <div class="page-loader__track-wrapper">
+                <div class="page-loader__truck-wrapper" id="loader-truck-wrapper">
+                    <div id="loader-truck-anim" class="page-loader__truck"></div>
+                </div>
+                <div class="page-loader__bar">
+                    <div class="page-loader__bar-fill" id="loader-bar-fill"></div>
+                </div>
+                <div class="page-loader__road-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navigation Bar -->
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami" data-i18n="nav.about">Tentang Kami</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tentang-kami.html?tab=profil" data-i18n="nav.about.profile">Profil Perusahaan</a></li>
+                        <li><a href="tentang-kami.html?tab=visi-misi" data-i18n="nav.about.vision">Visi Misi</a></li>
+                        <li><a href="tentang-kami.html?tab=nilai" data-i18n="nav.about.values">Tata Nilai</a></li>
+                        <li><a href="tentang-kami.html?tab=sejarah" data-i18n="nav.about.history">Sejarah</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris-direksi" data-i18n="nav.about.board_directors">Dewan Komisaris & Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=struktur" data-i18n="nav.about.structure">Struktur Organisasi</a></li>
+                        <li><a href="tentang-kami.html?tab=sertifikat" data-i18n="nav.about.certification">Sertifikasi</a></li>
+                        <li><a href="tentang-kami.html?tab=penghargaan" data-i18n="nav.about.awards">Penghargaan</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="bisnis.html" class="nav-link active" data-text="Bisnis" data-i18n="nav.business">Bisnis</a>
+                </li>
+                <li class="has-dropdown">
+                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor" data-i18n="nav.investor">Hubungan Investor</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+                        <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+                        <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+                    </ul>
+                </li>
+                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability" data-i18n="nav.sustainability">Sustainability</a></li>
+                <li class="has-dropdown">
+                    <a href="berita-media.html" class="nav-link" data-text="Berita & Media" data-i18n="nav.news">Berita & Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+                        <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+                        <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+                        <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+                        <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+                    </ul>
+                </li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir" data-i18n="nav.career">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="lang-switch has-dropdown" aria-label="Language Switch">
+                    <button class="lang-btn-current" id="lang-btn-current" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag" id="current-lang-flag">
+                        <span class="lang-text" id="current-lang-text">INA</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="lang-dropdown-menu">
+                        <li>
+                            <button class="lang-option" data-lang="id">
+                                <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag">
+                                <span class="lang-text">INA</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="lang-option" data-lang="en">
+                                <img src="https://flagcdn.com/w20/gb.png" alt="EN Flag" class="lang-flag">
+                                <span class="lang-text">ENG</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#appointment-section" class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px; text-decoration: none;" data-i18n="nav.contact">HUBUNGI KAMI</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Enterprise Hero Section (Background Image + Gradient Overlay + Glass Breadcrumb) -->
+    <section class="rft-hero-section">
+        <div class="container">
+            <div class="rft-hero-inner">
+                <!-- In-Hero Breadcrumb -->
+                <nav class="rft-hero-breadcrumb rft-reveal rft-delay-1" aria-label="Breadcrumb">
+                    <a href="index.html" class="rft-breadcrumb-link">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span data-i18n="ift.breadcrumb.home">Beranda</span>
+                    </a>
+                    <span class="rft-breadcrumb-sep" aria-hidden="true">/</span>
+                    <a href="bisnis.html" class="rft-breadcrumb-link" data-i18n="ift.breadcrumb.business">Bisnis Kami</a>
+                    <span class="rft-breadcrumb-sep" aria-hidden="true">/</span>
+                    <a href="bisnis.html?tab=transportasi" class="rft-breadcrumb-link" data-i18n="ift.breadcrumb.transport">Transportasi</a>
+                    <span class="rft-breadcrumb-sep" aria-hidden="true">/</span>
+                    <span class="rft-breadcrumb-active" data-i18n="ift.breadcrumb.current">Industrial Fuel Transport</span>
+                </nav>
+
+                <!-- Main Title & Subtitle -->
+                <h1 class="rft-hero-title rft-reveal rft-delay-3" data-i18n="ift.hero.title">INDUSTRY FUEL TRANSPORT</h1>
+                <h2 class="rft-hero-subtitle rft-reveal rft-delay-4" data-i18n="ift.hero.subtitle">Solusi Pasokan & Pengangkutan Bahan Bakar Industri yang Andal dan Terintegrasi</h2>
+                
+                <!-- Description (Based on Uploaded Image 1) -->
+                <p class="rft-hero-desc rft-reveal rft-delay-5" data-i18n="ift.hero.desc">
+                    Dapatkan pengangkutan bahan bakar industri untuk menjaga kelancaran operasional sektor manufaktur, pertambangan, dan pembangkit listrik Anda.
+                </p>
+
+                <!-- Actions -->
+                <div class="rft-hero-actions rft-reveal rft-delay-6">
+                    <a href="#appointment-section" class="rft-btn-primary">
+                        <span data-i18n="ift.hero.cta_contact">Hubungi Kami</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="#layanan-bbm-industri" class="rft-btn-secondary">
+                        <span data-i18n="ift.hero.cta_explore">Pelajari Solusi</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Informasi Layanan Section (Executive Split Layout - Based on Uploaded Image 2) -->
+    <section class="rft-info-section">
+        <div class="container">
+            <div class="rft-info-grid">
+                <!-- Left Column: Content & Description -->
+                <div class="rft-info-content rft-reveal-left">
+                    <span class="rft-section-tag" data-i18n="ift.info.tag">INFORMASI LAYANAN</span>
+                    <h3 class="rft-info-title" data-i18n="ift.info.title">Informasi Layanan</h3>
+                    
+                    <p class="rft-info-lead" data-i18n="ift.info.desc1">
+                        Dengan pasokan bahan bakar yang terjaga, layanan <strong>Industrial Fuel Transport</strong> menghadirkan pengiriman bahan bakar langsung ke lokasi proyek dan area operasional industri Anda. Layanan ini memastikan kebutuhan energi untuk kendaraan operasional, alat berat, dan mesin konstruksi tetap tersedia sehingga aktivitas dapat berjalan secara optimal.
+                    </p>
+
+                    <p class="rft-info-lead" data-i18n="ift.info.desc2" style="margin-top: 14px;">
+                        Pengisian bahan bakar langsung di lokasi membantu meminimalkan <em>downtime</em>, menghemat waktu pengisian, serta meningkatkan efisiensi biaya operasional. Dengan dukungan distribusi yang andal dan tepat waktu, operasional industri dan proyek dapat terus berjalan produktif sesuai target.
+                    </p>
+
+                    <div class="rft-info-points">
+                        <div class="rft-info-point-item rft-reveal rft-delay-1">
+                            <div class="rft-info-point-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <span class="rft-info-point-text" data-i18n="ift.info.point1">Pengiriman Langsung ke Lokasi Proyek & On-Site Refueling</span>
+                        </div>
+                        <div class="rft-info-point-item rft-reveal rft-delay-2">
+                            <div class="rft-info-point-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <span class="rft-info-point-text" data-i18n="ift.info.point2">Jaminan Kualitas & Kuantitas Bahan Bakar On-Spec</span>
+                        </div>
+                        <div class="rft-info-point-item rft-reveal rft-delay-3">
+                            <div class="rft-info-point-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <span class="rft-info-point-text" data-i18n="ift.info.point3">Minimalisasi Downtime & Efisiensi Biaya Operasional</span>
+                        </div>
+                        <div class="rft-info-point-item rft-reveal rft-delay-4">
+                            <div class="rft-info-point-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <span class="rft-info-point-text" data-i18n="ift.info.point4">Pemantauan Real-Time Telematika 24/7 & Standar HSSE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Frame Showcase -->
+                <div class="rft-info-visual rft-reveal-right">
+                    <div class="rft-visual-frame">
+                        <img src="assets/Landscape MT.png" alt="Armada Industri Pertamina Patra Logistik" class="rft-visual-image">
+                        <div class="rft-floating-badge rft-reveal rft-delay-2">
+                            <div class="rft-floating-badge-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <polyline points="9 12 11 14 15 10"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="rft-floating-badge-title" data-i18n="ift.info.badge_title">100% On-Spec & On-Site Delivery</h4>
+                                <p class="rft-floating-badge-sub" data-i18n="ift.info.badge_sub">HSSE Certified Industrial Operations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 3. SECTION: LAYANAN BBM INDUSTRI (MODERN TABS - FRANCO / VHS / FMS) ================= -->
+    <section class="ift-services-section" id="layanan-bbm-industri">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="ift-services-header rft-reveal">
+                <span class="ift-services-tag" data-i18n="ift.services.tag">SKEMA & MODEL LAYANAN</span>
+                <h2 class="ift-services-title" data-i18n="ift.services.title">Layanan BBM Industri</h2>
+                <p class="ift-services-desc" data-i18n="ift.services.desc">
+                    Pilihan skema pasokan dan manajemen bahan bakar industri yang dirancang fleksibel, aman, dan efisien sesuai kebutuhan operasional dan rantai produksi fasilitas bisnis Anda.
+                </p>
+            </div>            <!-- Tabs Navigation Bar (Matching Layanan & Solusi Logistik Style) -->
+            <div class="services-tabs-container ift-tabs-wrapper rft-reveal rft-delay-1">
+                <div class="services-tabs-pill ift-tabs-list" role="tablist" aria-label="Model Layanan BBM Industri">
+                    <button class="services-tab-btn ift-tab-btn active" role="tab" id="tab-btn-franco" aria-selected="true" aria-controls="pane-franco" data-tab-target="pane-franco">
+                        <span class="services-tab-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                            </svg>
+                        </span>
+                        <span data-i18n="ift.services.tab_franco">Franco</span>
+                    </button>
+                    <button class="services-tab-btn ift-tab-btn" role="tab" id="tab-btn-vhs" aria-selected="false" aria-controls="pane-vhs" data-tab-target="pane-vhs">
+                        <span class="services-tab-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </span>
+                        <span data-i18n="ift.services.tab_vhs">Vendor Held Stock</span>
+                    </button>
+                    <button class="services-tab-btn ift-tab-btn" role="tab" id="tab-btn-fms" aria-selected="false" aria-controls="pane-fms" data-tab-target="pane-fms">
+                        <span class="services-tab-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>
+                        </span>
+                        <span data-i18n="ift.services.tab_fms">Fuel Management System</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabs Content Area (Split-Layout Cards) -->
+            <div class="ift-tab-container rft-reveal-scale">
+                
+                <!-- TAB PANE 1: FRANCO -->
+                <div class="ift-tab-pane active" id="pane-franco" role="tabpanel" aria-labelledby="tab-btn-franco">
+                    <!-- Left: Description & Key Highlights -->
+                    <div class="ift-pane-left">
+                        <span class="ift-pane-badge" data-i18n="ift.franco.badge">SKEMA PENGIRIMAN LANGSUNG (POINT-TO-POINT)</span>
+                        <h3 class="ift-pane-title" data-i18n="ift.franco.title">FRANCO</h3>
+                        
+                        <p class="ift-pane-desc" data-i18n="ift.franco.desc1">
+                            Pastikan pasokan energi untuk operasional bisnis Anda tiba di lokasi tujuan dengan aman, tepat waktu, dan tanpa kerumitan melalui layanan Franco dari Patra Logistik.
+                        </p>
+                        
+                        <p class="ift-pane-desc" data-i18n="ift.franco.desc2">
+                            Melalui skema pengiriman Franco, kami mengambil alih seluruh tanggung jawab dan risiko logistik pengangkutan mulai dari titik muat (depot/terminal) hingga bahan bakar tersebut sampai dan diterima langsung di tangki penyimpanan (storage tank) fasilitas industri, pabrik, area pertambangan, atau lokasi proyek Anda.
+                        </p>
+
+                        <div class="ift-pane-points">
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.franco.point1">Pengalihan Penuh Risiko & Tanggung Jawab Logistik Pengangkutan</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.franco.point2">Pengiriman Tepat Waktu Langsung ke Tangki Penyimpanan (Storage Tank)</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.franco.point3">Segel Keamanan Digital & Jaminan Kualitas Laboratorium On-Spec</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.franco.point4">Pelacakan Armada Berbasis GPS & Telematika Real-Time 24/7</span>
+                            </div>
+                        </div>
+
+                        <a href="#appointment-section" class="ift-pane-cta-btn">
+                            <span data-i18n="ift.franco.btn">Konsultasikan Skema Franco</span>
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Right: High Quality Visual Showcase Image -->
+                    <div class="ift-pane-right">
+                        <div class="ift-image-card">
+                            <img src="assets/Mobil Tangki Maos.png" alt="Layanan Franco BBM Industri Patra Logistik" class="ift-image-photo" loading="lazy">
+                            <div class="ift-image-card-caption">
+                                <div class="ift-image-card-caption-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="1" y="3" width="15" height="13"></rect>
+                                        <polygon points="16 8 20 8 23 11 23 16 16 8"></polygon>
+                                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="ift-image-caption-title">Skema Penyaluran Franco</h5>
+                                    <p class="ift-image-caption-sub">Pengiriman Langsung Aman &amp; On-Spec ke Storage Tank Anda</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB PANE 2: VENDOR HELD STOCK (VHS) -->
+                <div class="ift-tab-pane" id="pane-vhs" role="tabpanel" aria-labelledby="tab-btn-vhs">
+                    <!-- Left: Description & Key Highlights -->
+                    <div class="ift-pane-left">
+                        <span class="ift-pane-badge" data-i18n="ift.vhs.badge">PENGELOLAAN STOK DI LOKASI PELANGGAN</span>
+                        <h3 class="ift-pane-title" data-i18n="ift.vhs.title">VENDOR HELD STOCK</h3>
+                        
+                        <p class="ift-pane-desc" data-i18n="ift.vhs.desc1">
+                            Vendor Held Stock (VHS) adalah skema pengelolaan stok BBM di lokasi pelanggan. Proses distribusi, penyimpanan dan pemantauan ketersediaan BBM dikelola oleh Patra Logistik.
+                        </p>
+                        
+                        <p class="ift-pane-desc" data-i18n="ift.vhs.desc2">
+                            Melalui skema ini, Patra Logistik mengelola BBM, memantau, dan memastikan ketersediaan stok bahan bakar secara <em>just-in-time</em> langsung di area operasional pelanggan.
+                        </p>
+
+                        <div class="ift-pane-points">
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.vhs.point1">Pengelolaan Stok Mandiri & Terpadu oleh Patra Logistik</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.vhs.point2">Pasokan Just-In-Time Menghilangkan Risiko Kehabisan Bahan Bakar</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.vhs.point3">Pemantauan Level Tangki Otomatis dengan Sistem ATG & IoT Sensor</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.vhs.point4">Optimalisasi Working Capital & Efisiensi Biaya Penyimpanan Pelanggan</span>
+                            </div>
+                        </div>
+
+                        <a href="#appointment-section" class="ift-pane-cta-btn">
+                            <span data-i18n="ift.vhs.btn">Konsultasikan Skema VHS</span>
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Right: High Quality Visual Showcase Image -->
+                    <div class="ift-pane-right">
+                        <div class="ift-image-card">
+                            <img src="assets/Landscape MT.png" alt="Vendor Held Stock Pertamina Patra Logistik" class="ift-image-photo" loading="lazy">
+                            <div class="ift-image-card-caption">
+                                <div class="ift-image-card-caption-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                        <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                        <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="ift-image-caption-title">Vendor Held Stock (VHS)</h5>
+                                    <p class="ift-image-caption-sub">Manajemen Stok BBM Real-Time Just-in-Time di Lokasi Anda</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB PANE 3: FUEL MANAGEMENT SYSTEM (FMS) -->
+                <div class="ift-tab-pane" id="pane-fms" role="tabpanel" aria-labelledby="tab-btn-fms">
+                    <!-- Left: Description & Key Highlights -->
+                    <div class="ift-pane-left">
+                        <span class="ift-pane-badge" data-i18n="ift.fms.badge">SOLUSI TOTAL & MANAJEMEN TERINTEGRASI</span>
+                        <h3 class="ift-pane-title" data-i18n="ift.fms.title">FUEL MANAGEMENT SYSTEM</h3>
+                        
+                        <p class="ift-pane-desc" data-i18n="ift.fms.desc1">
+                            Solusi lengkap pengelolaan BBM yang terintegrasi. Layanan ini meliputi pengiriman, penyimpanan, dan penyaluran hingga ke unit-unit lokasi pelanggan, serta pemeliharaan sarana penyimpanan.
+                        </p>
+                        
+                        <p class="ift-pane-desc" data-i18n="ift.fms.desc2">
+                            Didukung sistem pencatatan digital otomatis, kontrol dispenser presisi tinggi, dan inspeksi sarana berkala untuk memaksimalkan efisiensi energi operasional armada dan alat berat Anda.
+                        </p>
+
+                        <div class="ift-pane-points">
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.fms.point1">End-to-End: Pengiriman, Penyimpanan & Penyaluran ke Unit Mesin</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.fms.point2">Penyaluran Presisi Tercatat Otomatis ke Setiap Alat Berat & Kendaraan</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.fms.point3">Pemeliharaan & Inspeksi Rutin Berkala Sarana Tangki Penyimpanan</span>
+                            </div>
+                            <div class="ift-pane-point-item">
+                                <div class="ift-pane-point-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="ift-pane-point-text" data-i18n="ift.fms.point4">Dashboard Digital Telematika & Pelaporan Konsumsi Energi Akurat</span>
+                            </div>
+                        </div>
+
+                        <a href="#appointment-section" class="ift-pane-cta-btn">
+                            <span data-i18n="ift.fms.btn">Konsultasikan Skema FMS</span>
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Right: High Quality Visual Showcase Image -->
+                    <div class="ift-pane-right">
+                        <div class="ift-image-card">
+                            <img src="assets/LPR00887 (1).png" alt="Fuel Management System Patra Logistik" class="ift-image-photo" loading="lazy">
+                            <div class="ift-image-card-caption">
+                                <div class="ift-image-card-caption-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="ift-image-caption-title">Fuel Management System (FMS)</h5>
+                                    <p class="ift-image-caption-sub">Solusi Terpadu Pengiriman, Penyaluran Presisi &amp; Pemeliharaan Sarana</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End #pane-fms -->
+
+            </div> <!-- End .ift-tab-container -->
+        </div> <!-- End .container -->
+    </section> <!-- End .ift-services-section -->
+
+    <!-- 4. Area Layanan BBM Industri – Interactive Map Section -->
+    <section class="ift-area-section" id="area-layanan">
+        <div class="container">
+
+            <!-- Section Header -->
+            <div class="ift-area-header rft-reveal">
+                <span class="ift-area-tag">JANGKAUAN DISTRIBUSI NASIONAL</span>
+                <h2 class="ift-area-title">Area Layanan BBM Industri</h2>
+                <p class="ift-area-desc">
+                    Jaringan distribusi BBM Industri Patra Logistik mencakup seluruh wilayah nusantara melalui 8 region strategis dengan lebih dari 414 agen aktif di seluruh Indonesia.
+                </p>
+            </div>
+
+            <!-- Stats Strip Row -->
+            <div class="ift-area-stats-row rft-reveal rft-delay-1">
+                <div class="ift-area-total-card">
+                    <span class="ift-area-total-label">Jumlah Agen BBM Industri</span>
+                    <span class="ift-area-total-value" id="ift-total-agents">414</span>
+                    <a href="#appointment-section" class="ift-area-download-btn">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download List Agen
+                    </a>
+                </div>
+                <div class="ift-area-region-counters">
+                    <div class="ift-region-counter-item" data-region="1">
+                        <span class="ift-rc-label">Region 1</span>
+                        <span class="ift-rc-value" id="ift-rc-1">48</span>
+                    </div>
+                    <div class="ift-region-counter-item" data-region="2">
+                        <span class="ift-rc-label">Region 2</span>
+                        <span class="ift-rc-value" id="ift-rc-2">24</span>
+                    </div>
+                    <div class="ift-region-counter-item" data-region="3">
+                        <span class="ift-rc-label">Region 3</span>
+                        <span class="ift-rc-value" id="ift-rc-3">40</span>
+                    </div>
+                    <div class="ift-region-counter-item" data-region="4">
+                        <span class="ift-rc-label">Region 4</span>
+                        <span class="ift-rc-value" id="ift-rc-4">13</span>
+                    </div>
+                    <div class="ift-region-counter-item" data-region="5">
+                        <span class="ift-rc-label">Region 5</span>
+                        <span class="ift-rc-value" id="ift-rc-5">34</span>
+                    </div>
+                    <div class="ift-region-counter-item" data-region="6">
+                        <span class="ift-rc-label">Region 6</span>
+                        <span class="ift-rc-value" id="ift-rc-6">71</span>
+                    </div>
+                    <div class="ift-region-counter-item" data-region="7">
+                        <span class="ift-rc-label">Region 7</span>
+                        <span class="ift-rc-value" id="ift-rc-7">24</span>
+                    </div>
+                    <div class="ift-region-counter-item" data-region="8">
+                        <span class="ift-rc-label">Region 8</span>
+                        <span class="ift-rc-value" id="ift-rc-8">15</span>
+                    </div>
+                    <div class="ift-region-counter-item ift-rc-lintas" data-region="lintas">
+                        <span class="ift-rc-label">Lintas Region</span>
+                        <span class="ift-rc-value" id="ift-rc-lintas">145</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Map Card -->
+            <div class="ift-map-card rft-reveal-scale">
+                <div class="ift-map-card-instruction">
+                    <span class="ift-pulse-dot"></span>
+                    <span>INTERAKTIF: KLIK REGION UNTUK DETAIL AREA LAYANAN</span>
+                </div>
+
+                <!-- Map Wrapper -->
+                <div class="ift-map-wrapper">
+                    <div class="ift-map-zoom-controls">
+                        <button class="ift-zoom-btn" id="ift-zoom-in" aria-label="Zoom In">+</button>
+                        <button class="ift-zoom-btn" id="ift-zoom-out" aria-label="Zoom Out">−</button>
+                    </div>
+                    <div class="ift-map-inner" id="ift-map-inner"
+                        style="position:relative; width:90%; max-width:900px; aspect-ratio:674/283; margin:0 auto;
+                               background:url('./assets/id%201.svg') no-repeat center center; background-size:100% 100%;">
+
+                        <!-- Region Markers (same coordinates as homepage) -->
+                        <button class="ift-mor-marker" data-ift-mor="R1" style="top:23%;left:8%;" aria-label="Region I Sumbagut">
+                            <span class="ift-mor-pin">1</span>
+                        </button>
+                        <button class="ift-mor-marker" data-ift-mor="R2" style="top:51%;left:21%;" aria-label="Region II Sumbagsel">
+                            <span class="ift-mor-pin">2</span>
+                        </button>
+                        <button class="ift-mor-marker" data-ift-mor="R3" style="top:66%;left:26%;" aria-label="Region III JBB">
+                            <span class="ift-mor-pin">3</span>
+                        </button>
+                        <button class="ift-mor-marker" data-ift-mor="R4" style="top:70%;left:33%;" aria-label="Region IV JBT">
+                            <span class="ift-mor-pin">4</span>
+                        </button>
+                        <button class="ift-mor-marker" data-ift-mor="R5" style="top:72%;left:38%;" aria-label="Region V Jatimbalinus">
+                            <span class="ift-mor-pin">5</span>
+                        </button>
+                        <button class="ift-mor-marker" data-ift-mor="R6" style="top:40%;left:47%;" aria-label="Region VI Kalimantan">
+                            <span class="ift-mor-pin">6</span>
+                        </button>
+                        <button class="ift-mor-marker" data-ift-mor="R7" style="top:60%;left:53%;" aria-label="Region VII Sulawesi">
+                            <span class="ift-mor-pin">7</span>
+                        </button>
+                        <button class="ift-mor-marker" data-ift-mor="R8" style="top:42%;left:79%;" aria-label="Region VIII Maluku Papua">
+                            <span class="ift-mor-pin">8</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Detail Panel -->
+                <div class="ift-region-panel" id="ift-region-panel">
+                    <div class="ift-panel-left">
+                        <div class="ift-panel-badge" id="ift-panel-badge">REGION I</div>
+                        <h4 class="ift-panel-title" id="ift-panel-title">Region I – Sumatera Bagian Utara</h4>
+                        <p class="ift-panel-coverage" id="ift-panel-coverage">Wilayah: Medan, Banda Aceh, Pekanbaru, Batam, Padang</p>
+                    </div>
+                    <div class="ift-panel-right">
+                        <div class="ift-panel-stat">
+                            <span class="ift-panel-stat-label">Jumlah Agen</span>
+                            <span class="ift-panel-stat-val" id="ift-panel-agents">48</span>
+                        </div>
+                        <div class="ift-panel-stat">
+                            <span class="ift-panel-stat-label">Industri Layanan</span>
+                            <span class="ift-panel-stat-val" id="ift-panel-industrial">12</span>
+                            <span class="ift-panel-stat-unit">PROYEK</span>
+                        </div>
+                        <div class="ift-panel-locations" id="ift-panel-locations">
+                            <span class="ift-loc-pill">Manufaktur</span>
+                            <span class="ift-loc-pill">Pertambangan</span>
+                            <span class="ift-loc-pill">Konstruksi</span>
+                            <span class="ift-loc-pill">Pembangkit Listrik</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Region List Grid (data from image) -->
+            <div class="ift-region-list-grid rft-reveal rft-delay-2">
+                <div class="ift-region-list-item" data-click-mor="R1">
+                    <span class="ift-rli-num">I</span>
+                    <div class="ift-rli-info">
+                        <span class="ift-rli-name">SUMBAGUT</span>
+                        <span class="ift-rli-count">12 Proyek Industrial</span>
+                    </div>
+                    <span class="ift-rli-agents">48 Agen</span>
+                </div>
+                <div class="ift-region-list-item" data-click-mor="R2">
+                    <span class="ift-rli-num">II</span>
+                    <div class="ift-rli-info">
+                        <span class="ift-rli-name">SUMBAGSEL</span>
+                        <span class="ift-rli-count">11 Proyek Industrial</span>
+                    </div>
+                    <span class="ift-rli-agents">24 Agen</span>
+                </div>
+                <div class="ift-region-list-item" data-click-mor="R3">
+                    <span class="ift-rli-num">III</span>
+                    <div class="ift-rli-info">
+                        <span class="ift-rli-name">JBB</span>
+                        <span class="ift-rli-count">12 Proyek Industrial</span>
+                    </div>
+                    <span class="ift-rli-agents">40 Agen</span>
+                </div>
+                <div class="ift-region-list-item" data-click-mor="R4">
+                    <span class="ift-rli-num">IV</span>
+                    <div class="ift-rli-info">
+                        <span class="ift-rli-name">JBT</span>
+                        <span class="ift-rli-count">11 Proyek Industrial</span>
+                    </div>
+                    <span class="ift-rli-agents">13 Agen</span>
+                </div>
+                <div class="ift-region-list-item" data-click-mor="R5">
+                    <span class="ift-rli-num">V</span>
+                    <div class="ift-rli-info">
+                        <span class="ift-rli-name">JATIMBALINUS</span>
+                        <span class="ift-rli-count">14 Proyek Industrial</span>
+                    </div>
+                    <span class="ift-rli-agents">34 Agen</span>
+                </div>
+                <div class="ift-region-list-item" data-click-mor="R6">
+                    <span class="ift-rli-num">VI</span>
+                    <div class="ift-rli-info">
+                        <span class="ift-rli-name">KALIMANTAN</span>
+                        <span class="ift-rli-count">15 Proyek Industrial</span>
+                    </div>
+                    <span class="ift-rli-agents">71 Agen</span>
+                </div>
+                <div class="ift-region-list-item" data-click-mor="R7">
+                    <span class="ift-rli-num">VII</span>
+                    <div class="ift-rli-info">
+                        <span class="ift-rli-name">SULAWESI</span>
+                        <span class="ift-rli-count">12 Proyek Industrial</span>
+                    </div>
+                    <span class="ift-rli-agents">24 Agen</span>
+                </div>
+                <div class="ift-region-list-item" data-click-mor="R8">
+                    <span class="ift-rli-num">VIII</span>
+                    <div class="ift-rli-info">
+                        <span class="ift-rli-name">MALUKU PAPUA</span>
+                        <span class="ift-rli-count">8 Proyek Industrial</span>
+                    </div>
+                    <span class="ift-rli-agents">15 Agen</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Styles for Area Layanan Section -->
+    <style>
+        /* ===== AREA LAYANAN BBM INDUSTRI SECTION ===== */
+        .ift-area-section {
+            padding: 96px 0 80px;
+            background: #FFFFFF;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .ift-area-header {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 48px;
+        }
+        .ift-area-tag {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #0056A6;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            padding: 6px 16px;
+            margin-bottom: 14px;
+        }
+        .ift-area-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: #0A1B39;
+            margin: 0 0 14px;
+            letter-spacing: -0.4px;
+        }
+        .ift-area-desc {
+            font-size: 15.5px;
+            color: #64748B;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Stats Strip */
+        .ift-area-stats-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0;
+            background: #0A1B39;
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 0;
+            box-shadow: 0 12px 32px -10px rgba(10,27,57,0.3);
+        }
+        .ift-area-total-card {
+            background: #0056A6;
+            padding: 28px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 200px;
+            gap: 6px;
+        }
+        .ift-area-total-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .ift-area-total-value {
+            font-size: 52px;
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -2px;
+        }
+        .ift-area-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 14px;
+            text-decoration: none;
+            margin-top: 8px;
+            transition: all 0.2s ease;
+            width: fit-content;
+        }
+        .ift-area-download-btn:hover {
+            background: rgba(255,255,255,0.28);
+            color: #FFFFFF;
+        }
+
+        /* Region Counters Strip */
+        .ift-area-region-counters {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            align-items: stretch;
+        }
+        .ift-region-counter-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 10px;
+            border-left: 1px solid rgba(255,255,255,0.07);
+            cursor: pointer;
+            transition: background 0.2s ease;
+            gap: 4px;
+        }
+        .ift-region-counter-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .ift-region-counter-item.ift-rc-active {
+            background: rgba(0, 86, 166, 0.4);
+            border-bottom: 2px solid #38BDF8;
+        }
+        .ift-rc-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.55);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+        .ift-rc-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #4ADE80;
+            line-height: 1;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .ift-rc-lintas .ift-rc-value {
+            font-size: 22px;
+        }
+
+        /* Map Card */
+        .ift-map-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-top: none;
+            box-shadow: 0 16px 40px -12px rgba(15,23,42,0.1);
+        }
+        .ift-map-card-instruction {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: #0A1B39;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #93C5FD;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        .ift-pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ADE80;
+            flex-shrink: 0;
+            animation: iftPulse 1.8s ease-in-out infinite;
+        }
+        @keyframes iftPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+            50% { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+        }
+
+        /* Map Wrapper */
+        .ift-map-wrapper {
+            padding: 28px 0 8px;
+            position: relative;
+        }
+        .ift-map-zoom-controls {
+            position: absolute;
+            top: 36px;
+            right: 24px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .ift-zoom-btn {
+            width: 32px;
+            height: 32px;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            color: #0056A6;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+        .ift-zoom-btn:hover {
+            background: #0056A6;
+            color: #FFFFFF;
+            border-color: #0056A6;
+        }
+        .ift-map-inner {
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+        }
+
+        /* Region Markers */
+        .ift-mor-marker {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 5;
+            transition: transform 0.2s ease;
+        }
+        .ift-mor-marker:hover { transform: translate(-50%, -50%) scale(1.15); }
+        .ift-mor-marker.ift-active .ift-mor-pin {
+            background: #0056A6;
+            color: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(0,86,166,0.3), 0 4px 12px rgba(0,86,166,0.5);
+            transform: scale(1.2);
+        }
+        .ift-mor-pin {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            border: 2px solid #0056A6;
+            color: #0056A6;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Detail Panel */
+        .ift-region-panel {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
+            padding: 20px 28px;
+            background: #FFFFFF;
+            border-top: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .ift-panel-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            color: #0056A6;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            padding: 4px 12px;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .ift-panel-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: #0A1B39;
+            margin: 0 0 4px;
+        }
+        .ift-panel-coverage {
+            font-size: 13px;
+            color: #64748B;
+            margin: 0;
+        }
+        .ift-panel-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            flex-shrink: 0;
+        }
+        .ift-panel-stat {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .ift-panel-stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .ift-panel-stat-val {
+            font-size: 30px;
+            font-weight: 900;
+            color: #0056A6;
+            line-height: 1;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .ift-panel-stat-unit {
+            font-size: 10px;
+            font-weight: 700;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .ift-panel-locations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            max-width: 220px;
+        }
+        .ift-loc-pill {
+            background: #F1F5F9;
+            border: 1px solid #E2E8F0;
+            color: #334155;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        /* Region List Grid */
+        .ift-region-list-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .ift-region-list-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .ift-region-list-item:hover,
+        .ift-region-list-item.ift-rli-active {
+            background: #EFF6FF;
+            border-color: #0056A6;
+            box-shadow: 0 4px 12px -4px rgba(0,86,166,0.15);
+        }
+        .ift-rli-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #0A1B39;
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .ift-region-list-item.ift-rli-active .ift-rli-num {
+            background: #0056A6;
+        }
+        .ift-rli-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .ift-rli-name {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #0A1B39;
+            letter-spacing: 0.3px;
+        }
+        .ift-rli-count {
+            font-size: 11.5px;
+            color: #64748B;
+        }
+        .ift-rli-agents {
+            font-size: 13px;
+            font-weight: 800;
+            color: #0056A6;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .ift-area-region-counters { grid-template-columns: repeat(5, 1fr); }
+            .ift-region-list-grid { grid-template-columns: repeat(2, 1fr); }
+            .ift-region-panel { grid-template-columns: 1fr; gap: 16px; }
+            .ift-panel-right { flex-wrap: wrap; gap: 16px; }
+        }
+        @media (max-width: 768px) {
+            .ift-area-stats-row { grid-template-columns: 1fr; }
+            .ift-area-region-counters { grid-template-columns: repeat(3, 1fr); }
+            .ift-area-title { font-size: 26px; }
+        }
+        @media (max-width: 640px) {
+            .ift-area-region-counters { grid-template-columns: repeat(3, 1fr); }
+            .ift-region-list-grid { grid-template-columns: 1fr 1fr; }
+            .ift-rc-value { font-size: 22px; }
+            .ift-rc-lintas .ift-rc-value { font-size: 18px; }
+        }
+    </style>
+
+    <!-- Interactive Map Script for Area Layanan -->
+    <script>
+    (function() {
+        const iftRegionDb = {
+            R1: {
+                badge: "REGION I", title: "Region I – Sumatera Bagian Utara",
+                coverage: "Wilayah: Medan, Banda Aceh, Pekanbaru, Batam, Padang",
+                agents: 48, industrial: 12,
+                sectors: ["Manufaktur", "Pertambangan", "Perkebunan", "Minyak & Gas"]
+            },
+            R2: {
+                badge: "REGION II", title: "Region II – Sumatera Bagian Selatan",
+                coverage: "Wilayah: Palembang, Lampung, Jambi, Bengkulu, Pangkalpinang",
+                agents: 24, industrial: 11,
+                sectors: ["Manufaktur", "Perkebunan", "Minyak & Gas", "Konstruksi"]
+            },
+            R3: {
+                badge: "REGION III", title: "Region III – Jawa Bagian Barat",
+                coverage: "Wilayah: Jakarta, Bandung, Banten, Depok, Bekasi, Cirebon",
+                agents: 40, industrial: 12,
+                sectors: ["Manufaktur", "Tekstil", "Konstruksi", "FMCG"]
+            },
+            R4: {
+                badge: "REGION IV", title: "Region IV – Jawa Bagian Tengah",
+                coverage: "Wilayah: Semarang, Yogyakarta, Solo, Cilacap, Pekalongan",
+                agents: 13, industrial: 11,
+                sectors: ["Manufaktur", "Pembangkit Listrik", "Semen", "Agro"]
+            },
+            R5: {
+                badge: "REGION V", title: "Region V – Jatimbalinus",
+                coverage: "Wilayah: Surabaya, Malang, Denpasar, Mataram, Kupang",
+                agents: 34, industrial: 14,
+                sectors: ["Manufaktur", "Pertambangan", "Pariwisata", "Agro"]
+            },
+            R6: {
+                badge: "REGION VI", title: "Region VI – Kalimantan",
+                coverage: "Wilayah: Balikpapan, Banjarmasin, Pontianak, Samarinda, Tarakan",
+                agents: 71, industrial: 15,
+                sectors: ["Pertambangan Batu Bara", "Minyak & Gas", "Perkebunan", "Konstruksi"]
+            },
+            R7: {
+                badge: "REGION VII", title: "Region VII – Sulawesi",
+                coverage: "Wilayah: Makassar, Manado, Palu, Kendari, Gorontalo",
+                agents: 24, industrial: 12,
+                sectors: ["Pertambangan Nikel", "Agro", "Konstruksi", "Perikanan"]
+            },
+            R8: {
+                badge: "REGION VIII", title: "Region VIII – Maluku Papua",
+                coverage: "Wilayah: Sorong, Jayapura, Ambon, Ternate, Manokwari",
+                agents: 15, industrial: 8,
+                sectors: ["Pertambangan", "Minyak & Gas", "Konstruksi", "Perikanan"]
+            }
+        };
+
+        function animateIftCount(el, to) {
+            if (!el) return;
+            const from = parseInt(el.textContent) || 0;
+            const dur = 600;
+            let start = null;
+            function step(ts) {
+                if (!start) start = ts;
+                const p = Math.min((ts - start) / dur, 1);
+                el.textContent = Math.floor(p * (to - from) + from);
+                if (p < 1) requestAnimationFrame(step);
+                else el.textContent = to;
+            }
+            requestAnimationFrame(step);
+        }
+
+        function selectIftRegion(key) {
+            const d = iftRegionDb[key];
+            if (!d) return;
+
+            // Update markers
+            document.querySelectorAll('.ift-mor-marker').forEach(m => {
+                m.classList.toggle('ift-active', m.dataset.iftMor === key);
+            });
+            // Update list items
+            document.querySelectorAll('.ift-region-list-item').forEach(li => {
+                li.classList.toggle('ift-rli-active', li.dataset.clickMor === key);
+            });
+            // Update counter strip active state
+            const numMap = {R1:1,R2:2,R3:3,R4:4,R5:5,R6:6,R7:7,R8:8};
+            document.querySelectorAll('.ift-region-counter-item').forEach(c => {
+                c.classList.toggle('ift-rc-active', parseInt(c.dataset.region) === numMap[key]);
+            });
+
+            // Animate panel
+            const panel = document.getElementById('ift-region-panel');
+            if (panel) { panel.style.opacity = '0'; panel.style.transform = 'translateY(6px)'; }
+            setTimeout(() => {
+                const badge = document.getElementById('ift-panel-badge');
+                const title = document.getElementById('ift-panel-title');
+                const cov = document.getElementById('ift-panel-coverage');
+                const locs = document.getElementById('ift-panel-locations');
+                if (badge) badge.textContent = d.badge;
+                if (title) title.textContent = d.title;
+                if (cov) cov.textContent = d.coverage;
+                if (locs) {
+                    locs.innerHTML = '';
+                    d.sectors.forEach(s => {
+                        const sp = document.createElement('span');
+                        sp.className = 'ift-loc-pill';
+                        sp.textContent = s;
+                        locs.appendChild(sp);
+                    });
+                }
+                animateIftCount(document.getElementById('ift-panel-agents'), d.agents);
+                animateIftCount(document.getElementById('ift-panel-industrial'), d.industrial);
+                if (panel) { panel.style.opacity = '1'; panel.style.transform = 'translateY(0)'; }
+            }, 180);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Marker clicks
+            document.querySelectorAll('.ift-mor-marker').forEach(m => {
+                m.addEventListener('click', () => selectIftRegion(m.dataset.iftMor));
+            });
+            // List item clicks
+            document.querySelectorAll('.ift-region-list-item').forEach(li => {
+                li.addEventListener('click', () => selectIftRegion(li.dataset.clickMor));
+            });
+            // Counter strip clicks
+            const numToKey = {1:'R1',2:'R2',3:'R3',4:'R4',5:'R5',6:'R6',7:'R7',8:'R8'};
+            document.querySelectorAll('.ift-region-counter-item[data-region]').forEach(c => {
+                if (c.dataset.region !== 'lintas') {
+                    c.addEventListener('click', () => selectIftRegion(numToKey[parseInt(c.dataset.region)]));
+                }
+            });
+
+            // Zoom controls
+            let iftScale = 1;
+            const mapInner = document.getElementById('ift-map-inner');
+            document.getElementById('ift-zoom-in')?.addEventListener('click', () => {
+                iftScale = Math.min(iftScale + 0.2, 2.2);
+                if (mapInner) mapInner.style.transform = `scale(${iftScale})`;
+            });
+            document.getElementById('ift-zoom-out')?.addEventListener('click', () => {
+                iftScale = Math.max(iftScale - 0.2, 1);
+                if (mapInner) mapInner.style.transform = `scale(${iftScale})`;
+            });
+
+            // Transition styles for panel
+            const panel = document.getElementById('ift-region-panel');
+            if (panel) {
+                panel.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+            }
+
+            // Default: activate R1
+            selectIftRegion('R1');
+        });
+    })();
+    </script>
+
+    <!-- 5. Sektor Industri – Mendukung Berbagai Sektor Industri (Card Layout Reference) -->
+    <section class="ift-sectors-section" id="sektor-industri">
+        <div class="container">
+            
+            <!-- Section Header -->
+            <div class="ift-sectors-header rft-reveal">
+                <span class="ift-sectors-tag" data-i18n="ift.sectors.tag">SEKTOR INDUSTRI TERLAYANI</span>
+                <h2 class="ift-sectors-title" data-i18n="ift.sectors.title">Mendukung Berbagai Sektor Industri</h2>
+                <p class="ift-sectors-desc" data-i18n="ift.sectors.desc">
+                    Dengan kapabilitas distribusi energi dan pengelolaan logistik yang terintegrasi, <strong>Patra Logistik</strong> menghadirkan solusi yang disesuaikan dengan kebutuhan operasional berbagai sektor industri di seluruh Indonesia.
+                </p>
+            </div>
+
+            <!-- Sector Cards Grid (5-Card Layout matching Reference) -->
+            <div class="ift-sectors-grid rft-reveal-scale">
+                
+                <!-- Card 1: Pertambangan -->
+                <div class="ift-sector-card">
+                    <div class="ift-sector-media">
+                        <img src="assets/Mobil Tangki Maos.png" alt="Sektor Pertambangan Patra Logistik" class="ift-sector-photo" loading="lazy">
+                        <div class="ift-sector-title-bar">
+                            <h3 class="ift-sector-name" data-i18n="ift.sectors.mining_title">Pertambangan</h3>
+                        </div>
+                    </div>
+                    <div class="ift-sector-body">
+                        <p class="ift-sector-text" data-i18n="ift.sectors.mining_desc">
+                            Menjaga operasional pertambangan tetap produktif melalui penyediaan dan distribusi BBM langsung ke lokasi tambang, didukung pengelolaan persediaan yang membantu memastikan ketersediaan bahan bakar bagi alat berat dan kendaraan operasional.
+                        </p>
+                        <a href="#appointment-section" class="ift-sector-cta" data-i18n="ift.sectors.mining_btn">
+                            <span>Konsultasi Solusi Tambang</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Perkebunan -->
+                <div class="ift-sector-card">
+                    <div class="ift-sector-media">
+                        <img src="assets/Landscape MT.png" alt="Sektor Perkebunan Patra Logistik" class="ift-sector-photo" loading="lazy">
+                        <div class="ift-sector-title-bar">
+                            <h3 class="ift-sector-name" data-i18n="ift.sectors.plantation_title">Perkebunan</h3>
+                        </div>
+                    </div>
+                    <div class="ift-sector-body">
+                        <p class="ift-sector-text" data-i18n="ift.sectors.plantation_desc">
+                            Menjangkau area perkebunan hingga lokasi operasional yang membutuhkan dukungan distribusi bahan bakar secara berkelanjutan, untuk menunjang aktivitas alat berat, kendaraan operasional, maupun fasilitas produksi.
+                        </p>
+                        <a href="#appointment-section" class="ift-sector-cta" data-i18n="ift.sectors.plantation_btn">
+                            <span>Konsultasi Solusi Perkebunan</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Pembangkit Energi -->
+                <div class="ift-sector-card">
+                    <div class="ift-sector-media">
+                        <img src="assets/tbbm_ketapang.png" alt="Sektor Pembangkit Energi Patra Logistik" class="ift-sector-photo" loading="lazy">
+                        <div class="ift-sector-title-bar">
+                            <h3 class="ift-sector-name" data-i18n="ift.sectors.power_title">Pembangkit Energi</h3>
+                        </div>
+                    </div>
+                    <div class="ift-sector-body">
+                        <p class="ift-sector-text" data-i18n="ift.sectors.power_desc">
+                            Keandalan pasokan menjadi bagian penting dalam menjaga operasional pembangkit. Patra Logistik menyediakan solusi distribusi dan pengelolaan BBM yang dirancang untuk mendukung kontinuitas operasional secara optimal.
+                        </p>
+                        <a href="#appointment-section" class="ift-sector-cta" data-i18n="ift.sectors.power_btn">
+                            <span>Konsultasi Solusi Energi</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Marine -->
+                <div class="ift-sector-card">
+                    <div class="ift-sector-media">
+                        <img src="assets/LPR00887 (1).png" alt="Sektor Marine Patra Logistik" class="ift-sector-photo" loading="lazy">
+                        <div class="ift-sector-title-bar">
+                            <h3 class="ift-sector-name" data-i18n="ift.sectors.marine_title">Marine</h3>
+                        </div>
+                    </div>
+                    <div class="ift-sector-body">
+                        <p class="ift-sector-text" data-i18n="ift.sectors.marine_desc">
+                            Mendukung kebutuhan energi sektor maritim melalui layanan distribusi dan pengelolaan BBM untuk berbagai aktivitas operasional di area pelabuhan maupun lokasi layanan terkait, dengan mengutamakan keandalan dan aspek HSSE.
+                        </p>
+                        <a href="#appointment-section" class="ift-sector-cta" data-i18n="ift.sectors.marine_btn">
+                            <span>Konsultasi Solusi Marine</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5: Industri Lainnya -->
+                <div class="ift-sector-card">
+                    <div class="ift-sector-media">
+                        <img src="assets/gudang_pelumas_loading.png" alt="Sektor Industri Lainnya Patra Logistik" class="ift-sector-photo" loading="lazy">
+                        <div class="ift-sector-title-bar">
+                            <h3 class="ift-sector-name" data-i18n="ift.sectors.other_title">Industri Lainnya</h3>
+                        </div>
+                    </div>
+                    <div class="ift-sector-body">
+                        <p class="ift-sector-text" data-i18n="ift.sectors.other_desc">
+                            Menghadirkan solusi distribusi dan pengelolaan bahan bakar yang fleksibel bagi berbagai sektor industri, mulai dari manufaktur, konstruksi, hingga kebutuhan komersial lainnya, dengan mengedepankan keandalan, efisiensi, dan aspek HSSE.
+                        </p>
+                        <a href="#appointment-section" class="ift-sector-cta" data-i18n="ift.sectors.other_btn">
+                            <span>Konsultasi Sektor Lainnya</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. Strategic Partnership & Appointment CTA Banner (Wireframe Form Card Layout) -->
+    <section class="rft-cta-banner-section" id="appointment-section">
+        <div class="container">
+            <div class="rft-cta-wireframe-card rft-reveal-scale">
+                <!-- Left Column: Engaging Copy & Direct Contact Info -->
+                <div class="rft-cta-left-content rft-reveal rft-delay-1">
+                    <h3 class="rft-cta-headline" data-i18n="ift.cta_banner.title">Mari Diskusikan Kebutuhan Industrial Fuel Anda</h3>
+                    <p class="rft-cta-subtext" data-i18n="ift.cta_banner.desc">
+                        Jadwalkan pertemuan dengan tim pemasaran kami untuk mengeksplorasi bagaimana kami dapat mendukung pasokan bahan bakar andal bagi kelancaran operasional industri Anda.
+                    </p>
+
+                    <!-- Contact Channels Row -->
+                    <div class="rft-cta-contacts-row">
+                        <!-- Phone Contact -->
+                        <a href="tel:+620215205678" class="rft-cta-contact-item">
+                            <div class="rft-cta-contact-icon">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="rft-cta-contact-text">
+                                <span class="rft-cta-contact-label" data-i18n="ift.cta_banner.phone_label">Hubungi kami di</span>
+                                <span class="rft-cta-contact-val" data-i18n="ift.cta_banner.phone_val">+62 21 520 5678</span>
+                            </div>
+                        </a>
+
+                        <!-- Email Contact -->
+                        <a href="mailto:info@patralogistik.co.id" class="rft-cta-contact-item">
+                            <div class="rft-cta-contact-icon">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="rft-cta-contact-text">
+                                <span class="rft-cta-contact-label" data-i18n="ift.cta_banner.email_label">Email kami di</span>
+                                <span class="rft-cta-contact-val" data-i18n="ift.cta_banner.email_val">info@patralogistik.co.id</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Form Card (Ajukan Janji Temu) -->
+                <div class="rft-cta-form-card rft-reveal rft-delay-2">
+                    <h4 class="rft-form-card-title" data-i18n="ift.cta_banner.form_title">Ajukan Janji Temu</h4>
+                    
+                    <form id="iftAppointmentForm" onsubmit="handleAppointmentSubmit(event)" class="rft-form-body">
+                        <!-- Select Service -->
+                        <div class="rft-form-group">
+                            <label for="iftServiceSelect" class="rft-form-label" data-i18n="ift.cta_banner.service_label">Pilih Layanan</label>
+                            <div class="rft-select-wrap">
+                                <select id="iftServiceSelect" name="service" class="rft-form-control" required>
+                                    <option value="Industrial Fuel Transport" selected data-i18n="ift.cta_banner.service_opt2">Industrial Fuel Transport</option>
+                                    <option value="Retail Fuel Transport" data-i18n="ift.cta_banner.service_opt1">Retail Fuel Transport</option>
+                                    <option value="Gas Transport" data-i18n="ift.cta_banner.service_opt3">Gas Transport</option>
+                                    <option value="Lubricants Transport" data-i18n="ift.cta_banner.service_opt4">Lubricants Transport</option>
+                                </select>
+                                <svg class="rft-select-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Preferred Date -->
+                        <div class="rft-form-group">
+                            <label for="iftDateInput" class="rft-form-label" data-i18n="ift.cta_banner.date_label">Tanggal yang Diinginkan</label>
+                            <div class="rft-input-wrap">
+                                <input type="date" id="iftDateInput" name="preferred_date" class="rft-form-control" required>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="iftSubmitBtn" class="rft-form-submit-btn">
+                            <span data-i18n="ift.cta_banner.btn_submit">Ajukan Janji Temu</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Success Message Alert -->
+                        <div id="iftFormSuccess" class="rft-form-alert" style="display: none;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span data-i18n="ift.cta_banner.success_msg">Terima kasih! Pengajuan janji temu Anda telah diterima. Tim kami akan segera menghubungi Anda.</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Scroll Reveal Observer, Form Script & Modern Tab Handler -->
+    <script>
+        function handleAppointmentSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('iftSubmitBtn');
+            const alertBox = document.getElementById('iftFormSuccess');
+            
+            if (btn) {
+                btn.style.opacity = '0.7';
+                btn.style.pointerEvents = 'none';
+                btn.innerText = 'Mengirim...';
+            }
+
+            setTimeout(() => {
+                if (btn) btn.style.display = 'none';
+                if (alertBox) alertBox.style.display = 'flex';
+            }, 600);
+        }
+
+        // Modern Tab Switcher
+        function initIftTabs() {
+            const tabButtons = document.querySelectorAll('.ift-tab-btn');
+            const tabPanes = document.querySelectorAll('.ift-tab-pane');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetId = btn.getAttribute('data-tab-target');
+                    if (!targetId) return;
+
+                    tabButtons.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    tabPanes.forEach(p => p.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+
+                    const targetPane = document.getElementById(targetId);
+                    if (targetPane) {
+                        targetPane.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initIftTabs();
+
+            const revealElements = document.querySelectorAll('.rft-reveal, .rft-reveal-left, .rft-reveal-right, .rft-reveal-scale');
+            
+            if ('IntersectionObserver' in window) {
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-revealed');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    root: null,
+                    threshold: 0.08,
+                    rootMargin: '0px 0px -30px 0px'
+                });
+
+                revealElements.forEach(el => revealObserver.observe(el));
+            } else {
+                revealElements.forEach(el => el.classList.add('is-revealed'));
+            }
+        });
+    </script>
+
+    <footer class="footer-new">
+        <div class="footer-new__watermark"></div>
+
+        <div class="footer-new__top container">
+            <!-- Column 1 -->
+            <div class="footer-col-1">
+                <div class="footer-logo"></div>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <span><strong data-i18n="biz_117">Kantor Pusat</strong><br data-i18n="biz_118">Garden Avenue Rasuna Lantai 1-3, Jalan Epicentrum Tengah No. 3, RT.2/RW.5, Karet Kuningan, Kecamatan Setiabudi, Jakarta Selatan.</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <span data-i18n="biz_119">(021)-25196699</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                        </div>
+                        <span data-i18n="biz_120">info.patralogistik@pertamina.com</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="X">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4l16 16M4 20L20 4"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                            </path>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="footer-col-2">
+                <h3 data-i18n="footer.col1">PERUSAHAAN</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tentang-kami.html" data-i18n="nav.about">Tentang Kami</a></li>
+                    <li><a href="bisnis.html" data-i18n="nav.business">Bisnis</a></li>
+                    <li><a href="karir.html" data-i18n="nav.career">Karir</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="footer-col-3">
+                <h3 data-i18n="footer.col2">INFORMASI PUBLIK</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Tata Kelola</a></li>
+                    <li><a href="hubungan-investor.html" data-i18n="nav.investor">Hubungan Investor</a></li>
+                    <li><a href="berita-media.html" data-i18n="nav.news">Berita &amp; Media</a></li>
+                    <li><a href="#">Situs Terkait</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4 -->
+            <div class="footer-col-4">
+                <div class="footer-call-center-logos">
+                    <img src="./assets/Image%20(Pertamina%20Call%20Center).png" alt="Pertamina Call Center 135">
+                    <img src="./assets/callcenter15.png" alt="Call Center 135">
+                </div>
+                <a href="https://pertaminaclean.tipoffs.info/" target="_blank" rel="noopener noreferrer" class="call-center-btn">
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="text">
+                        <span class="title" data-i18n="biz_121">Whistle Blowing System</span>
+                        <span class="link" data-i18n="biz_122">https://pertaminaclean.tipoffs.info/</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-new__bottom container">
+            <div class="bottom-left">
+                <span class="affiliate-label" data-i18n="biz_123">AFFILIATE OF:</span>
+                <span class="affiliate-box" data-i18n="biz_124">PERTAMINA PATRA NIAGA</span>
+            </div>
+            <div class="bottom-right">
+                <span class="copyright" data-i18n="footer.copyright">© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang.</span>
+                <span class="copyright-desc" data-i18n="biz_125">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan PT Pertamina (Persero).</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="lang.js"></script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>
