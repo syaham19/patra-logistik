@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lubricant & Other Material Transport - PT Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Variables & Tokens (Corporate Design System) */
+        :root {
+            --lmt-primary: #0056A6;
+            --lmt-primary-dark: #003B73;
+            --lmt-primary-light: #EFF6FF;
+            --lmt-navy: #0A1B39;
+            --lmt-dark: #0F172A;
+            --lmt-slate: #334155;
+            --lmt-muted: #64748B;
+            --lmt-border: #E2E8F0;
+            --lmt-bg-alt: #F8FAFC;
+            --lmt-red: #ED1C24;
+            --lmt-green: #10B981;
+            --lmt-sky: #0284C7;
+        }
+
+        /* ================= SCROLL REVEAL ANIMATIONS ================= */
+        .lmt-reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .lmt-reveal-left {
+            opacity: 0;
+            transform: translateX(-36px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .lmt-reveal-right {
+            opacity: 0;
+            transform: translateX(36px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .lmt-reveal-scale {
+            opacity: 0;
+            transform: translateY(28px) scale(0.97);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .lmt-reveal.is-revealed,
+        .lmt-reveal-left.is-revealed,
+        .lmt-reveal-right.is-revealed,
+        .lmt-reveal-scale.is-revealed {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        /* Stagger Delays */
+        .lmt-delay-1 { transition-delay: 0.08s; }
+        .lmt-delay-2 { transition-delay: 0.16s; }
+        .lmt-delay-3 { transition-delay: 0.24s; }
+        .lmt-delay-4 { transition-delay: 0.32s; }
+        .lmt-delay-5 { transition-delay: 0.40s; }
+        .lmt-delay-6 { transition-delay: 0.48s; }
+
+        /* ================= 1. HERO SECTION ================= */
+        .lmt-hero-section {
+            position: relative;
+            background: linear-gradient(90deg,
+                rgba(10, 25, 47, 0.98) 0%,
+                rgba(10, 32, 68, 0.95) 35%,
+                rgba(0, 86, 166, 0.70) 58%,
+                rgba(0, 86, 166, 0.25) 80%,
+                rgba(0, 86, 166, 0.05) 100%),
+                url('assets/gudang_pelumas_loading.png') center right / cover no-repeat;
+            color: #FFFFFF;
+            padding: 140px 0 84px;
+            min-height: 540px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .lmt-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 980px;
+        }
+
+        /* In-Hero Glass Breadcrumb */
+        .lmt-hero-breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            margin-bottom: 24px;
+            font-size: 13px;
+        }
+        .lmt-breadcrumb-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .lmt-breadcrumb-link:hover { color: #FFFFFF; text-decoration: underline; }
+        .lmt-breadcrumb-sep { color: rgba(255, 255, 255, 0.4); display: inline-flex; align-items: center; }
+        .lmt-breadcrumb-active { color: #93C5FD; font-weight: 700; }
+
+        /* Hero Typography */
+        .lmt-hero-title {
+            font-size: 44px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            color: #FFFFFF;
+            margin: 0 0 16px;
+            text-transform: uppercase;
+        }
+        .lmt-hero-subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #BAE6FD;
+            line-height: 1.45;
+            margin: 0 0 32px;
+            max-width: 860px;
+        }
+
+        /* Hero CTA Buttons */
+        .lmt-hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .lmt-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #0056A6;
+            color: #FFFFFF;
+            font-size: 14.5px;
+            font-weight: 700;
+            padding: 14px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 0;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 24px -4px rgba(0, 86, 166, 0.5);
+            cursor: pointer;
+        }
+        .lmt-btn-primary:hover {
+            background: #003B73;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px -4px rgba(0, 86, 166, 0.7);
+            color: #FFFFFF;
+        }
+        .lmt-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+            font-size: 14.5px;
+            font-weight: 600;
+            padding: 14px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .lmt-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* ================= 2. INFORMASI LAYANAN SECTION ================= */
+        .lmt-info-section {
+            padding: 96px 0;
+            background-color: #FFFFFF;
+        }
+        .lmt-info-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 64px;
+            align-items: center;
+        }
+        .lmt-section-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--lmt-primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .lmt-info-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--lmt-navy);
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.3px;
+        }
+        .lmt-info-lead {
+            font-size: 15.5px;
+            line-height: 1.75;
+            color: var(--lmt-slate);
+            margin-bottom: 16px;
+        }
+        .lmt-info-points {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 24px;
+        }
+        .lmt-info-point-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .lmt-info-point-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--lmt-primary-light);
+            color: var(--lmt-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .lmt-info-point-text {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--lmt-dark);
+        }
+
+        /* Visual Frame */
+        .lmt-info-visual { position: relative; }
+        .lmt-visual-frame {
+            position: relative;
+            background: #F1F5F9;
+            border: 1px solid var(--lmt-border);
+            overflow: hidden;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+        }
+        .lmt-visual-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .lmt-visual-frame:hover .lmt-visual-image { transform: scale(1.03); }
+        .lmt-floating-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(10, 27, 57, 0.94);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 14px 18px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+        .lmt-floating-badge-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--lmt-primary);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .lmt-floating-badge-title { font-size: 14px; font-weight: 800; margin: 0; line-height: 1.2; }
+        .lmt-floating-badge-sub { font-size: 11.5px; color: #93C5FD; margin: 2px 0 0; }
+
+        /* ================= 3. CAKUPAN KAMI – STATS SECTION ================= */
+        .lmt-stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0A1B39 0%, #0F2854 50%, #08162E 100%);
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .lmt-stats-section::before {
+            content: '';
+            position: absolute;
+            top: -150px; right: -150px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0, 86, 166, 0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .lmt-stats-section::after {
+            content: '';
+            position: absolute;
+            bottom: -150px; left: -150px;
+            width: 450px; height: 450px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .lmt-stats-header {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 52px;
+            position: relative;
+            z-index: 2;
+        }
+        .lmt-stats-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #38BDF8;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 6px 16px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+        .lmt-stats-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.4px;
+        }
+        .lmt-stats-desc {
+            font-size: 15.5px;
+            color: #94A3B8;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Stats Grid */
+        .lmt-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.45);
+        }
+        .lmt-stat-item {
+            padding: 44px 36px;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease;
+        }
+        .lmt-stat-item:last-child { border-right: none; }
+        .lmt-stat-item:hover { background: rgba(255, 255, 255, 0.04); }
+        .lmt-stat-value {
+            font-size: 56px;
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1;
+            letter-spacing: -2px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .lmt-stat-divider {
+            width: 32px;
+            height: 2px;
+            background: rgba(56, 189, 248, 0.4);
+            margin: 12px auto;
+        }
+        .lmt-stat-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #38BDF8;
+            letter-spacing: 0.3px;
+            line-height: 1.35;
+            display: block;
+        }
+
+        /* ================= 4. SOLUSI DISTRIBUSI SECTION ================= */
+        .lmt-solution-section {
+            padding: 100px 0;
+            background-color: var(--lmt-bg-alt);
+            border-top: 1px solid #E2E8F0;
+        }
+        .lmt-solution-header {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 52px;
+        }
+        .lmt-solution-tag {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #0056A6;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            padding: 6px 16px;
+            margin-bottom: 14px;
+        }
+        .lmt-solution-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: #0A1B39;
+            margin: 0 0 16px;
+            letter-spacing: -0.4px;
+            line-height: 1.25;
+        }
+        .lmt-solution-desc {
+            font-size: 15.5px;
+            color: #64748B;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Solution Layout: Image Left + Features Right */
+        .lmt-solution-layout {
+            display: grid;
+            grid-template-columns: 0.92fr 1.08fr;
+            gap: 0;
+            align-items: stretch;
+            background: #FFFFFF;
+            border: 1px solid var(--lmt-border);
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+            margin-bottom: 56px;
+        }
+        .lmt-solution-image-col {
+            position: relative;
+            min-height: 480px;
+            background: #0A1B39;
+            overflow: hidden;
+        }
+        .lmt-solution-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 480px;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .lmt-solution-image-col:hover .lmt-solution-image { transform: scale(1.04); }
+        .lmt-solution-image-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(0deg, rgba(10, 27, 57, 0.92) 0%, transparent 100%);
+            padding: 32px 24px 20px;
+        }
+        .lmt-solution-image-caption { display: flex; align-items: center; gap: 12px; }
+        .lmt-solution-image-caption-icon {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--lmt-primary);
+            color: #FFFFFF;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+        }
+        .lmt-solution-caption-title { font-size: 14px; font-weight: 800; color: #FFFFFF; margin: 0 0 2px; }
+        .lmt-solution-caption-sub { font-size: 11.5px; color: #BAE6FD; margin: 0; }
+
+        /* Features Right Column */
+        .lmt-solution-features-col {
+            padding: 44px 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .lmt-feature-item { display: flex; flex-direction: column; gap: 8px; }
+        .lmt-feature-header { display: flex; align-items: center; gap: 14px; }
+        .lmt-feature-icon-wrap {
+            width: 38px; height: 38px;
+            background: var(--lmt-primary-light);
+            color: var(--lmt-primary);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid #BFDBFE;
+        }
+        .lmt-feature-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--lmt-navy);
+            margin: 0;
+            line-height: 1.3;
+        }
+        .lmt-feature-desc {
+            font-size: 14px;
+            color: var(--lmt-slate);
+            line-height: 1.7;
+            margin: 0;
+            padding-left: 52px;
+        }
+        .lmt-feature-divider { height: 1px; background: var(--lmt-border); margin-top: 4px; }
+        .lmt-feature-item:last-child .lmt-feature-divider { display: none; }
+
+        /* ================= 5. SKEMA LAYANAN RANTAI PASOK ================= */
+        .lmt-schema-card {
+            background: #FFFFFF;
+            border: 1px solid var(--lmt-border);
+            padding: 40px 36px;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+            margin-bottom: 56px;
+        }
+        .lmt-schema-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--lmt-navy);
+            margin-bottom: 28px;
+            border-bottom: 2px solid var(--lmt-primary-light);
+            padding-bottom: 14px;
+        }
+        .lmt-schema-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+        }
+        .lmt-flow-step {
+            background: var(--lmt-bg-alt);
+            border: 1.5px solid #CBD5E1;
+            padding: 20px 14px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            min-height: 130px;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .lmt-flow-step:hover {
+            border-color: var(--lmt-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 86, 166, 0.1);
+            background: #FFFFFF;
+        }
+        .lmt-flow-badge {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--lmt-primary);
+            background: var(--lmt-primary-light);
+            padding: 3px 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .lmt-flow-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--lmt-navy);
+            margin: 0;
+            line-height: 1.35;
+        }
+        .lmt-flow-sub {
+            font-size: 11px;
+            color: var(--lmt-muted);
+            margin: 0;
+            line-height: 1.3;
+        }
+        .lmt-flow-arrow {
+            color: #94A3B8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ================= 6. FLEET & MATERIAL SHOWCASE ================= */
+        .lmt-fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .lmt-fleet-card {
+            background: #FFFFFF;
+            border: 1px solid var(--lmt-border);
+            padding: 28px 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .lmt-fleet-card:hover {
+            border-color: var(--lmt-primary);
+            box-shadow: 0 12px 28px rgba(0, 86, 166, 0.12);
+            transform: translateY(-4px);
+        }
+        .lmt-fleet-icon-box {
+            width: 60px;
+            height: 60px;
+            background: var(--lmt-primary-light);
+            color: var(--lmt-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            border: 1px solid #BFDBFE;
+        }
+        .lmt-fleet-card-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--lmt-navy);
+            margin: 0 0 8px;
+        }
+        .lmt-fleet-card-desc {
+            font-size: 13px;
+            color: var(--lmt-slate);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ================= 7. CTA BANNER SECTION ================= */
+        .lmt-cta-section {
+            padding: 96px 0;
+            background-color: #FFFFFF;
+        }
+        .lmt-cta-wireframe-card {
+            background: var(--lmt-bg-alt);
+            border: 1px solid var(--lmt-border);
+            box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.08);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            padding: 56px 48px;
+            align-items: center;
+        }
+        .lmt-cta-headline { font-size: 32px; font-weight: 800; color: var(--lmt-navy); line-height: 1.25; margin: 0 0 16px; letter-spacing: -0.3px; }
+        .lmt-cta-subtext { font-size: 15.5px; color: var(--lmt-slate); line-height: 1.7; margin: 0 0 32px; }
+        .lmt-cta-contacts-row { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+        .lmt-cta-contact-item {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: inherit;
+            transition: transform 0.2s ease;
+        }
+        .lmt-cta-contact-item:hover { transform: translateX(3px); }
+        .lmt-cta-contact-icon {
+            width: 42px; height: 42px;
+            background: var(--lmt-primary-light);
+            color: var(--lmt-primary);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .lmt-cta-contact-text { display: flex; flex-direction: column; }
+        .lmt-cta-contact-label { font-size: 11px; font-weight: 700; color: var(--lmt-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .lmt-cta-contact-val { font-size: 14.5px; font-weight: 700; color: var(--lmt-navy); }
+
+        /* Form Card */
+        .lmt-cta-form-card {
+            background: var(--lmt-navy);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 36px 32px;
+        }
+        .lmt-form-card-title { font-size: 20px; font-weight: 800; color: #FFFFFF; margin: 0 0 6px; }
+        .lmt-form-card-sub { font-size: 13px; color: #94A3B8; margin: 0 0 24px; line-height: 1.5; }
+        .lmt-form-body { display: flex; flex-direction: column; gap: 16px; }
+        .lmt-form-group { display: flex; flex-direction: column; gap: 6px; }
+        .lmt-form-label { font-size: 12.5px; font-weight: 700; color: rgba(255, 255, 255, 0.7); }
+        .lmt-select-wrap, .lmt-input-wrap { position: relative; width: 100%; }
+        .lmt-form-control {
+            width: 100%; height: 44px;
+            padding: 0 14px;
+            font-size: 14px;
+            color: var(--lmt-dark);
+            background: #FFFFFF;
+            border: 1px solid var(--lmt-border);
+            border-radius: 0; outline: none;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        .lmt-form-control:focus { border-color: var(--lmt-primary); box-shadow: 0 0 0 3px rgba(0, 86, 166, 0.12); }
+        .lmt-select-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #64748B; }
+        .lmt-form-submit-btn {
+            width: 100%; height: 48px;
+            background: #0056A6; color: #FFFFFF;
+            font-size: 15px; font-weight: 700;
+            border: none; border-radius: 0;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 16px rgba(0, 86, 166, 0.35);
+            margin-top: 8px; font-family: inherit;
+        }
+        .lmt-form-submit-btn:hover { background: #003B73; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0, 86, 166, 0.5); }
+        .lmt-form-alert {
+            margin-top: 14px; padding: 12px 14px;
+            background: #DCFCE7; border: 1px solid #86EFAC; color: #166534;
+            font-size: 13px; font-weight: 600; border-radius: 0;
+            display: flex; align-items: center; gap: 8px; line-height: 1.4;
+        }
+
+        /* ================= ACCESSIBILITY: REDUCED MOTION ================= */
+        @media (prefers-reduced-motion: reduce) {
+            .lmt-reveal, .lmt-reveal-left, .lmt-reveal-right, .lmt-reveal-scale {
+                opacity: 1 !important; transform: none !important; transition: none !important;
+            }
+        }
+
+        /* ================= RESPONSIVE BREAKPOINTS ================= */
+        @media (max-width: 1024px) {
+            .lmt-hero-title { font-size: 38px; }
+            .lmt-info-grid { grid-template-columns: 1fr; gap: 44px; }
+            .lmt-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .lmt-stat-item:nth-child(2) { border-right: none; }
+            .lmt-stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.1); }
+            .lmt-stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.1); border-right: none; }
+            .lmt-solution-layout { grid-template-columns: 1fr; }
+            .lmt-solution-features-col { padding: 36px 36px 40px; }
+            .lmt-schema-flow { grid-template-columns: 1fr; gap: 16px; }
+            .lmt-flow-arrow { transform: rotate(90deg); margin: 4px 0; }
+            .lmt-fleet-grid { grid-template-columns: repeat(2, 1fr); }
+            .lmt-cta-wireframe-card { grid-template-columns: 1fr; gap: 40px; padding: 44px 36px; }
+        }
+        @media (max-width: 768px) {
+            .lmt-hero-section {
+                background: linear-gradient(180deg,
+                    rgba(10, 25, 47, 0.96) 0%,
+                    rgba(10, 32, 68, 0.90) 60%,
+                    rgba(0, 86, 166, 0.45) 100%),
+                    url('assets/gudang_pelumas_loading.png') center center / cover no-repeat;
+                padding: 120px 0 60px;
+                min-height: auto;
+            }
+            .lmt-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .lmt-stats-title { font-size: 28px; }
+            .lmt-solution-image-col { min-height: 300px; }
+            .lmt-solution-image { min-height: 300px; }
+            .lmt-fleet-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .lmt-hero-title { font-size: 28px; }
+            .lmt-hero-subtitle { font-size: 17px; }
+            .lmt-info-title, .lmt-stats-title, .lmt-solution-title { font-size: 24px; }
+            .lmt-stat-value { font-size: 40px; }
+            .lmt-stat-item { padding: 28px 20px; }
+            .lmt-visual-image { height: 260px; }
+            .lmt-floating-badge { position: static; margin-top: 12px; }
+            .lmt-cta-wireframe-card { padding: 32px 20px; }
+            .lmt-cta-headline { font-size: 24px; }
+            .lmt-cta-contacts-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .lmt-solution-features-col { padding: 24px 20px 28px; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+</head>
+<body class="loading">
+
+    <!-- Page Loader -->
+    <div id="page-loader" class="page-loader" aria-live="polite" aria-label="Memuat halaman">
+        <div class="page-loader__inner">
+            <div class="page-loader__brand">
+                <img src="assets/logo-transparent.png" alt="Patra Logistik" class="page-loader__logo">
+            </div>
+            <div class="page-loader__counter">
+                <span class="page-loader__percent" id="loader-percent">0%</span>
+            </div>
+            <div class="page-loader__track-wrapper">
+                <div class="page-loader__truck-wrapper" id="loader-truck-wrapper">
+                    <div id="loader-truck-anim" class="page-loader__truck"></div>
+                </div>
+                <div class="page-loader__bar">
+                    <div class="page-loader__bar-fill" id="loader-bar-fill"></div>
+                </div>
+                <div class="page-loader__road-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navigation Bar -->
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami" data-i18n="nav.about">Tentang Kami</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tentang-kami.html?tab=profil" data-i18n="nav.about.profile">Profil Perusahaan</a></li>
+                        <li><a href="tentang-kami.html?tab=visi-misi" data-i18n="nav.about.vision">Visi Misi</a></li>
+                        <li><a href="tentang-kami.html?tab=nilai" data-i18n="nav.about.values">Tata Nilai</a></li>
+                        <li><a href="tentang-kami.html?tab=sejarah" data-i18n="nav.about.history">Sejarah</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris-direksi" data-i18n="nav.about.board_directors">Dewan Komisaris &amp; Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=struktur" data-i18n="nav.about.structure">Struktur Organisasi</a></li>
+                        <li><a href="tentang-kami.html?tab=sertifikat" data-i18n="nav.about.certification">Sertifikasi</a></li>
+                        <li><a href="tentang-kami.html?tab=penghargaan" data-i18n="nav.about.awards">Penghargaan</a></li>
+                    </ul>
+                </li>
+                <li><a href="bisnis.html" class="nav-link active" data-text="Bisnis" data-i18n="nav.business">Bisnis</a></li>
+                <li class="has-dropdown">
+                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor" data-i18n="nav.investor">Hubungan Investor</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+                        <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+                        <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+                    </ul>
+                </li>
+                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability" data-i18n="nav.sustainability">Sustainability</a></li>
+                <li class="has-dropdown">
+                    <a href="berita-media.html" class="nav-link" data-text="Berita &amp; Media" data-i18n="nav.news">Berita &amp; Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+                        <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+                        <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+                        <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+                        <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+                    </ul>
+                </li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir" data-i18n="nav.career">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="lang-switch has-dropdown" aria-label="Language Switch">
+                    <button class="lang-btn-current" id="lang-btn-current" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag" id="current-lang-flag">
+                        <span class="lang-text" id="current-lang-text">INA</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="lang-dropdown-menu">
+                        <li><button class="lang-option" data-lang="id"><img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag"><span class="lang-text">INA</span></button></li>
+                        <li><button class="lang-option" data-lang="en"><img src="https://flagcdn.com/w20/gb.png" alt="EN Flag" class="lang-flag"><span class="lang-text">ENG</span></button></li>
+                    </ul>
+                </div>
+                <a href="#lmt-appointment-section" class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px; text-decoration: none;" data-i18n="nav.contact">HUBUNGI KAMI</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= 1. ENTERPRISE HERO SECTION ================= -->
+    <section class="lmt-hero-section">
+        <div class="container">
+            <div class="lmt-hero-inner">
+                <!-- In-Hero Breadcrumb -->
+                <nav class="lmt-hero-breadcrumb lmt-reveal lmt-delay-1" aria-label="Breadcrumb">
+                    <a href="index.html" class="lmt-breadcrumb-link">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        <span>Beranda</span>
+                    </a>
+                    <span class="lmt-breadcrumb-sep" aria-hidden="true">/</span>
+                    <a href="bisnis.html" class="lmt-breadcrumb-link">Bisnis Kami</a>
+                    <span class="lmt-breadcrumb-sep" aria-hidden="true">/</span>
+                    <a href="bisnis.html?tab=transportasi" class="lmt-breadcrumb-link">Transportasi</a>
+                    <span class="lmt-breadcrumb-sep" aria-hidden="true">/</span>
+                    <span class="lmt-breadcrumb-active">Lubricant &amp; Other Material Transport</span>
+                </nav>
+
+                <!-- Main Title & Subtitle -->
+                <h1 class="lmt-hero-title lmt-reveal lmt-delay-3" data-i18n="lmt.hero.title">LUBRICANT &amp; OTHER MATERIAL TRANSPORT</h1>
+                <h2 class="lmt-hero-subtitle lmt-reveal lmt-delay-4" data-i18n="lmt.hero.subtitle">Solusi Terpadu Pengelolaan Rantai Pasok Pelumas &amp; Transportasi Material Industri Nasional</h2>
+
+                <!-- CTA Actions -->
+                <div class="lmt-hero-actions lmt-reveal lmt-delay-6">
+                    <a href="#lmt-appointment-section" class="lmt-btn-primary">
+                        <span data-i18n="lmt.hero.btn_contact">Hubungi Kami</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="#lmt-solution-section" class="lmt-btn-secondary">
+                        <span data-i18n="lmt.hero.btn_solution">Pelajari Solusi</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 2. INFORMASI LAYANAN SECTION ================= -->
+    <section class="lmt-info-section">
+        <div class="container">
+            <div class="lmt-info-grid">
+                <!-- Left Column: Content -->
+                <div class="lmt-info-content lmt-reveal-left">
+                    <span class="lmt-section-tag" data-i18n="lmt.info.tag">INFORMASI LAYANAN</span>
+                    <h3 class="lmt-info-title" data-i18n="lmt.info.title">Manajemen Pergudangan &amp; Distribusi Rantai Pasok Pelumas</h3>
+
+                    <p class="lmt-info-lead" data-i18n="lmt.info.lead1">
+                        Patra Logistik berperan strategis dalam <strong>pengelolaan gudang dan distribusi rantai pasok pelumas</strong> PT Pertamina Lubricants (PTPL) serta material industri ke seluruh penjuru Nusantara. Sinergi ini difokuskan pada penguatan rantai pasok <em>(supply chain)</em>, optimalisasi infrastruktur pergudangan modern, dan peningkatan efisiensi distribusi dua arah.
+                    </p>
+                    <p class="lmt-info-lead" style="margin-top: 14px;" data-i18n="lmt.info.lead2">
+                        Operasional meliputi pengelolaan <strong>Depot Supply Point (DSP)</strong> seperti proses <em>Receiving, Storaging, Stacking, Inventory Quality Check,</em> hingga <em>Picking &amp; Dispatching</em> dengan penerapan standar <strong style="text-decoration: underline; text-decoration-color: #ED1C24;">HSSE</strong> ketat guna menjamin keaslian, keamanan produk, dan <em>zero contamination</em>.
+                    </p>
+
+                    <div class="lmt-info-points">
+                        <div class="lmt-info-point-item lmt-reveal lmt-delay-1">
+                            <div class="lmt-info-point-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <span class="lmt-info-point-text" data-i18n="lmt.info.point1">Pengelolaan Depot Supply Point (DSP) &amp; Pergudangan Modern PT Pertamina Lubricants</span>
+                        </div>
+                        <div class="lmt-info-point-item lmt-reveal lmt-delay-2">
+                            <div class="lmt-info-point-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <span class="lmt-info-point-text" data-i18n="lmt.info.point2">Distribusi Terintegrasi Multi-Moda (Wingbox, ISO Tank, Flexibag, &amp; Trucking)</span>
+                        </div>
+                        <div class="lmt-info-point-item lmt-reveal lmt-delay-3">
+                            <div class="lmt-info-point-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <span class="lmt-info-point-text" data-i18n="lmt.info.point3">Jaminan Kontrol Kualitas Mutu, Segel Pengaman &amp; Zero Contamination Assurance</span>
+                        </div>
+                        <div class="lmt-info-point-item lmt-reveal lmt-delay-4">
+                            <div class="lmt-info-point-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <span class="lmt-info-point-text" data-i18n="lmt.info.point4">Penyediaan Tenaga Kerja Profesional Berlisensi &amp; Integrasi Sistem WMS Real-Time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Frame -->
+                <div class="lmt-info-visual lmt-reveal-right">
+                    <div class="lmt-visual-frame">
+                        <img src="assets/gudang_pelumas_loading.png" alt="Operasional Gudang dan Distribusi Pelumas Patra Logistik" class="lmt-visual-image">
+                        <div class="lmt-floating-badge">
+                            <div class="lmt-floating-badge-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                            </div>
+                            <div>
+                                <h4 class="lmt-floating-badge-title" data-i18n="lmt.badge.title">Vendor Day Awards 2024 Partner</h4>
+                                <p class="lmt-floating-badge-sub" data-i18n="lmt.badge.sub">PT Pertamina Lubricants Supply Chain Excellence</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 3. CAKUPAN KAMI – STATS SECTION ================= -->
+    <section class="lmt-stats-section">
+        <div class="container">
+            <div class="lmt-stats-header lmt-reveal">
+                <span class="lmt-stats-tag" data-i18n="lmt.stats.tag">SKALA OPERASIONAL</span>
+                <h2 class="lmt-stats-title" data-i18n="lmt.stats.title">Cakupan Distribusi &amp; Pergudangan Nasional</h2>
+                <p class="lmt-stats-desc" data-i18n="lmt.stats.desc">Menghubungkan fasilitas produksi pelumas dan material industri strategis ke seluruh titik distribusi di Indonesia dengan keandalan pasokan yang terbukti.</p>
+            </div>
+
+            <div class="lmt-stats-grid lmt-reveal-scale">
+                <div class="lmt-stat-item">
+                    <span class="lmt-stat-value" id="lmt-stat-1">0</span>
+                    <div class="lmt-stat-divider"></div>
+                    <span class="lmt-stat-label" data-i18n="lmt.stat1.label">Armada Distribusi Khusus</span>
+                </div>
+                <div class="lmt-stat-item">
+                    <span class="lmt-stat-value" id="lmt-stat-2">0</span>
+                    <div class="lmt-stat-divider"></div>
+                    <span class="lmt-stat-label" data-i18n="lmt.stat2.label">Depot Supply Point &amp; Gudang</span>
+                </div>
+                <div class="lmt-stat-item">
+                    <span class="lmt-stat-value" id="lmt-stat-3">0</span>
+                    <div class="lmt-stat-divider"></div>
+                    <span class="lmt-stat-label" data-i18n="lmt.stat3.label">Jaringan Distributor &amp; Outlet</span>
+                </div>
+                <div class="lmt-stat-item">
+                    <span class="lmt-stat-value" id="lmt-stat-4">0</span>
+                    <div class="lmt-stat-divider"></div>
+                    <span class="lmt-stat-label" data-i18n="lmt.stat4.label">Tingkat Kepatuhan HSSE &amp; Mutu</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 4. SOLUSI DISTRIBUSI & MATERIAL TRANSPORT ================= -->
+    <section class="lmt-solution-section" id="lmt-solution-section">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="lmt-solution-header lmt-reveal">
+                <span class="lmt-solution-tag" data-i18n="lmt.solution.tag">KEUNGGULAN LAYANAN</span>
+                <h2 class="lmt-solution-title" data-i18n="lmt.solution.title">Solusi Komprehensif Distribusi &amp; Manajemen Material</h2>
+                <p class="lmt-solution-desc" data-i18n="lmt.solution.desc">Mengintegrasikan keandalan armada, sistem informasi inventori canggih, dan penanganan material khusus guna mendukung kelancaran operasional industri Anda.</p>
+            </div>
+
+            <!-- Solution Layout -->
+            <div class="lmt-solution-layout lmt-reveal-scale">
+                <!-- Left: Image -->
+                <div class="lmt-solution-image-col">
+                    <img src="assets/gudang_pelumas_loading.png" alt="Warehouse and Logistics Center" class="lmt-solution-image" loading="lazy">
+                    <div class="lmt-solution-image-overlay">
+                        <div class="lmt-solution-image-caption">
+                            <div class="lmt-solution-image-caption-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </div>
+                            <div>
+                                <p class="lmt-solution-caption-title" data-i18n="lmt.solution.badge_title">Integrated Warehousing &amp; Distribution</p>
+                                <p class="lmt-solution-caption-sub" data-i18n="lmt.solution.badge_sub">PT Pertamina Patra Logistik</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Features -->
+                <div class="lmt-solution-features-col">
+
+                    <!-- Feature 1: Manajemen Pergudangan & WMS -->
+                    <div class="lmt-feature-item lmt-reveal lmt-delay-1">
+                        <div class="lmt-feature-header">
+                            <div class="lmt-feature-icon-wrap" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                            </div>
+                            <h3 class="lmt-feature-title" data-i18n="lmt.feat1.title">Manajemen Pergudangan Modern &amp; WMS</h3>
+                        </div>
+                        <p class="lmt-feature-desc" data-i18n="lmt.feat1.desc">Pengelolaan <strong>Receiving, Storaging, Stacking, hingga Dispatching</strong> terotomatisasi dengan Warehouse Management System (WMS) untuk menjamin akurasi stok inventori, rotasi barang FIFO/FEFO, dan visibilitas persediaan secara real-time.</p>
+                        <div class="lmt-feature-divider"></div>
+                    </div>
+
+                    <!-- Feature 2: Multi-Modal Fleet Fleet Solution -->
+                    <div class="lmt-feature-item lmt-reveal lmt-delay-2">
+                        <div class="lmt-feature-header">
+                            <div class="lmt-feature-icon-wrap" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                            </div>
+                            <h3 class="lmt-feature-title" data-i18n="lmt.feat2.title">Armada Khusus &amp; Distribusi Fleksibel</h3>
+                        </div>
+                        <p class="lmt-feature-desc" data-i18n="lmt.feat2.desc">Didukung beragam moda pengangkutan meliputi <strong>Wingbox Truck</strong> untuk produk botol/karton/drum, <strong>ISO Tank &amp; Flexibag</strong> untuk pelumas curah <em>(bulk)</em>, hingga <strong>Flatbed</strong> untuk pengangkutan peralatan dan material proyek berat.</p>
+                        <div class="lmt-feature-divider"></div>
+                    </div>
+
+                    <!-- Feature 3: Quality & Zero Contamination -->
+                    <div class="lmt-feature-item lmt-reveal lmt-delay-3">
+                        <div class="lmt-feature-header">
+                            <div class="lmt-feature-icon-wrap" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                            </div>
+                            <h3 class="lmt-feature-title" data-i18n="lmt.feat3.title">Jaminan Kualitas &amp; Anti-Kontaminasi</h3>
+                        </div>
+                        <p class="lmt-feature-desc" data-i18n="lmt.feat3.desc">Penerapan standar operasional ketat dengan segel pengaman <em>tamper-proof</em>, pembersihan kompartemen berkala, dan inspeksi mutu berlapis demi menjaga keaslian dan kemurnian pelumas hingga sampai ke tangan konsumen.</p>
+                        <div class="lmt-feature-divider"></div>
+                    </div>
+
+                    <!-- Feature 4: Reverse Logistics & Special Material Handling -->
+                    <div class="lmt-feature-item lmt-reveal lmt-delay-4">
+                        <div class="lmt-feature-header">
+                            <div class="lmt-feature-icon-wrap" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                            </div>
+                            <h3 class="lmt-feature-title" data-i18n="lmt.feat4.title">Distribusi Dua Arah &amp; Reverse Logistics</h3>
+                        </div>
+                        <p class="lmt-feature-desc" data-i18n="lmt.feat4.desc">Layanan distribusi dua arah dari Depot Supply Point (DSP) ke distributor serta pengelolaan <em>reverse logistics</em> ramah lingkungan, termasuk penanganan drum kemasan bekas dan material kimia industri pendukung.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ================= 5. SKEMA LAYANAN RANTAI PASOK ================= -->
+            <div class="lmt-schema-card lmt-reveal-scale">
+                <div class="lmt-schema-heading">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--lmt-primary);"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+                    <span data-i18n="lmt.schema.title">Skema Layanan Rantai Pasok Pelumas &amp; Material (Supply Chain Flow)</span>
+                </div>
+
+                <div class="lmt-schema-flow">
+                    <!-- Step 1 -->
+                    <div class="lmt-flow-step">
+                        <span class="lmt-flow-badge">Tahap 1</span>
+                        <h4 class="lmt-flow-title" data-i18n="lmt.schema.step1_title">Pusat Produksi &amp; DSP Utama</h4>
+                        <p class="lmt-flow-sub" data-i18n="lmt.schema.step1_sub">L301 Plumpang / L405 Cilacap</p>
+                    </div>
+
+                    <div class="lmt-flow-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="lmt-flow-step">
+                        <span class="lmt-flow-badge">Tahap 2</span>
+                        <h4 class="lmt-flow-title" data-i18n="lmt.schema.step2_title">Armada Transport Inter-Depot</h4>
+                        <p class="lmt-flow-sub" data-i18n="lmt.schema.step2_sub">Wingbox &amp; ISO Tank Fleet</p>
+                    </div>
+
+                    <div class="lmt-flow-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="lmt-flow-step">
+                        <span class="lmt-flow-badge">Tahap 3</span>
+                        <h4 class="lmt-flow-title" data-i18n="lmt.schema.step3_title">Depot Supply Point (DSP)</h4>
+                        <p class="lmt-flow-sub" data-i18n="lmt.schema.step3_sub">L302 Ujung Berung &amp; Regional Hub</p>
+                    </div>
+
+                    <div class="lmt-flow-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="lmt-flow-step">
+                        <span class="lmt-flow-badge">Tahap 4</span>
+                        <h4 class="lmt-flow-title" data-i18n="lmt.schema.step4_title">Distribusi Lokal &amp; Door-to-Door</h4>
+                        <p class="lmt-flow-sub" data-i18n="lmt.schema.step4_sub">Pengantaran Terjadwal</p>
+                    </div>
+
+                    <div class="lmt-flow-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="lmt-flow-step" style="border-color: var(--lmt-primary); background: #EFF6FF;">
+                        <span class="lmt-flow-badge" style="background: #0056A6; color: #FFFFFF;">Tahap 5</span>
+                        <h4 class="lmt-flow-title" data-i18n="lmt.schema.step5_title">Distributor &amp; End-User Industri</h4>
+                        <p class="lmt-flow-sub" data-i18n="lmt.schema.step5_sub">Outlet, Bengkel &amp; Plant Industri</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= 6. FLEET & MATERIAL SHOWCASE ================= -->
+            <div class="lmt-fleet-section">
+                <div style="text-align: center; margin-bottom: 32px;" class="lmt-reveal">
+                    <span class="lmt-section-tag" data-i18n="lmt.fleet.tag">SPESIFIKASI ARMADA</span>
+                    <h3 style="font-size: 26px; font-weight: 800; color: var(--lmt-navy); margin: 0 0 8px;" data-i18n="lmt.fleet.title">Solusi Moda &amp; Penanganan Material Khusus</h3>
+                </div>
+
+                <div class="lmt-fleet-grid lmt-reveal-scale">
+                    <!-- Fleet 1 -->
+                    <div class="lmt-fleet-card">
+                        <div class="lmt-fleet-icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                        </div>
+                        <h4 class="lmt-fleet-card-title" data-i18n="lmt.fleet1.title">Wingbox Truck</h4>
+                        <p class="lmt-fleet-card-desc" data-i18n="lmt.fleet1.desc">Kapasitas muatan optimal untuk produk kemasan karton, botol, dan pail pelumas dengan sistem bongkar muat samping yang cepat.</p>
+                    </div>
+
+                    <!-- Fleet 2 -->
+                    <div class="lmt-fleet-card">
+                        <div class="lmt-fleet-icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M12 12h.01"></path><path d="M17 12h.01"></path><path d="M7 12h.01"></path></svg>
+                        </div>
+                        <h4 class="lmt-fleet-card-title" data-i18n="lmt.fleet2.title">ISO Tank Container</h4>
+                        <p class="lmt-fleet-card-desc" data-i18n="lmt.fleet2.desc">Solusi pengangkutan pelumas curah <em>(bulk)</em> dan bahan kimia industri dengan sertifikasi standar tangki bertekanan tinggi.</p>
+                    </div>
+
+                    <!-- Fleet 3 -->
+                    <div class="lmt-fleet-card">
+                        <div class="lmt-fleet-icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        </div>
+                        <h4 class="lmt-fleet-card-title" data-i18n="lmt.fleet3.title">Flexibag Solution</h4>
+                        <p class="lmt-fleet-card-desc" data-i18n="lmt.fleet3.desc">Pengiriman cairan pelumas dan base oil berkapasitas besar menggunakan kontainer 20ft standar yang efisien dan higienis.</p>
+                    </div>
+
+                    <!-- Fleet 4 -->
+                    <div class="lmt-fleet-card">
+                        <div class="lmt-fleet-icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2" ry="2"></rect><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>
+                        </div>
+                        <h4 class="lmt-fleet-card-title" data-i18n="lmt.fleet4.title">Material &amp; Heavy Cargo</h4>
+                        <p class="lmt-fleet-card-desc" data-i18n="lmt.fleet4.desc">Pengangkutan suku cadang industri energi, material proyek, dan kargo bermuatan khusus dengan prosedur keselamatan terstandarisasi.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= 7. CTA / APPOINTMENT SECTION ================= -->
+    <section class="lmt-cta-section" id="lmt-appointment-section">
+        <div class="container">
+            <div class="lmt-cta-wireframe-card lmt-reveal-scale">
+                <!-- Left Column -->
+                <div class="lmt-cta-left-content lmt-reveal lmt-delay-1">
+                    <h3 class="lmt-cta-headline" data-i18n="lmt.cta.headline">Mari Diskusikan Kebutuhan Pelumas &amp; Material Transport Anda</h3>
+                    <p class="lmt-cta-subtext" data-i18n="lmt.cta.subtext">Jadwalkan pertemuan dengan tim ahli kami untuk mengeksplorasi bagaimana Patra Logistik dapat mengoptimalkan rantai pasok pelumas dan pengangkutan material industri Anda dengan standar keselamatan dan efisiensi tertinggi.</p>
+
+                    <div class="lmt-cta-contacts-row">
+                        <a href="tel:+62212519669" class="lmt-cta-contact-item">
+                            <div class="lmt-cta-contact-icon">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div class="lmt-cta-contact-text">
+                                <span class="lmt-cta-contact-label" data-i18n="lmt.cta.phone_label">Hubungi kami di</span>
+                                <span class="lmt-cta-contact-val">(021)-25196699</span>
+                            </div>
+                        </a>
+                        <a href="mailto:info.patralogistik@pertamina.com" class="lmt-cta-contact-item">
+                            <div class="lmt-cta-contact-icon">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div class="lmt-cta-contact-text">
+                                <span class="lmt-cta-contact-label" data-i18n="lmt.cta.email_label">Email kami di</span>
+                                <span class="lmt-cta-contact-val">info.patralogistik@pertamina.com</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Form Card -->
+                <div class="lmt-cta-form-card lmt-reveal lmt-delay-2">
+                    <h4 class="lmt-form-card-title" data-i18n="lmt.cta.form_title">Ajukan Janji Temu</h4>
+                    <p class="lmt-form-card-sub" data-i18n="lmt.cta.form_sub">Tim kami siap memberikan solusi terbaik bagi rantai pasok bisnis Anda.</p>
+
+                    <form id="lmtAppointmentForm" onsubmit="handleLmtSubmit(event)" class="lmt-form-body">
+                        <div class="lmt-form-group">
+                            <label for="lmtServiceSelect" class="lmt-form-label" data-i18n="lmt.cta.service_label">Pilih Layanan</label>
+                            <div class="lmt-select-wrap">
+                                <select id="lmtServiceSelect" name="service" class="lmt-form-control" required>
+                                    <option value="Lubricants Transport" selected>Lubricants &amp; Other Material Transport</option>
+                                    <option value="Industrial Fuel Transport">Industrial Fuel Transport</option>
+                                    <option value="Retail Fuel Transport">Retail Fuel Transport</option>
+                                    <option value="Gas Transport">Gas Transport</option>
+                                    <option value="Warehouse Management">Warehouse Management</option>
+                                </select>
+                                <svg class="lmt-select-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </div>
+                        </div>
+                        <div class="lmt-form-group">
+                            <label for="lmtNameInput" class="lmt-form-label" data-i18n="lmt.cta.name_label">Nama Lengkap</label>
+                            <div class="lmt-input-wrap">
+                                <input type="text" id="lmtNameInput" name="name" class="lmt-form-control" placeholder="Nama Anda" required>
+                            </div>
+                        </div>
+                        <div class="lmt-form-group">
+                            <label for="lmtDateInput" class="lmt-form-label" data-i18n="lmt.cta.date_label">Tanggal yang Diinginkan</label>
+                            <div class="lmt-input-wrap">
+                                <input type="date" id="lmtDateInput" name="preferred_date" class="lmt-form-control" required>
+                            </div>
+                        </div>
+                        <button type="submit" id="lmtSubmitBtn" class="lmt-form-submit-btn">
+                            <span data-i18n="lmt.cta.btn_submit">Ajukan Janji Temu</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                        <div id="lmtFormSuccess" class="lmt-form-alert" style="display: none;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span data-i18n="lmt.cta.success_msg">Terima kasih! Pengajuan janji temu Anda telah diterima. Tim kami akan segera menghubungi Anda.</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-new">
+        <div class="footer-new__watermark"></div>
+        <div class="footer-new__top container">
+            <div class="footer-col-1">
+                <div class="footer-logo"></div>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+                        <span><strong data-i18n="biz_117">Kantor Pusat</strong><br>Garden Avenue Rasuna Lantai 1-3, Jalan Epicentrum Tengah No. 3, RT.2/RW.5, Karet Kuningan, Kecamatan Setiabudi, Jakarta Selatan.</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                        <span data-i18n="biz_119">(021)-25196699</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></div>
+                        <span data-i18n="biz_120">info.patralogistik@pertamina.com</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="#" class="social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a>
+                    <a href="#" class="social-icon" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"></path></svg></a>
+                    <a href="#" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <h3 data-i18n="footer.col1">PERUSAHAAN</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tentang-kami.html" data-i18n="nav.about">Tentang Kami</a></li>
+                    <li><a href="bisnis.html" data-i18n="nav.business">Bisnis</a></li>
+                    <li><a href="karir.html" data-i18n="nav.career">Karir</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-3">
+                <h3 data-i18n="footer.col2">INFORMASI PUBLIK</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Tata Kelola</a></li>
+                    <li><a href="hubungan-investor.html" data-i18n="nav.investor">Hubungan Investor</a></li>
+                    <li><a href="berita-media.html" data-i18n="nav.news">Berita &amp; Media</a></li>
+                    <li><a href="#">Situs Terkait</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <div class="footer-call-center-logos">
+                    <img src="./assets/Image%20(Pertamina%20Call%20Center).png" alt="Pertamina Call Center 135">
+                    <img src="./assets/callcenter15.png" alt="Call Center 135">
+                </div>
+                <a href="https://pertaminaclean.tipoffs.info/" target="_blank" rel="noopener noreferrer" class="call-center-btn">
+                    <div class="icon-circle"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                    <div class="text">
+                        <span class="title" data-i18n="biz_121">Whistle Blowing System</span>
+                        <span class="link" data-i18n="biz_122">https://pertaminaclean.tipoffs.info/</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="footer-new__bottom container">
+            <div class="bottom-left">
+                <span class="affiliate-label" data-i18n="biz_123">AFFILIATE OF:</span>
+                <span class="affiliate-box" data-i18n="biz_124">PERTAMINA PATRA NIAGA</span>
+            </div>
+            <div class="bottom-right">
+                <span class="copyright" data-i18n="footer.copyright">© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang.</span>
+                <span class="copyright-desc" data-i18n="biz_125">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan PT Pertamina (Persero).</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Form Submit Handler
+        function handleLmtSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('lmtSubmitBtn');
+            const alertBox = document.getElementById('lmtFormSuccess');
+            if (btn) { btn.style.opacity = '0.7'; btn.style.pointerEvents = 'none'; btn.innerText = 'Mengirim...'; }
+            setTimeout(() => {
+                if (btn) btn.style.display = 'none';
+                if (alertBox) alertBox.style.display = 'flex';
+            }, 600);
+        }
+
+        // Counter Animation
+        function animateLmtCount(el, target, suffix = '') {
+            if (!el) return;
+            const dur = 1800;
+            let start = null;
+            function step(ts) {
+                if (!start) start = ts;
+                const p = Math.min((ts - start) / dur, 1);
+                const eased = 1 - Math.pow(1 - p, 4);
+                el.textContent = Math.floor(eased * target) + suffix;
+                if (p < 1) requestAnimationFrame(step);
+                else el.textContent = target + suffix;
+            }
+            requestAnimationFrame(step);
+        }
+
+        // Scroll Reveal + Counter Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealEls = document.querySelectorAll('.lmt-reveal, .lmt-reveal-left, .lmt-reveal-right, .lmt-reveal-scale');
+            let statsAnimated = false;
+            const statsSection = document.querySelector('.lmt-stats-section');
+            const statsTargets = [
+                { id: 'lmt-stat-1', val: 120, suffix: '+' },
+                { id: 'lmt-stat-2', val: 18, suffix: '+' },
+                { id: 'lmt-stat-3', val: 850, suffix: '+' },
+                { id: 'lmt-stat-4', val: 100, suffix: '%' },
+            ];
+
+            if ('IntersectionObserver' in window) {
+                const revealObserver = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-revealed');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { root: null, threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+                revealEls.forEach(el => revealObserver.observe(el));
+
+                if (statsSection) {
+                    const statsObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting && !statsAnimated) {
+                                statsAnimated = true;
+                                statsTargets.forEach(({ id, val, suffix }) => animateLmtCount(document.getElementById(id), val, suffix));
+                            }
+                        });
+                    }, { threshold: 0.3 });
+                    statsObserver.observe(statsSection);
+                }
+            } else {
+                revealEls.forEach(el => el.classList.add('is-revealed'));
+                statsTargets.forEach(({ id, val, suffix }) => { const el = document.getElementById(id); if (el) el.textContent = val + suffix; });
+            }
+        });
+    </script>
+
+    <script src="lang.js"></script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>
