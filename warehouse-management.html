@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Management - PT Patra Logistik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Variables & Tokens (Matching Design System) */
+        :root {
+            --wm-primary: #0056A6;
+            --wm-primary-dark: #003B73;
+            --wm-primary-light: #EFF6FF;
+            --wm-navy: #0A1B39;
+            --wm-dark: #0F172A;
+            --wm-slate: #334155;
+            --wm-muted: #64748B;
+            --wm-border: #E2E8F0;
+            --wm-bg-alt: #F8FAFC;
+            --wm-red: #ED1C24;
+            --wm-green: #10B981;
+            --wm-amber: #F59E0B;
+            --wm-sky: #0284C7;
+        }
+
+        /* ================= SCROLL REVEAL ANIMATIONS ================= */
+        .wm-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .wm-reveal-left {
+            opacity: 0;
+            transform: translateX(-36px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .wm-reveal-right {
+            opacity: 0;
+            transform: translateX(36px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .wm-reveal-scale {
+            opacity: 0;
+            transform: translateY(28px) scale(0.97);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .wm-reveal.is-revealed,
+        .wm-reveal-left.is-revealed,
+        .wm-reveal-right.is-revealed,
+        .wm-reveal-scale.is-revealed {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        .wm-delay-1 { transition-delay: 0.08s; }
+        .wm-delay-2 { transition-delay: 0.16s; }
+        .wm-delay-3 { transition-delay: 0.24s; }
+        .wm-delay-4 { transition-delay: 0.32s; }
+        .wm-delay-5 { transition-delay: 0.40s; }
+        .wm-delay-6 { transition-delay: 0.48s; }
+
+        /* ================= 1. HERO SECTION ================= */
+        .wm-hero-section {
+            position: relative;
+            background: linear-gradient(90deg,
+                rgba(10, 25, 47, 0.98) 0%,
+                rgba(10, 32, 68, 0.94) 38%,
+                rgba(0, 86, 166, 0.78) 68%,
+                rgba(0, 86, 166, 0.42) 88%,
+                rgba(0, 86, 166, 0.2) 100%),
+                url('assets/gudang_pelumas_loading.png') center right / cover no-repeat;
+            color: #FFFFFF;
+            padding: 140px 0 88px;
+            min-height: 540px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .wm-hero-grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .wm-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 920px;
+        }
+
+        /* In-Hero Glass Breadcrumb */
+        .wm-hero-breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            margin-bottom: 22px;
+            font-size: 13px;
+        }
+        .wm-breadcrumb-link {
+            color: rgba(255, 255, 255, 0.82);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .wm-breadcrumb-link:hover { color: #FFFFFF; text-decoration: underline; }
+        .wm-breadcrumb-sep { color: rgba(255, 255, 255, 0.4); display: inline-flex; align-items: center; }
+        .wm-breadcrumb-active { color: #93C5FD; font-weight: 700; }
+
+        /* Badge Pill */
+        .wm-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 86, 166, 0.4);
+            border: 1px solid rgba(147, 197, 253, 0.4);
+            color: #93C5FD;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            backdrop-filter: blur(6px);
+        }
+        .wm-hero-badge-dot {
+            width: 7px;
+            height: 7px;
+            background: #38BDF8;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #38BDF8;
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        /* Hero Typography */
+        .wm-hero-title {
+            font-size: 46px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            color: #FFFFFF;
+            margin: 0 0 18px;
+            text-transform: uppercase;
+        }
+        .wm-hero-desc {
+            font-size: 18px;
+            font-weight: 400;
+            color: #E2E8F0;
+            line-height: 1.65;
+            max-width: 820px;
+            margin: 0 0 34px;
+        }
+        .wm-hero-desc strong {
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        /* Hero CTA Buttons */
+        .wm-hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+        .wm-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #0056A6;
+            color: #FFFFFF;
+            font-size: 14.5px;
+            font-weight: 700;
+            padding: 14px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 24px -4px rgba(0, 86, 166, 0.5);
+            cursor: pointer;
+        }
+        .wm-btn-primary:hover {
+            background: #003B73;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px -4px rgba(0, 86, 166, 0.7);
+            color: #FFFFFF;
+        }
+        .wm-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+            font-size: 14.5px;
+            font-weight: 600;
+            padding: 14px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .wm-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Quick Capability Pills */
+        .wm-hero-caps {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .wm-cap-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #E2E8F0;
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+        }
+        .wm-cap-tag svg {
+            color: #38BDF8;
+            flex-shrink: 0;
+        }
+
+        /* ================= 2. OVERVIEW & SYNERGY BENTO SECTION ================= */
+        .wm-overview-section {
+            padding: 96px 0;
+            background-color: #FFFFFF;
+            position: relative;
+        }
+        .wm-section-header {
+            max-width: 860px;
+            margin-bottom: 40px;
+        }
+        .wm-section-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--wm-primary);
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            padding: 6px 18px;
+            margin-bottom: 14px;
+        }
+        .wm-section-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--wm-navy);
+            margin: 0 0 16px;
+            letter-spacing: -0.4px;
+            line-height: 1.25;
+        }
+
+        /* Overview Narrative Card */
+        .wm-overview-hero-card {
+            background: linear-gradient(135deg, #0A1B39 0%, #0F2854 60%, #003B73 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 40px 44px;
+            color: #FFFFFF;
+            box-shadow: 0 20px 45px -15px rgba(10, 27, 57, 0.2);
+            margin-bottom: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+        .wm-overview-hero-card::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            bottom: -60px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(0, 86, 166, 0.4) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .wm-overview-badge-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #93C5FD;
+            margin-bottom: 16px;
+        }
+        .wm-overview-badge-title svg {
+            color: #38BDF8;
+        }
+        .wm-overview-text {
+            font-size: 18px;
+            line-height: 1.75;
+            color: #F1F5F9;
+            margin: 0;
+            font-weight: 400;
+        }
+        .wm-overview-text strong {
+            color: #FFFFFF;
+            font-weight: 800;
+        }
+
+        /* 3-Column Synergy Focus Bento Cards */
+        .wm-synergy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .wm-synergy-card {
+            background: #F8FAFC;
+            border: 1px solid var(--wm-border);
+            padding: 32px 28px;
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .wm-synergy-card:hover {
+            transform: translateY(-6px);
+            background: #FFFFFF;
+            border-color: var(--wm-primary);
+            box-shadow: 0 20px 35px -10px rgba(0, 86, 166, 0.14);
+        }
+        .wm-synergy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+        .wm-synergy-card:hover::before {
+            background: var(--wm-primary);
+        }
+
+        .wm-synergy-icon-wrap {
+            width: 52px;
+            height: 52px;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--wm-primary);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .wm-synergy-card:hover .wm-synergy-icon-wrap {
+            background: var(--wm-primary);
+            color: #FFFFFF;
+            border-color: var(--wm-primary);
+            transform: scale(1.05);
+        }
+
+        .wm-synergy-card-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--wm-primary);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .wm-synergy-card-title {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--wm-navy);
+            margin: 0 0 12px;
+            line-height: 1.35;
+        }
+        .wm-synergy-card-desc {
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: var(--wm-slate);
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        /* ================= 3. 4-PILLAR OPERATIONAL PIPELINE ================= */
+        .wm-pipeline-section {
+            padding: 96px 0;
+            background-color: var(--wm-bg-alt);
+            border-top: 1px solid var(--wm-border);
+            border-bottom: 1px solid var(--wm-border);
+            position: relative;
+        }
+        .wm-pipeline-header {
+            text-align: center;
+            max-width: 860px;
+            margin: 0 auto 52px;
+        }
+        .wm-pipeline-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--wm-navy);
+            margin: 0 0 16px;
+            letter-spacing: -0.4px;
+            text-transform: uppercase;
+        }
+        .wm-pipeline-lead {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--wm-slate);
+            margin: 0 auto;
+        }
+        .wm-pipeline-lead strong {
+            color: var(--wm-navy);
+            font-weight: 700;
+        }
+
+        /* 4-Step Pipeline Flow Grid */
+        .wm-pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .wm-step-card {
+            background: #FFFFFF;
+            border: 1.5px solid var(--wm-border);
+            padding: 32px 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 6px 18px -4px rgba(15, 23, 42, 0.04);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .wm-step-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--wm-primary);
+            box-shadow: 0 20px 35px -8px rgba(0, 86, 166, 0.16);
+        }
+
+        .wm-step-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .wm-step-num {
+            font-size: 28px;
+            font-weight: 900;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #CBD5E1;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+        .wm-step-card:hover .wm-step-num {
+            color: var(--wm-primary);
+        }
+        .wm-step-icon {
+            width: 44px;
+            height: 44px;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--wm-primary);
+            transition: all 0.3s ease;
+        }
+        .wm-step-card:hover .wm-step-icon {
+            background: var(--wm-primary);
+            color: #FFFFFF;
+            border-color: var(--wm-primary);
+        }
+
+        .wm-step-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--wm-muted);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .wm-step-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--wm-navy);
+            margin: 0 0 14px;
+            line-height: 1.3;
+        }
+
+        .wm-step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .wm-step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--wm-slate);
+        }
+        .wm-step-item svg {
+            color: var(--wm-primary);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* Flow Connector Indicator Banner */
+        .wm-flow-connector-bar {
+            margin-top: 36px;
+            background: #FFFFFF;
+            border: 1px solid var(--wm-border);
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+        }
+        .wm-connector-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .wm-connector-badge {
+            background: #EFF6FF;
+            color: var(--wm-primary);
+            border: 1px solid #BFDBFE;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .wm-connector-text {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--wm-slate);
+            margin: 0;
+        }
+        .wm-connector-text strong {
+            color: var(--wm-navy);
+        }
+
+        /* ================= 4. DEPOT SUPPLY POINT SHOWCASE SECTION ================= */
+        .wm-showcase-section {
+            padding: 96px 0;
+            background-color: #FFFFFF;
+        }
+        .wm-showcase-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        /* Left Visual Box */
+        .wm-visual-box {
+            position: relative;
+            border: 1px solid var(--wm-border);
+            overflow: hidden;
+            background: var(--wm-navy);
+            box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.15);
+        }
+        .wm-visual-img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .wm-visual-box:hover .wm-visual-img {
+            transform: scale(1.05);
+        }
+        .wm-visual-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10, 27, 57, 0.1) 0%, rgba(10, 27, 57, 0.85) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
+            color: #FFFFFF;
+        }
+        .wm-visual-badge {
+            align-self: flex-start;
+            background: rgba(0, 86, 166, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #FFFFFF;
+            font-size: 11.5px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(4px);
+        }
+        .wm-visual-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 6px;
+            color: #FFFFFF;
+            line-height: 1.3;
+        }
+        .wm-visual-desc {
+            font-size: 13.5px;
+            color: #E2E8F0;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Right Content Breakdown */
+        .wm-breakdown-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .wm-breakdown-card {
+            background: #F8FAFC;
+            border: 1px solid var(--wm-border);
+            border-left: 4px solid var(--wm-primary);
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        .wm-breakdown-card:hover {
+            background: #FFFFFF;
+            box-shadow: 0 8px 24px rgba(0, 86, 166, 0.08);
+            transform: translateX(4px);
+        }
+        .wm-breakdown-card.card-accent {
+            border-left-color: var(--wm-red);
+        }
+        .wm-breakdown-card.card-green {
+            border-left-color: var(--wm-green);
+        }
+        .wm-breakdown-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .wm-breakdown-icon {
+            width: 32px;
+            height: 32px;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            color: var(--wm-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .card-accent .wm-breakdown-icon {
+            background: #FFF1F2;
+            border-color: #FECDD3;
+            color: var(--wm-red);
+        }
+        .card-green .wm-breakdown-icon {
+            background: #ECFDF5;
+            border-color: #A7F3D0;
+            color: var(--wm-green);
+        }
+        .wm-breakdown-title {
+            font-size: 16.5px;
+            font-weight: 800;
+            color: var(--wm-navy);
+            margin: 0;
+        }
+        .wm-breakdown-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--wm-slate);
+            margin: 0;
+        }
+
+        /* ================= 5. CTA SECTION ================= */
+        .wm-cta-section {
+            position: relative;
+            background: linear-gradient(135deg, #0A1B39 0%, #003B73 50%, #0056A6 100%);
+            color: #FFFFFF;
+            padding: 80px 0;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .wm-cta-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 36px;
+            position: relative;
+            z-index: 2;
+        }
+        .wm-cta-content {
+            max-width: 680px;
+        }
+        .wm-cta-badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #93C5FD;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 5px 14px;
+            margin-bottom: 14px;
+        }
+        .wm-cta-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 0 12px;
+            line-height: 1.25;
+            color: #FFFFFF;
+        }
+        .wm-cta-desc {
+            font-size: 16px;
+            color: #E2E8F0;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .wm-cta-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .wm-btn-cta-white {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #FFFFFF;
+            color: #0056A6;
+            font-size: 14.5px;
+            font-weight: 800;
+            padding: 14px 32px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        .wm-btn-cta-white:hover {
+            background: #F8FAFC;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+            color: #003B73;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .wm-synergy-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .wm-pipeline-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .wm-showcase-layout {
+                grid-template-columns: 1fr;
+            }
+            .wm-visual-img {
+                height: 360px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wm-hero-section {
+                padding: 110px 0 60px;
+                min-height: auto;
+            }
+            .wm-hero-title {
+                font-size: 32px;
+            }
+            .wm-hero-desc {
+                font-size: 15.5px;
+            }
+            .wm-synergy-grid {
+                grid-template-columns: 1fr;
+            }
+            .wm-pipeline-grid {
+                grid-template-columns: 1fr;
+            }
+            .wm-overview-hero-card {
+                padding: 28px 24px;
+            }
+            .wm-overview-text {
+                font-size: 15.5px;
+            }
+            .wm-section-title,
+            .wm-pipeline-title,
+            .wm-cta-title {
+                font-size: 26px;
+            }
+            .wm-cta-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .wm-flow-connector-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+</head>
+<body class="loading">
+
+    <!-- Page Loader -->
+    <div id="page-loader" class="page-loader" aria-live="polite" aria-label="Memuat halaman">
+        <div class="page-loader__inner">
+            <div class="page-loader__brand">
+                <img src="assets/logo-transparent.png" alt="Patra Logistik" class="page-loader__logo">
+            </div>
+            <div class="page-loader__counter">
+                <span class="page-loader__percent" id="loader-percent">0%</span>
+            </div>
+            <div class="page-loader__track-wrapper">
+                <div class="page-loader__truck-wrapper" id="loader-truck-wrapper">
+                    <div id="loader-truck-anim" class="page-loader__truck"></div>
+                </div>
+                <div class="page-loader__bar">
+                    <div class="page-loader__bar-fill" id="loader-bar-fill"></div>
+                </div>
+                <div class="page-loader__road-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navigation Bar -->
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo-link" aria-label="Patra Logistik">
+                <img src="assets/logo-transparent.png" alt="Pertamina Patra Logistik" class="logo-image">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="tentang-kami.html" class="nav-link" data-text="Tentang Kami" data-i18n="nav.about">Tentang Kami</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tentang-kami.html?tab=profil" data-i18n="nav.about.profile">Profil Perusahaan</a></li>
+                        <li><a href="tentang-kami.html?tab=visi-misi" data-i18n="nav.about.vision">Visi Misi</a></li>
+                        <li><a href="tentang-kami.html?tab=nilai" data-i18n="nav.about.values">Tata Nilai</a></li>
+                        <li><a href="tentang-kami.html?tab=sejarah" data-i18n="nav.about.history">Sejarah</a></li>
+                        <li><a href="tentang-kami.html?tab=komisaris-direksi" data-i18n="nav.about.board_directors">Dewan Komisaris &amp; Direksi</a></li>
+                        <li><a href="tentang-kami.html?tab=struktur" data-i18n="nav.about.structure">Struktur Organisasi</a></li>
+                        <li><a href="tentang-kami.html?tab=sertifikat" data-i18n="nav.about.certification">Sertifikasi</a></li>
+                        <li><a href="tentang-kami.html?tab=penghargaan" data-i18n="nav.about.awards">Penghargaan</a></li>
+                    </ul>
+                </li>
+                <li><a href="bisnis.html" class="nav-link active" data-text="Bisnis" data-i18n="nav.business">Bisnis</a></li>
+                <li class="has-dropdown">
+                    <a href="hubungan-investor.html" class="nav-link" data-text="Hubungan Investor" data-i18n="nav.investor">Hubungan Investor</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="hubungan-investor.html?tab=shareholder">Info Pemegang Saham</a></li>
+                        <li><a href="hubungan-investor.html?tab=annual-report">Laporan Tahunan</a></li>
+                        <li><a href="hubungan-investor.html?tab=financial-report">Laporan Keuangan</a></li>
+                    </ul>
+                </li>
+                <li><a href="sustainability.html" class="nav-link" data-text="Sustainability" data-i18n="nav.sustainability">Sustainability</a></li>
+                <li class="has-dropdown">
+                    <a href="berita-media.html" class="nav-link" data-text="Berita &amp; Media" data-i18n="nav.news">Berita &amp; Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="berita-media.html?tab=siaran-pers">Siaran Pers</a></li>
+                        <li><a href="berita-media.html?tab=pengumuman">Pengumuman</a></li>
+                        <li><a href="berita-media.html?tab=berita-csr">Berita CSR</a></li>
+                        <li><a href="berita-media.html?tab=journey-magazine">Journey Magazine</a></li>
+                        <li><a href="berita-media.html?tab=brand-guideline">Brand Guideline</a></li>
+                    </ul>
+                </li>
+                <li><a href="karir.html" class="nav-link" data-text="Karir" data-i18n="nav.career">Karir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="lang-switch has-dropdown" aria-label="Language Switch">
+                    <button class="lang-btn-current" id="lang-btn-current" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag" id="current-lang-flag">
+                        <span class="lang-text" id="current-lang-text">INA</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="lang-dropdown-menu">
+                        <li><button class="lang-option" data-lang="id"><img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="lang-flag"><span class="lang-text">INA</span></button></li>
+                        <li><button class="lang-option" data-lang="en"><img src="https://flagcdn.com/w20/gb.png" alt="EN Flag" class="lang-flag"><span class="lang-text">ENG</span></button></li>
+                    </ul>
+                </div>
+                <a href="#wm-cta-section" class="btn btn-white" style="padding: 10px 20px; font-size: 12px; border-radius: 50px; text-decoration: none;" data-i18n="nav.contact">HUBUNGI KAMI</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= 1. HERO SECTION ================= -->
+    <section class="wm-hero-section">
+        <div class="wm-hero-grid-pattern"></div>
+        <div class="container">
+            <div class="wm-hero-inner">
+                <!-- In-Hero Breadcrumb -->
+                <nav class="wm-hero-breadcrumb wm-reveal wm-delay-1" aria-label="Breadcrumb">
+                    <a href="index.html" class="wm-breadcrumb-link">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        <span>Beranda</span>
+                    </a>
+                    <span class="wm-breadcrumb-sep" aria-hidden="true">/</span>
+                    <a href="bisnis.html" class="wm-breadcrumb-link">Bisnis Kami</a>
+                    <span class="wm-breadcrumb-sep" aria-hidden="true">/</span>
+                    <a href="bisnis.html?tab=inventory" class="wm-breadcrumb-link">Inventory Management</a>
+                    <span class="wm-breadcrumb-sep" aria-hidden="true">/</span>
+                    <span class="wm-breadcrumb-active">Warehouse Management</span>
+                </nav>
+
+                <!-- Hero Badge -->
+                <div class="wm-hero-badge wm-reveal wm-delay-2">
+                    <span class="wm-hero-badge-dot"></span>
+                    <span>Inventory Management &bull; PT Pertamina Lubricants (PTPL)</span>
+                </div>
+
+                <!-- Main Title & Subtitle -->
+                <h1 class="wm-hero-title wm-reveal wm-delay-3">Warehouse Management</h1>
+                <p class="wm-hero-desc wm-reveal wm-delay-4">
+                    Patra Logistik berperan strategis dalam <strong>pengelolaan gudang dan distribusi pelumas PT Pertamina Lubricants (PTPL)</strong> guna memperkuat ketahanan rantai pasok dan keunggulan operasional pergudangan nasional.
+                </p>
+
+                <!-- CTA Actions -->
+                <div class="wm-hero-actions wm-reveal wm-delay-5">
+                    <a href="#wm-overview-section" class="wm-btn-primary">
+                        <span>Lihat Overview &amp; Sinergi</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="#wm-cta-section" class="wm-btn-secondary">
+                        <span>Hubungi Kami</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 2. OVERVIEW & STRATEGIC SYNERGY BENTO SECTION ================= -->
+    <section class="wm-overview-section" id="wm-overview-section">
+        <div class="container">
+            <div class="wm-section-header wm-reveal">
+                <span class="wm-section-tag">Overview &amp; Sinergi Strategis</span>
+                <h2 class="wm-section-title">Peran Strategis dalam Pengelolaan Gudang &amp; Distribusi Pelumas PTPL</h2>
+            </div>
+
+            <!-- Overview Main Box -->
+            <div class="wm-overview-hero-card wm-reveal wm-reveal-scale">
+                <div class="wm-overview-badge-title">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                    <span>Overview Sinergi Bisnis</span>
+                </div>
+                <p class="wm-overview-text">
+                    <strong>Patra Logistik</strong> berperan strategis dalam pengelolaan gudang dan distribusi pelumas <strong>PT Pertamina Lubricants (PTPL)</strong>. Sinergi ini difokuskan pada penguatan rantai pasok (<em>supply chain</em>), optimalisasi infrastruktur <em>warehouse</em>, dan peningkatan layanan distribusi.
+                </p>
+                <p class="wm-overview-text" style="margin-top: 16px; font-size: 16.5px; opacity: 0.95;">
+                    Pengelolaan dan pendistribusian <strong>Depot Supply Point PT Pertamina Lubricants</strong> ini meliputi pengelolaan Gudang seperti <strong>Receiving</strong>, <strong>Storaging</strong>, <strong>Picking</strong>, serta menyediakan <strong>SDM guna untuk operational Warehousing</strong>.
+                </p>
+            </div>
+
+            <!-- 3 Synergy Pillars Bento Grid -->
+            <div class="wm-synergy-grid">
+                <!-- Pillar 1 -->
+                <div class="wm-synergy-card wm-reveal wm-delay-1">
+                    <div class="wm-synergy-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                    </div>
+                    <span class="wm-synergy-card-tag">Fokus Sinergi 01</span>
+                    <h3 class="wm-synergy-card-title">Penguatan Rantai Pasok (Supply Chain)</h3>
+                    <p class="wm-synergy-card-desc">
+                        Memperkokoh integrasi rantai pasok pelumas secara menyeluruh demi menjamin kelancaran arus barang, stabilitas stok, dan ketahanan distribusi pelumas nasional.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="wm-synergy-card wm-reveal wm-delay-2">
+                    <div class="wm-synergy-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <span class="wm-synergy-card-tag">Fokus Sinergi 02</span>
+                    <h3 class="wm-synergy-card-title">Optimalisasi Infrastruktur Warehouse</h3>
+                    <p class="wm-synergy-card-desc">
+                        Pemanfaatan dan optimalisasi fasilitas pergudangan modern guna memastikan tata letak penyimpanan yang efisien, kapasitas maksimal, dan standar proteksi produk yang tinggi.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="wm-synergy-card wm-reveal wm-delay-3">
+                    <div class="wm-synergy-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    </div>
+                    <span class="wm-synergy-card-tag">Fokus Sinergi 03</span>
+                    <h3 class="wm-synergy-card-title">Peningkatan Layanan Distribusi</h3>
+                    <p class="wm-synergy-card-desc">
+                        Akselerasi keandalan, ketepatan waktu, dan kecepatan penanganan distribusi ke berbagai titik Depot Supply Point untuk memenuhi kebutuhan konsumen dan industri secara prima.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 3. CTA SECTION ================= -->
+    <section class="wm-cta-section" id="wm-cta-section">
+        <div class="container">
+            <div class="wm-cta-inner wm-reveal wm-reveal-scale">
+                <div class="wm-cta-content">
+                    <span class="wm-cta-badge">Sinergi Logistik Energi</span>
+                    <h2 class="wm-cta-title">Tingkatkan Efisiensi Rantai Pasok &amp; Pengelolaan Gudang Anda</h2>
+                    <p class="wm-cta-desc">
+                        Diskusikan kebutuhan pengelolaan pergudangan dan distribusi energi Anda bersama tim profesional Patra Logistik.
+                    </p>
+                </div>
+                <div class="wm-cta-actions">
+                    <a href="tentang-kami.html?tab=profil" class="wm-btn-cta-white">
+                        <span>Hubungi Tim Kami</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-new">
+        <div class="footer-new__watermark"></div>
+        <div class="footer-new__top container">
+            <!-- Column 1 -->
+            <div class="footer-col-1">
+                <div class="footer-logo"></div>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+                        <span><strong data-i18n="biz_117">Kantor Pusat</strong><br>Garden Avenue Rasuna Lantai 1-3, Jalan Epicentrum Tengah No. 3, RT.2/RW.5, Karet Kuningan, Kecamatan Setiabudi, Jakarta Selatan.</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                        <span data-i18n="biz_119">(021)-25196699</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></div>
+                        <span data-i18n="biz_120">info.patralogistik@pertamina.com</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="#" class="social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a>
+                    <a href="#" class="social-icon" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"></path></svg></a>
+                    <a href="#" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="footer-col-2">
+                <h3 data-i18n="footer.col1">PERUSAHAAN</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tentang-kami.html" data-i18n="nav.about">Tentang Kami</a></li>
+                    <li><a href="bisnis.html" data-i18n="nav.business">Bisnis</a></li>
+                    <li><a href="karir.html" data-i18n="nav.career">Karir</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="footer-col-3">
+                <h3 data-i18n="footer.col2">INFORMASI PUBLIK</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Tata Kelola</a></li>
+                    <li><a href="hubungan-investor.html" data-i18n="nav.investor">Hubungan Investor</a></li>
+                    <li><a href="berita-media.html" data-i18n="nav.news">Berita &amp; Media</a></li>
+                    <li><a href="#">Situs Terkait</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4 -->
+            <div class="footer-col-4">
+                <div class="footer-call-center-logos">
+                    <img src="./assets/Image%20(Pertamina%20Call%20Center).png" alt="Pertamina Call Center 135">
+                    <img src="./assets/callcenter15.png" alt="Call Center 135">
+                </div>
+                <a href="https://pertaminaclean.tipoffs.info/" target="_blank" rel="noopener noreferrer" class="call-center-btn">
+                    <div class="icon-circle"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                    <div class="text">
+                        <span class="title" data-i18n="biz_121">Whistle Blowing System</span>
+                        <span class="link" data-i18n="biz_122">https://pertaminaclean.tipoffs.info/</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="footer-new__bottom container">
+            <div class="bottom-left">
+                <span class="affiliate-label" data-i18n="biz_123">AFFILIATE OF:</span>
+                <span class="affiliate-box" data-i18n="biz_124">PERTAMINA PATRA NIAGA</span>
+            </div>
+            <div class="bottom-right">
+                <span class="copyright" data-i18n="footer.copyright">© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang.</span>
+                <span class="copyright-desc" data-i18n="biz_125">Semua konten, logo, dan hak cipta dilindungi oleh PT Patra Logistik dan PT Pertamina (Persero).</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Scroll Reveal Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealEls = document.querySelectorAll('.wm-reveal, .wm-reveal-left, .wm-reveal-right, .wm-reveal-scale');
+            if ('IntersectionObserver' in window) {
+                const revealObserver = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-revealed');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { root: null, threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+                revealEls.forEach(el => revealObserver.observe(el));
+            } else {
+                revealEls.forEach(el => el.classList.add('is-revealed'));
+            }
+        });
+    </script>
+    <script src="lang.js"></script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>

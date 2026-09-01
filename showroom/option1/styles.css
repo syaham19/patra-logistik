@@ -39,6 +39,67 @@ h1, h2, h3, h4, h5, h6,
 /* SMOOTH SCROLLING */
 html { scroll-behavior: smooth; }
 
+/* SMOOTH PAGE TRANSITIONS & VIEW TRANSITIONS */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: 160ms cubic-bezier(0.4, 0, 1, 1) both pageTransitionFadeOut;
+}
+
+::view-transition-new(root) {
+    animation: 260ms cubic-bezier(0.16, 1, 0.3, 1) both pageTransitionFadeIn;
+}
+
+body.is-transitioning-out {
+    opacity: 0 !important;
+    transform: translateY(-4px);
+    transition: opacity 0.16s cubic-bezier(0.4, 0, 1, 1), transform 0.16s cubic-bezier(0.4, 0, 1, 1);
+    pointer-events: none;
+}
+
+body.page-transition-enter {
+    animation: pageTransitionFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pageTransitionFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pageTransitionFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+    body.is-transitioning-out,
+    body.page-transition-enter {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
 body.loading {
     overflow: hidden;
 }
@@ -5401,5 +5462,211 @@ img {
     }
     .nl-popup-right {
         padding: 32px 20px 28px;
+    }
+}
+
+/* ================= BIZ CTA BANNER SECTION (FULL WIDTH 100%) ================= */
+.biz-cta-banner {
+    margin-top: 80px;
+    margin-bottom: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #0A1B39 0%, #003366 50%, #0056A6 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    padding: 72px 0;
+    box-shadow: 0 -10px 30px rgba(0, 42, 84, 0.15);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.biz-cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+}
+.biz-cta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+}
+.biz-cta-left {
+    position: relative;
+    z-index: 2;
+}
+.biz-cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #93C5FD;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: rgba(147, 197, 253, 0.12);
+    border: 1px solid rgba(147, 197, 253, 0.25);
+    padding: 6px 14px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+}
+.biz-cta-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: #60A5FA;
+    border-radius: 50%;
+    display: inline-block;
+}
+.biz-cta-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.3;
+    margin: 0 0 14px;
+    letter-spacing: -0.3px;
+}
+.biz-cta-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #E2E8F0;
+    margin: 0;
+    opacity: 0.95;
+}
+.biz-cta-right {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.biz-cta-contacts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.biz-cta-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 12px 18px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.biz-cta-contact-item:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateX(4px);
+}
+.biz-cta-contact-icon {
+    width: 38px;
+    height: 38px;
+    background: #0056A6;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+}
+.biz-cta-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.biz-cta-contact-label {
+    font-size: 10.5px;
+    color: #93C5FD;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+.biz-cta-contact-value {
+    font-size: 14px;
+    font-weight: 800;
+    color: #FFFFFF;
+    word-break: break-all;
+}
+.biz-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #FFFFFF;
+    color: #003B73;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+.biz-cta-btn:hover {
+    background: #EFF6FF;
+    color: #0056A6;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.3);
+}
+.biz-cta-btn svg {
+    transition: transform 0.2s ease;
+}
+.biz-cta-btn:hover svg {
+    transform: translateX(4px);
+}
+@media (max-width: 992px) {
+    .biz-cta-banner {
+        margin-top: 56px;
+        margin-bottom: 0;
+        padding: 56px 0;
+    }
+    .biz-cta-container {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 0 24px;
+    }
+    .biz-cta-title {
+        font-size: 24px;
+    }
+}
+@media (max-width: 600px) {
+    .biz-cta-banner {
+        margin-top: 40px;
+        margin-bottom: 0;
+        padding: 44px 0;
+    }
+    .biz-cta-container {
+        padding: 0 20px;
+        gap: 28px;
+    }
+    .biz-cta-title {
+        font-size: 20px;
+    }
+    .biz-cta-desc {
+        font-size: 13.5px;
     }
 }

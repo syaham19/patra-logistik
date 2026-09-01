@@ -4,33 +4,45 @@ if (history.scrollRestoration) {
 }
 window.scrollTo(0, 0);
 
-// Track internal link navigation to skip loader when clicking links between pages
-document.addEventListener("click", (e) => {
-    const link = e.target.closest("a");
-    if (link && link.href && !link.target && link.origin === window.location.origin) {
-        const isSamePageHash = link.pathname === window.location.pathname && link.hash;
-        if (!isSamePageHash) {
-            sessionStorage.setItem("is_internal_nav", "true");
-        }
-    }
-});
-
 (function initPageLoader() {
     const loader = document.getElementById("page-loader");
     if (!loader) return;
 
-    // Detect navigation type: 'reload' (refresh) vs 'navigate' (initial open or link click)
-    const navEntries = performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
-    const isReload = navEntries.length > 0 ? navEntries[0].type === "reload" : (performance.navigation && performance.navigation.type === 1);
-    const isInternalNav = sessionStorage.getItem("is_internal_nav") === "true";
+    // Detect navigation type: 'reload' (refresh) vs 'navigate'
+    let isReload = false;
+    try {
+        const navEntries = performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
+        if (navEntries && navEntries.length > 0) {
+            isReload = navEntries[0].type === "reload";
+        } else if (window.performance && window.performance.navigation) {
+            isReload = window.performance.navigation.type === 1;
+        }
+    } catch (e) {
+        isReload = false;
+    }
 
-    // Clear flag for subsequent reloads or visits
-    sessionStorage.removeItem("is_internal_nav");
+    // Determine if current page is the homepage
+    const isHomePage = (() => {
+        const path = window.location.pathname.replace(/\\/g, '/');
+        const segments = path.split('/').filter(Boolean);
+        const lastSegment = segments[segments.length - 1] || '';
+        
+        // Homepage conditions: root ("/"), index.html, index-design-3.html, trailing slash, or directory without file extension
+        if (!lastSegment || lastSegment === 'index.html' || lastSegment === 'index-design-3.html' || path.endsWith('/') || !lastSegment.includes('.')) {
+            return true;
+        }
+        return false;
+    })();
 
-    // If navigating internally between pages (and NOT reloading/refreshing), skip the loader immediately
-    if (isInternalNav && !isReload) {
+    // Show truck loading animation ONLY on page refresh or when visiting/returning to homepage
+    // Skip loader immediately when navigating/switching between other menus/subpages
+    if (!isReload && !isHomePage) {
         document.body.classList.remove("loading");
+        document.body.classList.add("page-transition-enter");
         loader.remove();
+        setTimeout(() => {
+            document.body.classList.remove("page-transition-enter");
+        }, 400);
         return;
     }
 
@@ -130,6 +142,52 @@ document.addEventListener("click", (e) => {
             hideLoader();
         }
     }, 6000);
+})();
+
+// Smooth page transition handler for internal menu navigation
+(function initPageTransitions() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+    }
+
+    // Reset transitioning state on back/forward navigation (bfcache)
+    window.addEventListener("pageshow", () => {
+        document.body.classList.remove("is-transitioning-out");
+        document.body.classList.remove("loading");
+    });
+
+    document.addEventListener("click", (e) => {
+        // Only handle primary left clicks without modifier keys
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+        const link = e.target.closest("a");
+        if (!link || !link.href) return;
+
+        // Ignore new tabs, downloads, or external links
+        if (link.target && link.target !== "_self") return;
+        if (link.hasAttribute("download")) return;
+        if (link.href.startsWith("javascript:") || link.href.startsWith("mailto:") || link.href.startsWith("tel:")) return;
+
+        // Verify internal origin
+        if (link.origin !== window.location.origin) return;
+
+        // Ignore same page anchor navigation
+        const isSamePage = link.pathname === window.location.pathname && link.search === window.location.search;
+        if (isSamePage && link.hash) return;
+        if (link.getAttribute("href") === "#" || link.getAttribute("href") === "") return;
+
+        // If clicking exact current URL, skip
+        if (link.href === window.location.href) return;
+
+        e.preventDefault();
+        const targetUrl = link.href;
+
+        document.body.classList.add("is-transitioning-out");
+
+        setTimeout(() => {
+            window.location.href = targetUrl;
+        }, 160);
+    });
 })();
 
 document.addEventListener("DOMContentLoaded", () => {

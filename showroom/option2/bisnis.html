@@ -53,7 +53,7 @@
 
         /* Layout Grid */
         .about-layout {
-            padding: 20px 0 100px;
+            padding: 20px 0 0;
             background-color: #FFFFFF;
         }
         .about-grid {
@@ -224,7 +224,7 @@
         .about-content-pane {
             background: transparent;
             border-radius: 0;
-            padding: 16px 0 48px;
+            padding: 16px 0 0;
             box-shadow: none;
             border: none;
             min-height: 500px;
@@ -236,6 +236,10 @@
         }
         .about-tab-content.active {
             display: block;
+        }
+        #tab-other,
+        #tab-fleet {
+            padding-bottom: 80px;
         }
 
         @keyframes fadeIn {
@@ -269,6 +273,212 @@
         }
         .biz-contact-link:hover {
             color: #ED1C24;
+        }
+
+        /* ================= BIZ CTA BANNER SECTION (FULL WIDTH 100%) ================= */
+        .biz-cta-banner {
+            margin-top: 80px;
+            margin-bottom: 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #0A1B39 0%, #003366 50%, #0056A6 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: none;
+            border-left: none;
+            border-right: none;
+            border-radius: 0;
+            padding: 72px 0;
+            box-shadow: 0 -10px 30px rgba(0, 42, 84, 0.15);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .biz-cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: 50%;
+        }
+        .biz-cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1.25fr 0.95fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+        .biz-cta-left {
+            position: relative;
+            z-index: 2;
+        }
+        .biz-cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #93C5FD;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            background: rgba(147, 197, 253, 0.12);
+            border: 1px solid rgba(147, 197, 253, 0.25);
+            padding: 6px 14px;
+            margin-bottom: 16px;
+            border-radius: 2px;
+        }
+        .biz-cta-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #60A5FA;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .biz-cta-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.3;
+            margin: 0 0 14px;
+            letter-spacing: -0.3px;
+        }
+        .biz-cta-desc {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #E2E8F0;
+            margin: 0;
+            opacity: 0.95;
+        }
+        .biz-cta-right {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .biz-cta-contacts-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .biz-cta-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 12px 18px;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .biz-cta-contact-item:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.35);
+            transform: translateX(4px);
+        }
+        .biz-cta-contact-icon {
+            width: 38px;
+            height: 38px;
+            background: #0056A6;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
+        }
+        .biz-cta-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .biz-cta-contact-label {
+            font-size: 10.5px;
+            color: #93C5FD;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .biz-cta-contact-value {
+            font-size: 14px;
+            font-weight: 800;
+            color: #FFFFFF;
+            word-break: break-all;
+        }
+        .biz-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #FFFFFF;
+            color: #003B73;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 4px;
+        }
+        .biz-cta-btn:hover {
+            background: #EFF6FF;
+            color: #0056A6;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.3);
+        }
+        .biz-cta-btn svg {
+            transition: transform 0.2s ease;
+        }
+        .biz-cta-btn:hover svg {
+            transform: translateX(4px);
+        }
+        @media (max-width: 992px) {
+            .biz-cta-banner {
+                margin-top: 56px;
+                margin-bottom: 0;
+                padding: 56px 0;
+            }
+            .biz-cta-container {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                padding: 0 24px;
+            }
+            .biz-cta-title {
+                font-size: 24px;
+            }
+        }
+        @media (max-width: 600px) {
+            .biz-cta-banner {
+                margin-top: 40px;
+                margin-bottom: 0;
+                padding: 44px 0;
+            }
+            .biz-cta-container {
+                padding: 0 20px;
+                gap: 28px;
+            }
+            .biz-cta-title {
+                font-size: 20px;
+            }
+            .biz-cta-desc {
+                font-size: 13.5px;
+            }
         }
 
         /* Sub-tab Navigation for Transportation */
@@ -671,7 +881,7 @@
                 display: none !important;
             }
             .about-content-pane {
-                padding: 24px;
+                padding: 24px 24px 0;
                 border-radius: 0;
             }
             .content-title {
@@ -700,7 +910,7 @@
         }
         @media (max-width: 480px) {
             .about-content-pane {
-                padding: 16px;
+                padding: 16px 16px 0;
             }
             .benefit-card {
                 flex: 1 1 100%;
@@ -1185,8 +1395,7 @@
                     <!-- TAB 1: TRANSPORTASI -->
                     <div class="about-tab-content active" id="tab-transportasi">
                         <div class="content-title">
-                            Transportasi
-                            <a href="#" class="biz-contact-link">Contact Us</a>
+                            <span data-i18n="nav.biz.transport">Transportasi</span>
                         </div>
                         <p class="content-text" data-i18n="biz_3">Patra Logistik menghadirkan layanan transportasi energi yang andal, aman, dan terintegrasi untuk mendukung kelancaran distribusi bahan bakar minyak (BBM), pelumas, serta material dan peralatan industri di seluruh Indonesia.<br><br>Dengan jaringan distribusi nasional dan pengalaman puluhan tahun dalam rantai pasok energi, Patra Logistik menjadi mitra transportasi terpercaya bagi berbagai sektor.</p>
                         
@@ -1254,7 +1463,7 @@
                         </div>
 
                         <!-- Sub-tab Navigation (BBM, Gas, Pelumas, Avtur, Limbah) -->
-                        <div class="subtab-nav">
+                        <div class="subtab-nav" style="display: none;">
                             <button class="subtab-btn active" data-sub="bbm">Pengangkutan BBM</button>
                             <button class="subtab-btn" data-sub="gas">Pengangkutan Gas</button>
                             <button class="subtab-btn" data-sub="pelumas">Pengangkutan Pelumas</button>
@@ -1263,6 +1472,7 @@
                         </div>
 
                         <!-- Sub-tab Pane: BBM -->
+                        <div style="display: none;">
                         <div class="subtab-pane active" id="sub-bbm">
                             <p class="content-text" style="font-size:14.5px; line-height:1.6; margin-bottom: 20px;">
                                 Patra Logistik menyediakan layanan pengangkutan Bahan Bakar Minyak (BBM) melalui pengelolaan Awak Mobil Tangki (AMT) dan Mobil Tangki BBM yang terintegrasi, andal, dan berorientasi pada keselamatan. Layanan ini mendukung penyaluran BBM dari Fuel Terminal menuju SPBU, industri, maupun titik distribusi lainnya.
@@ -1580,6 +1790,7 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
 
                         <!-- Center Benefit Section: Kenapa Perusahaan Mempercayakan Transportasi? -->
                         <div class="why-us-section">
@@ -1645,279 +1856,173 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Section CTA Banner "Contact Us" (Full Width 100%) -->
+                        <div class="biz-cta-banner">
+                            <div class="biz-cta-container">
+                                <div class="biz-cta-left">
+                                    <div class="biz-cta-badge">
+                                        <span class="biz-cta-badge-dot"></span>
+                                        <span data-i18n="biz_cta_badge">KONSULTASI & KERJASAMA</span>
+                                    </div>
+                                    <h3 class="biz-cta-title" data-i18n="biz_cta_title_transport">Siap Mengoptimalkan Solusi Transportasi Energi Anda?</h3>
+                                    <p class="biz-cta-desc" data-i18n="biz_cta_desc_transport">Diskusikan kebutuhan distribusi dan pengangkutan logistik energi Anda bersama tim ahli Patra Logistik untuk solusi yang aman, efisien, dan andal.</p>
+                                </div>
+                                <div class="biz-cta-right">
+                                    <div class="biz-cta-contacts-grid">
+                                        <a href="tel:+62212519669" class="biz-cta-contact-item">
+                                            <div class="biz-cta-contact-icon" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="biz-cta-contact-info">
+                                                <span class="biz-cta-contact-label" data-i18n="biz_cta_call_label">Hubungi kami di</span>
+                                                <span class="biz-cta-contact-value">(021)-25196699</span>
+                                            </div>
+                                        </a>
+                                        <a href="mailto:info.patralogistik@pertamina.com" class="biz-cta-contact-item">
+                                            <div class="biz-cta-contact-icon" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="biz-cta-contact-info">
+                                                <span class="biz-cta-contact-label" data-i18n="biz_cta_email_label">Email kami di</span>
+                                                <span class="biz-cta-contact-value">info.patralogistik@pertamina.com</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <a href="mailto:info.patralogistik@pertamina.com" class="biz-cta-btn">
+                                        <span data-i18n="biz_cta_btn">Hubungi Kami</span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- TAB 2: INVENTORY MANAGEMENT -->
                     <div class="about-tab-content" id="tab-inventory">
                         <div class="content-title">
-                            Inventory Management
-                            <a href="#" class="biz-contact-link">Contact Us</a>
+                            <span data-i18n="nav.biz.inventory">Inventory Management</span>
                         </div>
-                        <p class="content-text" style="margin-bottom: 24px;" data-i18n="biz_49" data-i18n="biz_79">Kami bertekad untuk memberikan pelayanan terbaik kepada Anda. Dengan beragam armada yang dikelola oleh tim yang memiliki dedikasi dan keahlian, kami berharap dapat menyampaikan keunggulan kepada Anda.</p>
+                        <p class="content-text" style="margin-bottom: 24px;">
+                            <strong style="display: block; font-size: 1.1em; line-height: 1.4; margin-bottom: 8px; color: #1E293B;" data-i18n="biz_inv_tagline">Kelola Persediaan Lebih Efisien, Pastikan Operasional Tetap Optimal</strong>
+                            <span data-i18n="biz_inv_desc">Solusi pengelolaan persediaan yang terintegrasi untuk memastikan ketersediaan barang, meningkatkan akurasi stok, dan mendukung kelancaran operasional bisnis secara efisien dan terkendali.</span>
+                        </p>
                         
-                        <!-- Inventory Management Sub-tabs -->
-                        <div class="subtab-nav" style="margin-bottom: 28px;">
-                            <button class="inv-subtab-btn active" data-sub="tbbm">Pengelolaan TBBM</button>
-                            <button class="inv-subtab-btn" data-sub="gudang-pelumas">Pengelolaan Gudang Pelumas</button>
-                            <button class="inv-subtab-btn" data-sub="depot-avtur">Pengelolaan Depot Avtur</button>
-                            <button class="inv-subtab-btn" data-sub="vhs">Pengelolaan VHS</button>
-                            <button class="inv-subtab-btn" data-sub="gudang-material">Pengelolaan Gudang Material</button>
+                        <!-- 4-Column Inventory Feature Cards Grid (Based on Wireframe) -->
+                        <div class="transport-grid-cards">
+                            <!-- Card 1: Vendor Managed Inventory -->
+                            <div class="transport-wire-card" onclick="window.location.href='vendor-managed-inventory.html'" role="button" tabindex="0" aria-label="Vendor Managed Inventory">
+                                <div class="transport-card-bg" style="background-image: url('assets/DSC00198.png');"></div>
+                                <div class="transport-card-overlay"></div>
+                                <div class="transport-card-header">
+                                    <h3 class="transport-card-title" data-i18n="biz_card_vmi">VENDOR MANAGED INVENTORY</h3>
+                                </div>
+                                <div class="transport-card-footer">
+                                    <span class="transport-card-action">
+                                        <span data-i18n="biz_card_more">Selengkapnya</span>
+                                        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Fuel Terminal Management -->
+                            <div class="transport-wire-card" onclick="window.location.href='fuel-terminal-management.html'" role="button" tabindex="0" aria-label="Fuel Terminal Management">
+                                <div class="transport-card-bg" style="background-image: url('assets/tbbm_ketapang.png');"></div>
+                                <div class="transport-card-overlay"></div>
+                                <div class="transport-card-header">
+                                    <h3 class="transport-card-title" data-i18n="biz_card_ftm">FUEL TERMINAL MANAGEMENT</h3>
+                                </div>
+                                <div class="transport-card-footer">
+                                    <span class="transport-card-action">
+                                        <span data-i18n="biz_card_more">Selengkapnya</span>
+                                        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Aviation Fuel Terminal Management -->
+                            <div class="transport-wire-card" onclick="window.location.href='aviation-fuel-terminal-management.html'" role="button" tabindex="0" aria-label="Aviation Fuel Terminal Management">
+                                <div class="transport-card-bg" style="background-image: url('assets/tentang1.png');"></div>
+                                <div class="transport-card-overlay"></div>
+                                <div class="transport-card-header">
+                                    <h3 class="transport-card-title" data-i18n="biz_card_aftm">AVIATION FUEL TERMINAL MANAGEMENT</h3>
+                                </div>
+                                <div class="transport-card-footer">
+                                    <span class="transport-card-action">
+                                        <span data-i18n="biz_card_more">Selengkapnya</span>
+                                        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 4: Warehouse Management -->
+                            <div class="transport-wire-card" onclick="window.location.href='warehouse-management.html'" role="button" tabindex="0" aria-label="Warehouse Management">
+                                <div class="transport-card-bg" style="background-image: url('assets/gudang_pelumas_loading.png');"></div>
+                                <div class="transport-card-overlay"></div>
+                                <div class="transport-card-header">
+                                    <h3 class="transport-card-title" data-i18n="biz_card_wm">WAREHOUSE MANAGEMENT</h3>
+                                </div>
+                                <div class="transport-card-footer">
+                                    <span class="transport-card-action">
+                                        <span data-i18n="biz_card_more">Selengkapnya</span>
+                                        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- 1. Pengelolaan TBBM -->
-                        <div class="inv-subtab-pane active" id="inv-sub-tbbm">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 16px;">
-                                Fuel Terminal Ketapang, berdiri pada tahun 2006, adalah pusat penyimpanan dan distribusi energi strategis di Kalimantan Barat. Terletak di alur Sungai Pawan, terminal ini vital menyuplai BBM (Biosolar, Pertalite, Pertamax) ke wilayah Ketapang dan Kayong Utara dengan kapasitas tangki timbun mencapai 7.200 kiloliter.
-                            </p>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 24px;">
-                                FT Ketapang dilengkapi dengan dermaga untuk muat dan bongkar, serta pengisian bahan bakar dengan kapasitas 3.000 DWT.
-                            </p>
-                            
-                            <div class="inv-tbbm-layout" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: start;">
-                                <div>
-                                    <img src="assets/tbbm_ketapang.png" alt="Fuel Terminal Ketapang" class="subtab-img" style="height: 240px; margin-bottom: 12px; width: 100%;">
-                                    <div class="inv-map-container" style="height: 200px;">
-                                        <!-- Inline Stylized Indonesia Map -->
-                                        <svg viewBox="0 0 800 350" style="width: 100%; height: 100%; fill: #E2E8F0; stroke: #CBD5E1; stroke-width: 1.5; opacity: 0.8; position: absolute; top: 0; left: 0; pointer-events: none;">
-                                            <!-- Sumatera -->
-                                            <path d="M50,80 L170,180 L160,205 L145,215 L35,115 C20,95 30,85 50,80 Z" />
-                                            <!-- Java -->
-                                            <path d="M150,230 L310,255 L300,268 L145,242 Z" />
-                                            <!-- Kalimantan -->
-                                            <path d="M220,100 L290,100 L320,150 L280,200 L200,180 L195,140 Z" />
-                                            <!-- Sulawesi -->
-                                            <path d="M340,115 L385,110 L380,130 L420,130 L400,155 L370,155 L360,185 L345,160 Z" />
-                                            <!-- Papua -->
-                                            <path d="M510,140 L590,135 L615,190 L580,200 L550,170 L510,165 Z" />
-                                            <!-- Small Islands (Bali, Nusa Tenggara, Maluku) -->
-                                            <circle cx="325" cy="260" r="4" />
-                                            <circle cx="340" cy="261" r="4" />
-                                            <circle cx="360" cy="262" r="5" />
-                                            <circle cx="385" cy="263" r="6" />
-                                            <circle cx="410" cy="264" r="5" />
+                        <!-- Section CTA Banner "Contact Us" (Full Width 100%) -->
+                        <div class="biz-cta-banner">
+                            <div class="biz-cta-container">
+                                <div class="biz-cta-left">
+                                    <div class="biz-cta-badge">
+                                        <span class="biz-cta-badge-dot"></span>
+                                        <span data-i18n="biz_cta_badge">KONSULTASI & KERJASAMA</span>
+                                    </div>
+                                    <h3 class="biz-cta-title" data-i18n="biz_cta_title_inv">Siap Mengoptimalkan Pengelolaan Inventory & Gudang Anda?</h3>
+                                    <p class="biz-cta-desc" data-i18n="biz_cta_desc_inv">Diskusikan kebutuhan pengelolaan persediaan, terminal energi, dan pergudangan industri Anda bersama tim ahli Patra Logistik.</p>
+                                </div>
+                                <div class="biz-cta-right">
+                                    <div class="biz-cta-contacts-grid">
+                                        <a href="tel:+62212519669" class="biz-cta-contact-item">
+                                            <div class="biz-cta-contact-icon" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="biz-cta-contact-info">
+                                                <span class="biz-cta-contact-label" data-i18n="biz_cta_call_label">Hubungi kami di</span>
+                                                <span class="biz-cta-contact-value">(021)-25196699</span>
+                                            </div>
+                                        </a>
+                                        <a href="mailto:info.patralogistik@pertamina.com" class="biz-cta-contact-item">
+                                            <div class="biz-cta-contact-icon" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="biz-cta-contact-info">
+                                                <span class="biz-cta-contact-label" data-i18n="biz_cta_email_label">Email kami di</span>
+                                                <span class="biz-cta-contact-value">info.patralogistik@pertamina.com</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <a href="mailto:info.patralogistik@pertamina.com" class="biz-cta-btn">
+                                        <span data-i18n="biz_cta_btn">Hubungi Kami</span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
                                         </svg>
-                                        <!-- West Kalimantan / Ketapang dot -->
-                                        <div class="inv-map-dot" style="left: 48.5%; top: 51.5%;" data-tooltip="FT Ketapang (Kalbar)"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <table class="inv-info-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Fuel</th>
-                                                <th>Kapasitas</th>
-                                                <th>Jetty</th>
-                                                <th data-i18n="biz_52">Kapasitas DWT</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="font-weight:700;">Gasoline</td>
-                                                <td>-</td>
-                                                <td>JETTY 1</td>
-                                                <td>3000 DWT</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="font-weight:700;">Gasoil</td>
-                                                <td>-</td>
-                                                <td>JETTY 2</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="font-weight:700;">Biodiesel</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr style="background:#F1F5F9; font-weight:800; border-top:2px solid #CBD5E1;">
-                                                <td data-i18n="biz_53">Total Kapasitas</td>
-                                                <td>7.200 KL</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 2. Pengelolaan Gudang Pelumas -->
-                        <div class="inv-subtab-pane" id="inv-sub-gudang-pelumas">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 16px;">
-                                Patra Logistik berperan strategis dalam pengelolaan gudang dan distribusi pelumas PT Pertamina Lubricants (PTPL). Sinergi ini difokuskan pada penguatan rantai pasok (supply chain), optimalisasi infrastruktur warehouse, dan peningkatan layanan distribusi.
-                            </p>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 24px;">
-                                Pengelolaan dan pendistribusian Depot Supply Point PT Pertamina Lubricants ini meliputi pengelolaan Gudang seperti Receiving, Storaging, Picking, serta menyediakan SDM guna untuk operasional Warehousing.
-                            </p>
-                            
-                            <div class="inv-tbbm-layout" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: start;">
-                                <div style="display: flex; flex-direction: column; gap: 16px;">
-                                    <img src="assets/gudang_pelumas_loading.png" alt="Loading Pelumas" class="subtab-img" style="height: 180px; width: 100%;">
-                                    <img src="assets/DSC00198.png" alt="Warehouse Pelumas" class="subtab-img" style="height: 180px; width: 100%;">
-                                </div>
-                                <div>
-                                    <div class="inv-map-container" style="height: 380px;">
-                                        <!-- Inline Stylized Indonesia Map -->
-                                        <svg viewBox="0 0 800 350" style="width: 100%; height: 100%; fill: #E2E8F0; stroke: #CBD5E1; stroke-width: 1.5; opacity: 0.8; position: absolute; top: 0; left: 0; pointer-events: none;">
-                                            <!-- Sumatera -->
-                                            <path d="M50,80 L170,180 L160,205 L145,215 L35,115 C20,95 30,85 50,80 Z" />
-                                            <!-- Java -->
-                                            <path d="M150,230 L310,255 L300,268 L145,242 Z" />
-                                            <!-- Kalimantan -->
-                                            <path d="M220,100 L290,100 L320,150 L280,200 L200,180 L195,140 Z" />
-                                            <!-- Sulawesi -->
-                                            <path d="M340,115 L385,110 L380,130 L420,130 L400,155 L370,155 L360,185 L345,160 Z" />
-                                            <!-- Papua -->
-                                            <path d="M510,140 L590,135 L615,190 L580,200 L550,170 L510,165 Z" />
-                                            <!-- Small Islands (Bali, Nusa Tenggara, Maluku) -->
-                                            <circle cx="325" cy="260" r="4" />
-                                            <circle cx="340" cy="261" r="4" />
-                                            <circle cx="360" cy="262" r="5" />
-                                            <circle cx="385" cy="263" r="6" />
-                                            <circle cx="410" cy="264" r="5" />
-                                        </svg>
-                                        <!-- Multiple DSP dots across Sumatera & Java -->
-                                        <div class="inv-map-dot" style="left: 17%; top: 22%;" data-tooltip="DSP Medan"></div>
-                                        <div class="inv-map-dot" style="left: 22%; top: 38%;" data-tooltip="DSP Padang"></div>
-                                        <div class="inv-map-dot" style="left: 31%; top: 52%;" data-tooltip="DSP Palembang"></div>
-                                        <div class="inv-map-dot" style="left: 35.5%; top: 68%;" data-tooltip="DSP Jakarta"></div>
-                                        <div class="inv-map-dot" style="left: 38.5%; top: 71%;" data-tooltip="DSP Bandung"></div>
-                                        <div class="inv-map-dot" style="left: 42.5%; top: 72%;" data-tooltip="DSP Semarang"></div>
-                                        <div class="inv-map-dot" style="left: 47.5%; top: 72%;" data-tooltip="DSP Surabaya"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 3. Pengelolaan Depot Avtur -->
-                        <div class="inv-subtab-pane" id="inv-sub-depot-avtur">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 24px;">
-                                DPPU (Depot Pengisian Pesawat Udara) adalah bentuk kolaborasi antara Pertamina Patra Niaga dengan PT Patra Logistik untuk mengelola operasional pengisian bahan bakar pesawat di berbagai bandara di Indonesia. Skema ini bertujuan memastikan keandalan stok avtur dan efisiensi pelayanan pengisian pesawat.
-                            </p>
-                            
-                            <div class="inv-map-container" style="height: 360px; width: 100%;">
-                                <!-- Inline Stylized Indonesia Map -->
-                                <svg viewBox="0 0 800 350" style="width: 100%; height: 100%; fill: #E2E8F0; stroke: #CBD5E1; stroke-width: 1.5; opacity: 0.8; position: absolute; top: 0; left: 0; pointer-events: none;">
-                                    <!-- Sumatera -->
-                                    <path d="M50,80 L170,180 L160,205 L145,215 L35,115 C20,95 30,85 50,80 Z" />
-                                    <!-- Java -->
-                                    <path d="M150,230 L310,255 L300,268 L145,242 Z" />
-                                    <!-- Kalimantan -->
-                                    <path d="M220,100 L290,100 L320,150 L280,200 L200,180 L195,140 Z" />
-                                    <!-- Sulawesi -->
-                                    <path d="M340,115 L385,110 L380,130 L420,130 L400,155 L370,155 L360,185 L345,160 Z" />
-                                    <!-- Papua -->
-                                    <path d="M510,140 L590,135 L615,190 L580,200 L550,170 L510,165 Z" />
-                                    <!-- Small Islands (Bali, Nusa Tenggara, Maluku) -->
-                                    <circle cx="325" cy="260" r="4" />
-                                    <circle cx="340" cy="261" r="4" />
-                                    <circle cx="360" cy="262" r="5" />
-                                    <circle cx="385" cy="263" r="6" />
-                                    <circle cx="410" cy="264" r="5" />
-                                </svg>
-                                <!-- DPPU dots across Indonesia -->
-                                <div class="inv-map-dot" style="left: 16.5%; top: 20%;" data-tooltip="DPPU Kualanamu (Medan)"></div>
-                                <div class="inv-map-dot" style="left: 28%; top: 28%;" data-tooltip="DPPU Hang Nadim (Batam)"></div>
-                                <div class="inv-map-dot" style="left: 35%; top: 68%;" data-tooltip="DPPU Soekarno-Hatta (Cengkareng)"></div>
-                                <div class="inv-map-dot" style="left: 41.5%; top: 74%;" data-tooltip="DPPU YIA (Yogyakarta)"></div>
-                                <div class="inv-map-dot" style="left: 47%; top: 72%;" data-tooltip="DPPU Juanda (Surabaya)"></div>
-                                <div class="inv-map-dot" style="left: 51%; top: 75%;" data-tooltip="DPPU Ngurah Rai (Bali)"></div>
-                                <div class="inv-map-dot" style="left: 51.5%; top: 46%;" data-tooltip="DPPU Sepinggan (Balikpapan)"></div>
-                                <div class="inv-map-dot" style="left: 59%; top: 56%;" data-tooltip="DPPU Hasanuddin (Makassar)"></div>
-                                <div class="inv-map-dot" style="left: 89%; top: 62%;" data-tooltip="DPPU Sentani (Jayapura)"></div>
-                            </div>
-                        </div>
-
-                        <!-- 4. Pengelolaan VHS -->
-                        <div class="inv-subtab-pane" id="inv-sub-vhs">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 28px;">
-                                Manajemen pengelolaan bahan bakar yang meliputi pengiriman bahan bakar, penyimpanan bahan bakar, hingga penyaluran bahan bakar serta pemeliharaan sarana penyimpanan bahan bakar yang tersedia di lokasi konsumen (Vendor Held Stocks).
-                            </p>
-                            
-                            <!-- VHS Flowchart -->
-                            <div class="skema-wrapper" style="width: 100%; padding: 28px; background: #F8FAFC;">
-                                <div class="skema-title" style="margin-bottom: 24px;" data-i18n="biz_58">> Skema Alur Operasi VHS</div>
-                                
-                                <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
-                                    <!-- Flow row 1: Supply -->
-                                    <div style="display: flex; align-items: center; justify-content: space-around; width: 100%; flex-wrap: wrap; gap: 16px;">
-                                        <div class="skema-step" style="width: 150px; min-height: 80px; border-color: #ED1C24;">
-                                            <span data-i18n="biz_59">Sumber Pasokan</span>
-                                            <h4 style="font-size:12px;" data-i18n="biz_60">Depot BBM Patra Niaga</h4>
-                                        </div>
-                                        <div class="skema-arrow">
-                                            <svg viewBox="0 0 24 24" style="color: #ED1C24;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column; gap: 10px; width: 140px;">
-                                            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius: 0; padding:6px; font-size:11px; text-align:center; font-weight:700; color:#334155;" data-i18n="biz_61">🚢 Kapal (Laut)</div>
-                                            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius: 0; padding:6px; font-size:11px; text-align:center; font-weight:700; color:#334155;" data-i18n="biz_62">🚚 Armada (Darat)</div>
-                                        </div>
-                                        <div class="skema-arrow">
-                                            <svg viewBox="0 0 24 24" style="color: #ED1C24;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                        </div>
-                                        <div class="skema-step" style="width: 150px; min-height: 80px; border-color: #0056A6;">
-                                            <span data-i18n="biz_63">Lokasi Konsumen</span>
-                                            <h4 style="font-size:12px;" data-i18n="biz_64" data-i18n="biz_66">Storage VHS</h4>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Divider arrow down -->
-                                    <div style="display: flex; justify-content: center; color: #0056A6; margin: 4px 0;">
-                                        <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                                    </div>
-                                    
-                                    <!-- Flow row 2: Dispensing -->
-                                    <div style="display: flex; align-items: center; justify-content: space-around; width: 100%; flex-wrap: wrap; gap: 16px;">
-                                        <div class="skema-step" style="width: 150px; min-height: 80px; border-color: #0056A6;">
-                                            <span data-i18n="biz_65">Fasilitas Storage</span>
-                                            <h4 style="font-size:12px;" data-i18n="biz_64" data-i18n="biz_66">Storage VHS</h4>
-                                        </div>
-                                        <div class="skema-arrow">
-                                            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column; gap: 8px; width: 150px;">
-                                            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius: 0; padding:6px; font-size:11px; text-align:center; font-weight:700; color:#334155;" data-i18n="biz_67">🚢 Kapal Supply</div>
-                                            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius: 0; padding:6px; font-size:11px; text-align:center; font-weight:700; color:#334155;" data-i18n="biz_68">⚙️ Flowmeter</div>
-                                            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius: 0; padding:6px; font-size:11px; text-align:center; font-weight:700; color:#334155;" data-i18n="biz_69">🚛 Service Tank Truck</div>
-                                        </div>
-                                        <div class="skema-arrow">
-                                            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                        </div>
-                                        <div class="skema-step" style="width: 170px; min-height: 80px; border-color: #10B981; background:#ECFDF5;">
-                                            <span data-i18n="biz_70">Destinasi Akhir</span>
-                                            <h4 style="font-size:11.5px; color:#065F46;" data-i18n="biz_71">Equipment Customer</h4>
-                                            <span style="font-size:9px; font-weight:700; color:#047857; text-transform:none; margin-top:2px;" data-i18n="biz_72">(Kapal, genset, alat berat, dll.)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 5. Pengelolaan Gudang Material -->
-                        <div class="inv-subtab-pane" id="inv-sub-gudang-material">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 24px;">
-                                Layanan pengelolaan gudang material proyek, suku cadang, dan peralatan pendukung untuk industri energi secara profesional. Kami menerapkan WMS (Warehouse Management System) modern untuk memastikan pencatatan inventori yang akurat, pelacakan real-time, dan tata letak penyimpanan yang optimal.
-                            </p>
-                            
-                            <div class="simple-card-grid">
-                                <div class="simple-card" style="padding: 24px;">
-                                    <div class="benefit-icon" style="background:#F0F9FF; color: #0056A6; width: 44px; height: 44px; padding: 10px;">
-                                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                                    </div>
-                                    <h4 class="benefit-title" style="text-align:left; font-size:14px;" data-i18n="biz_74">Material Storage</h4>
-                                    <p class="benefit-desc" style="text-align:left; font-size:12px;" data-i18n="biz_75">Penyimpanan material proyek dan peralatan industri dengan tata ruang aman dan higienis.</p>
-                                </div>
-                                <div class="simple-card" style="padding: 24px;">
-                                    <div class="benefit-icon" style="background:#F0F9FF; color: #0056A6; width: 44px; height: 44px; padding: 10px;">
-                                        <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                                    </div>
-                                    <h4 class="benefit-title" style="text-align:left; font-size:14px;" data-i18n="biz_76">Sparepart Management</h4>
-                                    <p class="benefit-desc" style="text-align:left; font-size:12px;" data-i18n="biz_77">Pencatatan stock level suku cadang vital secara berkala untuk meminimalkan waktu henti (downtime) operasional.</p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
