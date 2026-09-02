@@ -756,7 +756,24 @@ const translations = {
         "aftm_sol_item3_title": "Digital Fuel Management",
         "aftm_sol_item3_desc": "Didukung sistem monitoring real-time dan teknologi telemetri digital, memberikan visibilitas transaksi pengisian bahan bakar secara instan dan akurat — menggantikan proses pencatatan manual dengan sistem yang lebih efisien dan transparan.",
         "aftm_sol_item4_title": "Manajemen Rantai Pasok Terintegrasi",
-        "aftm_sol_item4_desc": "Mengelola alur distribusi avtur secara end-to-end — mulai dari Kilang, Fuel Terminal, Aviation Fuel Terminal, hingga layanan into-plane — guna menjamin keandalan pasokan di seluruh titik layanan penerbangan."
+        "aftm_sol_item4_desc": "Mengelola alur distribusi avtur secara end-to-end — mulai dari Kilang, Fuel Terminal, Aviation Fuel Terminal, hingga layanan into-plane — guna menjamin keandalan pasokan di seluruh titik layanan penerbangan.",
+
+        // Aviation Fuel Terminal Management - Sektor Industri
+        "aftm_sectors_tag": "SEKTOR INDUSTRI TERLAYANI",
+        "aftm_sectors_title": "Mendukung Berbagai Sektor Industri",
+        "aftm_sectors_desc": "Hadirkan solusi bahan bakar penerbangan yang disesuaikan dengan kebutuhan setiap segmen industri aviasi di Indonesia.",
+        "aftm_sector1_title": "Bandar Udara & Operator Bandara",
+        "aftm_sector1_desc": "Bandara mempercayakan pasokan avtur yang andal kepada Patra Logistik, didukung fasilitas Aviation Fuel Terminal dan sistem into-plane fueling yang mencakup seluruh kebutuhan operasional bandara.",
+        "aftm_sector1_btn": "Konsultasi Solusi Bandara",
+        "aftm_sector2_title": "Maskapai Komersial",
+        "aftm_sector2_desc": "Kami menyediakan layanan pengisian bahan bakar dengan kapasitas flow rate tinggi dan standar kualitas Jet A-1 terjaga, mendukung kelancaran operasional penerbangan komersial domestik maupun internasional.",
+        "aftm_sector2_btn": "Konsultasi Maskapai",
+        "aftm_sector3_title": "Pemerintah & Instansi",
+        "aftm_sector3_desc": "Menyediakan dukungan bahan bakar penerbangan untuk kebutuhan operasional pemerintah dan misi khusus, dengan standar keselamatan dan keandalan yang sama seperti layanan komersial.",
+        "aftm_sector3_btn": "Konsultasi Misi Khusus",
+        "aftm_sector4_title": "General Aviation & Penerbangan Non-Reguler",
+        "aftm_sector4_desc": "Melayani kebutuhan bahan bakar untuk penerbangan carter, general aviation, dan operator non-reguler dengan fleksibilitas jadwal dan volume sesuai kebutuhan.",
+        "aftm_sector4_btn": "Konsultasi Solusi Charter"
     },
     en: {
         "about_162": "PT Patra Logistik",
@@ -1515,6 +1532,23 @@ const translations = {
         "aftm_sol_item3_title": "Digital Fuel Management",
         "aftm_sol_item3_desc": "Powered by real-time monitoring systems and digital telemetry technology, delivering instant and accurate visibility of fueling transactions — replacing manual logging with a more efficient and transparent system.",
         "aftm_sol_item4_title": "Integrated Supply Chain Management",
-        "aftm_sol_item4_desc": "Managing end-to-end avtur distribution flows — from Refineries, Fuel Terminals, Aviation Fuel Terminals, to into-plane services — to ensure supply reliability across all aviation service points."
+        "aftm_sol_item4_desc": "Managing end-to-end avtur distribution flows — from Refineries, Fuel Terminals, Aviation Fuel Terminals, to into-plane services — to ensure supply reliability across all aviation service points.",
+
+        // Aviation Fuel Terminal Management - Aviation Industry Sectors
+        "aftm_sectors_tag": "AVIATION SECTORS SERVED",
+        "aftm_sectors_title": "Supporting Various Industry Sectors",
+        "aftm_sectors_desc": "Delivering tailored aviation fuel solutions to meet the operational demands of each aviation industry segment across Indonesia.",
+        "aftm_sector1_title": "Airports & Airport Operators",
+        "aftm_sector1_desc": "Airports trust Patra Logistik for reliable avtur supplies, supported by Aviation Fuel Terminal facilities and into-plane fueling systems covering all airport operational requirements.",
+        "aftm_sector1_btn": "Consult Airport Solutions",
+        "aftm_sector2_title": "Commercial Airlines",
+        "aftm_sector2_desc": "We provide high-flow-rate refueling services with stringent Jet A-1 quality assurance, supporting smooth domestic and international commercial flight operations.",
+        "aftm_sector2_btn": "Consult Airline Services",
+        "aftm_sector3_title": "Government & Institutions",
+        "aftm_sector3_desc": "Providing aviation fuel support for governmental operations and special missions, adhering to the same top-tier safety and reliability standards as commercial aviation.",
+        "aftm_sector3_btn": "Consult Special Missions",
+        "aftm_sector4_title": "General Aviation & Non-Scheduled Flights",
+        "aftm_sector4_desc": "Serving fuel requirements for charter flights, general aviation, and non-scheduled operators with schedule and volume flexibility tailored to their needs.",
+        "aftm_sector4_btn": "Consult Charter Solutions"
     }
 };
