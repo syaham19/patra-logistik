@@ -23,6 +23,8 @@ const translations = {
         "biz_cta_desc_transport": "Diskusikan kebutuhan distribusi dan pengangkutan logistik energi Anda bersama tim ahli Patra Logistik untuk solusi yang aman, efisien, dan andal.",
         "biz_cta_title_inv": "Siap Mengoptimalkan Pengelolaan Inventory & Gudang Anda?",
         "biz_cta_desc_inv": "Diskusikan kebutuhan pengelolaan persediaan, terminal energi, dan pergudangan industri Anda bersama tim ahli Patra Logistik.",
+        "biz_cta_title_other": "Diskusikan Kebutuhan Bisnis Anda dengan Tim Kami",
+        "biz_cta_desc_other": "Konsultasikan solusi logistik energi, penyewaan armada, maupun integrasi teknologi rantai pasok bersama tim ahli Patra Logistik.",
         "biz_cta_call_label": "Hubungi kami di",
         "biz_cta_email_label": "Email kami di",
         "biz_cta_btn": "Hubungi Kami",
@@ -72,7 +74,7 @@ const translations = {
         "biz_46": "Multi-Moda Integration",
         "biz_47": "Mendukung integrasi berbagai moda transportasi untuk menciptakan solusi logistik yang lebih fleksibel, efisien, dan terhubung.",
         "biz_48": "Inventory Management",
-        "biz_49": "Kami bertekad untuk memberikan pelayanan terbaik kepada Anda. Dengan beragam armada yang dikelola oleh tim yang memiliki dedikasi dan keahlian, kami berharap dapat menyampaikan keunggulan kepada Anda.",
+        "biz_49": "Solusi Bisnis Pendukung untuk Kelancaran Operasional Logistik Energi Anda",
         "biz_50": "Fuel Terminal Ketapang, berdiri pada tahun 2006, adalah pusat penyimpanan dan distribusi energi strategis di Kalimantan Barat. Terletak di alur Sungai Pawan, terminal ini vital menyuplai BBM (Biosolar, Pertalite, Pertamax) ke wilayah Ketapang dan Kayong Utara dengan kapasitas tangki timbun mencapai 7.200 kiloliter.",
         "biz_51": "FT Ketapang dilengkapi dengan dermaga untuk muat dan bongkar, serta pengisian bahan bakar dengan kapasitas 3.000 DWT.",
         "biz_52": "Kapasitas DWT",
@@ -739,7 +741,22 @@ const translations = {
         "footer.col1": "PERUSAHAAN",
         "footer.col2": "INFORMASI PUBLIK",
         "footer.col3": "KANTOR PUSAT",
-        "footer.copyright": "© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang."
+        "footer.copyright": "© 2026 PT Pertamina Patra Logistik. Hak Cipta Dilindungi Undang-Undang.",
+
+        // Aviation Fuel Terminal Management - Solusi Layanan Aviation
+        "aftm_sol_tag": "TECHNICAL SUPPORT FOR INTO PLANE OPERATORS",
+        "aftm_sol_title": "Solusi Layanan Aviation",
+        "aftm_sol_desc": "Layanan mencakup pengoperasian dan pengelolaan storage, fasilitas penerimaan dan penyaluran, serta sistem distribusi untuk memastikan avtur tersimpan dan tersalurkan secara aman, efisien, dan andal.",
+        "aftm_sol_badge_title": "Standar Mutu JIG & IATA IFQP",
+        "aftm_sol_badge_sub": "Operasional Aviasi Berstandar Global",
+        "aftm_sol_item1_title": "Into-Plane Fueling",
+        "aftm_sol_item1_desc": "Layanan pengisian bahan bakar langsung ke pesawat menggunakan sistem hydrant maupun tanker truck, dijalankan sesuai standar keselamatan internasional JIG (Joint Inspection Group) untuk menjamin proses pengisian yang aman dan efisien di setiap jenis pesawat.",
+        "aftm_sol_item2_title": "Quality Control & Traceability Jet A-1",
+        "aftm_sol_item2_desc": "Setiap tahap penerimaan, penyimpanan, hingga penyaluran Jet A-1 melalui proses quality control ketat, memastikan kualitas dan keterlacakan (traceability) bahan bakar terjaga hingga sampai ke pesawat.",
+        "aftm_sol_item3_title": "Digital Fuel Management",
+        "aftm_sol_item3_desc": "Didukung sistem monitoring real-time dan teknologi telemetri digital, memberikan visibilitas transaksi pengisian bahan bakar secara instan dan akurat — menggantikan proses pencatatan manual dengan sistem yang lebih efisien dan transparan.",
+        "aftm_sol_item4_title": "Manajemen Rantai Pasok Terintegrasi",
+        "aftm_sol_item4_desc": "Mengelola alur distribusi avtur secara end-to-end — mulai dari Kilang, Fuel Terminal, Aviation Fuel Terminal, hingga layanan into-plane — guna menjamin keandalan pasokan di seluruh titik layanan penerbangan."
     },
     en: {
         "about_162": "PT Patra Logistik",
@@ -765,6 +782,8 @@ const translations = {
         "biz_cta_desc_transport": "Discuss your energy logistics distribution and transportation needs with Patra Logistik's expert team for safe, efficient, and reliable solutions.",
         "biz_cta_title_inv": "Ready to Optimize Your Inventory & Warehouse Management?",
         "biz_cta_desc_inv": "Discuss your stock management, energy terminal, and industrial warehousing needs with Patra Logistik's expert team.",
+        "biz_cta_title_other": "Discuss Your Business Needs with Our Team",
+        "biz_cta_desc_other": "Consult energy logistics solutions, fleet rental, and supply chain technology integration with the Patra Logistik expert team.",
         "biz_cta_call_label": "Call us at",
         "biz_cta_email_label": "Email us at",
         "biz_cta_btn": "Contact Us",
@@ -814,7 +833,7 @@ const translations = {
         "biz_46": "Multi-Modal Integration",
         "biz_47": "Supporting the integration of various transportation modes to create more flexible, efficient, and connected logistics solutions.",
         "biz_48": "Inventory Management",
-        "biz_49": "We are determined to provide the best service to you. With diverse fleets managed by dedicated and expert teams, we hope to deliver excellence to you.",
+        "biz_49": "Supporting Business Solutions for Smooth Energy Logistics Operations",
         "biz_50": "Fuel Terminal Ketapang, established in 2006, is a strategic energy storage and distribution center in West Kalimantan. Located in the Pawan River channel, this terminal is vital in supplying Fuel (Biosolar, Pertalite, Pertamax) to the Ketapang and Kayong Utara regions with a storage tank capacity reaching 7,200 kiloliters.",
         "biz_51": "FT Ketapang is equipped with a jetty for loading and unloading, as well as refueling with a capacity of 3,000 DWT.",
         "biz_52": "DWT Capacity",
@@ -1481,6 +1500,21 @@ const translations = {
         "footer.col1": "COMPANY",
         "footer.col2": "PUBLIC INFORMATION",
         "footer.col3": "HEAD OFFICE",
-        "footer.copyright": "© 2026 PT Pertamina Patra Logistik. All Rights Reserved."
+        "footer.copyright": "© 2026 PT Pertamina Patra Logistik. All Rights Reserved.",
+
+        // Aviation Fuel Terminal Management - Aviation Solutions
+        "aftm_sol_tag": "TECHNICAL SUPPORT FOR INTO PLANE OPERATORS",
+        "aftm_sol_title": "Our Aviation Solutions",
+        "aftm_sol_desc": "Services include the operation and management of storage, receiving and distribution facilities, and distribution systems to ensure aviation fuel is stored and delivered safely, efficiently, and reliably.",
+        "aftm_sol_badge_title": "JIG & IATA IFQP Quality Standards",
+        "aftm_sol_badge_sub": "Global-Standard Aviation Operations",
+        "aftm_sol_item1_title": "Into-Plane Fueling",
+        "aftm_sol_item1_desc": "Direct aircraft refueling services utilizing hydrant systems and refueller tanker trucks, conducted in full compliance with international JIG (Joint Inspection Group) safety standards to ensure secure and efficient fueling across all aircraft types.",
+        "aftm_sol_item2_title": "Quality Control & Traceability Jet A-1",
+        "aftm_sol_item2_desc": "Every stage of receiving, storage, and Jet A-1 distribution undergoes stringent quality control, ensuring the fuel quality and complete traceability are preserved until delivered to the aircraft.",
+        "aftm_sol_item3_title": "Digital Fuel Management",
+        "aftm_sol_item3_desc": "Powered by real-time monitoring systems and digital telemetry technology, delivering instant and accurate visibility of fueling transactions — replacing manual logging with a more efficient and transparent system.",
+        "aftm_sol_item4_title": "Integrated Supply Chain Management",
+        "aftm_sol_item4_desc": "Managing end-to-end avtur distribution flows — from Refineries, Fuel Terminals, Aviation Fuel Terminals, to into-plane services — to ensure supply reliability across all aviation service points."
     }
 };

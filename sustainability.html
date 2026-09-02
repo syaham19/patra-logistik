@@ -12,6 +12,7 @@
         /* Layout Grid */
         .about-layout {
             padding: 20px 0 0;
+            margin: 0;
             background-color: #FFFFFF;
         }
         .about-grid {
@@ -182,10 +183,10 @@
         .about-content-pane {
             background: transparent;
             border-radius: 0;
-            padding: 16px 0 48px;
+            padding: 16px 0 0;
             box-shadow: none;
             border: none;
-            min-height: 500px;
+            min-height: auto;
         }
 
         .about-tab-content {
@@ -234,7 +235,7 @@
         }
         @media (max-width: 768px) {
             .gov-grid { grid-template-columns: repeat(2, 1fr); }
-            .about-content-pane { padding: 24px; }
+            .about-content-pane { padding: 24px 0 0; }
         }
         @media (max-width: 480px) {
             .gov-grid { grid-template-columns: 1fr; }
@@ -589,13 +590,19 @@
             margin-left: calc(-50vw + 50%);
             height: 400px;
             margin-top: 0;
+            margin-bottom: 0;
             border-radius: 0;
             overflow: hidden;
+            display: block;
+            line-height: 0;
         }
         .tata-kelola-banner img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            margin: 0;
+            padding: 0;
         }
         @media (max-width: 768px) {
             .tata-kelola-bg-section {
@@ -604,6 +611,7 @@
             .tata-kelola-banner {
                 height: 250px;
                 margin-top: 0;
+                margin-bottom: 0;
             }
         }
         .year-filter-container {
@@ -991,9 +999,10 @@
             margin-left: calc(-50vw + 50%);
             text-align: center;
             color: #FFFFFF;
-            border-radius: var(--radius-lg);
-            margin-top: 60px;
-            margin-bottom: 60px;
+            border-radius: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            display: block;
         }
         .cta-csr-btn-modern {
             background: #FFFFFF;
@@ -1177,88 +1186,87 @@
                     </div>
 
 <!-- Pilar 3: TATA KELOLA -->
-                    <div class="pillar-section" style="width: 100vw; margin-left: calc(-50vw + 50%); margin-bottom: 60px;">
-                        <div class="tata-kelola-bg-section-modern">
-                            <div class="container" style="max-width: 1240px; margin: 0 auto;">
-                                <div class="pillar-tag reveal-on-scroll">Pilar 3</div>
-                                <h2 class="pillar-title reveal-on-scroll">Tata Kelola (Governance)</h2>
-                                <p class="content-text reveal-on-scroll">Penerapan Good Corporate Governance (GCG) di Patra Logistik dilakukan melalui serangkaian pedoman kepatuhan, sistem pengawasan internal, serta komitmen etika kerja yang diimplementasikan secara berkesinambungan.</p>
-                                
-                                <div class="gov-grid">
-                                
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Sistem Manajemen HSSE</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <div class="tata-kelola-bg-section-modern reveal-on-scroll">
+                        <div class="container" style="max-width: 1240px; margin: 0 auto;">
+                            <div class="pillar-tag">Pilar 3</div>
+                            <h2 class="pillar-title">Tata Kelola (Governance)</h2>
+                            <p class="content-text">Penerapan Good Corporate Governance (GCG) di Patra Logistik dilakukan melalui serangkaian pedoman kepatuhan, sistem pengawasan internal, serta komitmen etika kerja yang diimplementasikan secara berkesinambungan.</p>
+                            
+                            <div class="gov-grid">
+                            
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Sistem Manajemen HSSE</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Sistem Manajemen Kesehatan dan Keselamatan Kerja</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Sistem Manajemen Kesehatan dan Keselamatan Kerja</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Tata Kelola Perusahaan Yang Baik</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Tata Kelola Perusahaan Yang Baik</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Pedoman Pengendalian Gratifikasi</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Pedoman Pengendalian Gratifikasi</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Sistem Manajemen Anti-Penyuapan</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Sistem Manajemen Anti-Penyuapan</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Whistleblowing System (WBS)</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Whistleblowing System (WBS)</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Transparansi dan Keterbukaan Informasi</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Transparansi dan Keterbukaan Informasi</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Akuntabilitas dan Pengelolaan SDM</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Akuntabilitas dan Pengelolaan SDM</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Keadilan dalam Pengambilan Keputusan</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Keadilan dalam Pengambilan Keputusan</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Tanggung Jawab Sosial Perusahaan (CSR)</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Tanggung Jawab Sosial Perusahaan (CSR)</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gov-card-modern">
-                                <h4 class="gov-card-title-modern">Pengawasan yang Efektif</h4>
-                                <div class="gov-card-download-modern">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                </div>
-                            </div>
+                                <div class="gov-card-modern">
+                                    <h4 class="gov-card-title-modern">Pengawasan yang Efektif</h4>
+                                    <div class="gov-card-download-modern">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Tata Kelola Banner Section -->
-                            <img src="assets/Landscape MT.png" alt="Tata Kelola Banner">
-                        </div>
+                    <!-- Tata Kelola Banner Section -->
+                    <div class="tata-kelola-banner">
+                        <img src="assets/Landscape MT.png" alt="Tata Kelola Banner">
                     </div>
 
                     <!-- Laporan Keberlanjutan Section -->
@@ -1376,8 +1384,8 @@
                     </div>
 
                     <!-- CTA Berita CSR -->
-                    <div class="cta-csr-section-modern reveal-scale">
-                        <div class="container" style="max-width: 800px; margin: 0 auto;">
+                    <div class="cta-csr-section-modern">
+                        <div class="container reveal-on-scroll" style="max-width: 800px; margin: 0 auto;">
                             <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 20px; line-height: 1.3;">Ikuti Perjalanan Berkelanjutan Kami</h2>
                             <p style="font-size: 18px; opacity: 0.9; margin-bottom: 40px; line-height: 1.7;">Kami terus berupaya memberikan dampak positif bagi lingkungan dan masyarakat sekitar melalui program-program Tanggung Jawab Sosial dan Lingkungan (TJSL). Temukan berbagai inisiatif dan cerita terbaru kami.</p>
                             <a href="berita-media.html?tab=berita-csr" class="cta-csr-btn-modern">

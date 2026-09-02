@@ -231,6 +231,10 @@
             color: var(--aftm-slate);
             margin: 0;
         }
+        .aftm-info-lead strong {
+            color: var(--aftm-navy);
+            font-weight: 800;
+        }
 
         /* Benefits Card Container */
         .aftm-benefits-card {
@@ -618,113 +622,168 @@
             display: block;
         }
 
-        /* ================= 5. LOKASI AVIATION FUEL TERMINAL SECTION ================= */
-        .aftm-location-section {
+        /* ================= 2.1 SKALA OPERASIONAL & SEBARAN LOKASI SECTION ================= */
+        .aftm-network-section {
             padding: 96px 0;
-            background-color: #FFFFFF;
+            background-color: var(--aftm-bg-alt, #F8FAFC);
+            border-top: 1px solid var(--aftm-border);
             border-bottom: 1px solid var(--aftm-border);
         }
-        .aftm-location-header {
+        .aftm-network-header {
             text-align: center;
-            margin-bottom: 48px;
+            max-width: 860px;
+            margin: 0 auto 48px;
         }
-        .aftm-loc-title {
+        .aftm-network-title {
             font-size: 32px;
-            font-weight: 800;
-            color: #0056A6;
-            margin: 0;
-            letter-spacing: -0.3px;
-        }
-        .aftm-location-wrapper {
-            display: grid;
-            grid-template-columns: 290px 1fr;
-            gap: 40px;
-            align-items: center;
-            background: #FFFFFF;
-            border: 1px solid var(--aftm-border);
-            box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.06);
-            padding: 40px;
-            position: relative;
-        }
-        .aftm-loc-stat-card {
-            background: linear-gradient(145deg, #0056A6 0%, #004080 100%);
-            border-radius: 16px;
-            padding: 36px 30px;
-            color: #FFFFFF;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 16px 32px rgba(0, 86, 166, 0.28);
-            position: relative;
-            overflow: hidden;
-        }
-        .aftm-loc-stat-card::after {
-            content: '';
-            position: absolute;
-            top: -40px;
-            right: -40px;
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.07);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .aftm-loc-stat-label {
-            font-size: 15px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin: 0 0 12px;
-            line-height: 1.35;
-        }
-        .aftm-loc-stat-number {
-            font-size: 72px;
             font-weight: 900;
-            line-height: 1;
-            color: #FFFFFF;
-            margin: 0 0 28px;
-            letter-spacing: -1.5px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--aftm-navy);
+            line-height: 1.25;
+            margin: 12px 0 16px;
+            letter-spacing: -0.4px;
+            text-transform: uppercase;
         }
-        .aftm-loc-download-btn {
-            border-radius: 50px;
-            border: 1.5px solid rgba(255, 255, 255, 0.85);
-            background: transparent;
-            color: #FFFFFF;
-            font-weight: 700;
-            font-size: 14px;
-            padding: 10px 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-decoration: none;
-            width: fit-content;
-        }
-        .aftm-loc-download-btn:hover {
-            background: #FFFFFF;
-            color: #0056A6;
-            border-color: #FFFFFF;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        .aftm-network-desc {
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--aftm-slate);
+            margin: 0;
         }
 
-        /* Map Canvas Container */
-        .aftm-loc-map-container {
+        /* 4-Column Operational Stats Grid */
+        .aftm-op-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+        .aftm-op-stat-card {
+            background: #FFFFFF;
+            border: 1px solid var(--aftm-border);
+            border-top: 4px solid var(--aftm-primary);
+            padding: 28px 24px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .aftm-op-stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 32px -8px rgba(0, 86, 166, 0.15);
+            border-top-color: var(--aftm-red);
+        }
+        .aftm-op-stat-value {
+            font-size: 44px;
+            font-weight: 900;
+            color: var(--aftm-navy);
+            line-height: 1;
+            letter-spacing: -1px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+        .aftm-op-stat-unit {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--aftm-primary);
+            letter-spacing: 0;
+        }
+        .aftm-op-stat-label {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--aftm-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin: 0;
+        }
+
+        /* 3-Photo Gallery Grid */
+        .aftm-op-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .aftm-op-photo-card {
+            position: relative;
+            height: 250px;
+            border: 1px solid var(--aftm-border);
+            overflow: hidden;
+            background: var(--aftm-navy);
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+            transition: all 0.35s ease;
+        }
+        .aftm-op-photo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.15);
+            border-color: #CBD5E1;
+        }
+        .aftm-op-photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .aftm-op-photo-card:hover .aftm-op-photo-img {
+            transform: scale(1.06);
+        }
+
+        /* Interactive Map Container */
+        .aftm-map-showcase-card {
+            background: #FFFFFF;
+            border: 1px solid var(--aftm-border);
+            box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.07);
+            padding: 36px 36px 40px;
+        }
+        .aftm-map-showcase-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E2E8F0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .aftm-map-showcase-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--aftm-navy);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .aftm-map-badge-count {
+            background: #EFF6FF;
+            color: var(--aftm-primary);
+            border: 1px solid #BFDBFE;
+            padding: 4px 14px;
+            font-size: 12.5px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+        }
+
+        /* Map Canvas */
+        .aftm-op-map-canvas {
             position: relative;
             width: 100%;
-            aspect-ratio: 1110 / 484;
-            min-height: 380px;
+            max-width: 980px;
+            aspect-ratio: 1000 / 368;
+            min-height: 320px;
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 12px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            margin: 0 auto 32px;
         }
-        .aftm-loc-map-bg {
+        .aftm-op-map-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -735,45 +794,148 @@
             user-select: none;
         }
 
-        /* Red Pin Marker */
-        .aftm-loc-pin {
+        /* Pinpoint Markers on Map */
+        .aftm-map-pin-btn {
             position: absolute;
             transform: translate(-50%, -100%);
             cursor: pointer;
             z-index: 10;
-            transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             align-items: center;
             justify-content: center;
+            background: none;
+            border: none;
+            padding: 0;
+            outline: none;
         }
-        .aftm-loc-pin svg {
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.22));
-            transition: transform 0.2s ease;
+        .aftm-map-pin-btn svg {
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+            transition: transform 0.25s ease, filter 0.25s ease;
         }
-        .aftm-loc-pin:hover {
-            transform: translate(-50%, -100%) scale(1.35);
-            z-index: 40;
+        .aftm-map-pin-btn:hover svg,
+        .aftm-map-pin-btn.is-active svg {
+            transform: scale(1.4);
+            fill: #0056A6 !important;
+            filter: drop-shadow(0 6px 12px rgba(0, 86, 166, 0.6));
         }
-        .aftm-loc-pin:hover svg {
-            filter: drop-shadow(0 4px 8px rgba(237, 28, 36, 0.5));
-        }
-        .aftm-loc-pin[data-tooltip]:hover::after {
-            content: attr(data-tooltip);
+        .aftm-map-pin-pulse {
             position: absolute;
-            bottom: calc(100% + 6px);
+            bottom: 2px;
             left: 50%;
             transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background: rgba(237, 28, 36, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: aftmPinPulse 2s infinite;
+        }
+        @keyframes aftmPinPulse {
+            0% { transform: translateX(-50%) scale(0.6); opacity: 0.9; }
+            70% { transform: translateX(-50%) scale(2.2); opacity: 0; }
+            100% { transform: translateX(-50%) scale(2.2); opacity: 0; }
+        }
+        .aftm-map-pin-btn.is-active .aftm-map-pin-pulse {
+            background: rgba(0, 86, 166, 0.6);
+            animation-duration: 1.2s;
+        }
+
+        /* Tooltip inside Map Pin */
+        .aftm-map-pin-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
             background: #0A1B39;
             color: #FFFFFF;
-            font-size: 11.5px;
+            padding: 8px 14px;
+            font-size: 12px;
             font-weight: 700;
             white-space: nowrap;
-            padding: 6px 12px;
-            border-radius: 4px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-            border-top: 2px solid #ED1C24;
             pointer-events: none;
-            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 100;
+            text-align: center;
+        }
+        .aftm-map-pin-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #0A1B39 transparent transparent transparent;
+        }
+        .aftm-map-pin-btn:hover .aftm-map-pin-tooltip,
+        .aftm-map-pin-btn.is-active .aftm-map-pin-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 11 Location Buttons Grid ("TOMBOL PETA HOVER") */
+        .aftm-loc-buttons-wrap {
+            margin-top: 8px;
+        }
+        .aftm-loc-buttons-header {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--aftm-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .aftm-loc-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+        .aftm-loc-btn {
+            background: #F8FAFC;
+            border: 1.5px solid #E2E8F0;
+            color: var(--aftm-navy);
+            padding: 14px 12px;
+            font-size: 13.5px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            user-select: none;
+            font-family: inherit;
+        }
+        .aftm-loc-btn-code {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--aftm-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.25s ease;
+        }
+        .aftm-loc-btn:hover,
+        .aftm-loc-btn.is-active {
+            background: var(--aftm-primary);
+            border-color: var(--aftm-primary);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -4px rgba(0, 86, 166, 0.35);
+        }
+        .aftm-loc-btn:hover .aftm-loc-btn-code,
+        .aftm-loc-btn.is-active .aftm-loc-btn-code {
+            color: #93C5FD;
         }
 
         /* ================= 6. CTA / APPOINTMENT SECTION ================= */
@@ -910,8 +1072,9 @@
         /* ================= RESPONSIVE BREAKPOINTS ================= */
         @media (max-width: 1024px) {
             .aftm-hero-title { font-size: 36px; }
-            .aftm-gallery-grid { grid-template-columns: repeat(2, 1fr); }
-            .aftm-photo-card:nth-child(3) { grid-column: span 2; }
+            .aftm-op-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .aftm-op-gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+            .aftm-loc-buttons-grid { grid-template-columns: repeat(4, 1fr); }
             .aftm-specs-grid { grid-template-columns: repeat(2, 1fr); }
             .aftm-solutions-grid { grid-template-columns: 1fr; gap: 40px; }
             .aftm-solutions-left { position: static; }
@@ -927,15 +1090,19 @@
                 padding: 120px 0 60px;
                 min-height: auto;
             }
+            .aftm-op-gallery-grid { grid-template-columns: 1fr; gap: 16px; }
+            .aftm-op-photo-card { height: 220px; }
+            .aftm-loc-buttons-grid { grid-template-columns: repeat(3, 1fr); }
+            .aftm-map-showcase-card { padding: 24px 20px; }
             .aftm-points-list { grid-template-columns: 1fr; gap: 16px; }
-            .aftm-gallery-grid { grid-template-columns: 1fr; }
-            .aftm-photo-card:nth-child(3) { grid-column: span 1; }
-            .aftm-map-container { height: 320px; }
         }
         @media (max-width: 640px) {
             .aftm-hero-title { font-size: 28px; }
             .aftm-hero-desc { font-size: 15.5px; }
             .aftm-info-title, .aftm-cta-headline, .aftm-network-title { font-size: 24px; }
+            .aftm-op-stats-grid { grid-template-columns: 1fr; }
+            .aftm-op-stat-value { font-size: 36px; }
+            .aftm-loc-buttons-grid { grid-template-columns: repeat(2, 1fr); }
             .aftm-sol-title { font-size: 26px; }
             .aftm-sol-icon-box { width: 38px; height: 38px; font-size: 13.5px; }
             .aftm-sol-item-title { font-size: 15.5px; }
@@ -1075,95 +1242,209 @@
         </div>
     </section>
 
-    <!-- ================= 2. INFORMASI LAYANAN & KEUNGGULAN SECTION ================= -->
+    <!-- ================= 2. INFORMASI LAYANAN SECTION ================= -->
     <section class="aftm-info-section" id="aftm-info-section">
         <div class="container">
             <!-- Header & Lead Text -->
             <div class="aftm-info-header aftm-reveal">
-                <span class="aftm-section-tag">OVERVIEW LAYANAN</span>
-                <h2 class="aftm-info-title">Pengelolaan Depot Pengisian Pesawat Udara (DPPU)</h2>
+                <span class="aftm-section-tag">INFORMASI LAYANAN</span>
+                <h2 class="aftm-info-title">Informasi Layanan</h2>
                 <p class="aftm-info-lead">
-                    DPPU (Depot Pengisian Pesawat Udara) adalah bentuk kolaborasi antara Pertamina Patra Niaga dengan PT Patra Logistik untuk mengelola operasional pengisian bahan bakar pesawat di berbagai bandara di Indonesia. Skema ini bertujuan memastikan keandalan stok avtur dan efisiensi pelayanan pengisian pesawat.
+                    Patra Logistik mengelola Aviation Fuel Terminal sebagai fasilitas khusus untuk penyimpanan dan penyaluran bahan bakar penerbangan (Avtur/Jet A-1), mendukung kelancaran operasional bandar udara dan maskapai di wilayah layanan. Pengelolaan fasilitas ini menuntut standar keselamatan dan presisi tertinggi, mengingat karakteristik produk dan sensitivitas operasional dunia penerbangan.
+                </p>
+                <p class="aftm-info-lead" style="margin-top: 18px;">
+                    Setiap Aviation Fuel Terminal dioperasikan dengan mengedepankan <strong>keselamatan, keandalan, integritas, kolaborasi, dan keberlanjutan</strong>, memastikan pasokan bahan bakar penerbangan tersedia secara konsisten dan sesuai standar kualitas internasional penerbangan.
                 </p>
             </div>
+        </div>
+    </section>
 
-            <!-- Benefits / Value Props Card (Hidden) -->
-            <div class="aftm-benefits-card aftm-reveal aftm-delay-1" style="display: none;" aria-hidden="true">
-                <div class="aftm-benefits-header">
-                    <div class="aftm-benefits-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    </div>
-                    <h3 class="aftm-benefits-title">Keunggulan Layanan Aviation Fuel Terminal</h3>
+    <!-- ================= 3. SKALA OPERASIONAL & SEBARAN LOKASI AVIATION FUEL TERMINAL ================= -->
+    <section class="aftm-network-section" id="aftm-network-section">
+        <div class="container">
+            
+            <!-- 1. Key Metrics / Stats Row (4 Columns matching wireframe) -->
+            <div class="aftm-op-stats-grid aftm-reveal-scale">
+                <div class="aftm-op-stat-card">
+                    <div class="aftm-op-stat-value">11</div>
+                    <p class="aftm-op-stat-label">Lokasi</p>
                 </div>
-
-                <ul class="aftm-points-list">
-                    <li class="aftm-point-item">
-                        <div class="aftm-point-bullet" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <div class="aftm-point-text">
-                            <strong>Keandalan Stok Avtur Terjamin</strong> melalui manajemen inventori proaktif dan integrasi rantai pasok energi secara berkesinambungan.
-                        </div>
-                    </li>
-
-                    <li class="aftm-point-item">
-                        <div class="aftm-point-bullet" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <div class="aftm-point-text">
-                            <strong>Standar Kualitas Tertinggi JET A / JET A-1</strong> yang memenuhi spesifikasi ketat industri penerbangan komersial dan kargo internasional.
-                        </div>
-                    </li>
-
-                    <li class="aftm-point-item">
-                        <div class="aftm-point-bullet" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <div class="aftm-point-text">
-                            <strong>Kepatuhan Standar JIG &amp; IATA</strong> dalam setiap prosedur penerimaan, penyimpanan, penyaringan kontaminan, dan pengisian bahan bakar.
-                        </div>
-                    </li>
-
-                    <li class="aftm-point-item">
-                        <div class="aftm-point-bullet" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <div class="aftm-point-text">
-                            <strong>Infrastruktur Modern &amp; Armada Refueller Terkalibrasi</strong> didukung sistem hydrant dispenser berteknologi tinggi dan pemantauan filter otomatis.
-                        </div>
-                    </li>
-
-                    <li class="aftm-point-item">
-                        <div class="aftm-point-bullet" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <div class="aftm-point-text">
-                            <strong>SDM Bersertifikasi Khusus Aviasi</strong> dengan kompetensi tersertifikasi dalam into-plane refueling dan penanganan bahan bakar berisiko tinggi.
-                        </div>
-                    </li>
-
-                    <li class="aftm-point-item">
-                        <div class="aftm-point-bullet" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <div class="aftm-point-text">
-                            <strong>Penerapan HSSE &amp; Zero Accident</strong> secara menyeluruh guna menjaga keselamatan operasional pesawat dan area apron bandara.
-                        </div>
-                    </li>
-                </ul>
+                <div class="aftm-op-stat-card">
+                    <div class="aftm-op-stat-value">
+                        <span>8.200</span>
+                        <span class="aftm-op-stat-unit">KL</span>
+                    </div>
+                    <p class="aftm-op-stat-label">Storage Penyimpanan</p>
+                </div>
+                <div class="aftm-op-stat-card">
+                    <div class="aftm-op-stat-value">30</div>
+                    <p class="aftm-op-stat-label">Armada Penyaluran</p>
+                </div>
+                <div class="aftm-op-stat-card">
+                    <div class="aftm-op-stat-value">40</div>
+                    <p class="aftm-op-stat-label">Operator CRO</p>
+                </div>
             </div>
 
-            <!-- 3 Gambar Berjejer di Bawah (Clean, Pure Images Tanpa Title & Tag) -->
-            <div class="aftm-gallery-grid aftm-reveal-scale">
-                <div class="aftm-photo-card">
-                    <img src="assets/tentang1.png" alt="Fasilitas Terminal dan Tangki Avtur Patra Logistik" class="aftm-photo-img" loading="lazy">
+            <!-- 2. Photo Gallery Row (3 Photos matching wireframe) -->
+            <div class="aftm-op-gallery-grid aftm-reveal aftm-delay-1">
+                <div class="aftm-op-photo-card">
+                    <img src="assets/tentang1.png" alt="Armada dan Fasilitas Aviation Fuel Terminal" class="aftm-op-photo-img" loading="lazy">
                 </div>
-                <div class="aftm-photo-card">
-                    <img src="assets/DSC00198.png" alt="Fasilitas Operasional dan Penyimpanan Bahan Bakar" class="aftm-photo-img" loading="lazy">
+                <div class="aftm-op-photo-card">
+                    <img src="assets/DSC00198.png" alt="Penyimpanan Avtur Tangki Terminal Aviasi" class="aftm-op-photo-img" loading="lazy">
                 </div>
-                <div class="aftm-photo-card">
-                    <img src="assets/tbbm_ketapang.png" alt="Infrastruktur Tangki Terminal Bahan Bakar Strategis" class="aftm-photo-img" loading="lazy">
+                <div class="aftm-op-photo-card">
+                    <img src="assets/tbbm_ketapang.png" alt="Fasilitas Operasional Depot Pengisian Pesawat Udara" class="aftm-op-photo-img" loading="lazy">
                 </div>
+            </div>
+
+            <!-- 3. Interactive Map Showcase & 11 Location Buttons (matching wireframe) -->
+            <div class="aftm-map-showcase-card aftm-reveal aftm-delay-2">
+                <div class="aftm-map-showcase-header">
+                    <h3 class="aftm-map-showcase-title">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0056A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                        <span>Peta Sebaran Lokasi Aviation Fuel Terminal</span>
+                    </h3>
+                    <span class="aftm-map-badge-count">11 Titik Layanan Aktif</span>
+                </div>
+
+                <!-- Interactive Map Canvas with 11 Pins -->
+                <div class="aftm-op-map-canvas">
+                    <img src="assets/id 1.svg" alt="Peta Wilayah Operasi Indonesia" class="aftm-op-map-bg">
+
+                    <!-- 1. Tanjung Pinang -->
+                    <button type="button" class="aftm-map-pin-btn is-active" style="left: 23.5%; top: 36.0%;" data-loc="tanjung-pinang" aria-label="Tanjung Pinang">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Tanjung Pinang</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara Raja Haji Fisabilillah (TNJ)</span></div>
+                    </button>
+
+                    <!-- 2. Belitung -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 28.8%; top: 55.7%;" data-loc="belitung" aria-label="Belitung">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Belitung</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara H.A.S. Hanandjoeddin (TJQ)</span></div>
+                    </button>
+
+                    <!-- 3. Sampit -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 40.6%; top: 50.3%;" data-loc="sampit" aria-label="Sampit">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Sampit</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara H. Asan (SMQ)</span></div>
+                    </button>
+
+                    <!-- 4. Blimbingsari -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 45.0%; top: 80.4%;" data-loc="blimbingsari" aria-label="Blimbingsari">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Blimbingsari</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara Banyuwangi (BWX)</span></div>
+                    </button>
+
+                    <!-- 5. Labuan Bajo -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 54.6%; top: 84.0%;" data-loc="labuan-bajo" aria-label="Labuan Bajo">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Labuan Bajo</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara Komodo (LBJ)</span></div>
+                    </button>
+
+                    <!-- 6. Waingapu -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 56.8%; top: 90.2%;" data-loc="waingapu" aria-label="Waingapu">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Waingapu</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara Umbu Mehang Kunda (WGP)</span></div>
+                    </button>
+
+                    <!-- 7. Tambolaka -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 54.4%; top: 91.0%;" data-loc="tambolaka" aria-label="Tambolaka">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Tambolaka</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara Lede Kalumbang (TMC)</span></div>
+                    </button>
+
+                    <!-- 8. Maumere -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 59.2%; top: 83.2%;" data-loc="maumere" aria-label="Maumere">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Maumere</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara Frans Seda (MOF)</span></div>
+                    </button>
+
+                    <!-- 9. Ende -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 57.5%; top: 84.0%;" data-loc="ende" aria-label="Ende">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Ende</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara H. Hasan Aroeboesman (ENE)</span></div>
+                    </button>
+
+                    <!-- 10. Bima -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 52.8%; top: 83.7%;" data-loc="bima" aria-label="Bima">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Bima</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara Sultan M. Salahuddin (BMU)</span></div>
+                    </button>
+
+                    <!-- 11. Timika -->
+                    <button type="button" class="aftm-map-pin-btn" style="left: 88.8%; top: 65.2%;" data-loc="timika" aria-label="Timika">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="aftm-map-pin-pulse"></div>
+                        <div class="aftm-map-pin-tooltip"><strong>Timika</strong><br><span style="color:#93C5FD;font-size:11px;">Bandara Mozes Kilangin (TIM)</span></div>
+                    </button>
+                </div>
+
+                <!-- 4. Interactive Location Buttons (TOMBOL PETA HOVER matching wireframe) -->
+                <div class="aftm-loc-buttons-wrap">
+                    <div class="aftm-loc-buttons-header">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>Pilih Lokasi Terminal (Arahkan Kursor / Klik)</span>
+                    </div>
+                    <div class="aftm-loc-buttons-grid">
+                        <button type="button" class="aftm-loc-btn is-active" data-loc="tanjung-pinang">
+                            <span>Tanjung Pinang</span>
+                            <span class="aftm-loc-btn-code">TNJ</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="belitung">
+                            <span>Belitung</span>
+                            <span class="aftm-loc-btn-code">TJQ</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="sampit">
+                            <span>Sampit</span>
+                            <span class="aftm-loc-btn-code">SMQ</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="blimbingsari">
+                            <span>Blimbingsari</span>
+                            <span class="aftm-loc-btn-code">BWX</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="labuan-bajo">
+                            <span>Labuan Bajo</span>
+                            <span class="aftm-loc-btn-code">LBJ</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="waingapu">
+                            <span>Waingapu</span>
+                            <span class="aftm-loc-btn-code">WGP</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="tambolaka">
+                            <span>Tambolaka</span>
+                            <span class="aftm-loc-btn-code">TMC</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="maumere">
+                            <span>Maumere</span>
+                            <span class="aftm-loc-btn-code">MOF</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="ende">
+                            <span>Ende</span>
+                            <span class="aftm-loc-btn-code">ENE</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="bima">
+                            <span>Bima</span>
+                            <span class="aftm-loc-btn-code">BMU</span>
+                        </button>
+                        <button type="button" class="aftm-loc-btn" data-loc="timika">
+                            <span>Timika</span>
+                            <span class="aftm-loc-btn-code">TIM</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -1219,9 +1500,9 @@
                 <!-- Left Column: Header & Featured Image -->
                 <div class="aftm-solutions-left aftm-reveal-left">
                     <div class="aftm-sol-header">
-                        <span class="aftm-section-tag">TECHNICAL SUPPORT FOR INTO PLANE OPERATORS</span>
-                        <h2 class="aftm-sol-title">Our Aviation Solutions</h2>
-                        <p class="aftm-sol-desc">Solusi komprehensif dan dukungan teknis operasional berstandar internasional guna menjamin keandalan pengisian bahan bakar pesawat di seluruh jaringan bandara Indonesia.</p>
+                        <span class="aftm-section-tag" data-i18n="aftm_sol_tag">TECHNICAL SUPPORT FOR INTO PLANE OPERATORS</span>
+                        <h2 class="aftm-sol-title" data-i18n="aftm_sol_title">Solusi Layanan Aviation</h2>
+                        <p class="aftm-sol-desc" data-i18n="aftm_sol_desc">Layanan mencakup pengoperasian dan pengelolaan storage, fasilitas penerimaan dan penyaluran, serta sistem distribusi untuk memastikan avtur tersimpan dan tersalurkan secara aman, efisien, dan andal.</p>
                     </div>
                     
                     <div class="aftm-sol-image-wrapper">
@@ -1234,14 +1515,14 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="aftm-sol-badge-title">Standar Mutu JIG &amp; IATA IFQP</h4>
-                                <p class="aftm-sol-badge-sub">Operasional Aviasi Berstandar Global</p>
+                                <h4 class="aftm-sol-badge-title" data-i18n="aftm_sol_badge_title">Standar Mutu JIG &amp; IATA IFQP</h4>
+                                <p class="aftm-sol-badge-sub" data-i18n="aftm_sol_badge_sub">Operasional Aviasi Berstandar Global</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Column: Numbered Solutions List (01 to 06) -->
+                <!-- Right Column: Numbered Solutions List (01 to 04) -->
                 <div class="aftm-solutions-list aftm-reveal-right">
                     
                     <!-- Item 1 -->
@@ -1250,9 +1531,9 @@
                             01
                         </div>
                         <div class="aftm-sol-content">
-                            <h3 class="aftm-sol-item-title">Ensuring Safe and Compliant Airport Operations</h3>
-                            <p class="aftm-sol-item-desc">
-                                Sebagai anggota dan pelaksana standar <em>Joint Inspection Group (JIG)</em> serta mitra strategis <em>IATA Fuel Quality Pool</em>, kami memastikan seluruh operasional penanganan dan pengisian avtur mematuhi regulasi keselamatan penerbangan internasional secara ketat.
+                            <h3 class="aftm-sol-item-title" data-i18n="aftm_sol_item1_title">Into-Plane Fueling</h3>
+                            <p class="aftm-sol-item-desc" data-i18n="aftm_sol_item1_desc">
+                                Layanan pengisian bahan bakar langsung ke pesawat menggunakan sistem hydrant maupun tanker truck, dijalankan sesuai standar keselamatan internasional JIG (Joint Inspection Group) untuk menjamin proses pengisian yang aman dan efisien di setiap jenis pesawat.
                             </p>
                         </div>
                     </div>
@@ -1263,9 +1544,9 @@
                             02
                         </div>
                         <div class="aftm-sol-content">
-                            <h3 class="aftm-sol-item-title">Our Airport Network</h3>
-                            <p class="aftm-sol-item-desc">
-                                Keberadaan jaringan Depot Pengisian Pesawat Udara (DPPU) yang tersebar di bandara-bandara strategis, komersial, kargo, dan perintis di seluruh Indonesia guna menjamin kontinuitas pasokan energi aviasi tanpa henti.
+                            <h3 class="aftm-sol-item-title" data-i18n="aftm_sol_item2_title">Quality Control &amp; Traceability Jet A-1</h3>
+                            <p class="aftm-sol-item-desc" data-i18n="aftm_sol_item2_desc">
+                                Setiap tahap penerimaan, penyimpanan, hingga penyaluran Jet A-1 melalui proses quality control ketat, memastikan kualitas dan keterlacakan (traceability) bahan bakar terjaga hingga sampai ke pesawat.
                             </p>
                         </div>
                     </div>
@@ -1276,9 +1557,9 @@
                             03
                         </div>
                         <div class="aftm-sol-content">
-                            <h3 class="aftm-sol-item-title">e-Aviation / AVR Fueling Platform</h3>
-                            <p class="aftm-sol-item-desc">
-                                Integrasi perangkat lunak dan aplikasi digital <em>e-Aviation</em> modern untuk penerbitan tiket pengisian (*delivery ticket*), pemantauan volume bahan bakar real-time, transparansi penetapan harga, serta penagihan (*invoicing*) otomatis.
+                            <h3 class="aftm-sol-item-title" data-i18n="aftm_sol_item3_title">Digital Fuel Management</h3>
+                            <p class="aftm-sol-item-desc" data-i18n="aftm_sol_item3_desc">
+                                Didukung sistem monitoring real-time dan teknologi telemetri digital, memberikan visibilitas transaksi pengisian bahan bakar secara instan dan akurat — menggantikan proses pencatatan manual dengan sistem yang lebih efisien dan transparan.
                             </p>
                         </div>
                     </div>
@@ -1289,35 +1570,9 @@
                             04
                         </div>
                         <div class="aftm-sol-content">
-                            <h3 class="aftm-sol-item-title">Technical Services and Information</h3>
-                            <p class="aftm-sol-item-desc">
-                                Akses penuh ke dukungan operasional 24/7, saran ahli terkait pengendalian mutu spesifikasi bahan bakar Jet A / Jet A-1, serta pendampingan rekayasa teknik fasilitas penyimpanan dan armada pengisian.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="aftm-sol-item">
-                        <div class="aftm-sol-icon-box" aria-label="Solusi 05">
-                            05
-                        </div>
-                        <div class="aftm-sol-content">
-                            <h3 class="aftm-sol-item-title">Training &amp; Competency Development</h3>
-                            <p class="aftm-sol-item-desc">
-                                Program pelatihan operator terstruktur mencakup orientasi dasar, prosedur pengoperasian lanjutan, pemeliharaan teknis peralatan hidran &amp; refueller, hingga sertifikasi kompetensi personel <em>airside</em>.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Item 6 -->
-                    <div class="aftm-sol-item">
-                        <div class="aftm-sol-icon-box" aria-label="Solusi 06">
-                            06
-                        </div>
-                        <div class="aftm-sol-content">
-                            <h3 class="aftm-sol-item-title">Airport Operations Audit</h3>
-                            <p class="aftm-sol-item-desc">
-                                Tim spesialis aviasi kami melaksanakan audit operasional dan inspeksi kelayakan fasilitas DPPU secara berkala untuk mempertahankan kepatuhan HSSE dan standar mutu tertinggi.
+                            <h3 class="aftm-sol-item-title" data-i18n="aftm_sol_item4_title">Manajemen Rantai Pasok Terintegrasi</h3>
+                            <p class="aftm-sol-item-desc" data-i18n="aftm_sol_item4_desc">
+                                Mengelola alur distribusi avtur secara end-to-end — mulai dari Kilang, Fuel Terminal, Aviation Fuel Terminal, hingga layanan into-plane — guna menjamin keandalan pasokan di seluruh titik layanan penerbangan.
                             </p>
                         </div>
                     </div>
@@ -1347,271 +1602,6 @@
                     <span class="aftm-stat-value" id="aftm-stat-4">0</span>
                     <div class="aftm-stat-divider"></div>
                     <span class="aftm-stat-label">% On-Time Refueling Rate</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= 5. LOKASI AVIATION FUEL TERMINAL SECTION ================= -->
-    <section class="aftm-location-section" id="aftm-location-section">
-        <div class="container">
-            <div class="aftm-location-header aftm-reveal">
-                <h2 class="aftm-loc-title">Lokasi Aviation Fuel Terminal</h2>
-            </div>
-
-            <div class="aftm-location-wrapper aftm-reveal-scale">
-                <!-- Left: Blue Metric Card -->
-                <div class="aftm-loc-stat-card">
-                    <span class="aftm-loc-stat-label">Aviation Fuel Terminal</span>
-                    <div class="aftm-loc-stat-number">72</div>
-                    <a href="javascript:void(0)" onclick="alert('Daftar 72 Lokasi DPPU / Aviation Fuel Terminal di Indonesia siap diunduh.')" class="aftm-loc-download-btn">
-                        <span>Download</span>
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <polyline points="19 12 12 19 5 12"></polyline>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Right: Interactive Indonesia Map with 72 Location Pins -->
-                <div class="aftm-loc-map-container">
-                    <!-- Indonesia Map Asset Image from assets folder -->
-                    <img src="assets/indonesian map 2.png" alt="Peta Sebaran Lokasi Aviation Fuel Terminal di Indonesia" class="aftm-loc-map-bg">
-
-                    <!-- Pins Spread Matching 72 DPPU Aviation Fuel Terminals (Strictly Inside Island Landmass) -->
-
-                    <!-- 1. SUMATERA PINS -->
-                    <div class="aftm-loc-pin" style="left: 4.8%; top: 12.0%;" data-tooltip="DPPU Sultan Iskandar Muda (Banda Aceh)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 4.2%; top: 8.5%;" data-tooltip="DPPU Maimun Saleh (Sabang)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 7.2%; top: 16.0%;" data-tooltip="DPPU Malikussaleh (Lhokseumawe)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 9.8%; top: 23.0%;" data-tooltip="DPPU Kualanamu (Medan - KNO)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 9.2%; top: 29.0%;" data-tooltip="DPPU Silangit (Tapanuli Utara)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 7.2%; top: 31.0%;" data-tooltip="DPPU Binaka (Nias)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 14.5%; top: 28.0%;" data-tooltip="DPPU Pinang Kampai (Dumai)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 14.8%; top: 35.0%;" data-tooltip="DPPU Sultan Syarif Kasim II (Pekanbaru)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 20.8%; top: 31.0%;" data-tooltip="DPPU Hang Nadim (Batam - BTH)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 22.2%; top: 34.0%;" data-tooltip="DPPU Raja Haji Fisabilillah (Tanjung Pinang)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 27.5%; top: 16.0%;" data-tooltip="DPPU Raden Sadjad (Natuna)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 12.5%; top: 44.0%;" data-tooltip="DPPU Minangkabau (Padang - PDG)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 17.8%; top: 45.0%;" data-tooltip="DPPU Sultan Thaha (Jambi)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 15.2%; top: 56.0%;" data-tooltip="DPPU Fatmawati Soekarno (Bengkulu)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 20.5%; top: 52.0%;" data-tooltip="DPPU Sultan Mahmud Badaruddin II (Palembang)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 24.8%; top: 49.0%;" data-tooltip="DPPU Depati Amir (Pangkalpinang)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 28.2%; top: 50.0%;" data-tooltip="DPPU H.A.S. Hanandjoeddin (Belitung)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 22.5%; top: 62.0%;" data-tooltip="DPPU Radin Inten II (Lampung)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-
-                    <!-- 2. JAWA PINS -->
-                    <div class="aftm-loc-pin" style="left: 25.5%; top: 68.5%;" data-tooltip="DPPU Soekarno-Hatta (Cengkareng - CGK)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 26.8%; top: 69.5%;" data-tooltip="DPPU Halim Perdanakusuma (Jakarta - HLP)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 28.5%; top: 73.5%;" data-tooltip="DPPU Husein Sastranegara (Bandung)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 30.5%; top: 72.5%;" data-tooltip="DPPU Kertajati (Majalengka - KJT)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 34.2%; top: 73.5%;" data-tooltip="DPPU Jenderal Ahmad Yani (Semarang)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 35.8%; top: 76.0%;" data-tooltip="DPPU Adi Soemarmo (Solo - SOC)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 33.8%; top: 76.5%;" data-tooltip="DPPU Yogyakarta International Airport (YIA)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 39.5%; top: 73.8%;" data-tooltip="DPPU Juanda (Surabaya - SUB)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 38.8%; top: 77.5%;" data-tooltip="DPPU Abdul Rachman Saleh (Malang)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 43.0%; top: 77.0%;" data-tooltip="DPPU Banyuwangi (BWX)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-
-                    <!-- 3. BALI & NUSA TENGGARA PINS -->
-                    <div class="aftm-loc-pin" style="left: 44.2%; top: 71.8%;" data-tooltip="DPPU I Gusti Ngurah Rai (Bali - DPS)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 46.2%; top: 79.5%;" data-tooltip="DPPU Lombok Praya (LOP)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 48.8%; top: 79.8%;" data-tooltip="DPPU Sultan M. Kaharuddin (Sumbawa)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 51.0%; top: 80.2%;" data-tooltip="DPPU Sultan M. Salahuddin (Bima)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 54.0%; top: 79.0%;" data-tooltip="DPPU Komodo (Labuan Bajo - LBJ)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 58.0%; top: 79.2%;" data-tooltip="DPPU Frans Seda (Maumere)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 62.5%; top: 85.5%;" data-tooltip="DPPU El Tari (Kupang - KOE)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 53.2%; top: 86.0%;" data-tooltip="DPPU Tambolaka (Sumba - TMC)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-
-                    <!-- 4. KALIMANTAN PINS -->
-                    <div class="aftm-loc-pin" style="left: 33.8%; top: 35.5%;" data-tooltip="DPPU Supadio (Pontianak - PNK)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 32.5%; top: 29.5%;" data-tooltip="DPPU Singkawang">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 36.8%; top: 33.5%;" data-tooltip="DPPU Tebelian (Sintang)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 34.5%; top: 46.5%;" data-tooltip="DPPU Rahadi Oesman (Ketapang)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 37.5%; top: 49.5%;" data-tooltip="DPPU Iskandar (Pangkalan Bun)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 39.5%; top: 48.5%;" data-tooltip="DPPU H. Asan (Sampit)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 41.2%; top: 43.5%;" data-tooltip="DPPU Tjilik Riwut (Palangkaraya)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 44.2%; top: 51.5%;" data-tooltip="DPPU Syamsudin Noor (Banjarmasin)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 46.5%; top: 40.5%;" data-tooltip="DPPU SAMS Sepinggan (Balikpapan - BPN)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 47.8%; top: 34.5%;" data-tooltip="DPPU APT Pranoto (Samarinda)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 48.0%; top: 25.5%;" data-tooltip="DPPU Kalimarau (Berau)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 49.2%; top: 18.5%;" data-tooltip="DPPU Juwata (Tarakan)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 48.5%; top: 14.5%;" data-tooltip="DPPU Nunukan (NNX)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-
-                    <!-- 5. SULAWESI PINS -->
-                    <div class="aftm-loc-pin" style="left: 54.5%; top: 60.5%;" data-tooltip="DPPU Sultan Hasanuddin (Makassar - UPG)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 53.5%; top: 48.5%;" data-tooltip="DPPU Tampa Padang (Mamuju)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 55.2%; top: 38.5%;" data-tooltip="DPPU Mutiara SIS Al-Jufrie (Palu)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 54.8%; top: 31.5%;" data-tooltip="DPPU Sultan Bantilan (Tolitoli)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 59.2%; top: 31.0%;" data-tooltip="DPPU Djalaluddin (Gorontalo)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 63.8%; top: 27.5%;" data-tooltip="DPPU Sam Ratulangi (Manado - MDC)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 59.8%; top: 42.5%;" data-tooltip="DPPU Syukuran Aminuddin Amir (Luwuk)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 59.5%; top: 58.5%;" data-tooltip="DPPU Haluoleo (Kendari)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 59.5%; top: 63.5%;" data-tooltip="DPPU Betoambari (Baubau)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-
-                    <!-- 6. MALUKU PINS -->
-                    <div class="aftm-loc-pin" style="left: 70.2%; top: 27.5%;" data-tooltip="DPPU Sultan Babullah (Ternate)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 71.0%; top: 36.5%;" data-tooltip="DPPU Oesman Sadik (Labuha)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 73.5%; top: 52.5%;" data-tooltip="DPPU Pattimura (Ambon - AMQ)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 67.5%; top: 53.5%;" data-tooltip="DPPU Namlea (Buru)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 77.5%; top: 75.5%;" data-tooltip="DPPU Mathilda Batlayeri (Saumlaki)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 84.0%; top: 68.0%;" data-tooltip="DPPU Karel Sadsuitubun (Tual/Kei)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-
-                    <!-- 7. PAPUA PINS -->
-                    <div class="aftm-loc-pin" style="left: 78.5%; top: 42.5%;" data-tooltip="DPPU Domine Eduard Osok (Sorong - SOQ)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 82.5%; top: 41.5%;" data-tooltip="DPPU Rendani (Manokwari - MKW)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 86.8%; top: 39.5%;" data-tooltip="DPPU Frans Kaisiepo (Biak - BIK)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 84.5%; top: 50.5%;" data-tooltip="DPPU Douw Aturure (Nabire - NBX)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 87.5%; top: 57.5%;" data-tooltip="DPPU Mozes Kilangin (Timika - TIM)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 90.8%; top: 54.5%;" data-tooltip="DPPU Wamena (WMX)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 95.0%; top: 47.5%;" data-tooltip="DPPU Sentani (Jayapura - DJJ)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 95.5%; top: 76.5%;" data-tooltip="DPPU Mopah (Merauke - MKQ)">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="aftm-loc-pin" style="left: 94.2%; top: 68.5%;" data-tooltip="DPPU Tanah Merah">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ED1C24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1848,6 +1838,46 @@
                     if (el) el.textContent = prefix + val + suffix;
                 });
             }
+
+            // Interactive Map & Location Buttons for Aviation Fuel Terminal (11 DPPU Locations)
+            const locButtons = document.querySelectorAll('.aftm-loc-btn');
+            const mapPins = document.querySelectorAll('.aftm-map-pin-btn');
+
+            function setActiveLocation(locId) {
+                locButtons.forEach(btn => {
+                    if (btn.dataset.loc === locId) {
+                        btn.classList.add('is-active');
+                    } else {
+                        btn.classList.remove('is-active');
+                    }
+                });
+
+                mapPins.forEach(pin => {
+                    if (pin.dataset.loc === locId) {
+                        pin.classList.add('is-active');
+                    } else {
+                        pin.classList.remove('is-active');
+                    }
+                });
+            }
+
+            locButtons.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    setActiveLocation(this.dataset.loc);
+                });
+                btn.addEventListener('click', function() {
+                    setActiveLocation(this.dataset.loc);
+                });
+            });
+
+            mapPins.forEach(pin => {
+                pin.addEventListener('mouseenter', function() {
+                    setActiveLocation(this.dataset.loc);
+                });
+                pin.addEventListener('click', function() {
+                    setActiveLocation(this.dataset.loc);
+                });
+            });
         });
     </script>
 

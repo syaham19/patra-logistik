@@ -237,7 +237,12 @@
         .about-tab-content.active {
             display: block;
         }
-        #tab-other,
+        #tab-transportasi,
+        #tab-inventory,
+        #tab-other {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
         #tab-fleet {
             padding-bottom: 80px;
         }
@@ -2031,92 +2036,191 @@
                     <!-- TAB 3: OTHER BUSINESS -->
                     <div class="about-tab-content" id="tab-other">
                         <div class="content-title">
-                            Other Business
-                            <a href="#" class="biz-contact-link">Contact Us</a>
+                            <span data-i18n="nav.biz.other">Lainnya</span>
+                            <a href="mailto:info.patralogistik@pertamina.com" class="biz-contact-link" data-i18n="nav.contact_us">Contact Us</a>
                         </div>
-                        <p class="content-text" style="margin-bottom: 24px;" data-i18n="biz_49" data-i18n="biz_79">Kami bertekad untuk memberikan pelayanan terbaik kepada Anda. Dengan beragam armada yang dikelola oleh tim yang memiliki dedikasi dan keahlian, kami berharap dapat menyampaikan keunggulan kepada Anda.</p>
+                        <p class="content-text" style="font-size: 16px; font-weight: 600; color: #1E293B; margin-bottom: 32px;" data-i18n="biz_49">
+                            Solusi Bisnis Pendukung untuk Kelancaran Operasional Logistik Energi Anda
+                        </p>
                         
-                        <!-- Other Business Sub-tabs -->
-                        <div class="subtab-nav" style="margin-bottom: 28px;">
-                            <button class="other-subtab-btn" data-sub="sewa-mobil">Penyewaan Kendaraan Ringan Penumpang</button>
-                            <button class="other-subtab-btn" data-sub="customs">Customs Clearance</button>
-                            <button class="other-subtab-btn" data-sub="it-services">IT Services</button>
-                            <button class="other-subtab-btn" data-sub="tenaga-kerja">Penyedia Tenaga Kerja</button>
-                            <button class="other-subtab-btn active" data-sub="non-fuel">Pengangkutan Non Fuel</button>
-                        </div>
+                        <!-- Per-section container -->
+                        <div class="other-services-sections" style="display: flex; flex-direction: column; gap: 32px;">
 
-                        <!-- 1. Penyewaan Kendaraan Ringan Penumpang -->
-                        <div class="other-subtab-pane" id="other-sub-sewa-mobil">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 24px;">
-                                Layanan penyewaan kendaraan ringan penumpang (Light Passenger Vehicle) untuk mendukung kegiatan operasional perkantoran dan lapangan mitra kerja di berbagai daerah operasional seluruh Indonesia. Armada kami terawat secara berkala dan didukung oleh sistem pemantauan berkendara yang aman.
-                            </p>
-                        </div>
-
-                        <!-- 2. Customs Clearance -->
-                        <div class="other-subtab-pane" id="other-sub-customs">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 24px;">
-                                Layanan pengurusan administrasi kepabeanan, ekspor-impor, serta perizinan kepelabuhanan (Customs Clearance) secara cepat, tepat, dan patuh terhadap regulasi hukum yang berlaku. Kami mempermudah proses kepabeanan komoditas energi Anda agar alur distribusi berjalan lancar.
-                            </p>
-                        </div>
-
-                        <!-- 3. IT Services -->
-                        <div class="other-subtab-pane" id="other-sub-it-services">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 24px;">
-                                Solusi teknologi informasi yang terintegrasi untuk mendukung operasional logistik, termasuk sistem manajemen transportasi (TMS), pelacakan real-time, integrasi data supply chain, dan pemeliharaan infrastruktur TI di wilayah operasi terpencil.
-                            </p>
-                        </div>
-
-                        <!-- 4. Penyedia Tenaga Kerja -->
-                        <div class="other-subtab-pane" id="other-sub-tenaga-kerja">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 24px;">
-                                Penyediaan tenaga kerja profesional dan bersertifikat (seperti pengemudi mobil tangki/AMT, staf logistik, operasional lapangan) untuk menjamin standar keselamatan (HSSE) yang ketat dan efisiensi kerja tinggi pada ekosistem distribusi energi Anda.
-                            </p>
-                        </div>
-
-                        <!-- 5. Pengangkutan Non Fuel (Active by default based on wireframe) -->
-                        <div class="other-subtab-pane active" id="other-sub-non-fuel">
-                            <h4 style="font-size:15px; font-weight:800; color:#1E293B; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">Overview</h4>
-                            <p class="content-text" style="font-size:14px; line-height:1.6; margin-bottom: 28px;">
-                                Layanan pengangkutan produk energi non-BBM, seperti Fatty Acid Methyl Ester (FAME) dan refrigeran ramah lingkungan Breezon MC (refrigeran hidrokarbon dari Pertamina) untuk kebutuhan industri, otomotif, dan pendingin ruangan ramah lingkungan.
-                            </p>
-
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch;">
-                                <!-- Card 1: FAME -->
-                                <div class="simple-card" style="padding: 28px; border: 1px solid #E2E8F0; border-radius: 0; background:#FFFFFF; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s ease;">
-                                    <div>
-                                        <div class="benefit-icon" style="background:#ECFDF5; color: #10B981; width: 48px; height: 48px; padding: 12px; margin-bottom: 16px; border-radius: 0;">
-                                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                                        </div>
-                                        <h4 class="benefit-title" style="text-align:left; font-size:16px; font-weight:800; color:#1E293B; margin-bottom:12px;" data-i18n="biz_85">Pengangkutan FAME</h4>
-                                        <p class="benefit-desc" style="text-align:left; font-size:13px; line-height:1.6; color:#64748B;">
-                                            Pengangkutan FAME (Fatty Acid Methyl Ester) sebagai bahan campuran utama biodiesel guna mendukung bauran energi terbarukan nasional serta program ramah lingkungan pemerintah.
-                                        </p>
+                            <!-- Section 1: Jasa Penyewaan Armada Mobil Tangki -->
+                            <div class="other-section-block">
+                                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                                    <div class="benefit-icon" style="background: #EFF6FF; color: #0056A6; width: 50px; height: 50px; min-width: 50px; padding: 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="1" y="3" width="15" height="13" rx="1"></rect>
+                                            <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
+                                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                        </svg>
                                     </div>
-                                    <div style="margin-top:20px; font-size:11.5px; font-weight:700; color:#10B981; display:flex; align-items:center; gap:6px;">
-                                        <span data-i18n="biz_87">Bioenergy Distribution</span>
-                                        <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:3.5;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    <div style="flex: 1;">
+                                        <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #0056A6; background: #E0F2FE; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Fleet Rental &amp; Logistics</div>
+                                        <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0 0 10px 0; letter-spacing: -0.3px;">Jasa Penyewaan Armada Mobil Tangki</h3>
+                                        <p class="content-text" style="font-size: 14.5px; line-height: 1.65; color: #475569; margin-bottom: 18px;">
+                                            Kami menyediakan layanan penyewaan armada mobil tangki dengan standar keselamatan dan keandalan tinggi, dikelola dengan pengalaman puluhan tahun dalam distribusi BBM dan produk energi.
+                                        </p>
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9;">
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
+                                                <span>Penyediaan unit mobil tangki sesuai kapasitas &amp; kebutuhan</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
+                                                <span>Pengemudi bersertifikasi &amp; terlatih standar HSSE</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
+                                                <span>Perawatan &amp; inspeksi armada secara berkala</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
+                                                <span>Fleksibilitas kontrak sewa jangka pendek &amp; panjang</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- Card 2: Breezon MC -->
-                                <div class="simple-card" style="padding: 28px; border: 1px solid #E2E8F0; border-radius: 0; background:#FFFFFF; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s ease;">
-                                    <div>
-                                        <div class="benefit-icon" style="background:#ECFDF5; color: #10B981; width: 48px; height: 48px; padding: 12px; margin-bottom: 16px; border-radius: 0;">
-                                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                        </div>
-                                        <h4 class="benefit-title" style="text-align:left; font-size:16px; font-weight:800; color:#1E293B; margin-bottom:12px;" data-i18n="biz_88">Pengangkutan BreezonMC</h4>
-                                        <p class="benefit-desc" style="text-align:left; font-size:13px; line-height:1.6; color:#64748B;">
-                                            Distribusi dan pengangkutan refrigeran hidrokarbon Breezon MC produksi Pertamina sebagai solusi media pendingin udara ramah lingkungan yang aman dan berefisiensi energi tinggi.
+                            <!-- Section 2: Jasa Pengangkutan Material & Bahan Non-Fuel -->
+                            <div class="other-section-block">
+                                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                                    <div class="benefit-icon" style="background: #ECFDF5; color: #10B981; width: 50px; height: 50px; min-width: 50px; padding: 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #10B981; background: #ECFDF5; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Non-Fuel &amp; Industrial Materials</div>
+                                        <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0 0 10px 0; letter-spacing: -0.3px;">Jasa Pengangkutan Material &amp; Bahan Non-Fuel</h3>
+                                        <p class="content-text" style="font-size: 14.5px; line-height: 1.65; color: #475569; margin-bottom: 18px;">
+                                            Selain distribusi BBM, kami menyediakan layanan pengangkutan material dan bahan non-fuel untuk mendukung kebutuhan logistik industri secara lebih luas.
                                         </p>
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9; margin-bottom: 20px;">
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #10B981; flex-shrink: 0;"></div>
+                                                <span>Pengangkutan material konstruksi, peralatan &amp; penunjang industri</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #10B981; flex-shrink: 0;"></div>
+                                                <span>Penanganan sesuai spesifikasi &amp; karakteristik material</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #10B981; flex-shrink: 0;"></div>
+                                                <span>Jaringan distribusi menjangkau berbagai wilayah operasional</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Specialty Non-Fuel Products Sub-Cards (FAME & Breezon MC) -->
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                                            <div style="padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 6px; background: #F8FAFC;">
+                                                <div style="font-weight: 700; font-size: 13.5px; color: #1E293B; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                                    <div style="width: 7px; height: 7px; border-radius: 2px; background: #10B981;"></div>
+                                                    <span data-i18n="biz_85">Pengangkutan FAME</span>
+                                                </div>
+                                                <p style="font-size: 12.5px; line-height: 1.55; color: #64748B; margin: 0;">
+                                                    Pengangkutan FAME (Fatty Acid Methyl Ester) sebagai bahan campuran utama biodiesel guna mendukung program energi terbarukan nasional.
+                                                </p>
+                                            </div>
+                                            <div style="padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 6px; background: #F8FAFC;">
+                                                <div style="font-weight: 700; font-size: 13.5px; color: #1E293B; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                                    <div style="width: 7px; height: 7px; border-radius: 2px; background: #10B981;"></div>
+                                                    <span data-i18n="biz_88">Pengangkutan BreezonMC</span>
+                                                </div>
+                                                <p style="font-size: 12.5px; line-height: 1.55; color: #64748B; margin: 0;">
+                                                    Distribusi refrigeran hidrokarbon ramah lingkungan produksi Pertamina untuk solusi pendingin hemat energi berstandar tinggi.
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div style="margin-top:20px; font-size:11.5px; font-weight:700; color:#10B981; display:flex; align-items:center; gap:6px;">
-                                        <span data-i18n="biz_90">Green Refrigerant Transport</span>
-                                        <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:3.5;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                </div>
+                            </div>
+
+                            <!-- Section 3: IT Solution untuk Digital Logistic Solution -->
+                            <div class="other-section-block">
+                                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                                    <div class="benefit-icon" style="background: #EFF6FF; color: #0056A6; width: 50px; height: 50px; min-width: 50px; padding: 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                                        </svg>
                                     </div>
+                                    <div style="flex: 1;">
+                                        <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #0056A6; background: #E0F2FE; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Digital Logistics &amp; Tech</div>
+                                        <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0 0 10px 0; letter-spacing: -0.3px;">IT Solution untuk Digital Logistic Solution</h3>
+                                        <p class="content-text" style="font-size: 14.5px; line-height: 1.65; color: #475569; margin-bottom: 18px;">
+                                            Melalui pengembangan sistem digital, kami menghadirkan solusi teknologi informasi untuk mendukung efisiensi rantai pasok dan visibilitas operasional logistik.
+                                        </p>
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9;">
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
+                                                <span>Sistem monitoring dan pelacakan armada real-time</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
+                                                <span>Manajemen data dan pelaporan operasional digital</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
+                                                <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
+                                                <span>Integrasi sistem untuk mendukung pengambilan keputusan berbasis data</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Section CTA Banner "Contact Us" (Full Width 100%) -->
+                        <div class="biz-cta-banner">
+                            <div class="biz-cta-container">
+                                <div class="biz-cta-left">
+                                    <div class="biz-cta-badge">
+                                        <span class="biz-cta-badge-dot"></span>
+                                        <span data-i18n="biz_cta_badge">KONSULTASI &amp; KERJASAMA</span>
+                                    </div>
+                                    <h3 class="biz-cta-title" data-i18n="biz_cta_title_other">Diskusikan Kebutuhan Bisnis Anda dengan Tim Kami</h3>
+                                    <p class="biz-cta-desc" data-i18n="biz_cta_desc_other">Konsultasikan solusi logistik energi, penyewaan armada, maupun integrasi teknologi rantai pasok bersama tim ahli Patra Logistik.</p>
+                                </div>
+                                <div class="biz-cta-right">
+                                    <div class="biz-cta-contacts-grid">
+                                        <a href="tel:+62212519669" class="biz-cta-contact-item">
+                                            <div class="biz-cta-contact-icon" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="biz-cta-contact-info">
+                                                <span class="biz-cta-contact-label" data-i18n="biz_cta_call_label">Hubungi kami di</span>
+                                                <span class="biz-cta-contact-value">(021)-25196699</span>
+                                            </div>
+                                        </a>
+                                        <a href="mailto:info.patralogistik@pertamina.com" class="biz-cta-contact-item">
+                                            <div class="biz-cta-contact-icon" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="biz-cta-contact-info">
+                                                <span class="biz-cta-contact-label" data-i18n="biz_cta_email_label">Email kami di</span>
+                                                <span class="biz-cta-contact-value">info.patralogistik@pertamina.com</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <a href="mailto:info.patralogistik@pertamina.com" class="biz-cta-btn">
+                                        <span data-i18n="biz_cta_btn">Hubungi Kami</span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
                         </div>
