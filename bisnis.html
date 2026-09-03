@@ -207,15 +207,97 @@
         .other-section-block {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 8px;
-            padding: 32px;
+            border-radius: 12px;
+            padding: 24px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-            transition: all 0.25s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .other-section-block:hover {
             border-color: #CBD5E1;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 28px rgba(0, 86, 166, 0.08);
             transform: translateY(-2px);
+        }
+        .other-card-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+        .other-card-media {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0F172A;
+            min-height: 220px;
+            height: 100%;
+            display: flex;
+        }
+        .other-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .other-section-block:hover .other-card-img {
+            transform: scale(1.05);
+        }
+        .other-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.02) 50%, rgba(15, 23, 42, 0.75) 100%);
+            pointer-events: none;
+        }
+        .other-card-tag {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+        .other-card-tag-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #38BDF8;
+        }
+        .other-card-tag-dot.green {
+            background: #10B981;
+        }
+        .other-card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+        @media (max-width: 900px) {
+            .other-card-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .other-card-media {
+                min-height: 200px;
+                max-height: 250px;
+                width: 100%;
+            }
+            .other-section-block {
+                padding: 20px;
+            }
         }
 
         @keyframes fadeIn {
@@ -2040,22 +2122,36 @@
 
                             <!-- Section 1: Jasa Penyewaan Armada Mobil Tangki -->
                             <div class="other-section-block">
-                                <div style="display: flex; align-items: flex-start; gap: 20px;">
-                                    <div class="benefit-icon" style="background: #EFF6FF; color: #0056A6; width: 50px; height: 50px; min-width: 50px; padding: 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="1" y="3" width="15" height="13" rx="1"></rect>
-                                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                                        </svg>
+                                <div class="other-card-layout">
+                                    <!-- Left: Illustrative Media Showcase -->
+                                    <div class="other-card-media">
+                                        <img src="assets/Mobil Tangki Maos.png" alt="Armada Mobil Tangki BBM Pertamina Patra Logistik" class="other-card-img" loading="lazy">
+                                        <div class="other-card-overlay"></div>
+                                        <div class="other-card-tag">
+                                            <span class="other-card-tag-dot"></span>
+                                            <span>Armada Mobil Tangki</span>
+                                        </div>
                                     </div>
-                                    <div style="flex: 1;">
-                                        <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #0056A6; background: #E0F2FE; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Fleet Rental &amp; Logistics</div>
-                                        <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0 0 10px 0; letter-spacing: -0.3px;">Jasa Penyewaan Armada Mobil Tangki</h3>
+                                    <!-- Right: Content & Explanations -->
+                                    <div class="other-card-content">
+                                        <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px;">
+                                            <div class="benefit-icon" style="background: #EFF6FF; color: #0056A6; width: 46px; height: 46px; min-width: 46px; padding: 10px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;">
+                                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                    <rect x="1" y="3" width="15" height="13" rx="1"></rect>
+                                                    <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
+                                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #0056A6; background: #E0F2FE; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Fleet Rental &amp; Logistics</div>
+                                                <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0; letter-spacing: -0.3px;">Jasa Penyewaan Armada Mobil Tangki</h3>
+                                            </div>
+                                        </div>
                                         <p class="content-text" style="font-size: 14.5px; line-height: 1.65; color: #475569; margin-bottom: 18px;">
                                             Kami menyediakan layanan penyewaan armada mobil tangki dengan standar keselamatan dan keandalan tinggi, dikelola dengan pengalaman puluhan tahun dalam distribusi BBM dan produk energi.
                                         </p>
-                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9;">
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9;">
                                             <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
                                                 <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
                                                 <span>Penyediaan unit mobil tangki sesuai kapasitas &amp; kebutuhan</span>
@@ -2079,21 +2175,35 @@
 
                             <!-- Section 2: Jasa Pengangkutan Material & Bahan Non-Fuel -->
                             <div class="other-section-block">
-                                <div style="display: flex; align-items: flex-start; gap: 20px;">
-                                    <div class="benefit-icon" style="background: #ECFDF5; color: #10B981; width: 50px; height: 50px; min-width: 50px; padding: 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                                        </svg>
+                                <div class="other-card-layout">
+                                    <!-- Left: Illustrative Media Showcase -->
+                                    <div class="other-card-media">
+                                        <img src="assets/nonfuel_material_transport.jpg" alt="Pengangkutan Material Industri dan Non-Fuel Patra Logistik" class="other-card-img" loading="lazy">
+                                        <div class="other-card-overlay"></div>
+                                        <div class="other-card-tag">
+                                            <span class="other-card-tag-dot green"></span>
+                                            <span>Material &amp; Non-Fuel</span>
+                                        </div>
                                     </div>
-                                    <div style="flex: 1;">
-                                        <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #10B981; background: #ECFDF5; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Non-Fuel &amp; Industrial Materials</div>
-                                        <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0 0 10px 0; letter-spacing: -0.3px;">Jasa Pengangkutan Material &amp; Bahan Non-Fuel</h3>
+                                    <!-- Right: Content & Explanations -->
+                                    <div class="other-card-content">
+                                        <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px;">
+                                            <div class="benefit-icon" style="background: #ECFDF5; color: #10B981; width: 46px; height: 46px; min-width: 46px; padding: 10px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;">
+                                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #10B981; background: #ECFDF5; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Non-Fuel &amp; Industrial Materials</div>
+                                                <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0; letter-spacing: -0.3px;">Jasa Pengangkutan Material &amp; Bahan Non-Fuel</h3>
+                                            </div>
+                                        </div>
                                         <p class="content-text" style="font-size: 14.5px; line-height: 1.65; color: #475569; margin-bottom: 18px;">
                                             Selain distribusi BBM, kami menyediakan layanan pengangkutan material dan bahan non-fuel untuk mendukung kebutuhan logistik industri secara lebih luas.
                                         </p>
-                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9; margin-bottom: 20px;">
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9; margin-bottom: 18px;">
                                             <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
                                                 <div style="width: 6px; height: 6px; border-radius: 50%; background: #10B981; flex-shrink: 0;"></div>
                                                 <span>Pengangkutan material konstruksi, peralatan &amp; penunjang industri</span>
@@ -2109,8 +2219,8 @@
                                         </div>
 
                                         <!-- Specialty Non-Fuel Products Sub-Cards (FAME & Breezon MC) -->
-                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
-                                            <div style="padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 6px; background: #F8FAFC;">
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+                                            <div style="padding: 14px 16px; border: 1px solid #E2E8F0; border-radius: 6px; background: #F8FAFC;">
                                                 <div style="font-weight: 700; font-size: 13.5px; color: #1E293B; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
                                                     <div style="width: 7px; height: 7px; border-radius: 2px; background: #10B981;"></div>
                                                     <span data-i18n="biz_85">Pengangkutan FAME</span>
@@ -2119,7 +2229,7 @@
                                                     Pengangkutan FAME (Fatty Acid Methyl Ester) sebagai bahan campuran utama biodiesel guna mendukung program energi terbarukan nasional.
                                                 </p>
                                             </div>
-                                            <div style="padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 6px; background: #F8FAFC;">
+                                            <div style="padding: 14px 16px; border: 1px solid #E2E8F0; border-radius: 6px; background: #F8FAFC;">
                                                 <div style="font-weight: 700; font-size: 13.5px; color: #1E293B; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
                                                     <div style="width: 7px; height: 7px; border-radius: 2px; background: #10B981;"></div>
                                                     <span data-i18n="biz_88">Pengangkutan BreezonMC</span>
@@ -2135,21 +2245,35 @@
 
                             <!-- Section 3: IT Solution untuk Digital Logistic Solution -->
                             <div class="other-section-block">
-                                <div style="display: flex; align-items: flex-start; gap: 20px;">
-                                    <div class="benefit-icon" style="background: #EFF6FF; color: #0056A6; width: 50px; height: 50px; min-width: 50px; padding: 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                                        </svg>
+                                <div class="other-card-layout">
+                                    <!-- Left: Illustrative Media Showcase -->
+                                    <div class="other-card-media">
+                                        <img src="assets/it_logistics_solution.jpg" alt="IT Solution dan Digital Logistics Control Center Patra Logistik" class="other-card-img" loading="lazy">
+                                        <div class="other-card-overlay"></div>
+                                        <div class="other-card-tag">
+                                            <span class="other-card-tag-dot"></span>
+                                            <span>Digital Control &amp; IT</span>
+                                        </div>
                                     </div>
-                                    <div style="flex: 1;">
-                                        <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #0056A6; background: #E0F2FE; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Digital Logistics &amp; Tech</div>
-                                        <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0 0 10px 0; letter-spacing: -0.3px;">IT Solution untuk Digital Logistic Solution</h3>
+                                    <!-- Right: Content & Explanations -->
+                                    <div class="other-card-content">
+                                        <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px;">
+                                            <div class="benefit-icon" style="background: #EFF6FF; color: #0056A6; width: 46px; height: 46px; min-width: 46px; padding: 10px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;">
+                                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <div style="display: inline-block; font-size: 11px; font-weight: 700; color: #0056A6; background: #E0F2FE; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Digital Logistics &amp; Tech</div>
+                                                <h3 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0; letter-spacing: -0.3px;">IT Solution untuk Digital Logistic Solution</h3>
+                                            </div>
+                                        </div>
                                         <p class="content-text" style="font-size: 14.5px; line-height: 1.65; color: #475569; margin-bottom: 18px;">
                                             Melalui pengembangan sistem digital, kami menghadirkan solusi teknologi informasi untuk mendukung efisiensi rantai pasok dan visibilitas operasional logistik.
                                         </p>
-                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9;">
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding-top: 16px; border-top: 1px solid #F1F5F9;">
                                             <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155;">
                                                 <div style="width: 6px; height: 6px; border-radius: 50%; background: #0056A6; flex-shrink: 0;"></div>
                                                 <span>Sistem monitoring dan pelacakan armada real-time</span>
@@ -2164,8 +2288,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
+                        </div>
 
                         </div>
 
